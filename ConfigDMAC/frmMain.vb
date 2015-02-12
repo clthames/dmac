@@ -36,130 +36,133 @@ Public Class frmMain
         tsCancel.Enabled = value
     End Sub
     Private Sub trvOptions_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles trvOptions.AfterSelect
-        Dim tc As System.Drawing.Point
-        tc.X = 3
-        tc.Y = 3
-        hideTabs()
-        EnDisAllButtons(False)
-        Select Case e.Node.Name
-            Case "nUsers"
-                isLoading = True
-                Env = clsConfigDmac.ActiveEnv.UserInformation
-                hideTabs()
-                tsNew.Enabled = True
-                tcProfiles.Visible = True
-                tcProfiles.Location = tc
-                tcProfiles.SelectTab(0)
-                txtLogon.Clear()
-                txtEmail.Clear()
-                txtName.Clear()
-                txtPassword.Clear()
-                chkActive.Checked = False
-                oExcelSS.fillComboBox(cboUsers, "uspConfiguration_FillUsersCbo", "UserID", "ID")
-                '  oExcelSS.fillComboBox(cboProfiles, "uspConfiguration_FillProfilesCbo", "ProfileName", "ProfileID")
-                txtPrDesc.Clear()
-                txtPrName.Clear()
-                chklbPermissions.Controls.Clear()
-                lbOwnedProfiles.Items.Clear()
-                cboProfiles.SelectedIndex = -1
-                cboUsers.SelectedIndex = -1
-                cboUsers.Enabled = True
-                isLoading = False
-            Case "nCompany"
-                Env = clsConfigDmac.ActiveEnv.CompanyInformation
-                isLoading = True
-                tsNew.Enabled = False
-                tsEdit.Enabled = True
-                tsCancel.Enabled = False
-                tsSave.Enabled = False
-                hideTabs()
-                tcCompany.Visible = True
-                tcCompany.Location = tc
-                tcCompany.SelectTab(0)
-                txtCoAddress.Clear()
-                txtCoFax.Clear()
-                txtCoName.Clear()
-                txtCoPhone.Clear()
-                txtCoWebS.Clear()
-                GetCompanyInfo()
-
-                ''''Added by Harinath Reddy
-                ''''Report Categories
-            Case "nReportCategories"
-                Env = clsConfigDmac.ActiveEnv.ReportCategories
-                isLoading = True
-                tsNew.Enabled = True
-                tsEdit.Enabled = False
-                tsCancel.Enabled = False
-                tsSave.Enabled = False
-                hideTabs()
-                tcReports.Visible = True
-                tcReports.Location = tc
-                tcReports.SelectTab(0)
-                oExcelSS.fillComboBox(cboRepCategories, "uspConfiguration_FillRepCategoriesCbo", "categoryname", "categoryidkey")
-                oExcelSS.fillComboBox(cboRepGroupCat, "uspConfiguration_FillRepGroupsCbo", "groupname", "groupidkey")
-                cboRepCategories.SelectedIndex = -1
-                cboRepGroupCat.SelectedIndex = -1
-                pnlRepCategories.Visible = False
-                isLoading = False
-
-                ''''added by Harinath on 25-JAN-2014
-
-            Case "nAccess"
-                hideTabs()
-
-            Case "NRoles"
-                isLoading = True
-                Env = clsConfigDmac.ActiveEnv.UserProfiles
-                hideTabs()
-                tsNew.Enabled = True
-                tbcntrl_ProfileAccess.Visible = True
-                tbcntrl_ProfileAccess.Location = tc
-                tbcntrl_ProfileAccess.SelectTab(0)
-                oExcelSS.fillComboBox(cboProfiles, "uspConfiguration_FillProfilesCbo", "ProfileName", "ProfileID")
-                txtPrDesc.Clear()
-                txtPrName.Clear()
-                chklbPermissions.Controls.Clear()
-                lbOwnedProfiles.Items.Clear()
-                cboProfiles.SelectedIndex = -1
-                isLoading = False
-
-            Case "nReportDefinitions"
-                isLoading = True
-                Env = clsConfigDmac.ActiveEnv.ReportDefinitions
-                hideTabs()
-                tsNew.Enabled = True
-                tbcReportDefinition.Visible = True
-                cboReportDefinitions.Enabled = True
-                tbcReportDefinition.Location = tc
-                cboReportDefinitions.SelectedIndex = -1
-                oExcelSS.fillComboBox(cboReportDefinitions, "uspConfiguration_FillRepDefinitionsCbo", "ReportID", "ReportIDKey")
-                cboReportDefinitions.SelectedIndex = -1
-                isLoading = False
-
-            Case "nReports"
-                isLoading = True
-                Env = clsConfigDmac.ActiveEnv.Reports
-                hideTabs()
-                dgvParameters.Rows.Clear()
-                trvwReports.Nodes.Clear()
-                LoadReports()
-                tsNew.Enabled = False
-                tbcntrlReports.Visible = True
-                If dgvParameters.Rows.Count > 0 Then
-                    tsCancel.Enabled = True
-                    tsSave.Enabled = True
-                Else
+        Try
+            Dim tc As System.Drawing.Point
+            tc.X = 3
+            tc.Y = 3
+            hideTabs()
+            EnDisAllButtons(False)
+            Select Case e.Node.Name
+                Case "nUsers"
+                    isLoading = True
+                    Env = clsConfigDmac.ActiveEnv.UserInformation
+                    hideTabs()
+                    tsNew.Enabled = True
+                    tcProfiles.Visible = True
+                    tcProfiles.Location = tc
+                    tcProfiles.SelectTab(0)
+                    txtLogon.Clear()
+                    txtEmail.Clear()
+                    txtName.Clear()
+                    txtPassword.Clear()
+                    chkActive.Checked = False
+                    oExcelSS.fillComboBox(cboUsers, "uspConfiguration_FillUsersCbo", "UserID", "ID")
+                    '  oExcelSS.fillComboBox(cboProfiles, "uspConfiguration_FillProfilesCbo", "ProfileName", "ProfileID")
+                    txtPrDesc.Clear()
+                    txtPrName.Clear()
+                    chklbPermissions.Controls.Clear()
+                    lbOwnedProfiles.Items.Clear()
+                    cboProfiles.SelectedIndex = -1
+                    cboUsers.SelectedIndex = -1
+                    cboUsers.Enabled = True
+                    isLoading = False
+                Case "nCompany"
+                    Env = clsConfigDmac.ActiveEnv.CompanyInformation
+                    isLoading = True
+                    tsNew.Enabled = False
+                    tsEdit.Enabled = True
                     tsCancel.Enabled = False
                     tsSave.Enabled = False
-                End If
-               
-                tsEdit.Enabled = False
+                    hideTabs()
+                    tcCompany.Visible = True
+                    tcCompany.Location = tc
+                    tcCompany.SelectTab(0)
+                    txtCoAddress.Clear()
+                    txtCoFax.Clear()
+                    txtCoName.Clear()
+                    txtCoPhone.Clear()
+                    txtCoWebS.Clear()
+                    GetCompanyInfo()
+
+                    ''''Added by Harinath Reddy
+                    ''''Report Categories
+                Case "nReportCategories"
+                    Env = clsConfigDmac.ActiveEnv.ReportCategories
+                    isLoading = True
+                    tsNew.Enabled = True
+                    tsEdit.Enabled = False
+                    tsCancel.Enabled = False
+                    tsSave.Enabled = False
+                    hideTabs()
+                    tcReports.Visible = True
+                    tcReports.Location = tc
+                    tcReports.SelectTab(0)
+                    oExcelSS.fillComboBox(cboRepCategories, "uspConfiguration_FillRepCategoriesCbo", "categoryname", "categoryidkey")
+                    oExcelSS.fillComboBox(cboRepGroupCat, "uspConfiguration_FillRepGroupsCbo", "groupname", "groupidkey")
+                    cboRepCategories.SelectedIndex = -1
+                    cboRepGroupCat.SelectedIndex = -1
+                    pnlRepCategories.Visible = False
+                    isLoading = False
+
+                    ''''added by Harinath on 25-JAN-2014
+
+                Case "nAccess"
+                    hideTabs()
+
+                Case "NRoles"
+                    isLoading = True
+                    Env = clsConfigDmac.ActiveEnv.UserProfiles
+                    hideTabs()
+                    tsNew.Enabled = True
+                    tbcntrl_ProfileAccess.Visible = True
+                    tbcntrl_ProfileAccess.Location = tc
+                    tbcntrl_ProfileAccess.SelectTab(0)
+                    oExcelSS.fillComboBox(cboProfiles, "uspConfiguration_FillProfilesCbo", "ProfileName", "ProfileID")
+                    txtPrDesc.Clear()
+                    txtPrName.Clear()
+                    chklbPermissions.Controls.Clear()
+                    lbOwnedProfiles.Items.Clear()
+                    cboProfiles.SelectedIndex = -1
+                    isLoading = False
+
+                Case "nReportDefinitions"
+                    isLoading = True
+                    Env = clsConfigDmac.ActiveEnv.ReportDefinitions
+                    hideTabs()
+                    tsNew.Enabled = True
+                    tbcReportDefinition.Visible = True
+                    cboReportDefinitions.Enabled = True
+                    tbcReportDefinition.Location = tc
+                    cboReportDefinitions.SelectedIndex = -1
+                    oExcelSS.fillComboBox(cboReportDefinitions, "uspConfiguration_FillRepDefinitionsCbo", "ReportID", "ReportIDKey")
+                    cboReportDefinitions.SelectedIndex = -1
+                    isLoading = False
+
+                Case "nReports"
+                    isLoading = True
+                    Env = clsConfigDmac.ActiveEnv.Reports
+                    hideTabs()
+                    dgvParameters.Rows.Clear()
+                    trvwReports.Nodes.Clear()
+                    LoadReports()
+                    tsNew.Enabled = False
+                    tbcntrlReports.Visible = True
+                    If dgvParameters.Rows.Count > 0 Then
+                        tsCancel.Enabled = True
+                        tsSave.Enabled = True
+                    Else
+                        tsCancel.Enabled = False
+                        tsSave.Enabled = False
+                    End If
+
+                    tsEdit.Enabled = False
 
 
-                ''''End
-        End Select
-
+                    ''''End
+            End Select
+        Catch lobjException As Exception
+            MessageBox.Show(lobjException.Message, "Reports", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
     Public Sub hideTabs()
         tcProfiles.Visible = False
@@ -179,53 +182,58 @@ Public Class frmMain
     ''' <remarks></remarks>
     ''' 
     Public Sub LoadReports()
+        Try
 
-        Dim lobjDataTable As DataTable = Nothing
-        lobjDataTable = oExcelSS.getDataTable("select rep.ReportIDKey,rep.GroupIDKey,rep.CategoryIDKey,rep.ReportID,rep.ReportFileName,grp.GroupName,cat.CategoryName from test.dbo.ReportDefs rep,test.dbo.ReportGroups grp,test.dbo.ReportCategories cat where  rep.isActive=1  and (rep.GroupIDKey=grp.GroupIDKey and rep.CategoryIDKey=cat.CategoryIDKey)", False)
-        If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
-            For Each lobjRow As DataRow In lobjDataTable.Rows
-                Dim lobjParentTreeNode As TreeNode = Nothing
-                Dim lobjChildnode As TreeNode = Nothing
-                Dim lobjChildNode2 As New TreeNode()
-                lobjParentTreeNode = New TreeNode()
-                lobjParentTreeNode.Text = lobjRow(5).ToString()
-                lobjParentTreeNode.Name = lobjRow(5).ToString()
-                If trvwReports.Nodes.Find(lobjRow(5).ToString(), False).Length >= 1 Then
-                    lobjParentTreeNode = trvwReports.Nodes.Item(lobjRow(5).ToString())
-                    If trvwReports.Nodes.Find(lobjRow(6).ToString(), False).Length >= 1 Then
-                        lobjChildnode = trvwReports.Nodes.Item(lobjRow(6).ToString())
-                    Else
-                        lobjChildnode = New TreeNode()
-                        lobjChildnode.Text = lobjRow(6).ToString
-                        lobjChildnode.Name = lobjRow(6).ToString
-                        lobjChildnode.Tag = lobjRow
-                    End If
-                    lobjChildNode2 = New TreeNode
-                    lobjChildNode2.Text = lobjRow(3).ToString
-                    lobjChildNode2.Name = lobjRow(3).ToString
-                    lobjChildNode2.Tag = lobjRow
-                    lobjChildnode.Nodes.Add(lobjChildNode2)
-                    lobjParentTreeNode.Nodes.Add(lobjChildnode)
+            Dim lobjDataTable As DataTable = Nothing
+            lobjDataTable = oExcelSS.getDataTable("select rep.ReportIDKey,rep.GroupIDKey,rep.CategoryIDKey,rep.ReportID,rep.ReportFileName,grp.GroupName,cat.CategoryName from ReportDefs rep,ReportGroups grp,ReportCategories cat where  rep.isActive=1  and (rep.GroupIDKey=grp.GroupIDKey and rep.CategoryIDKey=cat.CategoryIDKey)", False)
+            If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
+                For Each lobjRow As DataRow In lobjDataTable.Rows
+                    Dim lobjParentTreeNode As TreeNode = Nothing
+                    Dim lobjChildnode As TreeNode = Nothing
+                    Dim lobjChildNode2 As New TreeNode()
+                    lobjParentTreeNode = New TreeNode()
+                    lobjParentTreeNode.Text = lobjRow(5).ToString()
+                    lobjParentTreeNode.Name = lobjRow(5).ToString()
+                    If trvwReports.Nodes.Find(lobjRow(5).ToString(), False).Length >= 1 Then
+                        lobjParentTreeNode = trvwReports.Nodes.Item(lobjRow(5).ToString())
+                        If trvwReports.Nodes.Find(lobjRow(6).ToString(), False).Length >= 1 Then
+                            lobjChildnode = trvwReports.Nodes.Item(lobjRow(6).ToString())
+                        Else
+                            lobjChildnode = New TreeNode()
+                            lobjChildnode.Text = lobjRow(6).ToString
+                            lobjChildnode.Name = lobjRow(6).ToString
+                            lobjChildnode.Tag = lobjRow
+                        End If
+                        lobjChildNode2 = New TreeNode
+                        lobjChildNode2.Text = lobjRow(3).ToString
+                        lobjChildNode2.Name = lobjRow(3).ToString
+                        lobjChildNode2.Tag = lobjRow
+                        lobjChildnode.Nodes.Add(lobjChildNode2)
+                        lobjParentTreeNode.Nodes.Add(lobjChildnode)
 
-                Else
-                    If trvwReports.Nodes.Find(lobjRow(6).ToString(), False).Length >= 1 Then
-                        lobjChildnode = trvwReports.Nodes.Item(lobjRow(6).ToString())
                     Else
-                        lobjChildnode = New TreeNode()
-                        lobjChildnode.Text = lobjRow(6).ToString
-                        lobjChildnode.Name = lobjRow(6).ToString
-                        lobjChildnode.Tag = lobjRow
+                        If trvwReports.Nodes.Find(lobjRow(6).ToString(), False).Length >= 1 Then
+                            lobjChildnode = trvwReports.Nodes.Item(lobjRow(6).ToString())
+                        Else
+                            lobjChildnode = New TreeNode()
+                            lobjChildnode.Text = lobjRow(6).ToString
+                            lobjChildnode.Name = lobjRow(6).ToString
+                            lobjChildnode.Tag = lobjRow
+                        End If
+                        lobjChildNode2 = New TreeNode
+                        lobjChildNode2.Text = lobjRow(3).ToString
+                        lobjChildNode2.Name = lobjRow(3).ToString
+                        lobjChildNode2.Tag = lobjRow
+                        lobjChildnode.Nodes.Add(lobjChildNode2)
+                        lobjParentTreeNode.Nodes.Add(lobjChildnode)
+                        trvwReports.Nodes.Add(lobjParentTreeNode)
                     End If
-                    lobjChildNode2 = New TreeNode
-                    lobjChildNode2.Text = lobjRow(3).ToString
-                    lobjChildNode2.Name = lobjRow(3).ToString
-                    lobjChildNode2.Tag = lobjRow
-                    lobjChildnode.Nodes.Add(lobjChildNode2)
-                    lobjParentTreeNode.Nodes.Add(lobjChildnode)
-                    trvwReports.Nodes.Add(lobjParentTreeNode)
-                End If
-            Next
-        End If
+                Next
+            End If
+
+        Catch lobjException As Exception
+            MessageBox.Show(lobjException.Message, "Reports", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
     Public Sub LoadSettings()
         oExcelSS.logoURL = ConfigurationSettings.AppSettings("logoURL")
@@ -237,74 +245,80 @@ Public Class frmMain
         oExcelSS.EndApplication()
     End Sub
     Private Sub cboUsers_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboUsers.SelectedIndexChanged
-        If Not cboUsers.SelectedIndex = -1 And Not isLoading Then
-            pnlInfoUsers.Visible = True
-            pnlInfoUsers.Enabled = False
-            txtLogon.Clear()
-            txtName.Clear()
-            txtPassword.Clear()
-            txtEmail.Clear()
-            chkActive.Checked = False
-            Dim dt As New DataTable
-            Dim p As SqlParameter() = New SqlParameter(0) {}
-            p(0) = New SqlParameter("@UserID", cboUsers.SelectedValue)
-            dt = oExcelSS.getDataTable("uspConfiguration_GetUserInfo", True, p)
-            If Not dt Is Nothing Then
-                txtLogon.Text = dt.Rows(0)(0)
-                txtName.Text = dt.Rows(0)(1)
-                txtPassword.Text = ExcelSSGen.Main.Decrypt(dt.Rows(0)(2), "dmac", True)
-                txtEmail.Text = dt.Rows(0)(3)
-                chkActive.Checked = Convert.ToInt16(dt.Rows(0)(4))
-            End If
-            tsEdit.Enabled = True
+        Try
+            If Not cboUsers.SelectedIndex = -1 And Not isLoading Then
+                pnlInfoUsers.Visible = True
+                pnlInfoUsers.Enabled = False
+                txtLogon.Clear()
+                txtName.Clear()
+                txtPassword.Clear()
+                txtEmail.Clear()
+                chkActive.Checked = False
+                Dim dt As New DataTable
+                Dim p As SqlParameter() = New SqlParameter(0) {}
+                p(0) = New SqlParameter("@UserID", cboUsers.SelectedValue)
+                dt = oExcelSS.getDataTable("uspConfiguration_GetUserInfo", True, p)
+                If Not dt Is Nothing Then
+                    txtLogon.Text = dt.Rows(0)(0)
+                    txtName.Text = dt.Rows(0)(1)
+                    txtPassword.Text = ExcelSSGen.Main.Decrypt(dt.Rows(0)(2), "dmac", True)
+                    txtEmail.Text = dt.Rows(0)(3)
+                    chkActive.Checked = Convert.ToInt16(dt.Rows(0)(4))
+                End If
+                tsEdit.Enabled = True
 
-            ''''Added By Harinath 24-JAN-2015
+                ''''Added By Harinath 24-JAN-2015
 
-            pnlPermissions.Visible = True
-            pnlPermissions.Enabled = False
-            lbOwnedProfiles.Items.Clear()
-            lbAvailableProfiles.Items.Clear()
-            dt = New DataTable
-            Dim dp As New DataTable
-            p = New SqlParameter(0) {}
-            p(0) = New SqlParameter("@UserID", cboUsers.SelectedValue)
-            dt = oExcelSS.getDataTable("uspConfiguration_GetProfilesFromUser", True, p)
-            dp = oExcelSS.getDataTable("select * from AccessProfiles", False)
-            If Not dt Is Nothing Then
-                Dim r As DataRow
-                For Each r In dt.Rows
-                    lbOwnedProfiles.Items.Add(r(1))
-                Next
-            End If
-            If Not dp Is Nothing Then
-                Dim dr As DataRow
-                Dim x As Integer = 0
-                Dim exists As Boolean = False
-                For Each dr In dp.Rows
-                    exists = False
-                    For x = 0 To dt.Rows.Count - 1
-                        If dr(1).trim = dt.Rows(x)(1).trim Then
-                            exists = True
+                pnlPermissions.Visible = True
+                pnlPermissions.Enabled = False
+                lbOwnedProfiles.Items.Clear()
+                lbAvailableProfiles.Items.Clear()
+                dt = New DataTable
+                Dim dp As New DataTable
+                p = New SqlParameter(0) {}
+                p(0) = New SqlParameter("@UserID", cboUsers.SelectedValue)
+                dt = oExcelSS.getDataTable("uspConfiguration_GetProfilesFromUser", True, p)
+                dp = oExcelSS.getDataTable("select * from AccessProfiles", False)
+                If Not dt Is Nothing Then
+                    Dim r As DataRow
+                    For Each r In dt.Rows
+                        lbOwnedProfiles.Items.Add(r(1))
+                    Next
+                End If
+                If Not dp Is Nothing Then
+                    Dim dr As DataRow
+                    Dim x As Integer = 0
+                    Dim exists As Boolean = False
+                    For Each dr In dp.Rows
+                        exists = False
+                        For x = 0 To dt.Rows.Count - 1
+                            If dr(1).trim = dt.Rows(x)(1).trim Then
+                                exists = True
+                            End If
+                        Next
+                        If Not exists Then
+                            lbAvailableProfiles.Items.Add(dr(1))
                         End If
                     Next
-                    If Not exists Then
-                        lbAvailableProfiles.Items.Add(dr(1))
-                    End If
-                Next
+                End If
+                btnAddPr.Enabled = False
+                btnRemovePr.Enabled = False
+                action = clsConfigDmac.Actions.None
+                tsNew.Enabled = True
+                tsEdit.Enabled = True
+
+
+
+                ''END
+            Else
+                pnlInfoUsers.Visible = False
+                pnlInfoUsers.Enabled = False
             End If
-            btnAddPr.Enabled = False
-            btnRemovePr.Enabled = False
-            action = clsConfigDmac.Actions.None
-            tsNew.Enabled = True
-            tsEdit.Enabled = True
+        Catch lobjExeption As Exception
+            Throw lobjExeption
 
+        End Try
 
-
-            ''END
-        Else
-            pnlInfoUsers.Visible = False
-            pnlInfoUsers.Enabled = False
-        End If
     End Sub
 
     ''''Commented by Harinath 25-JAN-2015
@@ -425,150 +439,158 @@ Public Class frmMain
         End Try
     End Sub
     Private Sub tsCancel_Click(sender As Object, e As EventArgs) Handles tsCancel.Click
-        action = clsConfigDmac.Actions.None
-        Select Case Env
-            Case clsConfigDmac.ActiveEnv.UserInformation
-                tsNew.Enabled = True
-                tsEdit.Enabled = True
-                tsSave.Enabled = False
-                tsCancel.Enabled = False
-                cboUsers.Enabled = True
-                pnlPermissions.Visible = False
-                cboUsers_SelectedIndexChanged(Me, e)
-            Case clsConfigDmac.ActiveEnv.UserProfiles
-                tsNew.Enabled = True
-                tsEdit.Enabled = True
-                tsSave.Enabled = False
-                tsCancel.Enabled = False
-                cboProfiles.Enabled = True
-                cboProfiles_SelectedIndexChanged_1(Me, e)
-            Case clsConfigDmac.ActiveEnv.CompanyInformation
-                tsNew.Enabled = False
-                tsEdit.Enabled = True
-                tsSave.Enabled = False
-                tsCancel.Enabled = False
-                pnlCompanyInfo.Enabled = False
-            Case clsConfigDmac.ActiveEnv.ReportCategories
-                tsNew.Enabled = True
-                tsEdit.Enabled = True
-                tsSave.Enabled = False
-                tsCancel.Enabled = False
-                pnlRepCategories.Visible = False
-                cboRepCategories.Enabled = True
-                isLoading = True
-                cboRepCategories.SelectedIndex = -1
-                cboRepCategories_SelectedIndexChanged(Me, e)
-                isLoading = True = False
-            Case clsConfigDmac.ActiveEnv.ReportDefinitions
-                isLoading = True
-                tsNew.Enabled = True
-                tsEdit.Enabled = True
-                tsSave.Enabled = False
-                tsCancel.Enabled = False
-                cboReportDefinitions.Enabled = True
-                pnlReportDefinitions.Visible = False
-                btnAssign.Visible = False
-                pbPreview.Enabled = False
-                cboReportDefinitions.SelectedIndex = -1
+        Try
+            action = clsConfigDmac.Actions.None
+            Select Case Env
+                Case clsConfigDmac.ActiveEnv.UserInformation
+                    tsNew.Enabled = True
+                    tsEdit.Enabled = True
+                    tsSave.Enabled = False
+                    tsCancel.Enabled = False
+                    cboUsers.Enabled = True
+                    pnlPermissions.Visible = False
+                    cboUsers_SelectedIndexChanged(Me, e)
+                Case clsConfigDmac.ActiveEnv.UserProfiles
+                    tsNew.Enabled = True
+                    tsEdit.Enabled = True
+                    tsSave.Enabled = False
+                    tsCancel.Enabled = False
+                    cboProfiles.Enabled = True
+                    cboProfiles_SelectedIndexChanged_1(Me, e)
+                Case clsConfigDmac.ActiveEnv.CompanyInformation
+                    tsNew.Enabled = False
+                    tsEdit.Enabled = True
+                    tsSave.Enabled = False
+                    tsCancel.Enabled = False
+                    pnlCompanyInfo.Enabled = False
+                Case clsConfigDmac.ActiveEnv.ReportCategories
+                    tsNew.Enabled = True
+                    tsEdit.Enabled = True
+                    tsSave.Enabled = False
+                    tsCancel.Enabled = False
+                    pnlRepCategories.Visible = False
+                    cboRepCategories.Enabled = True
+                    isLoading = True
+                    cboRepCategories.SelectedIndex = -1
+                    cboRepCategories_SelectedIndexChanged(Me, e)
+                    isLoading = True = False
+                Case clsConfigDmac.ActiveEnv.ReportDefinitions
+                    isLoading = True
+                    tsNew.Enabled = True
+                    tsEdit.Enabled = True
+                    tsSave.Enabled = False
+                    tsCancel.Enabled = False
+                    cboReportDefinitions.Enabled = True
+                    pnlReportDefinitions.Visible = False
+                    btnAssign.Visible = False
+                    pbPreview.Enabled = False
+                    cboReportDefinitions.SelectedIndex = -1
 
-                isLoading = False
-        End Select
+                    isLoading = False
+            End Select
+        Catch lobjException As Exception
+            MessageBox.Show(lobjException.Message)
+        End Try
     End Sub
     Private Sub tsSave_Click(sender As Object, e As EventArgs) Handles tsSave.Click
-        Dim niu As Boolean = True
-        Select Case Env
-            Case clsConfigDmac.ActiveEnv.UserInformation
-                If ValidateUserInfo() Then
-                    If txtLogon.Enabled Then
-                        If ValidateLogonAvailable() Then
-                            SaveUserInfo(1)
-                            'cboUsers.SelectedIndex = -1
-                            pnlInfoUsers.Visible = False
-                            pnlPermissions.Visible = False
-                            isLoading = True
-                            oExcelSS.fillComboBox(cboUsers, "uspConfiguration_FillUsersCbo", "UserID", "ID")
-                            cboUsers.SelectedIndex = -1
-                            isLoading = False
+        Try
+            Dim niu As Boolean = True
+            Select Case Env
+                Case clsConfigDmac.ActiveEnv.UserInformation
+                    If ValidateUserInfo() Then
+                        If txtLogon.Enabled Then
+                            If ValidateLogonAvailable() Then
+                                SaveUserInfo(1)
+                                'cboUsers.SelectedIndex = -1
+                                pnlInfoUsers.Visible = False
+                                pnlPermissions.Visible = False
+                                isLoading = True
+                                oExcelSS.fillComboBox(cboUsers, "uspConfiguration_FillUsersCbo", "UserID", "ID")
+                                cboUsers.SelectedIndex = -1
+                                isLoading = False
+                                cboUsers.Enabled = True
+                            Else
+                                niu = False
+                            End If
+                        Else
+                            SaveUserInfo(2)
+                            cboUsers_SelectedIndexChanged(Me, e)
                             cboUsers.Enabled = True
+                        End If
+                    End If
+
+
+                Case clsConfigDmac.ActiveEnv.UserProfiles
+                    If ValidateProfileInfo() Then
+                        Select Case action
+                            Case clsConfigDmac.Actions.Edit
+                                SaveProfileInfo(1)
+                                cboProfiles_SelectedIndexChanged_1(Me, e)
+                            Case clsConfigDmac.Actions.Niu
+                                SaveProfileInfo(2)
+                                cboProfiles.SelectedIndex = -1
+                                pnlProfiles.Visible = False
+                                isLoading = True
+                                oExcelSS.fillComboBox(cboProfiles, "uspConfiguration_FillProfilesCbo", "ProfileName", "ProfileID")
+                                cboProfiles.SelectedIndex = -1
+                                isLoading = False
+                                cboProfiles.Enabled = True
+                        End Select
+                    End If
+                Case clsConfigDmac.ActiveEnv.UserPermissions
+                    If action <> clsConfigDmac.Actions.None And cboUsers.SelectedIndex <> -1 Then
+                        SaveUserPermissions(cboUsers.SelectedValue)
+                        cboUsers_SelectedIndexChanged(Me, e)
+                    Else
+                        MsgBox("No changes to save yet.")
+                    End If
+                Case clsConfigDmac.ActiveEnv.CompanyInformation
+                    If ValidateCompanyInfo() Then
+                        SaveCompanyInfo()
+                        pnlCompanyInfo.Enabled = False
+                        GetCompanyInfo()
+                        niu = False
+                    End If
+                Case clsConfigDmac.ActiveEnv.ReportCategories
+                    If ValidateReportCategory() Then
+                        SaveReportCategory()
+                        ''''Added by Harinath Reddy
+                        cboRepCategories.SelectedIndex = -1
+                        pnlRepCategories.Visible = False
+                        pnlRepCategories.Enabled = False
+                        cboRepCategories.Enabled = True
+                        isLoading = True
+                        oExcelSS.fillComboBox(cboRepCategories, "uspConfiguration_FillRepCategoriesCbo", "categoryname", "categoryidkey")
+                        isLoading = False
+
+                    End If
+                Case clsConfigDmac.ActiveEnv.ReportDefinitions
+                    If ValidateReportDefinition() Then
+                        If saveReportDefinition() Then
+                            pbPreview.Enabled = False
+                            btnAssign.Enabled = False
+                            pnlReportDefinitions.Enabled = False
+                            cboReportDefinitions.Enabled = True
                         Else
                             niu = False
                         End If
                     Else
-                        SaveUserInfo(2)
-                        cboUsers_SelectedIndexChanged(Me, e)
-                        cboUsers.Enabled = True
-                    End If
-                End If
-              
-
-            Case clsConfigDmac.ActiveEnv.UserProfiles
-                If ValidateProfileInfo() Then
-                    Select Case action
-                        Case clsConfigDmac.Actions.Edit
-                            SaveProfileInfo(1)
-                            cboProfiles_SelectedIndexChanged_1(Me, e)
-                        Case clsConfigDmac.Actions.Niu
-                            SaveProfileInfo(2)
-                            cboProfiles.SelectedIndex = -1
-                            pnlProfiles.Visible = False
-                            isLoading = True
-                            oExcelSS.fillComboBox(cboProfiles, "uspConfiguration_FillProfilesCbo", "ProfileName", "ProfileID")
-                            cboProfiles.SelectedIndex = -1
-                            isLoading = False
-                            cboProfiles.Enabled = True
-                    End Select
-                End If
-            Case clsConfigDmac.ActiveEnv.UserPermissions
-                If action <> clsConfigDmac.Actions.None And cboUsers.SelectedIndex <> -1 Then
-                    SaveUserPermissions(cboUsers.SelectedValue)
-                    cboUsers_SelectedIndexChanged(Me, e)
-                Else
-                    MsgBox("No changes to save yet.")
-                End If
-            Case clsConfigDmac.ActiveEnv.CompanyInformation
-                If ValidateCompanyInfo() Then
-                    SaveCompanyInfo()
-                    pnlCompanyInfo.Enabled = False
-                    GetCompanyInfo()
-                    niu = False
-                End If
-            Case clsConfigDmac.ActiveEnv.ReportCategories
-                If ValidateReportCategory() Then
-                    SaveReportCategory()
-                    ''''Added by Harinath Reddy
-                    cboRepCategories.SelectedIndex = -1
-                    pnlRepCategories.Visible = False
-                    pnlRepCategories.Enabled = False
-                    cboRepCategories.Enabled = True
-                    isLoading = True
-                    oExcelSS.fillComboBox(cboRepCategories, "uspConfiguration_FillRepCategoriesCbo", "categoryname", "categoryidkey")
-                    isLoading = False
-
-                End If
-            Case clsConfigDmac.ActiveEnv.ReportDefinitions
-                If ValidateReportDefinition() Then
-                    If saveReportDefinition() Then
-                        pbPreview.Enabled = False
-                        btnAssign.Enabled = False
-                        pnlReportDefinitions.Enabled = False
-                        cboReportDefinitions.Enabled = True
-                    Else
                         niu = False
                     End If
-                Else
+                Case clsConfigDmac.ActiveEnv.Reports
+                    SaveReportParameters()
                     niu = False
-                End If
-            Case clsConfigDmac.ActiveEnv.Reports
-                SaveReportParameters()
-                niu = False
-        End Select
-        If niu Then
-            tsNew.Enabled = niu
-            tsEdit.Enabled = True
-            tsSave.Enabled = False
-            tsCancel.Enabled = False
+            End Select
+            If niu Then
+                tsNew.Enabled = niu
+                tsEdit.Enabled = True
+                tsSave.Enabled = False
+                tsCancel.Enabled = False
 
-        End If
+            End If
+        Catch lobjException As Exception
+            MessageBox.Show(lobjException.Message)
+        End Try
     End Sub
 
     ''' <summary>
@@ -576,6 +598,7 @@ Public Class frmMain
     ''' </summary>
     ''' <remarks></remarks>
     Public Function saveReportDefinition() As Boolean
+
         Dim lobjDataTable As New DataTable
         Dim nImage As Image = pbPreview.Image
 
