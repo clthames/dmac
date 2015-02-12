@@ -79,6 +79,12 @@
     <Compile Include="frmKeyword.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmLaunch.Designer.vb">
+      <DependentUpon>frmLaunch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLaunch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmKeyword.resx">
       <DependentUpon>frmKeyword.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLaunch.resx">
+      <DependentUpon>frmLaunch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>

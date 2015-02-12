@@ -70,7 +70,7 @@ Public Class frmMain
                     Env = clsConfigDmac.ActiveEnv.CompanyInformation
                     isLoading = True
                     tsNew.Enabled = False
-                    tsEdit.Enabled = True
+                    tsEdit.Enabled = False
                     tsCancel.Enabled = False
                     tsSave.Enabled = False
                     hideTabs()
@@ -154,10 +154,13 @@ Public Class frmMain
                         tsCancel.Enabled = False
                         tsSave.Enabled = False
                     End If
-
                     tsEdit.Enabled = False
 
-
+                Case "nCostOperations"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Job Costing for Cost Operations"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    lobjfrmLaunch.ShowDialog()
                     ''''End
             End Select
         Catch lobjException As Exception
@@ -583,7 +586,7 @@ Public Class frmMain
             End Select
             If niu Then
                 tsNew.Enabled = niu
-                tsEdit.Enabled = True
+                tsEdit.Enabled = False
                 tsSave.Enabled = False
                 tsCancel.Enabled = False
 
@@ -1060,143 +1063,150 @@ Public Class frmMain
         MsgBox("Information Inserted/Updated successfully", MsgBoxStyle.Information)
     End Sub
     Private Sub tsNew_Click(sender As Object, e As EventArgs) Handles tsNew.Click
-        tsEdit.Enabled = False
-        tsSave.Enabled = True
-        tsCancel.Enabled = True
-        tsNew.Enabled = False
-        action = clsConfigDmac.Actions.Niu
-        Select Case Env
-            Case clsConfigDmac.ActiveEnv.ReportCategories
-                pnlRepCategories.Enabled = True
-                cboRepCategories.SelectedIndex = -1
-                cboRepCategories.Enabled = False
-                cboRepGroupCat.SelectedIndex = -1
-                pnlRepCategories.Visible = True
-                txtRepCategoryName.Clear()
-                chkRepCatIA.Checked = False
-                chkRepCatID.Checked = False
+        Try
+            tsEdit.Enabled = False
+            tsSave.Enabled = True
+            tsCancel.Enabled = True
+            tsNew.Enabled = False
+            action = clsConfigDmac.Actions.Niu
+            Select Case Env
+                Case clsConfigDmac.ActiveEnv.ReportCategories
+                    pnlRepCategories.Enabled = True
+                    cboRepCategories.SelectedIndex = -1
+                    cboRepCategories.Enabled = False
+                    cboRepGroupCat.SelectedIndex = -1
+                    pnlRepCategories.Visible = True
+                    txtRepCategoryName.Clear()
+                    chkRepCatIA.Checked = False
+                    chkRepCatID.Checked = False
 
-                ''''Added by Harinath Reddy
-            Case clsConfigDmac.ActiveEnv.ReportDefinitions
-                pnlReportDefinitions.Enabled = True
-                pnlReportDefinitions.Visible = True
-                cboReportDefinitions.Enabled = False
-                cboReportDefinitions.Enabled = False
-                txt_Notes.Clear()
-                txt_RemoteFileName.Clear()
-                txt_ReportDescription.Clear()
-                txt_ReportID.Clear()
-                chkrptdefinitaionActive.Checked = True
-                cboRportCategory.SelectedIndex = -1
-                cboReportGroup.SelectedIndex = -1
+                    ''''Added by Harinath Reddy
+                Case clsConfigDmac.ActiveEnv.ReportDefinitions
+                    pnlReportDefinitions.Enabled = True
+                    pnlReportDefinitions.Visible = True
+                    cboReportDefinitions.Enabled = False
+                    cboReportDefinitions.Enabled = False
+                    txt_Notes.Clear()
+                    txt_RemoteFileName.Clear()
+                    txt_ReportDescription.Clear()
+                    txt_ReportID.Clear()
+                    chkrptdefinitaionActive.Checked = True
+                    cboRportCategory.SelectedIndex = -1
+                    cboReportGroup.SelectedIndex = -1
 
 
-            Case clsConfigDmac.ActiveEnv.UserInformation
-                cboUsers.SelectedIndex = -1
-                pnlInfoUsers.Visible = True
-                pnlInfoUsers.Enabled = True
-                txtLogon.Enabled = True
-                cboUsers.Enabled = False
-                txtEmail.Clear()
-                txtLogon.Clear()
-                txtName.Clear()
-                txtPassword.Clear()
-                chkActive.Checked = False
+                Case clsConfigDmac.ActiveEnv.UserInformation
+                    cboUsers.SelectedIndex = -1
+                    pnlInfoUsers.Visible = True
+                    pnlInfoUsers.Enabled = True
+                    txtLogon.Enabled = True
+                    cboUsers.Enabled = False
+                    txtEmail.Clear()
+                    txtLogon.Clear()
+                    txtName.Clear()
+                    txtPassword.Clear()
+                    chkActive.Checked = False
 
-                ''''Added by Harinath Reddy
+                    ''''Added by Harinath Reddy
 
-                pnlPermissions.Visible = True
-                pnlPermissions.Enabled = True
-                lbOwnedProfiles.Items.Clear()
-                lbAvailableProfiles.Items.Clear()
-                Dim dt As New DataTable
-                Dim dp As New DataTable
-                Dim p As SqlParameter() = New SqlParameter(0) {}
-                p(0) = New SqlParameter("@UserID", cboUsers.SelectedValue)
-                dt = oExcelSS.getDataTable("uspConfiguration_GetProfilesFromUser", True, p)
-                dp = oExcelSS.getDataTable("select * from AccessProfiles", False)
-                If Not dt Is Nothing Then
-                    Dim r As DataRow
-                    For Each r In dt.Rows
-                        lbOwnedProfiles.Items.Add(r(1))
-                    Next
-                End If
-                If Not dp Is Nothing Then
-                    Dim dr As DataRow
-                    Dim x As Integer = 0
-                    Dim exists As Boolean = False
-                    For Each dr In dp.Rows
-                        exists = False
-                        For x = 0 To dt.Rows.Count - 1
-                            If dr(1).trim = dt.Rows(x)(1).trim Then
-                                exists = True
+                    pnlPermissions.Visible = True
+                    pnlPermissions.Enabled = True
+                    lbOwnedProfiles.Items.Clear()
+                    lbAvailableProfiles.Items.Clear()
+                    Dim dt As New DataTable
+                    Dim dp As New DataTable
+                    Dim p As SqlParameter() = New SqlParameter(0) {}
+                    p(0) = New SqlParameter("@UserID", cboUsers.SelectedValue)
+                    If cboUsers.SelectedValue IsNot Nothing Then
+                        dt = oExcelSS.getDataTable("uspConfiguration_GetProfilesFromUser", True, p)
+                    End If
+                    dp = oExcelSS.getDataTable("select * from AccessProfiles", False)
+                    If Not dt Is Nothing Then
+                        Dim r As DataRow
+                        For Each r In dt.Rows
+                            lbOwnedProfiles.Items.Add(r(1))
+                        Next
+                    End If
+                    If Not dp Is Nothing Then
+                        Dim dr As DataRow
+                        Dim x As Integer = 0
+                        Dim exists As Boolean = False
+                        For Each dr In dp.Rows
+                            exists = False
+                            For x = 0 To dt.Rows.Count - 1
+                                If dr(1).trim = dt.Rows(x)(1).trim Then
+                                    exists = True
+                                End If
+                            Next
+                            If Not exists Then
+                                lbAvailableProfiles.Items.Add(dr(1))
                             End If
                         Next
-                        If Not exists Then
-                            lbAvailableProfiles.Items.Add(dr(1))
-                        End If
-                    Next
-                End If
-                btnAddPr.Enabled = False
-                btnRemovePr.Enabled = False
-                action = clsConfigDmac.Actions.None
-                tsNew.Enabled = False
-                tsEdit.Enabled = False
+                    End If
+                    btnAddPr.Enabled = False
+                    btnRemovePr.Enabled = False
+                    action = clsConfigDmac.Actions.None
+                    tsNew.Enabled = False
+                    tsEdit.Enabled = False
 
-                ''''End
+                    ''''End
 
-            Case clsConfigDmac.ActiveEnv.UserProfiles
-                cboProfiles.SelectedIndex = -1
-                pnlProfiles.Visible = True
-                pnlProfiles.Enabled = True
-                cboProfiles.Enabled = False
-                txtPrName.Enabled = True
-                chklbPermissions.Controls.Clear()
-                txtPrDesc.Clear()
-                txtPrName.Clear()
-                Dim dt As New DataTable
-                Dim p As SqlParameter() = New SqlParameter(0) {}
-                p(0) = New SqlParameter("@ProfileID", 0)
-                dt = oExcelSS.getDataTable("uspConfiguration_GetProfileInfo", True, p)
-                If Not dt Is Nothing Then
-                    Dim group As String
-                    group = dt.Rows(0)(2)
-                    Dim chG As New CheckBox
-                    chG.Text = "--" & group.ToUpper & "--"
-                    chG.Name = group.Trim
-                    chG.ThreeState = True
-                    chG.CheckState = CheckState.Indeterminate
-                    chG.TextAlign = ContentAlignment.MiddleCenter
-                    chG.AutoSize = True
-                    AddHandler chG.Click, AddressOf onCHClick
-                    chklbPermissions.Controls.Add(chG)
-                    Dim r As DataRow
-                    For Each r In dt.Rows
+                Case clsConfigDmac.ActiveEnv.UserProfiles
+                    cboProfiles.SelectedIndex = -1
+                    pnlProfiles.Visible = True
+                    pnlProfiles.Enabled = True
+                    cboProfiles.Enabled = False
+                    txtPrName.Enabled = True
+                    chklbPermissions.Controls.Clear()
+                    txtPrDesc.Clear()
+                    txtPrName.Clear()
+                    Dim dt As New DataTable
+                    Dim p As SqlParameter() = New SqlParameter(0) {}
+                    p(0) = New SqlParameter("@ProfileID", 0)
+                    dt = oExcelSS.getDataTable("uspConfiguration_GetProfileInfo", True, p)
+                    If Not dt Is Nothing Then
+                        Dim group As String
+                        group = dt.Rows(0)(2)
+                        Dim chG As New CheckBox
+                        chG.Text = "--" & group.ToUpper & "--"
+                        chG.Name = group.Trim
+                        chG.ThreeState = True
+                        chG.CheckState = CheckState.Indeterminate
+                        chG.TextAlign = ContentAlignment.MiddleCenter
+                        chG.AutoSize = True
+                        AddHandler chG.Click, AddressOf onCHClick
+                        chklbPermissions.Controls.Add(chG)
+                        Dim r As DataRow
+                        For Each r In dt.Rows
 begin:
-                        If r(2).trim = group.Trim Then
-                            Dim ch As New CheckBox
-                            ch.Text = r(1)
-                            ch.Tag = r(0)
-                            ch.CheckState = CheckState.Unchecked
-                            ch.TextAlign = ContentAlignment.MiddleCenter
-                            ch.AutoSize = True
-                            chklbPermissions.Controls.Add(ch)
-                        Else
-                            group = r(2)
-                            Dim chL As New CheckBox
-                            chL.Text = "--" & group.ToUpper & "--"
-                            chL.Name = group.Trim
-                            chL.ThreeState = True
-                            chL.CheckState = CheckState.Indeterminate
-                            chL.TextAlign = ContentAlignment.MiddleCenter
-                            chL.AutoSize = True
-                            AddHandler chL.Click, AddressOf onCHClick
-                            chklbPermissions.Controls.Add(chL)
-                            GoTo begin
-                        End If
-                    Next
-                End If
-        End Select
+                            If r(2).trim = group.Trim Then
+                                Dim ch As New CheckBox
+                                ch.Text = r(1)
+                                ch.Tag = r(0)
+                                ch.CheckState = CheckState.Unchecked
+                                ch.TextAlign = ContentAlignment.MiddleCenter
+                                ch.AutoSize = True
+                                chklbPermissions.Controls.Add(ch)
+                            Else
+                                group = r(2)
+                                Dim chL As New CheckBox
+                                chL.Text = "--" & group.ToUpper & "--"
+                                chL.Name = group.Trim
+                                chL.ThreeState = True
+                                chL.CheckState = CheckState.Indeterminate
+                                chL.TextAlign = ContentAlignment.MiddleCenter
+                                chL.AutoSize = True
+                                AddHandler chL.Click, AddressOf onCHClick
+                                chklbPermissions.Controls.Add(chL)
+                                GoTo begin
+                            End If
+                        Next
+                    End If
+            End Select
+        Catch lobjException As Exception
+            MessageBox.Show(lobjException.Message, "Configuration Manager", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            oExcelSS.ErrorLog("SaveUserInformation -> " + lobjException.Message.ToString())
+        End Try
     End Sub
     Private Sub onCHClick(ByVal sender As Object, ByVal e As EventArgs)
         Dim dt As New DataTable

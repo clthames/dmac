@@ -163,7 +163,6 @@ Partial Class frmMain
         Me.cmbOperator = New System.Windows.Forms.ComboBox()
         Me.cmbDataType = New System.Windows.Forms.ComboBox()
         Me.dgvParameters = New System.Windows.Forms.DataGridView()
-        Me.trvwReports = New System.Windows.Forms.TreeView()
         Me.colParameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colPrompt = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.colSequence = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -172,6 +171,7 @@ Partial Class frmMain
         Me.clmnDefaultValue1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clmnDefaultValue2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colRequired = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.trvwReports = New System.Windows.Forms.TreeView()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.scMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.scMain.Panel1.SuspendLayout()
@@ -315,17 +315,17 @@ Partial Class frmMain
         TreeNode7.Text = "Invoice Options"
         TreeNode8.Name = "Node2"
         TreeNode8.Text = "Customers"
-        TreeNode9.Name = "Node21"
+        TreeNode9.Name = "nCostOperations"
         TreeNode9.Text = "Cost Operations"
-        TreeNode10.Name = "Node22"
+        TreeNode10.Name = "nOperationCodes"
         TreeNode10.Text = "Operation Codes"
-        TreeNode11.Name = "Node23"
+        TreeNode11.Name = "nOperationClasses"
         TreeNode11.Text = "Operation Classes"
         TreeNode12.Name = "Node3"
         TreeNode12.Text = "Job Costing"
-        TreeNode13.Name = "Node24"
+        TreeNode13.Name = "nOptions"
         TreeNode13.Text = "Options"
-        TreeNode14.Name = "Node25"
+        TreeNode14.Name = "nPressTrimRequirements"
         TreeNode14.Text = "Press Trim Requirements"
         TreeNode15.Name = "Node4"
         TreeNode15.Text = "Paper Scheduling"
@@ -1204,13 +1204,6 @@ Partial Class frmMain
         Me.dgvParameters.StandardTab = True
         Me.dgvParameters.TabIndex = 11
         '
-        'trvwReports
-        '
-        Me.trvwReports.Location = New System.Drawing.Point(12, 9)
-        Me.trvwReports.Name = "trvwReports"
-        Me.trvwReports.Size = New System.Drawing.Size(224, 649)
-        Me.trvwReports.TabIndex = 0
-        '
         'colParameter
         '
         Me.colParameter.HeaderText = "Parameter"
@@ -1259,6 +1252,13 @@ Partial Class frmMain
         Me.colRequired.HeaderText = "Required"
         Me.colRequired.Name = "colRequired"
         Me.colRequired.Width = 65
+        '
+        'trvwReports
+        '
+        Me.trvwReports.Location = New System.Drawing.Point(12, 9)
+        Me.trvwReports.Name = "trvwReports"
+        Me.trvwReports.Size = New System.Drawing.Size(224, 649)
+        Me.trvwReports.TabIndex = 0
         '
         'frmMain
         '
