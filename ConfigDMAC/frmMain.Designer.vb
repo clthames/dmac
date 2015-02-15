@@ -24,49 +24,49 @@ Partial Class frmMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Company")
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Roles")
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Users")
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Access", New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode3})
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Options")
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Sales Codes")
-        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Invoice Options")
-        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Customers", New System.Windows.Forms.TreeNode() {TreeNode5, TreeNode6, TreeNode7})
-        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Cost Operations")
-        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Operation Codes")
-        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Operation Classes")
-        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Job Costing", New System.Windows.Forms.TreeNode() {TreeNode9, TreeNode10, TreeNode11})
-        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Options")
-        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Press Trim Requirements")
-        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Paper Scheduling", New System.Windows.Forms.TreeNode() {TreeNode13, TreeNode14})
-        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Press")
-        Dim TreeNode17 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Collator")
-        Dim TreeNode18 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Composition")
-        Dim TreeNode19 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Encoder")
-        Dim TreeNode20 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Offline Folder Standards")
-        Dim TreeNode21 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Shrinkwrap Standards")
-        Dim TreeNode22 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Bindery Costs")
-        Dim TreeNode23 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Estimating Labor Standards", New System.Windows.Forms.TreeNode() {TreeNode16, TreeNode17, TreeNode18, TreeNode19, TreeNode20, TreeNode21, TreeNode22})
-        Dim TreeNode24 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Paper Material")
-        Dim TreeNode25 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Base and Standards Inks")
-        Dim TreeNode26 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Update Carbon File")
-        Dim TreeNode27 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Update Pack Sizes")
-        Dim TreeNode28 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Overhead-Ink-Carton-Helper")
-        Dim TreeNode29 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Estimating Material Standards", New System.Windows.Forms.TreeNode() {TreeNode24, TreeNode25, TreeNode26, TreeNode27, TreeNode28})
-        Dim TreeNode30 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Product Markup Factors")
-        Dim TreeNode31 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Freight Rates (MIN)")
-        Dim TreeNode32 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Freight Rates (CWT COST)")
-        Dim TreeNode33 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Estimating Other Standards", New System.Windows.Forms.TreeNode() {TreeNode30, TreeNode31, TreeNode32})
-        Dim TreeNode34 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("User Defined Keywords")
-        Dim TreeNode35 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Odd Width Cross Reference")
-        Dim TreeNode36 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Press and Collator Designation")
-        Dim TreeNode37 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Paper Color Cross Reference")
-        Dim TreeNode38 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Keypad Configuration")
-        Dim TreeNode39 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Estimating Configuration", New System.Windows.Forms.TreeNode() {TreeNode34, TreeNode35, TreeNode36, TreeNode37, TreeNode38})
-        Dim TreeNode40 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Report Categories")
-        Dim TreeNode41 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Report Definitions")
-        Dim TreeNode42 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Reports")
-        Dim TreeNode43 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Report Manager", New System.Windows.Forms.TreeNode() {TreeNode40, TreeNode41, TreeNode42})
+        Dim TreeNode44 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Company")
+        Dim TreeNode45 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Roles")
+        Dim TreeNode46 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Users")
+        Dim TreeNode47 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Access", New System.Windows.Forms.TreeNode() {TreeNode45, TreeNode46})
+        Dim TreeNode48 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Options")
+        Dim TreeNode49 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Sales Codes")
+        Dim TreeNode50 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Invoice Options")
+        Dim TreeNode51 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Customers", New System.Windows.Forms.TreeNode() {TreeNode48, TreeNode49, TreeNode50})
+        Dim TreeNode52 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Cost Operations")
+        Dim TreeNode53 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Operation Codes")
+        Dim TreeNode54 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Operation Classes")
+        Dim TreeNode55 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Job Costing", New System.Windows.Forms.TreeNode() {TreeNode52, TreeNode53, TreeNode54})
+        Dim TreeNode56 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Options")
+        Dim TreeNode57 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Press Trim Requirements")
+        Dim TreeNode58 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Paper Scheduling", New System.Windows.Forms.TreeNode() {TreeNode56, TreeNode57})
+        Dim TreeNode59 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Press")
+        Dim TreeNode60 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Collator")
+        Dim TreeNode61 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Composition")
+        Dim TreeNode62 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Encoder")
+        Dim TreeNode63 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Offline Folder Standards")
+        Dim TreeNode64 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Shrinkwrap Standards")
+        Dim TreeNode65 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Bindery Costs")
+        Dim TreeNode66 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Estimating Labor Standards", New System.Windows.Forms.TreeNode() {TreeNode59, TreeNode60, TreeNode61, TreeNode62, TreeNode63, TreeNode64, TreeNode65})
+        Dim TreeNode67 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Paper Material")
+        Dim TreeNode68 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Base and Standards Inks")
+        Dim TreeNode69 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Update Carbon File")
+        Dim TreeNode70 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Update Pack Sizes")
+        Dim TreeNode71 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Overhead-Ink-Carton-Helper")
+        Dim TreeNode72 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Estimating Material Standards", New System.Windows.Forms.TreeNode() {TreeNode67, TreeNode68, TreeNode69, TreeNode70, TreeNode71})
+        Dim TreeNode73 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Product Markup Factors")
+        Dim TreeNode74 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Freight Rates (MIN)")
+        Dim TreeNode75 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Freight Rates (CWT COST)")
+        Dim TreeNode76 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Estimating Other Standards", New System.Windows.Forms.TreeNode() {TreeNode73, TreeNode74, TreeNode75})
+        Dim TreeNode77 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("User Defined Keywords")
+        Dim TreeNode78 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Odd Width Cross Reference")
+        Dim TreeNode79 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Press and Collator Designation")
+        Dim TreeNode80 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Paper Color Cross Reference")
+        Dim TreeNode81 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Keypad Configuration")
+        Dim TreeNode82 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Estimating Configuration", New System.Windows.Forms.TreeNode() {TreeNode77, TreeNode78, TreeNode79, TreeNode80, TreeNode81})
+        Dim TreeNode83 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Main Categories")
+        Dim TreeNode84 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Report Definitions")
+        Dim TreeNode85 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Reports")
+        Dim TreeNode86 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Report Manager", New System.Windows.Forms.TreeNode() {TreeNode83, TreeNode84, TreeNode85})
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -78,7 +78,8 @@ Partial Class frmMain
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsExit = New System.Windows.Forms.ToolStripButton()
         Me.scMain = New System.Windows.Forms.SplitContainer()
-        Me.trvOptions = New System.Windows.Forms.TreeView()
+        Me.tbcntrlReports = New System.Windows.Forms.TabControl()
+        Me.tpgReports = New System.Windows.Forms.TabPage()
         Me.tbcReportDefinition = New System.Windows.Forms.TabControl()
         Me.tbpg_ReportDefinition = New System.Windows.Forms.TabPage()
         Me.pbPreview = New System.Windows.Forms.PictureBox()
@@ -100,8 +101,22 @@ Partial Class frmMain
         Me.lblReportID = New System.Windows.Forms.Label()
         Me.cboReportDefinitions = New System.Windows.Forms.ComboBox()
         Me.lbl_AvailableReportDefinitions = New System.Windows.Forms.Label()
+        Me.cmbOperator = New System.Windows.Forms.ComboBox()
+        Me.cmbDataType = New System.Windows.Forms.ComboBox()
+        Me.dgvParameters = New System.Windows.Forms.DataGridView()
+        Me.colParameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colPrompt = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.colSequence = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colDataType = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colOperator = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnDefaultValue1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnDefaultValue2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colRequired = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.trvwReports = New System.Windows.Forms.TreeView()
+        Me.trvOptions = New System.Windows.Forms.TreeView()
         Me.tcReports = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.trvwReportCategories = New System.Windows.Forms.TreeView()
         Me.pnlRepCategories = New System.Windows.Forms.Panel()
         Me.chkRepCatID = New System.Windows.Forms.CheckBox()
         Me.chkRepCatIA = New System.Windows.Forms.CheckBox()
@@ -109,8 +124,6 @@ Partial Class frmMain
         Me.cboRepGroupCat = New System.Windows.Forms.ComboBox()
         Me.txtRepCategoryName = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.cboRepCategories = New System.Windows.Forms.ComboBox()
         Me.tcCompany = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.pnlCompanyInfo = New System.Windows.Forms.Panel()
@@ -158,29 +171,19 @@ Partial Class frmMain
         Me.cboUsers = New System.Windows.Forms.ComboBox()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.opdImageDialog = New System.Windows.Forms.OpenFileDialog()
-        Me.tbcntrlReports = New System.Windows.Forms.TabControl()
-        Me.tpgReports = New System.Windows.Forms.TabPage()
-        Me.cmbOperator = New System.Windows.Forms.ComboBox()
-        Me.cmbDataType = New System.Windows.Forms.ComboBox()
-        Me.dgvParameters = New System.Windows.Forms.DataGridView()
-        Me.colParameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colPrompt = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.colSequence = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colDataType = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colOperator = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnDefaultValue1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnDefaultValue2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colRequired = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.trvwReports = New System.Windows.Forms.TreeView()
+        Me.trvwReportDefinition = New System.Windows.Forms.TreeView()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.scMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.scMain.Panel1.SuspendLayout()
         Me.scMain.Panel2.SuspendLayout()
         Me.scMain.SuspendLayout()
+        Me.tbcntrlReports.SuspendLayout()
+        Me.tpgReports.SuspendLayout()
         Me.tbcReportDefinition.SuspendLayout()
         Me.tbpg_ReportDefinition.SuspendLayout()
         CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlReportDefinitions.SuspendLayout()
+        CType(Me.dgvParameters, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tcReports.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.pnlRepCategories.SuspendLayout()
@@ -195,9 +198,6 @@ Partial Class frmMain
         Me.pnlPermissions.SuspendLayout()
         Me.pnlInfoUsers.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.tbcntrlReports.SuspendLayout()
-        Me.tpgReports.SuspendLayout()
-        CType(Me.dgvParameters, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -281,6 +281,7 @@ Partial Class frmMain
         '
         'scMain.Panel1
         '
+        Me.scMain.Panel1.Controls.Add(Me.tbcntrlReports)
         Me.scMain.Panel1.Controls.Add(Me.trvOptions)
         '
         'scMain.Panel2
@@ -294,105 +295,33 @@ Partial Class frmMain
         Me.scMain.SplitterDistance = 215
         Me.scMain.TabIndex = 1
         '
-        'trvOptions
+        'tbcntrlReports
         '
-        Me.trvOptions.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.trvOptions.Location = New System.Drawing.Point(0, 0)
-        Me.trvOptions.Name = "trvOptions"
-        TreeNode1.Name = "nCompany"
-        TreeNode1.Text = "Company"
-        TreeNode2.Name = "NRoles"
-        TreeNode2.Text = "Roles"
-        TreeNode3.Name = "nUsers"
-        TreeNode3.Text = "Users"
-        TreeNode4.Name = "NAcess"
-        TreeNode4.Text = "Access"
-        TreeNode5.Name = "Node19"
-        TreeNode5.Text = "Options"
-        TreeNode6.Name = "Node20"
-        TreeNode6.Text = "Sales Codes"
-        TreeNode7.Name = "nOptions"
-        TreeNode7.Text = "Invoice Options"
-        TreeNode8.Name = "Node2"
-        TreeNode8.Text = "Customers"
-        TreeNode9.Name = "nCostOperations"
-        TreeNode9.Text = "Cost Operations"
-        TreeNode10.Name = "nOperationCodes"
-        TreeNode10.Text = "Operation Codes"
-        TreeNode11.Name = "nOperationClasses"
-        TreeNode11.Text = "Operation Classes"
-        TreeNode12.Name = "Node3"
-        TreeNode12.Text = "Job Costing"
-        TreeNode13.Name = "nOptions"
-        TreeNode13.Text = "Options"
-        TreeNode14.Name = "nPressTrimRequirements"
-        TreeNode14.Text = "Press Trim Requirements"
-        TreeNode15.Name = "Node4"
-        TreeNode15.Text = "Paper Scheduling"
-        TreeNode16.Name = "Node26"
-        TreeNode16.Text = "Press"
-        TreeNode17.Name = "Node27"
-        TreeNode17.Text = "Collator"
-        TreeNode18.Name = "Node28"
-        TreeNode18.Text = "Composition"
-        TreeNode19.Name = "Node29"
-        TreeNode19.Text = "Encoder"
-        TreeNode20.Name = "Node30"
-        TreeNode20.Text = "Offline Folder Standards"
-        TreeNode21.Name = "Node31"
-        TreeNode21.Text = "Shrinkwrap Standards"
-        TreeNode22.Name = "Node32"
-        TreeNode22.Text = "Bindery Costs"
-        TreeNode23.Name = "Node5"
-        TreeNode23.Text = "Estimating Labor Standards"
-        TreeNode24.Name = "Node33"
-        TreeNode24.Text = "Paper Material"
-        TreeNode25.Name = "Node34"
-        TreeNode25.Text = "Base and Standards Inks"
-        TreeNode26.Name = "Node35"
-        TreeNode26.Text = "Update Carbon File"
-        TreeNode27.Name = "Node36"
-        TreeNode27.Text = "Update Pack Sizes"
-        TreeNode28.Name = "Node37"
-        TreeNode28.Text = "Overhead-Ink-Carton-Helper"
-        TreeNode29.Name = "Node6"
-        TreeNode29.Text = "Estimating Material Standards"
-        TreeNode30.Name = "Node38"
-        TreeNode30.Text = "Product Markup Factors"
-        TreeNode31.Name = "Node39"
-        TreeNode31.Text = "Freight Rates (MIN)"
-        TreeNode32.Name = "Node40"
-        TreeNode32.Text = "Freight Rates (CWT COST)"
-        TreeNode33.Name = "Node7"
-        TreeNode33.Text = "Estimating Other Standards"
-        TreeNode34.Name = "Node41"
-        TreeNode34.Text = "User Defined Keywords"
-        TreeNode35.Name = "Node42"
-        TreeNode35.Text = "Odd Width Cross Reference"
-        TreeNode36.Name = "Node43"
-        TreeNode36.Text = "Press and Collator Designation"
-        TreeNode37.Name = "Node44"
-        TreeNode37.Text = "Paper Color Cross Reference"
-        TreeNode38.Name = "Node45"
-        TreeNode38.Text = "Keypad Configuration"
-        TreeNode39.Name = "Node8"
-        TreeNode39.Text = "Estimating Configuration"
-        TreeNode40.Name = "nReportCategories"
-        TreeNode40.Text = "Report Categories"
-        TreeNode41.Name = "nReportDefinitions"
-        TreeNode41.Text = "Report Definitions"
-        TreeNode42.Name = "nReports"
-        TreeNode42.Text = "Reports"
-        TreeNode43.Name = "nReports"
-        TreeNode43.Text = "Report Manager"
-        Me.trvOptions.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode4, TreeNode8, TreeNode12, TreeNode15, TreeNode23, TreeNode29, TreeNode33, TreeNode39, TreeNode43})
-        Me.trvOptions.Size = New System.Drawing.Size(215, 696)
-        Me.trvOptions.TabIndex = 0
+        Me.tbcntrlReports.Controls.Add(Me.tpgReports)
+        Me.tbcntrlReports.Location = New System.Drawing.Point(12, 229)
+        Me.tbcntrlReports.Name = "tbcntrlReports"
+        Me.tbcntrlReports.SelectedIndex = 0
+        Me.tbcntrlReports.Size = New System.Drawing.Size(948, 697)
+        Me.tbcntrlReports.TabIndex = 16
+        '
+        'tpgReports
+        '
+        Me.tpgReports.Controls.Add(Me.cmbOperator)
+        Me.tpgReports.Controls.Add(Me.cmbDataType)
+        Me.tpgReports.Controls.Add(Me.dgvParameters)
+        Me.tpgReports.Controls.Add(Me.trvwReports)
+        Me.tpgReports.Location = New System.Drawing.Point(4, 22)
+        Me.tpgReports.Name = "tpgReports"
+        Me.tpgReports.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpgReports.Size = New System.Drawing.Size(940, 671)
+        Me.tpgReports.TabIndex = 0
+        Me.tpgReports.Text = "Reports"
+        Me.tpgReports.UseVisualStyleBackColor = True
         '
         'tbcReportDefinition
         '
         Me.tbcReportDefinition.Controls.Add(Me.tbpg_ReportDefinition)
-        Me.tbcReportDefinition.Location = New System.Drawing.Point(12, 2)
+        Me.tbcReportDefinition.Location = New System.Drawing.Point(8, 0)
         Me.tbcReportDefinition.Name = "tbcReportDefinition"
         Me.tbcReportDefinition.SelectedIndex = 0
         Me.tbcReportDefinition.Size = New System.Drawing.Size(947, 694)
@@ -400,6 +329,7 @@ Partial Class frmMain
         '
         'tbpg_ReportDefinition
         '
+        Me.tbpg_ReportDefinition.Controls.Add(Me.trvwReportDefinition)
         Me.tbpg_ReportDefinition.Controls.Add(Me.pbPreview)
         Me.tbpg_ReportDefinition.Controls.Add(Me.btnAssign)
         Me.tbpg_ReportDefinition.Controls.Add(Me.pnlReportDefinitions)
@@ -417,9 +347,9 @@ Partial Class frmMain
         '
         Me.pbPreview.BackColor = System.Drawing.Color.White
         Me.pbPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pbPreview.Location = New System.Drawing.Point(544, 44)
+        Me.pbPreview.Location = New System.Drawing.Point(422, 353)
         Me.pbPreview.Name = "pbPreview"
-        Me.pbPreview.Size = New System.Drawing.Size(375, 341)
+        Me.pbPreview.Size = New System.Drawing.Size(510, 306)
         Me.pbPreview.TabIndex = 15
         Me.pbPreview.TabStop = False
         '
@@ -427,7 +357,7 @@ Partial Class frmMain
         '
         Me.btnAssign.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAssign.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAssign.Location = New System.Drawing.Point(544, 12)
+        Me.btnAssign.Location = New System.Drawing.Point(11, 640)
         Me.btnAssign.Name = "btnAssign"
         Me.btnAssign.Size = New System.Drawing.Size(130, 23)
         Me.btnAssign.TabIndex = 14
@@ -451,23 +381,23 @@ Partial Class frmMain
         Me.pnlReportDefinitions.Controls.Add(Me.lbl_ReportDescription)
         Me.pnlReportDefinitions.Controls.Add(Me.txt_ReportID)
         Me.pnlReportDefinitions.Controls.Add(Me.lblReportID)
-        Me.pnlReportDefinitions.Location = New System.Drawing.Point(11, 45)
+        Me.pnlReportDefinitions.Location = New System.Drawing.Point(422, 41)
         Me.pnlReportDefinitions.Name = "pnlReportDefinitions"
-        Me.pnlReportDefinitions.Size = New System.Drawing.Size(510, 340)
+        Me.pnlReportDefinitions.Size = New System.Drawing.Size(510, 306)
         Me.pnlReportDefinitions.TabIndex = 2
         Me.pnlReportDefinitions.Visible = False
         '
         'txt_RemoteFileName
         '
-        Me.txt_RemoteFileName.Location = New System.Drawing.Point(127, 181)
+        Me.txt_RemoteFileName.Location = New System.Drawing.Point(140, 181)
         Me.txt_RemoteFileName.Name = "txt_RemoteFileName"
-        Me.txt_RemoteFileName.Size = New System.Drawing.Size(280, 20)
+        Me.txt_RemoteFileName.Size = New System.Drawing.Size(350, 20)
         Me.txt_RemoteFileName.TabIndex = 12
         '
         'lblRemoteFileName
         '
         Me.lblRemoteFileName.AutoSize = True
-        Me.lblRemoteFileName.Location = New System.Drawing.Point(12, 184)
+        Me.lblRemoteFileName.Location = New System.Drawing.Point(25, 184)
         Me.lblRemoteFileName.Name = "lblRemoteFileName"
         Me.lblRemoteFileName.Size = New System.Drawing.Size(97, 13)
         Me.lblRemoteFileName.TabIndex = 11
@@ -476,7 +406,7 @@ Partial Class frmMain
         'chkrptdefinitiondeleted
         '
         Me.chkrptdefinitiondeleted.AutoSize = True
-        Me.chkrptdefinitiondeleted.Location = New System.Drawing.Point(194, 307)
+        Me.chkrptdefinitiondeleted.Location = New System.Drawing.Point(207, 285)
         Me.chkrptdefinitiondeleted.Name = "chkrptdefinitiondeleted"
         Me.chkrptdefinitiondeleted.Size = New System.Drawing.Size(74, 17)
         Me.chkrptdefinitiondeleted.TabIndex = 10
@@ -485,16 +415,16 @@ Partial Class frmMain
         '
         'txt_Notes
         '
-        Me.txt_Notes.Location = New System.Drawing.Point(127, 223)
+        Me.txt_Notes.Location = New System.Drawing.Point(140, 223)
         Me.txt_Notes.Name = "txt_Notes"
-        Me.txt_Notes.Size = New System.Drawing.Size(280, 69)
+        Me.txt_Notes.Size = New System.Drawing.Size(350, 52)
         Me.txt_Notes.TabIndex = 9
         Me.txt_Notes.Text = ""
         '
         'chkrptdefinitaionActive
         '
         Me.chkrptdefinitaionActive.AutoSize = True
-        Me.chkrptdefinitaionActive.Location = New System.Drawing.Point(126, 307)
+        Me.chkrptdefinitaionActive.Location = New System.Drawing.Point(139, 285)
         Me.chkrptdefinitaionActive.Name = "chkrptdefinitaionActive"
         Me.chkrptdefinitaionActive.Size = New System.Drawing.Size(67, 17)
         Me.chkrptdefinitaionActive.TabIndex = 9
@@ -504,7 +434,7 @@ Partial Class frmMain
         'lblNotes
         '
         Me.lblNotes.AutoSize = True
-        Me.lblNotes.Location = New System.Drawing.Point(12, 237)
+        Me.lblNotes.Location = New System.Drawing.Point(25, 237)
         Me.lblNotes.Name = "lblNotes"
         Me.lblNotes.Size = New System.Drawing.Size(33, 13)
         Me.lblNotes.TabIndex = 8
@@ -514,15 +444,15 @@ Partial Class frmMain
         '
         Me.cboReportGroup.Enabled = False
         Me.cboReportGroup.FormattingEnabled = True
-        Me.cboReportGroup.Location = New System.Drawing.Point(127, 134)
+        Me.cboReportGroup.Location = New System.Drawing.Point(140, 134)
         Me.cboReportGroup.Name = "cboReportGroup"
-        Me.cboReportGroup.Size = New System.Drawing.Size(278, 21)
+        Me.cboReportGroup.Size = New System.Drawing.Size(350, 21)
         Me.cboReportGroup.TabIndex = 7
         '
         'lblReportGroup
         '
         Me.lblReportGroup.AutoSize = True
-        Me.lblReportGroup.Location = New System.Drawing.Point(14, 143)
+        Me.lblReportGroup.Location = New System.Drawing.Point(27, 143)
         Me.lblReportGroup.Name = "lblReportGroup"
         Me.lblReportGroup.Size = New System.Drawing.Size(39, 13)
         Me.lblReportGroup.TabIndex = 6
@@ -531,15 +461,15 @@ Partial Class frmMain
         'cboRportCategory
         '
         Me.cboRportCategory.FormattingEnabled = True
-        Me.cboRportCategory.Location = New System.Drawing.Point(127, 91)
+        Me.cboRportCategory.Location = New System.Drawing.Point(140, 91)
         Me.cboRportCategory.Name = "cboRportCategory"
-        Me.cboRportCategory.Size = New System.Drawing.Size(280, 21)
+        Me.cboRportCategory.Size = New System.Drawing.Size(350, 21)
         Me.cboRportCategory.TabIndex = 5
         '
         'lbl_ReportCategory
         '
         Me.lbl_ReportCategory.AutoSize = True
-        Me.lbl_ReportCategory.Location = New System.Drawing.Point(9, 94)
+        Me.lbl_ReportCategory.Location = New System.Drawing.Point(22, 94)
         Me.lbl_ReportCategory.Name = "lbl_ReportCategory"
         Me.lbl_ReportCategory.Size = New System.Drawing.Size(52, 13)
         Me.lbl_ReportCategory.TabIndex = 4
@@ -547,15 +477,15 @@ Partial Class frmMain
         '
         'txt_ReportDescription
         '
-        Me.txt_ReportDescription.Location = New System.Drawing.Point(127, 46)
+        Me.txt_ReportDescription.Location = New System.Drawing.Point(140, 46)
         Me.txt_ReportDescription.Name = "txt_ReportDescription"
-        Me.txt_ReportDescription.Size = New System.Drawing.Size(278, 20)
+        Me.txt_ReportDescription.Size = New System.Drawing.Size(350, 20)
         Me.txt_ReportDescription.TabIndex = 3
         '
         'lbl_ReportDescription
         '
         Me.lbl_ReportDescription.AutoSize = True
-        Me.lbl_ReportDescription.Location = New System.Drawing.Point(8, 53)
+        Me.lbl_ReportDescription.Location = New System.Drawing.Point(21, 53)
         Me.lbl_ReportDescription.Name = "lbl_ReportDescription"
         Me.lbl_ReportDescription.Size = New System.Drawing.Size(63, 13)
         Me.lbl_ReportDescription.TabIndex = 2
@@ -563,15 +493,15 @@ Partial Class frmMain
         '
         'txt_ReportID
         '
-        Me.txt_ReportID.Location = New System.Drawing.Point(127, 12)
+        Me.txt_ReportID.Location = New System.Drawing.Point(140, 12)
         Me.txt_ReportID.Name = "txt_ReportID"
-        Me.txt_ReportID.Size = New System.Drawing.Size(280, 20)
+        Me.txt_ReportID.Size = New System.Drawing.Size(350, 20)
         Me.txt_ReportID.TabIndex = 1
         '
         'lblReportID
         '
         Me.lblReportID.AutoSize = True
-        Me.lblReportID.Location = New System.Drawing.Point(9, 19)
+        Me.lblReportID.Location = New System.Drawing.Point(22, 19)
         Me.lblReportID.Name = "lblReportID"
         Me.lblReportID.Size = New System.Drawing.Size(56, 13)
         Me.lblReportID.TabIndex = 0
@@ -594,6 +524,193 @@ Partial Class frmMain
         Me.lbl_AvailableReportDefinitions.TabIndex = 0
         Me.lbl_AvailableReportDefinitions.Text = "Available Report Definitions:"
         '
+        'cmbOperator
+        '
+        Me.cmbOperator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbOperator.FormattingEnabled = True
+        Me.cmbOperator.Items.AddRange(New Object() {"All", "=", ">", "<", ">=", "<=", "Like", "Not Like", "In", "Not In", "Between"})
+        Me.cmbOperator.Location = New System.Drawing.Point(809, 83)
+        Me.cmbOperator.Name = "cmbOperator"
+        Me.cmbOperator.Size = New System.Drawing.Size(114, 21)
+        Me.cmbOperator.TabIndex = 13
+        Me.cmbOperator.Visible = False
+        '
+        'cmbDataType
+        '
+        Me.cmbDataType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbDataType.FormattingEnabled = True
+        Me.cmbDataType.Items.AddRange(New Object() {"Text", "Date", "Boolean", "Integer", "Float"})
+        Me.cmbDataType.Location = New System.Drawing.Point(809, 56)
+        Me.cmbDataType.Name = "cmbDataType"
+        Me.cmbDataType.Size = New System.Drawing.Size(114, 21)
+        Me.cmbDataType.TabIndex = 12
+        Me.cmbDataType.Visible = False
+        '
+        'dgvParameters
+        '
+        Me.dgvParameters.AllowUserToAddRows = False
+        Me.dgvParameters.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.dgvParameters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvParameters.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colParameter, Me.colPrompt, Me.colSequence, Me.colDataType, Me.colOperator, Me.clmnDefaultValue1, Me.clmnDefaultValue2, Me.colRequired})
+        Me.dgvParameters.Location = New System.Drawing.Point(242, 8)
+        Me.dgvParameters.Name = "dgvParameters"
+        Me.dgvParameters.RowHeadersWidth = 25
+        Me.dgvParameters.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.dgvParameters.Size = New System.Drawing.Size(695, 650)
+        Me.dgvParameters.StandardTab = True
+        Me.dgvParameters.TabIndex = 11
+        '
+        'colParameter
+        '
+        Me.colParameter.HeaderText = "Parameter"
+        Me.colParameter.Name = "colParameter"
+        Me.colParameter.ReadOnly = True
+        Me.colParameter.Width = 90
+        '
+        'colPrompt
+        '
+        Me.colPrompt.HeaderText = "Prompt"
+        Me.colPrompt.Name = "colPrompt"
+        Me.colPrompt.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.colPrompt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.colPrompt.ThreeState = True
+        Me.colPrompt.Width = 50
+        '
+        'colSequence
+        '
+        Me.colSequence.HeaderText = "Sequence"
+        Me.colSequence.Name = "colSequence"
+        Me.colSequence.Width = 65
+        '
+        'colDataType
+        '
+        Me.colDataType.HeaderText = "Type"
+        Me.colDataType.Name = "colDataType"
+        Me.colDataType.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'colOperator
+        '
+        Me.colOperator.HeaderText = "Operator"
+        Me.colOperator.Name = "colOperator"
+        '
+        'clmnDefaultValue1
+        '
+        Me.clmnDefaultValue1.HeaderText = "Default Value1"
+        Me.clmnDefaultValue1.Name = "clmnDefaultValue1"
+        '
+        'clmnDefaultValue2
+        '
+        Me.clmnDefaultValue2.HeaderText = "Default Value2"
+        Me.clmnDefaultValue2.Name = "clmnDefaultValue2"
+        '
+        'colRequired
+        '
+        Me.colRequired.HeaderText = "Required"
+        Me.colRequired.Name = "colRequired"
+        Me.colRequired.Width = 65
+        '
+        'trvwReports
+        '
+        Me.trvwReports.Location = New System.Drawing.Point(12, 9)
+        Me.trvwReports.Name = "trvwReports"
+        Me.trvwReports.Size = New System.Drawing.Size(224, 649)
+        Me.trvwReports.TabIndex = 0
+        '
+        'trvOptions
+        '
+        Me.trvOptions.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.trvOptions.Location = New System.Drawing.Point(0, 0)
+        Me.trvOptions.Name = "trvOptions"
+        TreeNode44.Name = "nCompany"
+        TreeNode44.Text = "Company"
+        TreeNode45.Name = "NRoles"
+        TreeNode45.Text = "Roles"
+        TreeNode46.Name = "nUsers"
+        TreeNode46.Text = "Users"
+        TreeNode47.Name = "NAcess"
+        TreeNode47.Text = "Access"
+        TreeNode48.Name = "Node19"
+        TreeNode48.Text = "Options"
+        TreeNode49.Name = "Node20"
+        TreeNode49.Text = "Sales Codes"
+        TreeNode50.Name = "nOptions"
+        TreeNode50.Text = "Invoice Options"
+        TreeNode51.Name = "Node2"
+        TreeNode51.Text = "Customers"
+        TreeNode52.Name = "nCostOperations"
+        TreeNode52.Text = "Cost Operations"
+        TreeNode53.Name = "nOperationCodes"
+        TreeNode53.Text = "Operation Codes"
+        TreeNode54.Name = "nOperationClasses"
+        TreeNode54.Text = "Operation Classes"
+        TreeNode55.Name = "Node3"
+        TreeNode55.Text = "Job Costing"
+        TreeNode56.Name = "nOptions"
+        TreeNode56.Text = "Options"
+        TreeNode57.Name = "nPressTrimRequirements"
+        TreeNode57.Text = "Press Trim Requirements"
+        TreeNode58.Name = "Node4"
+        TreeNode58.Text = "Paper Scheduling"
+        TreeNode59.Name = "Node26"
+        TreeNode59.Text = "Press"
+        TreeNode60.Name = "Node27"
+        TreeNode60.Text = "Collator"
+        TreeNode61.Name = "Node28"
+        TreeNode61.Text = "Composition"
+        TreeNode62.Name = "Node29"
+        TreeNode62.Text = "Encoder"
+        TreeNode63.Name = "Node30"
+        TreeNode63.Text = "Offline Folder Standards"
+        TreeNode64.Name = "Node31"
+        TreeNode64.Text = "Shrinkwrap Standards"
+        TreeNode65.Name = "Node32"
+        TreeNode65.Text = "Bindery Costs"
+        TreeNode66.Name = "Node5"
+        TreeNode66.Text = "Estimating Labor Standards"
+        TreeNode67.Name = "Node33"
+        TreeNode67.Text = "Paper Material"
+        TreeNode68.Name = "Node34"
+        TreeNode68.Text = "Base and Standards Inks"
+        TreeNode69.Name = "Node35"
+        TreeNode69.Text = "Update Carbon File"
+        TreeNode70.Name = "Node36"
+        TreeNode70.Text = "Update Pack Sizes"
+        TreeNode71.Name = "Node37"
+        TreeNode71.Text = "Overhead-Ink-Carton-Helper"
+        TreeNode72.Name = "Node6"
+        TreeNode72.Text = "Estimating Material Standards"
+        TreeNode73.Name = "Node38"
+        TreeNode73.Text = "Product Markup Factors"
+        TreeNode74.Name = "Node39"
+        TreeNode74.Text = "Freight Rates (MIN)"
+        TreeNode75.Name = "Node40"
+        TreeNode75.Text = "Freight Rates (CWT COST)"
+        TreeNode76.Name = "Node7"
+        TreeNode76.Text = "Estimating Other Standards"
+        TreeNode77.Name = "Node41"
+        TreeNode77.Text = "User Defined Keywords"
+        TreeNode78.Name = "Node42"
+        TreeNode78.Text = "Odd Width Cross Reference"
+        TreeNode79.Name = "Node43"
+        TreeNode79.Text = "Press and Collator Designation"
+        TreeNode80.Name = "Node44"
+        TreeNode80.Text = "Paper Color Cross Reference"
+        TreeNode81.Name = "Node45"
+        TreeNode81.Text = "Keypad Configuration"
+        TreeNode82.Name = "Node8"
+        TreeNode82.Text = "Estimating Configuration"
+        TreeNode83.Name = "nReportCategories"
+        TreeNode83.Text = "Main Categories"
+        TreeNode84.Name = "nReportDefinitions"
+        TreeNode84.Text = "Report Definitions"
+        TreeNode85.Name = "nReports"
+        TreeNode85.Text = "Reports"
+        TreeNode86.Name = "nReports"
+        TreeNode86.Text = "Report Manager"
+        Me.trvOptions.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode44, TreeNode47, TreeNode51, TreeNode55, TreeNode58, TreeNode66, TreeNode72, TreeNode76, TreeNode82, TreeNode86})
+        Me.trvOptions.Size = New System.Drawing.Size(215, 696)
+        Me.trvOptions.TabIndex = 0
+        '
         'tcReports
         '
         Me.tcReports.Controls.Add(Me.TabPage2)
@@ -605,16 +722,22 @@ Partial Class frmMain
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.trvwReportCategories)
         Me.TabPage2.Controls.Add(Me.pnlRepCategories)
-        Me.TabPage2.Controls.Add(Me.Label18)
-        Me.TabPage2.Controls.Add(Me.cboRepCategories)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(940, 665)
         Me.TabPage2.TabIndex = 0
-        Me.TabPage2.Text = "Categories"
+        Me.TabPage2.Text = "Report Categories"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'trvwReportCategories
+        '
+        Me.trvwReportCategories.Location = New System.Drawing.Point(9, 7)
+        Me.trvwReportCategories.Name = "trvwReportCategories"
+        Me.trvwReportCategories.Size = New System.Drawing.Size(406, 621)
+        Me.trvwReportCategories.TabIndex = 3
         '
         'pnlRepCategories
         '
@@ -625,15 +748,15 @@ Partial Class frmMain
         Me.pnlRepCategories.Controls.Add(Me.cboRepGroupCat)
         Me.pnlRepCategories.Controls.Add(Me.txtRepCategoryName)
         Me.pnlRepCategories.Controls.Add(Me.Label19)
-        Me.pnlRepCategories.Location = New System.Drawing.Point(8, 43)
+        Me.pnlRepCategories.Location = New System.Drawing.Point(421, 7)
         Me.pnlRepCategories.Name = "pnlRepCategories"
-        Me.pnlRepCategories.Size = New System.Drawing.Size(544, 108)
+        Me.pnlRepCategories.Size = New System.Drawing.Size(489, 621)
         Me.pnlRepCategories.TabIndex = 2
         '
         'chkRepCatID
         '
         Me.chkRepCatID.AutoSize = True
-        Me.chkRepCatID.Location = New System.Drawing.Point(174, 75)
+        Me.chkRepCatID.Location = New System.Drawing.Point(174, 87)
         Me.chkRepCatID.Name = "chkRepCatID"
         Me.chkRepCatID.Size = New System.Drawing.Size(74, 17)
         Me.chkRepCatID.TabIndex = 8
@@ -643,7 +766,7 @@ Partial Class frmMain
         'chkRepCatIA
         '
         Me.chkRepCatIA.AutoSize = True
-        Me.chkRepCatIA.Location = New System.Drawing.Point(101, 75)
+        Me.chkRepCatIA.Location = New System.Drawing.Point(101, 87)
         Me.chkRepCatIA.Name = "chkRepCatIA"
         Me.chkRepCatIA.Size = New System.Drawing.Size(67, 17)
         Me.chkRepCatIA.TabIndex = 7
@@ -653,7 +776,7 @@ Partial Class frmMain
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(12, 45)
+        Me.Label20.Location = New System.Drawing.Point(12, 57)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(39, 13)
         Me.Label20.TabIndex = 5
@@ -662,43 +785,26 @@ Partial Class frmMain
         'cboRepGroupCat
         '
         Me.cboRepGroupCat.FormattingEnabled = True
-        Me.cboRepGroupCat.Location = New System.Drawing.Point(101, 42)
+        Me.cboRepGroupCat.Location = New System.Drawing.Point(101, 54)
         Me.cboRepGroupCat.Name = "cboRepGroupCat"
-        Me.cboRepGroupCat.Size = New System.Drawing.Size(412, 21)
+        Me.cboRepGroupCat.Size = New System.Drawing.Size(375, 21)
         Me.cboRepGroupCat.TabIndex = 3
         '
         'txtRepCategoryName
         '
-        Me.txtRepCategoryName.Location = New System.Drawing.Point(101, 16)
+        Me.txtRepCategoryName.Location = New System.Drawing.Point(101, 28)
         Me.txtRepCategoryName.Name = "txtRepCategoryName"
-        Me.txtRepCategoryName.Size = New System.Drawing.Size(412, 20)
+        Me.txtRepCategoryName.Size = New System.Drawing.Size(375, 20)
         Me.txtRepCategoryName.TabIndex = 4
         '
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(12, 19)
+        Me.Label19.Location = New System.Drawing.Point(12, 31)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(83, 13)
         Me.Label19.TabIndex = 3
         Me.Label19.Text = "Category Name:"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(6, 13)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(106, 13)
-        Me.Label18.TabIndex = 1
-        Me.Label18.Text = "Available Categories:"
-        '
-        'cboRepCategories
-        '
-        Me.cboRepCategories.FormattingEnabled = True
-        Me.cboRepCategories.Location = New System.Drawing.Point(118, 11)
-        Me.cboRepCategories.Name = "cboRepCategories"
-        Me.cboRepCategories.Size = New System.Drawing.Size(287, 21)
-        Me.cboRepCategories.TabIndex = 0
         '
         'tcCompany
         '
@@ -1145,127 +1251,18 @@ Partial Class frmMain
         Me.opdImageDialog.FileName = "opdImageDialog"
         Me.opdImageDialog.Filter = "JPEG files|*.jpeg|JPG Files|*.jpg|PNG Files|*.png|GIF Files|*.gif"
         '
-        'tbcntrlReports
+        'trvwReportDefinition
         '
-        Me.tbcntrlReports.Controls.Add(Me.tpgReports)
-        Me.tbcntrlReports.Location = New System.Drawing.Point(231, 25)
-        Me.tbcntrlReports.Name = "tbcntrlReports"
-        Me.tbcntrlReports.SelectedIndex = 0
-        Me.tbcntrlReports.Size = New System.Drawing.Size(948, 697)
-        Me.tbcntrlReports.TabIndex = 16
-        '
-        'tpgReports
-        '
-        Me.tpgReports.Controls.Add(Me.cmbOperator)
-        Me.tpgReports.Controls.Add(Me.cmbDataType)
-        Me.tpgReports.Controls.Add(Me.dgvParameters)
-        Me.tpgReports.Controls.Add(Me.trvwReports)
-        Me.tpgReports.Location = New System.Drawing.Point(4, 22)
-        Me.tpgReports.Name = "tpgReports"
-        Me.tpgReports.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpgReports.Size = New System.Drawing.Size(940, 671)
-        Me.tpgReports.TabIndex = 0
-        Me.tpgReports.Text = "Reports"
-        Me.tpgReports.UseVisualStyleBackColor = True
-        '
-        'cmbOperator
-        '
-        Me.cmbOperator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbOperator.FormattingEnabled = True
-        Me.cmbOperator.Items.AddRange(New Object() {"All", "=", ">", "<", ">=", "<=", "Like", "Not Like", "In", "Not In", "Between"})
-        Me.cmbOperator.Location = New System.Drawing.Point(809, 83)
-        Me.cmbOperator.Name = "cmbOperator"
-        Me.cmbOperator.Size = New System.Drawing.Size(114, 21)
-        Me.cmbOperator.TabIndex = 13
-        Me.cmbOperator.Visible = False
-        '
-        'cmbDataType
-        '
-        Me.cmbDataType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbDataType.FormattingEnabled = True
-        Me.cmbDataType.Items.AddRange(New Object() {"Text", "Date", "Boolean", "Integer", "Float"})
-        Me.cmbDataType.Location = New System.Drawing.Point(809, 56)
-        Me.cmbDataType.Name = "cmbDataType"
-        Me.cmbDataType.Size = New System.Drawing.Size(114, 21)
-        Me.cmbDataType.TabIndex = 12
-        Me.cmbDataType.Visible = False
-        '
-        'dgvParameters
-        '
-        Me.dgvParameters.AllowUserToAddRows = False
-        Me.dgvParameters.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.dgvParameters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvParameters.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colParameter, Me.colPrompt, Me.colSequence, Me.colDataType, Me.colOperator, Me.clmnDefaultValue1, Me.clmnDefaultValue2, Me.colRequired})
-        Me.dgvParameters.Location = New System.Drawing.Point(242, 8)
-        Me.dgvParameters.Name = "dgvParameters"
-        Me.dgvParameters.RowHeadersWidth = 25
-        Me.dgvParameters.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvParameters.Size = New System.Drawing.Size(695, 650)
-        Me.dgvParameters.StandardTab = True
-        Me.dgvParameters.TabIndex = 11
-        '
-        'colParameter
-        '
-        Me.colParameter.HeaderText = "Parameter"
-        Me.colParameter.Name = "colParameter"
-        Me.colParameter.ReadOnly = True
-        Me.colParameter.Width = 90
-        '
-        'colPrompt
-        '
-        Me.colPrompt.HeaderText = "Prompt"
-        Me.colPrompt.Name = "colPrompt"
-        Me.colPrompt.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.colPrompt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.colPrompt.ThreeState = True
-        Me.colPrompt.Width = 50
-        '
-        'colSequence
-        '
-        Me.colSequence.HeaderText = "Sequence"
-        Me.colSequence.Name = "colSequence"
-        Me.colSequence.Width = 65
-        '
-        'colDataType
-        '
-        Me.colDataType.HeaderText = "Type"
-        Me.colDataType.Name = "colDataType"
-        Me.colDataType.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'colOperator
-        '
-        Me.colOperator.HeaderText = "Operator"
-        Me.colOperator.Name = "colOperator"
-        '
-        'clmnDefaultValue1
-        '
-        Me.clmnDefaultValue1.HeaderText = "Default Value1"
-        Me.clmnDefaultValue1.Name = "clmnDefaultValue1"
-        '
-        'clmnDefaultValue2
-        '
-        Me.clmnDefaultValue2.HeaderText = "Default Value2"
-        Me.clmnDefaultValue2.Name = "clmnDefaultValue2"
-        '
-        'colRequired
-        '
-        Me.colRequired.HeaderText = "Required"
-        Me.colRequired.Name = "colRequired"
-        Me.colRequired.Width = 65
-        '
-        'trvwReports
-        '
-        Me.trvwReports.Location = New System.Drawing.Point(12, 9)
-        Me.trvwReports.Name = "trvwReports"
-        Me.trvwReports.Size = New System.Drawing.Size(224, 649)
-        Me.trvwReports.TabIndex = 0
+        Me.trvwReportDefinition.Location = New System.Drawing.Point(8, 40)
+        Me.trvwReportDefinition.Name = "trvwReportDefinition"
+        Me.trvwReportDefinition.Size = New System.Drawing.Size(408, 590)
+        Me.trvwReportDefinition.TabIndex = 16
         '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1182, 721)
-        Me.Controls.Add(Me.tbcntrlReports)
         Me.Controls.Add(Me.scMain)
         Me.Controls.Add(Me.ToolStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
@@ -1278,15 +1275,17 @@ Partial Class frmMain
         Me.scMain.Panel2.ResumeLayout(False)
         CType(Me.scMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.scMain.ResumeLayout(False)
+        Me.tbcntrlReports.ResumeLayout(False)
+        Me.tpgReports.ResumeLayout(False)
         Me.tbcReportDefinition.ResumeLayout(False)
         Me.tbpg_ReportDefinition.ResumeLayout(False)
         Me.tbpg_ReportDefinition.PerformLayout()
         CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlReportDefinitions.ResumeLayout(False)
         Me.pnlReportDefinitions.PerformLayout()
+        CType(Me.dgvParameters, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tcReports.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
         Me.pnlRepCategories.ResumeLayout(False)
         Me.pnlRepCategories.PerformLayout()
         Me.tcCompany.ResumeLayout(False)
@@ -1306,9 +1305,6 @@ Partial Class frmMain
         Me.pnlInfoUsers.ResumeLayout(False)
         Me.pnlInfoUsers.PerformLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.tbcntrlReports.ResumeLayout(False)
-        Me.tpgReports.ResumeLayout(False)
-        CType(Me.dgvParameters, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1377,8 +1373,6 @@ Partial Class frmMain
     Friend WithEvents cboRepGroupCat As System.Windows.Forms.ComboBox
     Friend WithEvents txtRepCategoryName As System.Windows.Forms.TextBox
     Friend WithEvents Label19 As System.Windows.Forms.Label
-    Friend WithEvents Label18 As System.Windows.Forms.Label
-    Friend WithEvents cboRepCategories As System.Windows.Forms.ComboBox
     Friend WithEvents tbcReportDefinition As System.Windows.Forms.TabControl
     Friend WithEvents tbpg_ReportDefinition As System.Windows.Forms.TabPage
     Friend WithEvents pnlReportDefinitions As System.Windows.Forms.Panel
@@ -1418,5 +1412,7 @@ Partial Class frmMain
     Friend WithEvents clmnDefaultValue1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents clmnDefaultValue2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colRequired As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents trvwReportCategories As System.Windows.Forms.TreeView
+    Friend WithEvents trvwReportDefinition As System.Windows.Forms.TreeView
 
 End Class

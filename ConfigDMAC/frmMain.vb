@@ -10,7 +10,9 @@ Public Class frmMain
     Public mblnExisting = False
     Public Env As Integer = 0
     Public action As Integer = clsConfigDmac.Actions.None
+    Dim mblnNew As Boolean = False
     Dim activeRow As Integer
+
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim message As String = ""
@@ -97,9 +99,10 @@ Public Class frmMain
                     tcReports.Visible = True
                     tcReports.Location = tc
                     tcReports.SelectTab(0)
-                    oExcelSS.fillComboBox(cboRepCategories, "uspConfiguration_FillRepCategoriesCbo", "categoryname", "categoryidkey")
+                    LoadReportCategories()
+                    ' oExcelSS.fillComboBox(cboRepCategories, "uspConfiguration_FillRepCategoriesCbo", "categoryname", "categoryidkey")
                     oExcelSS.fillComboBox(cboRepGroupCat, "uspConfiguration_FillRepGroupsCbo", "groupname", "groupidkey")
-                    cboRepCategories.SelectedIndex = -1
+                    ' cboRepCategories.SelectedIndex = -1
                     cboRepGroupCat.SelectedIndex = -1
                     pnlRepCategories.Visible = False
                     isLoading = False
@@ -134,7 +137,8 @@ Public Class frmMain
                     cboReportDefinitions.Enabled = True
                     tbcReportDefinition.Location = tc
                     cboReportDefinitions.SelectedIndex = -1
-                    oExcelSS.fillComboBox(cboReportDefinitions, "uspConfiguration_FillRepDefinitionsCbo", "ReportID", "ReportIDKey")
+                    LoadReports(trvwReportDefinition)
+                    'oExcelSS.fillComboBox(cboReportDefinitions, "uspConfiguration_FillRepDefinitionsCbo", "ReportID", "ReportIDKey")
                     cboReportDefinitions.SelectedIndex = -1
                     isLoading = False
 
@@ -144,7 +148,7 @@ Public Class frmMain
                     hideTabs()
                     dgvParameters.Rows.Clear()
                     trvwReports.Nodes.Clear()
-                    LoadReports()
+                    LoadReports(trvwReports)
                     tsNew.Enabled = False
                     tbcntrlReports.Visible = True
                     If dgvParameters.Rows.Count > 0 Then
@@ -184,7 +188,7 @@ Public Class frmMain
     ''' </summary>
     ''' <remarks></remarks>
     ''' 
-    Public Sub LoadReports()
+    Public Sub LoadReports(ByRef pobjtreeview As TreeView)
         Try
 
             Dim lobjDataTable As DataTable = Nothing
@@ -197,15 +201,16 @@ Public Class frmMain
                     lobjParentTreeNode = New TreeNode()
                     lobjParentTreeNode.Text = lobjRow(5).ToString()
                     lobjParentTreeNode.Name = lobjRow(5).ToString()
-                    If trvwReports.Nodes.Find(lobjRow(5).ToString(), False).Length >= 1 Then
-                        lobjParentTreeNode = trvwReports.Nodes.Item(lobjRow(5).ToString())
-                        If trvwReports.Nodes.Find(lobjRow(6).ToString(), False).Length >= 1 Then
-                            lobjChildnode = trvwReports.Nodes.Item(lobjRow(6).ToString())
+                    If pobjtreeview.Nodes.Find(lobjRow(5).ToString(), False).Length >= 1 Then
+                        lobjParentTreeNode = pobjtreeview.Nodes.Item(lobjRow(5).ToString())
+                        If pobjtreeview.Nodes.Find(lobjRow(6).ToString(), False).Length >= 1 Then
+                            lobjChildnode = pobjtreeview.Nodes.Item(lobjRow(6).ToString())
                         Else
                             lobjChildnode = New TreeNode()
                             lobjChildnode.Text = lobjRow(6).ToString
                             lobjChildnode.Name = lobjRow(6).ToString
                             lobjChildnode.Tag = lobjRow
+
                         End If
                         lobjChildNode2 = New TreeNode
                         lobjChildNode2.Text = lobjRow(3).ToString
@@ -215,8 +220,8 @@ Public Class frmMain
                         lobjParentTreeNode.Nodes.Add(lobjChildnode)
 
                     Else
-                        If trvwReports.Nodes.Find(lobjRow(6).ToString(), False).Length >= 1 Then
-                            lobjChildnode = trvwReports.Nodes.Item(lobjRow(6).ToString())
+                        If pobjtreeview.Nodes.Find(lobjRow(6).ToString(), False).Length >= 1 Then
+                            lobjChildnode = pobjtreeview.Nodes.Item(lobjRow(6).ToString())
                         Else
                             lobjChildnode = New TreeNode()
                             lobjChildnode.Text = lobjRow(6).ToString
@@ -229,7 +234,7 @@ Public Class frmMain
                         lobjChildNode2.Tag = lobjRow
                         lobjChildnode.Nodes.Add(lobjChildNode2)
                         lobjParentTreeNode.Nodes.Add(lobjChildnode)
-                        trvwReports.Nodes.Add(lobjParentTreeNode)
+                        pobjtreeview.Nodes.Add(lobjParentTreeNode)
                     End If
                 Next
             End If
@@ -414,13 +419,8 @@ Public Class frmMain
                     pnlCompanyInfo.Enabled = True
                     niu = False
                 Case clsConfigDmac.ActiveEnv.ReportCategories
-                    If Not cboRepCategories.SelectedIndex = -1 Then
-                        cboRepCategories.Enabled = False
-                        pnlRepCategories.Enabled = True
+                    pnlRepCategories.Enabled = True
                         pnlRepCategories.Visible = True
-                    Else
-                        niu = False
-                    End If
                 Case clsConfigDmac.ActiveEnv.ReportDefinitions
                     If Not cboReportDefinitions.SelectedIndex = -1 Then
                         cboReportDefinitions.Enabled = False
@@ -467,16 +467,13 @@ Public Class frmMain
                     tsCancel.Enabled = False
                     pnlCompanyInfo.Enabled = False
                 Case clsConfigDmac.ActiveEnv.ReportCategories
-                    tsNew.Enabled = True
-                    tsEdit.Enabled = True
+                    tsNew.Enabled = False
+                    tsEdit.Enabled = False
                     tsSave.Enabled = False
                     tsCancel.Enabled = False
                     pnlRepCategories.Visible = False
-                    cboRepCategories.Enabled = True
                     isLoading = True
-                    cboRepCategories.SelectedIndex = -1
-                    cboRepCategories_SelectedIndexChanged(Me, e)
-                    isLoading = True = False
+                    isLoading = False
                 Case clsConfigDmac.ActiveEnv.ReportDefinitions
                     isLoading = True
                     tsNew.Enabled = True
@@ -556,33 +553,39 @@ Public Class frmMain
                     End If
                 Case clsConfigDmac.ActiveEnv.ReportCategories
                     If ValidateReportCategory() Then
-                        SaveReportCategory()
-                        ''''Added by Harinath Reddy
-                        cboRepCategories.SelectedIndex = -1
-                        pnlRepCategories.Visible = False
-                        pnlRepCategories.Enabled = False
-                        cboRepCategories.Enabled = True
-                        isLoading = True
-                        oExcelSS.fillComboBox(cboRepCategories, "uspConfiguration_FillRepCategoriesCbo", "categoryname", "categoryidkey")
-                        isLoading = False
-
+                        If SaveReportCategory() Then
+                            If mblnNew Then
+                                LoadReportCategories()
+                                pnlRepCategories.Visible = False
+                                tsNew.Enabled = True
+                                tsSave.Enabled = False
+                                tsCancel.Enabled = False
+                                tsEdit.Enabled = False
+                            Else
+                                pnlRepCategories.Enabled = False
+                                tsEdit.Enabled = True
+                                tsSave.Enabled = False
+                                tsCancel.Enabled = False
+                            End If
+                        End If
                     End If
+                    niu = False
                 Case clsConfigDmac.ActiveEnv.ReportDefinitions
-                    If ValidateReportDefinition() Then
-                        If saveReportDefinition() Then
-                            pbPreview.Enabled = False
-                            btnAssign.Enabled = False
-                            pnlReportDefinitions.Enabled = False
-                            cboReportDefinitions.Enabled = True
+                        If ValidateReportDefinition() Then
+                            If saveReportDefinition() Then
+                                pbPreview.Enabled = False
+                                btnAssign.Enabled = False
+                                pnlReportDefinitions.Enabled = False
+                                cboReportDefinitions.Enabled = True
+                            Else
+                                niu = False
+                            End If
                         Else
                             niu = False
                         End If
-                    Else
-                        niu = False
-                    End If
                 Case clsConfigDmac.ActiveEnv.Reports
-                    SaveReportParameters()
-                    niu = False
+                        SaveReportParameters()
+                        niu = False
             End Select
             If niu Then
                 tsNew.Enabled = niu
@@ -1046,7 +1049,8 @@ Public Class frmMain
             oExcelSS.ErrorLog("SaveUserInformation -> " + ex.Message.ToString())
         End Try
     End Sub
-    Public Sub SaveReportCategory()
+    Public Function SaveReportCategory() As Boolean
+        Dim lblnUpdated As Boolean = False
         Try
             Dim param As SqlParameter() = New SqlParameter(5) {}
             param(0) = New SqlParameter("@CategoryName", txtRepCategoryName.Text.Trim)
@@ -1054,15 +1058,19 @@ Public Class frmMain
             param(2) = New SqlParameter("@isActive", IIf(chkRepCatIA.Checked, 1, 0))
             param(3) = New SqlParameter("@isDeleted", IIf(chkRepCatID.Checked, 1, 0))
             param(4) = New SqlParameter("@user", mstrUserId)
-            param(5) = New SqlParameter("@CategoryIDKey", IIf(action = clsConfigDmac.Actions.Edit, cboRepCategories.SelectedValue, 0))
+            param(5) = New SqlParameter("@CategoryIDKey", IIf(action = clsConfigDmac.Actions.Edit, DirectCast(trvwReportCategories.SelectedNode.Tag, System.Data.DataRow).Item(0), 0))
             Dim dt As New DataTable
             dt = oExcelSS.getDataTable("uspConfiguration_IURepCategories", True, param)
+            MsgBox("Information Inserted/Updated successfully", MsgBoxStyle.Information)
+            lblnUpdated = True
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical)
+            lblnUpdated = False
         End Try
-        MsgBox("Information Inserted/Updated successfully", MsgBoxStyle.Information)
-    End Sub
+        Return lblnUpdated
+    End Function
     Private Sub tsNew_Click(sender As Object, e As EventArgs) Handles tsNew.Click
+        mblnNew = True
         Try
             tsEdit.Enabled = False
             tsSave.Enabled = True
@@ -1072,9 +1080,15 @@ Public Class frmMain
             Select Case Env
                 Case clsConfigDmac.ActiveEnv.ReportCategories
                     pnlRepCategories.Enabled = True
-                    cboRepCategories.SelectedIndex = -1
-                    cboRepCategories.Enabled = False
-                    cboRepGroupCat.SelectedIndex = -1
+                    Dim lintindex As Integer = 0
+                    For Each item In cboRepGroupCat.Items
+                        If DirectCast(item, System.Data.DataRowView).Item(0) = DirectCast(trvwReportCategories.SelectedNode.Tag, System.Data.DataRow).Item(0) Then
+                            cboRepGroupCat.SelectedIndex = lintindex
+                            Exit For
+                        End If
+                        lintindex = lintindex + 1
+                    Next
+
                     pnlRepCategories.Visible = True
                     txtRepCategoryName.Clear()
                     chkRepCatIA.Checked = False
@@ -1284,42 +1298,7 @@ begin:
                 tsCancel.Enabled = False
         End Select
     End Sub
-    Private Sub cboRepCategories_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboRepCategories.SelectedIndexChanged
-        ''''Edited By Harinath
-
-
-        If Not cboRepCategories.SelectedIndex = -1 And Not isLoading Then
-            pnlRepCategories.Visible = True
-            pnlRepCategories.Enabled = False
-
-            ''''Set value in the Report Category 
-            txtRepCategoryName.Text = DirectCast(cboRepCategories.SelectedItem, System.Data.DataRowView).Item(1)
-
-            Dim dt As New DataTable
-            Dim p As SqlParameter() = New SqlParameter(0) {}
-            p(0) = New SqlParameter("@catIdKey", cboRepCategories.SelectedValue)
-            dt = oExcelSS.getDataTable("select GroupIDKey,isDeleted,isActive from ReportCategories where CategoryIDKey= " & cboRepCategories.SelectedValue, False)
-            Dim lintSelectedIndex As Integer = 0
-            For Each items In cboRepGroupCat.Items
-                Dim lintGroupIDKey As Integer = dt.Rows(0)(0)
-                If lintGroupIDKey = DirectCast(items, System.Data.DataRowView).Item(0) Then
-                    cboRepGroupCat.SelectedIndex = lintSelectedIndex
-                End If
-                lintSelectedIndex = lintSelectedIndex + 1
-            Next
-
-            chkRepCatIA.Checked = dt.Rows(0)(2)
-            chkRepCatID.Checked = dt.Rows(0)(1)
-
-
-            'If Not dt Is Nothing Then
-            '    txtRepCategoryName.Text = dt.Rows(0)(2)
-            '    cboRepGroupCat.SelectedValue = dt.Rows(0)(1)
-            '    chkRepCatIA.Checked = IIf(dt.Rows(0)(3) = 0, False, True)
-            '    chkRepCatID.Checked = IIf(dt.Rows(0)(4) = 0, False, True)
-            'End If
-        End If
-    End Sub
+   
 
     ''''Commented By Harianth on 25-JAN-2015
     'Private Sub cboUsers_SelectedIndexChanged(sender As Object, e As EventArgs)
@@ -1738,6 +1717,7 @@ begin:
     ''' Added by Harinath to display avaiable settingd
     ''' </summary>
     ''' <param name="sender"></param>
+    ''' 
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub tsSettings_Click(sender As Object, e As EventArgs) Handles tsSettings.Click
@@ -1936,24 +1916,7 @@ begin:
 
         Return dgvParameters
     End Function
-    'Private Sub setNoDefaultParameter(ByVal dtParam As DataTable, ByVal displayMesage As String)
-    '    Try
-    '        If dgvParameters.Rows.Count > 0 Then
-    '            dgvParameters.Columns.Clear()
-    '            dgvParameters.Rows.Clear()
-    '        End If
-    '        dtParam.Columns.Clear()
-    '        dtParam.Rows.Clear()
-    '        dtParam.Columns.Add("Parameter", GetType(String))
-    '        Dim dr As DataRow = dtParam.Rows.Add()
-    '        dr.Item(0) = displayMesage
-    '        dgvParameters.DataSource = dtParam
-    '        dgvParameters.Columns(0).Width = (dgvParameters.Width)
-    '    Catch ex As Exception
-    '        oExcelSS.ErrorLog("setNoDefaultParameter frmParameters_Load ##" + ex.Message.ToString())
-    '        MessageBox.Show(ex.Message, "Reports", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '    End Try
-    'End Sub
+   
 
 #Region "New Code"
     Private Sub ShowCombobox(ByVal iRowIndex As Integer, ByVal iColumnIndex As Integer)
@@ -2088,4 +2051,164 @@ begin:
         End Try
     End Sub
 
+    Private Sub LoadReportCategories()
+        Try
+            trvwReportCategories.Nodes.Clear()
+            Dim lobjDataTable As DataTable = Nothing
+            lobjDataTable = oExcelSS.getDataTable("select rep.CategoryIDKey,rep.GroupIDKey,rep.CategoryName,grp.GroupName from ReportCategories rep,ReportGroups grp where  rep.isActive=1  and (rep.GroupIDKey=grp.GroupIDKey )", False)
+            If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
+                For Each lobjRow As DataRow In lobjDataTable.Rows
+                    Dim lobjParentTreeNode As TreeNode = Nothing
+                    Dim lobjChildnode As TreeNode = Nothing
+                    Dim lobjChildNode2 As New TreeNode()
+                    lobjParentTreeNode = New TreeNode()
+                    lobjParentTreeNode.Text = lobjRow(3).ToString()
+                    lobjParentTreeNode.Name = lobjRow(3).ToString()
+                    lobjParentTreeNode.Tag = lobjRow
+                    If trvwReportCategories.Nodes.Find(lobjRow(3).ToString(), False).Length >= 1 Then
+                        lobjParentTreeNode = trvwReportCategories.Nodes.Item(lobjRow(3).ToString())
+                        If trvwReportCategories.Nodes.Find(lobjRow(2).ToString(), False).Length >= 1 Then
+                            lobjChildnode = trvwReportCategories.Nodes.Item(lobjRow(2).ToString())
+                        Else
+                            lobjChildnode = New TreeNode()
+                            lobjChildnode.Text = lobjRow(2).ToString
+                            lobjChildnode.Name = lobjRow(2).ToString
+                            lobjChildnode.Tag = lobjRow
+                            lobjParentTreeNode.Nodes.Add(lobjChildnode)
+                        End If
+
+                    Else
+                        If trvwReportCategories.Nodes.Find(lobjRow(2).ToString(), False).Length >= 1 Then
+                            lobjChildnode = trvwReportCategories.Nodes.Item(lobjRow(2).ToString())
+                        Else
+                            lobjChildnode = New TreeNode()
+                            lobjChildnode.Text = lobjRow(2).ToString
+                            lobjChildnode.Name = lobjRow(2).ToString
+                            lobjChildnode.Tag = lobjRow
+                            lobjParentTreeNode.Nodes.Add(lobjChildnode)
+                        End If
+                        trvwReportCategories.Nodes.Add(lobjParentTreeNode)
+                    End If
+                Next
+            End If
+            lobjDataTable = oExcelSS.getDataTable("select grp.GroupIDKey,grp.GroupName from ReportGroups grp where  grp.isActive=1  ", False)
+            If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
+                For Each lobjRow As DataRow In lobjDataTable.Rows
+                    Dim lobjParentTreeNode As TreeNode = Nothing
+                    Dim lobjChildnode As TreeNode = Nothing
+                    Dim lobjChildNode2 As New TreeNode()
+                    lobjParentTreeNode = New TreeNode()
+                    lobjParentTreeNode.Text = lobjRow(1).ToString()
+                    lobjParentTreeNode.Name = lobjRow(1).ToString()
+                    lobjParentTreeNode.Tag = lobjRow
+                    If Not (trvwReportCategories.Nodes.Find(lobjRow(1).ToString(), False).Length >= 1) Then
+                        trvwReportCategories.Nodes.Add(lobjParentTreeNode)
+                    End If
+                Next
+            End If
+
+        Catch lobjException As Exception
+            MessageBox.Show(lobjException.Message, "Reports", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub trvwReportCategories_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles trvwReportCategories.AfterSelect
+        If e.Node.Parent IsNot Nothing Then
+            pnlRepCategories.Visible = True
+            pnlRepCategories.Enabled = False
+
+            ''''Set value in the Report Category 
+            txtRepCategoryName.Text = trvwReportCategories.SelectedNode.Name
+
+            Dim lintSelectedIndex As Integer = 0
+            For Each items In cboRepGroupCat.Items
+                Dim lintGroupIDKey As Integer = DirectCast(trvwReportCategories.SelectedNode.Tag, System.Data.DataRow).Item(1)
+                If lintGroupIDKey = DirectCast(items, System.Data.DataRowView).Item(0) Then
+                    cboRepGroupCat.SelectedIndex = lintSelectedIndex
+                End If
+                lintSelectedIndex = lintSelectedIndex + 1
+            Next
+            chkRepCatIA.Checked = True
+            chkRepCatID.Checked = False
+            tsNew.Enabled = False
+            tsEdit.Enabled = True
+            tsCancel.Enabled = False
+            tsSave.Enabled = False
+        Else
+            tsNew.Enabled = True
+        tsEdit.Enabled = False
+        tsCancel.Enabled = False
+            tsSave.Enabled = False
+            pnlRepCategories.Visible = False
+            pnlRepCategories.Enabled = True
+        End If
+    End Sub
+
+    Private Sub trvwReportDefinition_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles trvwReportDefinition.AfterSelect
+        If e.Node.Nodes.Count = 0 Then
+            Try
+                isLoading = True
+                pnlReportDefinitions.Visible = True
+                pnlReportDefinitions.Enabled = False
+                pbPreview.Visible = True
+                btnAssign.Visible = True
+                txt_ReportID.Clear()
+                txt_ReportDescription.Clear()
+                pbPreview.Image = Nothing
+                txt_Notes.Clear()
+                chkrptdefinitaionActive.Checked = False
+                chkrptdefinitiondeleted.Checked = False
+                pbPreview.Enabled = False
+                btnAssign.Enabled = False
+                oExcelSS.fillComboBox(cboRportCategory, "uspConfiguration_FillRepCategoriesCbo", "categoryname", "categoryidkey")
+                oExcelSS.fillComboBox(cboReportGroup, "uspConfiguration_FillRepGroupsCbo", "GroupName", "GroupIDKey")
+                cboRportCategory.SelectedIndex = -1
+                cboReportGroup.SelectedIndex = -1
+                Dim lobjDataTable As DataTable = Nothing
+                lobjDataTable = oExcelSS.getDataTable("select CategoryIDKey,GroupIDKey,Description,ReportFileName,Note,isActive,isDeleted,PreviewImg from ReportDefs where ReportIDKey=" & cboReportDefinitions.SelectedValue, False)
+                If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
+                    For Each item In cboRportCategory.Items
+                        If DirectCast(item, System.Data.DataRowView).Item(0) = lobjDataTable.Rows(0)(0) Then
+                            cboRportCategory.SelectedValue = lobjDataTable.Rows(0)(0)
+                            Exit For
+                        End If
+                    Next
+                    For Each item In cboReportGroup.Items
+                        If DirectCast(item, System.Data.DataRowView).Item(0) = lobjDataTable.Rows(0)(1) Then
+                            cboReportGroup.SelectedValue = lobjDataTable.Rows(0)(1)
+                            Exit For
+                        End If
+                    Next
+                    txt_ReportDescription.Text = lobjDataTable.Rows(0)(2)
+                    txt_ReportID.Text = DirectCast(cboReportDefinitions.SelectedItem, System.Data.DataRowView).Item(1)
+                    txt_Notes.Text = lobjDataTable.Rows(0)(4)
+                    txt_RemoteFileName.Text = lobjDataTable.Rows(0)(3)
+                    chkrptdefinitaionActive.Checked = lobjDataTable.Rows(0)(5)
+                    chkrptdefinitiondeleted.Checked = lobjDataTable.Rows(0)(6)
+                    Using ms As New IO.MemoryStream(CType(lobjDataTable.Rows(0)(7), Byte()))
+                        Dim img As Image = Image.FromStream(ms)
+                        pbPreview.Image = img
+                    End Using
+                End If
+            Catch lobjException As Exception
+                MessageBox.Show(lobjException.Message)
+            Finally
+                isLoading = False
+            End Try
+
+            tsEdit.Enabled = True
+            tsCancel.Enabled = False
+            tsSave.Enabled = False
+        ElseIf e.Node.Level = 1 Then
+            tsNew.Enabled = True
+            tsEdit.Enabled = False
+            tsCancel.Enabled = False
+            tsSave.Enabled = False
+        Else
+            tsNew.Enabled = False
+            tsEdit.Enabled = False
+            tsCancel.Enabled = False
+            tsSave.Enabled = False
+        End If
+    End Sub
 End Class
