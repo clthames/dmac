@@ -134,12 +134,10 @@ Public Class frmMain
                     hideTabs()
                     tsNew.Enabled = True
                     tbcReportDefinition.Visible = True
-                    cboReportDefinitions.Enabled = True
                     tbcReportDefinition.Location = tc
-                    cboReportDefinitions.SelectedIndex = -1
+                    trvwReportDefinition.Nodes.Clear()
                     LoadReports(trvwReportDefinition)
                     'oExcelSS.fillComboBox(cboReportDefinitions, "uspConfiguration_FillRepDefinitionsCbo", "ReportID", "ReportIDKey")
-                    cboReportDefinitions.SelectedIndex = -1
                     isLoading = False
 
                 Case "nReports"
@@ -203,36 +201,69 @@ Public Class frmMain
                     lobjParentTreeNode.Name = lobjRow(5).ToString()
                     If pobjtreeview.Nodes.Find(lobjRow(5).ToString(), False).Length >= 1 Then
                         lobjParentTreeNode = pobjtreeview.Nodes.Item(lobjRow(5).ToString())
-                        If pobjtreeview.Nodes.Find(lobjRow(6).ToString(), False).Length >= 1 Then
-                            lobjChildnode = pobjtreeview.Nodes.Item(lobjRow(6).ToString())
+                        If lobjParentTreeNode.Nodes.Find(lobjRow(6).ToString(), False).Length >= 1 Then
+                            lobjChildnode = lobjParentTreeNode.Nodes.Item(lobjRow(6).ToString())
+                            lobjChildNode2 = New TreeNode
+                            lobjChildNode2.Text = lobjRow(3).ToString
+                            lobjChildNode2.Name = lobjRow(3).ToString
+                            lobjChildNode2.Tag = lobjRow
+                            lobjChildnode.Nodes.Add(lobjChildNode2)
                         Else
                             lobjChildnode = New TreeNode()
                             lobjChildnode.Text = lobjRow(6).ToString
                             lobjChildnode.Name = lobjRow(6).ToString
                             lobjChildnode.Tag = lobjRow
-
+                            lobjChildNode2 = New TreeNode
+                            lobjChildNode2.Text = lobjRow(3).ToString
+                            lobjChildNode2.Name = lobjRow(3).ToString
+                            lobjChildNode2.Tag = lobjRow
+                            lobjChildnode.Nodes.Add(lobjChildNode2)
+                            lobjParentTreeNode.Nodes.Add(lobjChildnode)
                         End If
+
+                    Else
+                      
+                            lobjChildnode = New TreeNode()
+                            lobjChildnode.Text = lobjRow(6).ToString
+                            lobjChildnode.Name = lobjRow(6).ToString
+                            lobjChildnode.Tag = lobjRow
+
                         lobjChildNode2 = New TreeNode
                         lobjChildNode2.Text = lobjRow(3).ToString
                         lobjChildNode2.Name = lobjRow(3).ToString
                         lobjChildNode2.Tag = lobjRow
                         lobjChildnode.Nodes.Add(lobjChildNode2)
                         lobjParentTreeNode.Nodes.Add(lobjChildnode)
-
-                    Else
-                        If pobjtreeview.Nodes.Find(lobjRow(6).ToString(), False).Length >= 1 Then
-                            lobjChildnode = pobjtreeview.Nodes.Item(lobjRow(6).ToString())
+                        pobjtreeview.Nodes.Add(lobjParentTreeNode)
+                    End If
+                Next
+            End If
+            lobjDataTable = oExcelSS.getDataTable("select rep.CategoryIDKey,rep.GroupIDKey,rep.CategoryName,grp.GroupName from ReportCategories rep,ReportGroups grp where  rep.isActive=1  and (rep.GroupIDKey=grp.GroupIDKey )", False)
+            If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
+                For Each lobjRow As DataRow In lobjDataTable.Rows
+                    Dim lobjParentTreeNode As TreeNode = Nothing
+                    Dim lobjChildnode As TreeNode = Nothing
+                    Dim lobjChildNode2 As New TreeNode()
+                    lobjParentTreeNode = New TreeNode()
+                    lobjParentTreeNode.Text = lobjRow(3).ToString()
+                    lobjParentTreeNode.Name = lobjRow(3).ToString()
+                    lobjParentTreeNode.Tag = lobjRow
+                    If pobjtreeview.Nodes.Find(lobjRow(3).ToString(), False).Length >= 1 Then
+                        lobjParentTreeNode = pobjtreeview.Nodes.Item(lobjRow(3).ToString())
+                        If lobjParentTreeNode.Nodes.Find(lobjRow(2).ToString(), False).Length >= 1 Then
+                            lobjChildnode = pobjtreeview.Nodes.Item(lobjRow(2).ToString())
                         Else
                             lobjChildnode = New TreeNode()
-                            lobjChildnode.Text = lobjRow(6).ToString
-                            lobjChildnode.Name = lobjRow(6).ToString
+                            lobjChildnode.Text = lobjRow(2).ToString
+                            lobjChildnode.Name = lobjRow(2).ToString
                             lobjChildnode.Tag = lobjRow
+                            lobjParentTreeNode.Nodes.Add(lobjChildnode)
                         End If
-                        lobjChildNode2 = New TreeNode
-                        lobjChildNode2.Text = lobjRow(3).ToString
-                        lobjChildNode2.Name = lobjRow(3).ToString
-                        lobjChildNode2.Tag = lobjRow
-                        lobjChildnode.Nodes.Add(lobjChildNode2)
+                    Else
+                        lobjChildnode = New TreeNode()
+                        lobjChildnode.Text = lobjRow(2).ToString
+                        lobjChildnode.Name = lobjRow(2).ToString
+                        lobjChildnode.Tag = lobjRow
                         lobjParentTreeNode.Nodes.Add(lobjChildnode)
                         pobjtreeview.Nodes.Add(lobjParentTreeNode)
                     End If
@@ -422,14 +453,10 @@ Public Class frmMain
                     pnlRepCategories.Enabled = True
                         pnlRepCategories.Visible = True
                 Case clsConfigDmac.ActiveEnv.ReportDefinitions
-                    If Not cboReportDefinitions.SelectedIndex = -1 Then
-                        cboReportDefinitions.Enabled = False
-                        pnlReportDefinitions.Enabled = True
-                        pbPreview.Enabled = True
-                        btnAssign.Enabled = True
-                    Else
-                        niu = False
-                    End If
+
+                    pnlReportDefinitions.Enabled = True
+                    pbPreview.Enabled = True
+                    btnAssign.Enabled = True
             End Select
             If niu Then
                 tsEdit.Enabled = False
@@ -476,15 +503,28 @@ Public Class frmMain
                     isLoading = False
                 Case clsConfigDmac.ActiveEnv.ReportDefinitions
                     isLoading = True
-                    tsNew.Enabled = True
-                    tsEdit.Enabled = True
-                    tsSave.Enabled = False
-                    tsCancel.Enabled = False
-                    cboReportDefinitions.Enabled = True
-                    pnlReportDefinitions.Visible = False
-                    btnAssign.Visible = False
-                    pbPreview.Enabled = False
-                    cboReportDefinitions.SelectedIndex = -1
+                    If trvwReportDefinition.SelectedNode.Level = 2 Then
+                        tsNew.Enabled = False
+                        tsEdit.Enabled = True
+                        tsSave.Enabled = False
+                        tsCancel.Enabled = False
+
+                        pnlReportDefinitions.Enabled = False
+                        btnAssign.Enabled = False
+                        pbPreview.Enabled = False
+
+                    Else
+                        tsNew.Enabled = True
+                        tsEdit.Enabled = False
+                        tsSave.Enabled = False
+                        tsCancel.Enabled = False
+
+                        pnlReportDefinitions.Visible = False
+                        btnAssign.Visible = False
+                        pbPreview.Visible = False
+
+                    End If
+
 
                     isLoading = False
             End Select
@@ -571,21 +611,36 @@ Public Class frmMain
                     End If
                     niu = False
                 Case clsConfigDmac.ActiveEnv.ReportDefinitions
-                        If ValidateReportDefinition() Then
-                            If saveReportDefinition() Then
-                                pbPreview.Enabled = False
-                                btnAssign.Enabled = False
-                                pnlReportDefinitions.Enabled = False
-                                cboReportDefinitions.Enabled = True
+                    If ValidateReportDefinition() Then
+                        If saveReportDefinition() Then
+                            pbPreview.Enabled = False
+                            btnAssign.Enabled = False
+                            pnlReportDefinitions.Enabled = False
+
+                            If trvwReportDefinition.SelectedNode.Level = 2 Then
+                                tsNew.Enabled = False
+                                tsEdit.Enabled = True
+                                tsSave.Enabled = False
+                                tsCancel.Enabled = False
                             Else
-                                niu = False
+                                trvwReportDefinition.Nodes.Clear()
+                                LoadReports(trvwReportDefinition)
+                                tsNew.Enabled = False
+                                tsEdit.Enabled = False
+                                tsSave.Enabled = False
+                                tsCancel.Enabled = False
+                                pbPreview.Visible = False
+                                btnAssign.Visible = False
+                                pnlReportDefinitions.Visible = False
                             End If
-                        Else
                             niu = False
                         End If
-                Case clsConfigDmac.ActiveEnv.Reports
-                        SaveReportParameters()
+                    Else
                         niu = False
+                    End If
+                Case clsConfigDmac.ActiveEnv.Reports
+                    SaveReportParameters()
+                    niu = False
             End Select
             If niu Then
                 tsNew.Enabled = niu
@@ -626,7 +681,7 @@ Public Class frmMain
             param(7) = New SqlParameter("@isDeleted", IIf(chkrptdefinitiondeleted.Checked, 1, 0))
             param(8) = New SqlParameter("@PreviewImg", bImage)
             param(9) = New SqlParameter("@user", mstrUserId)
-            param(10) = New SqlParameter("@ReportIDKey", IIf(action = clsConfigDmac.Actions.Edit, cboReportDefinitions.SelectedValue, 0))
+            param(10) = New SqlParameter("@ReportIDKey", IIf(action = clsConfigDmac.Actions.Edit, DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(0), 0))
             lobjDataTable = oExcelSS.getDataTable("uspConfiguration_IURepDefinitions", True, param)
             MsgBox("Information Inserted/Updated successfully", MsgBoxStyle.Information)
         Catch ex As Exception
@@ -1098,16 +1153,33 @@ Public Class frmMain
                 Case clsConfigDmac.ActiveEnv.ReportDefinitions
                     pnlReportDefinitions.Enabled = True
                     pnlReportDefinitions.Visible = True
-                    cboReportDefinitions.Enabled = False
-                    cboReportDefinitions.Enabled = False
+                    pbPreview.Visible = True
+                    pbPreview.Enabled = True
+                    btnAssign.Visible = True
+                    btnAssign.Enabled = True
+                    Dim lintindex As Integer = 0
                     txt_Notes.Clear()
                     txt_RemoteFileName.Clear()
                     txt_ReportDescription.Clear()
                     txt_ReportID.Clear()
+                    pbPreview.Image = Nothing
                     chkrptdefinitaionActive.Checked = True
-                    cboRportCategory.SelectedIndex = -1
-                    cboReportGroup.SelectedIndex = -1
-
+                    For Each item In cboRportCategory.Items
+                        If DirectCast(item, System.Data.DataRowView).Item(0) = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(0) Then
+                            cboRportCategory.SelectedIndex = lintindex
+                            Exit For
+                        End If
+                        lintindex = lintindex + 1
+                    Next
+                    lintindex = 0
+                    For Each item In cboReportGroup.Items
+                        If DirectCast(item, System.Data.DataRowView).Item(0) = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(1) Then
+                            cboReportGroup.SelectedIndex = lintindex
+                            Exit For
+                        End If
+                        lintindex = lintindex + 1
+                    Next
+                    cboRportCategory.Enabled = False
 
                 Case clsConfigDmac.ActiveEnv.UserInformation
                     cboUsers.SelectedIndex = -1
@@ -1533,72 +1605,7 @@ begin:
         End If
     End Sub
 
-    ''' <summary>
-    ''' Added by Harinath to make changes to Report Definition
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub cboReportDefinitions_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboReportDefinitions.SelectedIndexChanged
 
-        If cboReportDefinitions.SelectedIndex <> -1 AndAlso (Not isLoading) Then
-            Try
-                isLoading = True
-                pnlReportDefinitions.Visible = True
-                pnlReportDefinitions.Enabled = False
-                pbPreview.Visible = True
-                btnAssign.Visible = True
-                txt_ReportID.Clear()
-                txt_ReportDescription.Clear()
-                pbPreview.Image = Nothing
-                txt_Notes.Clear()
-                chkrptdefinitaionActive.Checked = False
-                chkrptdefinitiondeleted.Checked = False
-                pbPreview.Enabled = False
-                btnAssign.Enabled = False
-                oExcelSS.fillComboBox(cboRportCategory, "uspConfiguration_FillRepCategoriesCbo", "categoryname", "categoryidkey")
-                oExcelSS.fillComboBox(cboReportGroup, "uspConfiguration_FillRepGroupsCbo", "GroupName", "GroupIDKey")
-                cboRportCategory.SelectedIndex = -1
-                cboReportGroup.SelectedIndex = -1
-                Dim lobjDataTable As DataTable = Nothing
-                lobjDataTable = oExcelSS.getDataTable("select CategoryIDKey,GroupIDKey,Description,ReportFileName,Note,isActive,isDeleted,PreviewImg from ReportDefs where ReportIDKey=" & cboReportDefinitions.SelectedValue, False)
-                If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
-                    For Each item In cboRportCategory.Items
-                        If DirectCast(item, System.Data.DataRowView).Item(0) = lobjDataTable.Rows(0)(0) Then
-                            cboRportCategory.SelectedValue = lobjDataTable.Rows(0)(0)
-                            Exit For
-                        End If
-                    Next
-                    For Each item In cboReportGroup.Items
-                        If DirectCast(item, System.Data.DataRowView).Item(0) = lobjDataTable.Rows(0)(1) Then
-                            cboReportGroup.SelectedValue = lobjDataTable.Rows(0)(1)
-                            Exit For
-                        End If
-                    Next
-                    txt_ReportDescription.Text = lobjDataTable.Rows(0)(2)
-                    txt_ReportID.Text = DirectCast(cboReportDefinitions.SelectedItem, System.Data.DataRowView).Item(1)
-                    txt_Notes.Text = lobjDataTable.Rows(0)(4)
-                    txt_RemoteFileName.Text = lobjDataTable.Rows(0)(3)
-                    chkrptdefinitaionActive.Checked = lobjDataTable.Rows(0)(5)
-                    chkrptdefinitiondeleted.Checked = lobjDataTable.Rows(0)(6)
-                    Using ms As New IO.MemoryStream(CType(lobjDataTable.Rows(0)(7), Byte()))
-                        Dim img As Image = Image.FromStream(ms)
-                        pbPreview.Image = img
-                    End Using
-                End If
-            Catch lobjException As Exception
-                MessageBox.Show(lobjException.Message)
-            Finally
-                isLoading = False
-            End Try
-
-
-            ' oExcelSS.fillComboBox(cboReportGroup, "uspConfiguration_FillRepGroupsCbo", "groupname", "groupidkey")
-
-        End If
-       
-
-    End Sub
 
     Private Sub cboRportCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboRportCategory.SelectedIndexChanged
         Try
@@ -1647,7 +1654,7 @@ begin:
                 Dim fs As New IO.FileStream(opdImageDialog.FileName, IO.FileMode.Open, IO.FileAccess.Read)
                 Dim bt() As Byte = New Byte(fs.Length - 1) {}
                 fs.Read(bt, 0, bt.Length)
-                AutosizeImage(fs, pbPreview)
+                AutosizeImage(DirectCast(Image.FromStream(fs), Image), pbPreview)
                 fs.Close()
                 Dim nImage As Image = pbPreview.Image
                 If Not nImage Is Nothing Then
@@ -1666,7 +1673,7 @@ begin:
             End If
         End If
     End Sub
-    Public Sub AutosizeImage(ByVal ImagePath As System.IO.FileStream, ByVal picBox As PictureBox, Optional ByVal pSizeMode As PictureBoxSizeMode = PictureBoxSizeMode.CenterImage)
+    Public Sub AutosizeImage(ByVal ImagePath As Image, ByVal picBox As PictureBox, Optional ByVal pSizeMode As PictureBoxSizeMode = PictureBoxSizeMode.CenterImage)
         Try
             picBox.Image = Nothing
             picBox.SizeMode = pSizeMode
@@ -1675,7 +1682,7 @@ begin:
             Dim imgShow As Bitmap
             Dim g As Graphics
             Dim divideBy, divideByH, divideByW As Double
-            imgOrg = DirectCast(Image.FromStream(ImagePath), Image)
+            imgOrg = ImagePath
 
             divideByW = imgOrg.Width / picBox.Width
             divideByH = imgOrg.Height / picBox.Height
@@ -2067,8 +2074,8 @@ begin:
                     lobjParentTreeNode.Tag = lobjRow
                     If trvwReportCategories.Nodes.Find(lobjRow(3).ToString(), False).Length >= 1 Then
                         lobjParentTreeNode = trvwReportCategories.Nodes.Item(lobjRow(3).ToString())
-                        If trvwReportCategories.Nodes.Find(lobjRow(2).ToString(), False).Length >= 1 Then
-                            lobjChildnode = trvwReportCategories.Nodes.Item(lobjRow(2).ToString())
+                        If lobjParentTreeNode.Nodes.Find(lobjRow(2).ToString(), False).Length >= 1 Then
+                            lobjChildnode = lobjParentTreeNode.Nodes.Item(lobjRow(2).ToString())
                         Else
                             lobjChildnode = New TreeNode()
                             lobjChildnode.Text = lobjRow(2).ToString
@@ -2078,15 +2085,11 @@ begin:
                         End If
 
                     Else
-                        If trvwReportCategories.Nodes.Find(lobjRow(2).ToString(), False).Length >= 1 Then
-                            lobjChildnode = trvwReportCategories.Nodes.Item(lobjRow(2).ToString())
-                        Else
-                            lobjChildnode = New TreeNode()
+                        lobjChildnode = New TreeNode()
                             lobjChildnode.Text = lobjRow(2).ToString
                             lobjChildnode.Name = lobjRow(2).ToString
                             lobjChildnode.Tag = lobjRow
-                            lobjParentTreeNode.Nodes.Add(lobjChildnode)
-                        End If
+                        lobjParentTreeNode.Nodes.Add(lobjChildnode)
                         trvwReportCategories.Nodes.Add(lobjParentTreeNode)
                     End If
                 Next
@@ -2145,7 +2148,7 @@ begin:
     End Sub
 
     Private Sub trvwReportDefinition_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles trvwReportDefinition.AfterSelect
-        If e.Node.Nodes.Count = 0 Then
+        If e.Node.Nodes.Count = 0 AndAlso e.Node.Level = 2 Then
             Try
                 isLoading = True
                 pnlReportDefinitions.Visible = True
@@ -2165,7 +2168,7 @@ begin:
                 cboRportCategory.SelectedIndex = -1
                 cboReportGroup.SelectedIndex = -1
                 Dim lobjDataTable As DataTable = Nothing
-                lobjDataTable = oExcelSS.getDataTable("select CategoryIDKey,GroupIDKey,Description,ReportFileName,Note,isActive,isDeleted,PreviewImg from ReportDefs where ReportIDKey=" & cboReportDefinitions.SelectedValue, False)
+                lobjDataTable = oExcelSS.getDataTable("select CategoryIDKey,GroupIDKey,Description,ReportFileName,Note,isActive,isDeleted,PreviewImg from ReportDefs where ReportIDKey=" & CType(e.Node.Tag, Data.DataRow).Item(0), False)
                 If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
                     For Each item In cboRportCategory.Items
                         If DirectCast(item, System.Data.DataRowView).Item(0) = lobjDataTable.Rows(0)(0) Then
@@ -2180,15 +2183,17 @@ begin:
                         End If
                     Next
                     txt_ReportDescription.Text = lobjDataTable.Rows(0)(2)
-                    txt_ReportID.Text = DirectCast(cboReportDefinitions.SelectedItem, System.Data.DataRowView).Item(1)
+                    txt_ReportID.Text = CType(e.Node.Tag, Data.DataRow).Item(3)
                     txt_Notes.Text = lobjDataTable.Rows(0)(4)
                     txt_RemoteFileName.Text = lobjDataTable.Rows(0)(3)
                     chkrptdefinitaionActive.Checked = lobjDataTable.Rows(0)(5)
                     chkrptdefinitiondeleted.Checked = lobjDataTable.Rows(0)(6)
-                    Using ms As New IO.MemoryStream(CType(lobjDataTable.Rows(0)(7), Byte()))
-                        Dim img As Image = Image.FromStream(ms)
-                        pbPreview.Image = img
-                    End Using
+                    If Not IsDBNull(lobjDataTable.Rows(0)(7)) Then
+                        Using ms As New IO.MemoryStream(CType(lobjDataTable.Rows(0)(7), Byte()))
+                            Dim img As Image = Image.FromStream(ms)
+                            AutosizeImage(img, pbPreview)
+                        End Using
+                    End If
                 End If
             Catch lobjException As Exception
                 MessageBox.Show(lobjException.Message)
@@ -2199,12 +2204,19 @@ begin:
             tsEdit.Enabled = True
             tsCancel.Enabled = False
             tsSave.Enabled = False
+            tsNew.Enabled = False
         ElseIf e.Node.Level = 1 Then
+            pnlReportDefinitions.Visible = False
+            btnAssign.Visible = False
+            pbPreview.Visible = False
             tsNew.Enabled = True
             tsEdit.Enabled = False
             tsCancel.Enabled = False
             tsSave.Enabled = False
         Else
+            pnlReportDefinitions.Visible = False
+            btnAssign.Visible = False
+            pbPreview.Visible = False
             tsNew.Enabled = False
             tsEdit.Enabled = False
             tsCancel.Enabled = False

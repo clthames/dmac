@@ -80,8 +80,22 @@ Partial Class frmMain
         Me.scMain = New System.Windows.Forms.SplitContainer()
         Me.tbcntrlReports = New System.Windows.Forms.TabControl()
         Me.tpgReports = New System.Windows.Forms.TabPage()
+        Me.cmbOperator = New System.Windows.Forms.ComboBox()
+        Me.cmbDataType = New System.Windows.Forms.ComboBox()
+        Me.dgvParameters = New System.Windows.Forms.DataGridView()
+        Me.colParameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colPrompt = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.colSequence = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colDataType = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colOperator = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnDefaultValue1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnDefaultValue2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colRequired = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.trvwReports = New System.Windows.Forms.TreeView()
+        Me.trvOptions = New System.Windows.Forms.TreeView()
         Me.tbcReportDefinition = New System.Windows.Forms.TabControl()
         Me.tbpg_ReportDefinition = New System.Windows.Forms.TabPage()
+        Me.trvwReportDefinition = New System.Windows.Forms.TreeView()
         Me.pbPreview = New System.Windows.Forms.PictureBox()
         Me.btnAssign = New System.Windows.Forms.Button()
         Me.pnlReportDefinitions = New System.Windows.Forms.Panel()
@@ -99,21 +113,6 @@ Partial Class frmMain
         Me.lbl_ReportDescription = New System.Windows.Forms.Label()
         Me.txt_ReportID = New System.Windows.Forms.TextBox()
         Me.lblReportID = New System.Windows.Forms.Label()
-        Me.cboReportDefinitions = New System.Windows.Forms.ComboBox()
-        Me.lbl_AvailableReportDefinitions = New System.Windows.Forms.Label()
-        Me.cmbOperator = New System.Windows.Forms.ComboBox()
-        Me.cmbDataType = New System.Windows.Forms.ComboBox()
-        Me.dgvParameters = New System.Windows.Forms.DataGridView()
-        Me.colParameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colPrompt = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.colSequence = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colDataType = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colOperator = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnDefaultValue1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnDefaultValue2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colRequired = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.trvwReports = New System.Windows.Forms.TreeView()
-        Me.trvOptions = New System.Windows.Forms.TreeView()
         Me.tcReports = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.trvwReportCategories = New System.Windows.Forms.TreeView()
@@ -171,7 +170,6 @@ Partial Class frmMain
         Me.cboUsers = New System.Windows.Forms.ComboBox()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.opdImageDialog = New System.Windows.Forms.OpenFileDialog()
-        Me.trvwReportDefinition = New System.Windows.Forms.TreeView()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.scMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.scMain.Panel1.SuspendLayout()
@@ -179,11 +177,11 @@ Partial Class frmMain
         Me.scMain.SuspendLayout()
         Me.tbcntrlReports.SuspendLayout()
         Me.tpgReports.SuspendLayout()
+        CType(Me.dgvParameters, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tbcReportDefinition.SuspendLayout()
         Me.tbpg_ReportDefinition.SuspendLayout()
         CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlReportDefinitions.SuspendLayout()
-        CType(Me.dgvParameters, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tcReports.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.pnlRepCategories.SuspendLayout()
@@ -281,11 +279,11 @@ Partial Class frmMain
         '
         'scMain.Panel1
         '
-        Me.scMain.Panel1.Controls.Add(Me.tbcntrlReports)
         Me.scMain.Panel1.Controls.Add(Me.trvOptions)
         '
         'scMain.Panel2
         '
+        Me.scMain.Panel2.Controls.Add(Me.tbcntrlReports)
         Me.scMain.Panel2.Controls.Add(Me.tbcReportDefinition)
         Me.scMain.Panel2.Controls.Add(Me.tcReports)
         Me.scMain.Panel2.Controls.Add(Me.tcCompany)
@@ -298,7 +296,7 @@ Partial Class frmMain
         'tbcntrlReports
         '
         Me.tbcntrlReports.Controls.Add(Me.tpgReports)
-        Me.tbcntrlReports.Location = New System.Drawing.Point(12, 229)
+        Me.tbcntrlReports.Location = New System.Drawing.Point(7, 0)
         Me.tbcntrlReports.Name = "tbcntrlReports"
         Me.tbcntrlReports.SelectedIndex = 0
         Me.tbcntrlReports.Size = New System.Drawing.Size(948, 697)
@@ -317,212 +315,6 @@ Partial Class frmMain
         Me.tpgReports.TabIndex = 0
         Me.tpgReports.Text = "Reports"
         Me.tpgReports.UseVisualStyleBackColor = True
-        '
-        'tbcReportDefinition
-        '
-        Me.tbcReportDefinition.Controls.Add(Me.tbpg_ReportDefinition)
-        Me.tbcReportDefinition.Location = New System.Drawing.Point(8, 0)
-        Me.tbcReportDefinition.Name = "tbcReportDefinition"
-        Me.tbcReportDefinition.SelectedIndex = 0
-        Me.tbcReportDefinition.Size = New System.Drawing.Size(947, 694)
-        Me.tbcReportDefinition.TabIndex = 3
-        '
-        'tbpg_ReportDefinition
-        '
-        Me.tbpg_ReportDefinition.Controls.Add(Me.trvwReportDefinition)
-        Me.tbpg_ReportDefinition.Controls.Add(Me.pbPreview)
-        Me.tbpg_ReportDefinition.Controls.Add(Me.btnAssign)
-        Me.tbpg_ReportDefinition.Controls.Add(Me.pnlReportDefinitions)
-        Me.tbpg_ReportDefinition.Controls.Add(Me.cboReportDefinitions)
-        Me.tbpg_ReportDefinition.Controls.Add(Me.lbl_AvailableReportDefinitions)
-        Me.tbpg_ReportDefinition.Location = New System.Drawing.Point(4, 22)
-        Me.tbpg_ReportDefinition.Name = "tbpg_ReportDefinition"
-        Me.tbpg_ReportDefinition.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbpg_ReportDefinition.Size = New System.Drawing.Size(939, 668)
-        Me.tbpg_ReportDefinition.TabIndex = 0
-        Me.tbpg_ReportDefinition.Text = "Report Definition"
-        Me.tbpg_ReportDefinition.UseVisualStyleBackColor = True
-        '
-        'pbPreview
-        '
-        Me.pbPreview.BackColor = System.Drawing.Color.White
-        Me.pbPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pbPreview.Location = New System.Drawing.Point(422, 353)
-        Me.pbPreview.Name = "pbPreview"
-        Me.pbPreview.Size = New System.Drawing.Size(510, 306)
-        Me.pbPreview.TabIndex = 15
-        Me.pbPreview.TabStop = False
-        '
-        'btnAssign
-        '
-        Me.btnAssign.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAssign.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAssign.Location = New System.Drawing.Point(11, 640)
-        Me.btnAssign.Name = "btnAssign"
-        Me.btnAssign.Size = New System.Drawing.Size(130, 23)
-        Me.btnAssign.TabIndex = 14
-        Me.btnAssign.Text = "Assign Preview Image"
-        Me.btnAssign.UseVisualStyleBackColor = True
-        '
-        'pnlReportDefinitions
-        '
-        Me.pnlReportDefinitions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnlReportDefinitions.Controls.Add(Me.txt_RemoteFileName)
-        Me.pnlReportDefinitions.Controls.Add(Me.lblRemoteFileName)
-        Me.pnlReportDefinitions.Controls.Add(Me.chkrptdefinitiondeleted)
-        Me.pnlReportDefinitions.Controls.Add(Me.txt_Notes)
-        Me.pnlReportDefinitions.Controls.Add(Me.chkrptdefinitaionActive)
-        Me.pnlReportDefinitions.Controls.Add(Me.lblNotes)
-        Me.pnlReportDefinitions.Controls.Add(Me.cboReportGroup)
-        Me.pnlReportDefinitions.Controls.Add(Me.lblReportGroup)
-        Me.pnlReportDefinitions.Controls.Add(Me.cboRportCategory)
-        Me.pnlReportDefinitions.Controls.Add(Me.lbl_ReportCategory)
-        Me.pnlReportDefinitions.Controls.Add(Me.txt_ReportDescription)
-        Me.pnlReportDefinitions.Controls.Add(Me.lbl_ReportDescription)
-        Me.pnlReportDefinitions.Controls.Add(Me.txt_ReportID)
-        Me.pnlReportDefinitions.Controls.Add(Me.lblReportID)
-        Me.pnlReportDefinitions.Location = New System.Drawing.Point(422, 41)
-        Me.pnlReportDefinitions.Name = "pnlReportDefinitions"
-        Me.pnlReportDefinitions.Size = New System.Drawing.Size(510, 306)
-        Me.pnlReportDefinitions.TabIndex = 2
-        Me.pnlReportDefinitions.Visible = False
-        '
-        'txt_RemoteFileName
-        '
-        Me.txt_RemoteFileName.Location = New System.Drawing.Point(140, 181)
-        Me.txt_RemoteFileName.Name = "txt_RemoteFileName"
-        Me.txt_RemoteFileName.Size = New System.Drawing.Size(350, 20)
-        Me.txt_RemoteFileName.TabIndex = 12
-        '
-        'lblRemoteFileName
-        '
-        Me.lblRemoteFileName.AutoSize = True
-        Me.lblRemoteFileName.Location = New System.Drawing.Point(25, 184)
-        Me.lblRemoteFileName.Name = "lblRemoteFileName"
-        Me.lblRemoteFileName.Size = New System.Drawing.Size(97, 13)
-        Me.lblRemoteFileName.TabIndex = 11
-        Me.lblRemoteFileName.Text = "Remote File Name:"
-        '
-        'chkrptdefinitiondeleted
-        '
-        Me.chkrptdefinitiondeleted.AutoSize = True
-        Me.chkrptdefinitiondeleted.Location = New System.Drawing.Point(207, 285)
-        Me.chkrptdefinitiondeleted.Name = "chkrptdefinitiondeleted"
-        Me.chkrptdefinitiondeleted.Size = New System.Drawing.Size(74, 17)
-        Me.chkrptdefinitiondeleted.TabIndex = 10
-        Me.chkrptdefinitiondeleted.Text = "Is Deleted"
-        Me.chkrptdefinitiondeleted.UseVisualStyleBackColor = True
-        '
-        'txt_Notes
-        '
-        Me.txt_Notes.Location = New System.Drawing.Point(140, 223)
-        Me.txt_Notes.Name = "txt_Notes"
-        Me.txt_Notes.Size = New System.Drawing.Size(350, 52)
-        Me.txt_Notes.TabIndex = 9
-        Me.txt_Notes.Text = ""
-        '
-        'chkrptdefinitaionActive
-        '
-        Me.chkrptdefinitaionActive.AutoSize = True
-        Me.chkrptdefinitaionActive.Location = New System.Drawing.Point(139, 285)
-        Me.chkrptdefinitaionActive.Name = "chkrptdefinitaionActive"
-        Me.chkrptdefinitaionActive.Size = New System.Drawing.Size(67, 17)
-        Me.chkrptdefinitaionActive.TabIndex = 9
-        Me.chkrptdefinitaionActive.Text = "Is Active"
-        Me.chkrptdefinitaionActive.UseVisualStyleBackColor = True
-        '
-        'lblNotes
-        '
-        Me.lblNotes.AutoSize = True
-        Me.lblNotes.Location = New System.Drawing.Point(25, 237)
-        Me.lblNotes.Name = "lblNotes"
-        Me.lblNotes.Size = New System.Drawing.Size(33, 13)
-        Me.lblNotes.TabIndex = 8
-        Me.lblNotes.Text = "Note:"
-        '
-        'cboReportGroup
-        '
-        Me.cboReportGroup.Enabled = False
-        Me.cboReportGroup.FormattingEnabled = True
-        Me.cboReportGroup.Location = New System.Drawing.Point(140, 134)
-        Me.cboReportGroup.Name = "cboReportGroup"
-        Me.cboReportGroup.Size = New System.Drawing.Size(350, 21)
-        Me.cboReportGroup.TabIndex = 7
-        '
-        'lblReportGroup
-        '
-        Me.lblReportGroup.AutoSize = True
-        Me.lblReportGroup.Location = New System.Drawing.Point(27, 143)
-        Me.lblReportGroup.Name = "lblReportGroup"
-        Me.lblReportGroup.Size = New System.Drawing.Size(39, 13)
-        Me.lblReportGroup.TabIndex = 6
-        Me.lblReportGroup.Text = "Group:"
-        '
-        'cboRportCategory
-        '
-        Me.cboRportCategory.FormattingEnabled = True
-        Me.cboRportCategory.Location = New System.Drawing.Point(140, 91)
-        Me.cboRportCategory.Name = "cboRportCategory"
-        Me.cboRportCategory.Size = New System.Drawing.Size(350, 21)
-        Me.cboRportCategory.TabIndex = 5
-        '
-        'lbl_ReportCategory
-        '
-        Me.lbl_ReportCategory.AutoSize = True
-        Me.lbl_ReportCategory.Location = New System.Drawing.Point(22, 94)
-        Me.lbl_ReportCategory.Name = "lbl_ReportCategory"
-        Me.lbl_ReportCategory.Size = New System.Drawing.Size(52, 13)
-        Me.lbl_ReportCategory.TabIndex = 4
-        Me.lbl_ReportCategory.Text = "Category:"
-        '
-        'txt_ReportDescription
-        '
-        Me.txt_ReportDescription.Location = New System.Drawing.Point(140, 46)
-        Me.txt_ReportDescription.Name = "txt_ReportDescription"
-        Me.txt_ReportDescription.Size = New System.Drawing.Size(350, 20)
-        Me.txt_ReportDescription.TabIndex = 3
-        '
-        'lbl_ReportDescription
-        '
-        Me.lbl_ReportDescription.AutoSize = True
-        Me.lbl_ReportDescription.Location = New System.Drawing.Point(21, 53)
-        Me.lbl_ReportDescription.Name = "lbl_ReportDescription"
-        Me.lbl_ReportDescription.Size = New System.Drawing.Size(63, 13)
-        Me.lbl_ReportDescription.TabIndex = 2
-        Me.lbl_ReportDescription.Text = "Description:"
-        '
-        'txt_ReportID
-        '
-        Me.txt_ReportID.Location = New System.Drawing.Point(140, 12)
-        Me.txt_ReportID.Name = "txt_ReportID"
-        Me.txt_ReportID.Size = New System.Drawing.Size(350, 20)
-        Me.txt_ReportID.TabIndex = 1
-        '
-        'lblReportID
-        '
-        Me.lblReportID.AutoSize = True
-        Me.lblReportID.Location = New System.Drawing.Point(22, 19)
-        Me.lblReportID.Name = "lblReportID"
-        Me.lblReportID.Size = New System.Drawing.Size(56, 13)
-        Me.lblReportID.TabIndex = 0
-        Me.lblReportID.Text = "Report ID:"
-        '
-        'cboReportDefinitions
-        '
-        Me.cboReportDefinitions.FormattingEnabled = True
-        Me.cboReportDefinitions.Location = New System.Drawing.Point(152, 12)
-        Me.cboReportDefinitions.Name = "cboReportDefinitions"
-        Me.cboReportDefinitions.Size = New System.Drawing.Size(357, 21)
-        Me.cboReportDefinitions.TabIndex = 1
-        '
-        'lbl_AvailableReportDefinitions
-        '
-        Me.lbl_AvailableReportDefinitions.AutoSize = True
-        Me.lbl_AvailableReportDefinitions.Location = New System.Drawing.Point(6, 17)
-        Me.lbl_AvailableReportDefinitions.Name = "lbl_AvailableReportDefinitions"
-        Me.lbl_AvailableReportDefinitions.Size = New System.Drawing.Size(140, 13)
-        Me.lbl_AvailableReportDefinitions.TabIndex = 0
-        Me.lbl_AvailableReportDefinitions.Text = "Available Report Definitions:"
         '
         'cmbOperator
         '
@@ -710,6 +502,200 @@ Partial Class frmMain
         Me.trvOptions.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode44, TreeNode47, TreeNode51, TreeNode55, TreeNode58, TreeNode66, TreeNode72, TreeNode76, TreeNode82, TreeNode86})
         Me.trvOptions.Size = New System.Drawing.Size(215, 696)
         Me.trvOptions.TabIndex = 0
+        '
+        'tbcReportDefinition
+        '
+        Me.tbcReportDefinition.Controls.Add(Me.tbpg_ReportDefinition)
+        Me.tbcReportDefinition.Location = New System.Drawing.Point(8, 0)
+        Me.tbcReportDefinition.Name = "tbcReportDefinition"
+        Me.tbcReportDefinition.SelectedIndex = 0
+        Me.tbcReportDefinition.Size = New System.Drawing.Size(947, 694)
+        Me.tbcReportDefinition.TabIndex = 3
+        '
+        'tbpg_ReportDefinition
+        '
+        Me.tbpg_ReportDefinition.Controls.Add(Me.trvwReportDefinition)
+        Me.tbpg_ReportDefinition.Controls.Add(Me.pbPreview)
+        Me.tbpg_ReportDefinition.Controls.Add(Me.btnAssign)
+        Me.tbpg_ReportDefinition.Controls.Add(Me.pnlReportDefinitions)
+        Me.tbpg_ReportDefinition.Location = New System.Drawing.Point(4, 22)
+        Me.tbpg_ReportDefinition.Name = "tbpg_ReportDefinition"
+        Me.tbpg_ReportDefinition.Padding = New System.Windows.Forms.Padding(3)
+        Me.tbpg_ReportDefinition.Size = New System.Drawing.Size(939, 668)
+        Me.tbpg_ReportDefinition.TabIndex = 0
+        Me.tbpg_ReportDefinition.Text = "Report Definition"
+        Me.tbpg_ReportDefinition.UseVisualStyleBackColor = True
+        '
+        'trvwReportDefinition
+        '
+        Me.trvwReportDefinition.Location = New System.Drawing.Point(8, 9)
+        Me.trvwReportDefinition.Name = "trvwReportDefinition"
+        Me.trvwReportDefinition.Size = New System.Drawing.Size(408, 650)
+        Me.trvwReportDefinition.TabIndex = 16
+        '
+        'pbPreview
+        '
+        Me.pbPreview.BackColor = System.Drawing.Color.White
+        Me.pbPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pbPreview.Location = New System.Drawing.Point(424, 324)
+        Me.pbPreview.Name = "pbPreview"
+        Me.pbPreview.Size = New System.Drawing.Size(510, 306)
+        Me.pbPreview.TabIndex = 15
+        Me.pbPreview.TabStop = False
+        '
+        'btnAssign
+        '
+        Me.btnAssign.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAssign.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAssign.Location = New System.Drawing.Point(804, 636)
+        Me.btnAssign.Name = "btnAssign"
+        Me.btnAssign.Size = New System.Drawing.Size(130, 23)
+        Me.btnAssign.TabIndex = 14
+        Me.btnAssign.Text = "Assign Preview Image"
+        Me.btnAssign.UseVisualStyleBackColor = True
+        '
+        'pnlReportDefinitions
+        '
+        Me.pnlReportDefinitions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlReportDefinitions.Controls.Add(Me.txt_RemoteFileName)
+        Me.pnlReportDefinitions.Controls.Add(Me.lblRemoteFileName)
+        Me.pnlReportDefinitions.Controls.Add(Me.chkrptdefinitiondeleted)
+        Me.pnlReportDefinitions.Controls.Add(Me.txt_Notes)
+        Me.pnlReportDefinitions.Controls.Add(Me.chkrptdefinitaionActive)
+        Me.pnlReportDefinitions.Controls.Add(Me.lblNotes)
+        Me.pnlReportDefinitions.Controls.Add(Me.cboReportGroup)
+        Me.pnlReportDefinitions.Controls.Add(Me.lblReportGroup)
+        Me.pnlReportDefinitions.Controls.Add(Me.cboRportCategory)
+        Me.pnlReportDefinitions.Controls.Add(Me.lbl_ReportCategory)
+        Me.pnlReportDefinitions.Controls.Add(Me.txt_ReportDescription)
+        Me.pnlReportDefinitions.Controls.Add(Me.lbl_ReportDescription)
+        Me.pnlReportDefinitions.Controls.Add(Me.txt_ReportID)
+        Me.pnlReportDefinitions.Controls.Add(Me.lblReportID)
+        Me.pnlReportDefinitions.Location = New System.Drawing.Point(424, 9)
+        Me.pnlReportDefinitions.Name = "pnlReportDefinitions"
+        Me.pnlReportDefinitions.Size = New System.Drawing.Size(510, 306)
+        Me.pnlReportDefinitions.TabIndex = 2
+        Me.pnlReportDefinitions.Visible = False
+        '
+        'txt_RemoteFileName
+        '
+        Me.txt_RemoteFileName.Location = New System.Drawing.Point(140, 181)
+        Me.txt_RemoteFileName.Name = "txt_RemoteFileName"
+        Me.txt_RemoteFileName.Size = New System.Drawing.Size(350, 20)
+        Me.txt_RemoteFileName.TabIndex = 12
+        '
+        'lblRemoteFileName
+        '
+        Me.lblRemoteFileName.AutoSize = True
+        Me.lblRemoteFileName.Location = New System.Drawing.Point(25, 184)
+        Me.lblRemoteFileName.Name = "lblRemoteFileName"
+        Me.lblRemoteFileName.Size = New System.Drawing.Size(97, 13)
+        Me.lblRemoteFileName.TabIndex = 11
+        Me.lblRemoteFileName.Text = "Remote File Name:"
+        '
+        'chkrptdefinitiondeleted
+        '
+        Me.chkrptdefinitiondeleted.AutoSize = True
+        Me.chkrptdefinitiondeleted.Location = New System.Drawing.Point(207, 285)
+        Me.chkrptdefinitiondeleted.Name = "chkrptdefinitiondeleted"
+        Me.chkrptdefinitiondeleted.Size = New System.Drawing.Size(74, 17)
+        Me.chkrptdefinitiondeleted.TabIndex = 10
+        Me.chkrptdefinitiondeleted.Text = "Is Deleted"
+        Me.chkrptdefinitiondeleted.UseVisualStyleBackColor = True
+        '
+        'txt_Notes
+        '
+        Me.txt_Notes.Location = New System.Drawing.Point(140, 223)
+        Me.txt_Notes.Name = "txt_Notes"
+        Me.txt_Notes.Size = New System.Drawing.Size(350, 52)
+        Me.txt_Notes.TabIndex = 9
+        Me.txt_Notes.Text = ""
+        '
+        'chkrptdefinitaionActive
+        '
+        Me.chkrptdefinitaionActive.AutoSize = True
+        Me.chkrptdefinitaionActive.Location = New System.Drawing.Point(139, 285)
+        Me.chkrptdefinitaionActive.Name = "chkrptdefinitaionActive"
+        Me.chkrptdefinitaionActive.Size = New System.Drawing.Size(67, 17)
+        Me.chkrptdefinitaionActive.TabIndex = 9
+        Me.chkrptdefinitaionActive.Text = "Is Active"
+        Me.chkrptdefinitaionActive.UseVisualStyleBackColor = True
+        '
+        'lblNotes
+        '
+        Me.lblNotes.AutoSize = True
+        Me.lblNotes.Location = New System.Drawing.Point(25, 237)
+        Me.lblNotes.Name = "lblNotes"
+        Me.lblNotes.Size = New System.Drawing.Size(33, 13)
+        Me.lblNotes.TabIndex = 8
+        Me.lblNotes.Text = "Note:"
+        '
+        'cboReportGroup
+        '
+        Me.cboReportGroup.Enabled = False
+        Me.cboReportGroup.FormattingEnabled = True
+        Me.cboReportGroup.Location = New System.Drawing.Point(140, 134)
+        Me.cboReportGroup.Name = "cboReportGroup"
+        Me.cboReportGroup.Size = New System.Drawing.Size(350, 21)
+        Me.cboReportGroup.TabIndex = 7
+        '
+        'lblReportGroup
+        '
+        Me.lblReportGroup.AutoSize = True
+        Me.lblReportGroup.Location = New System.Drawing.Point(27, 143)
+        Me.lblReportGroup.Name = "lblReportGroup"
+        Me.lblReportGroup.Size = New System.Drawing.Size(39, 13)
+        Me.lblReportGroup.TabIndex = 6
+        Me.lblReportGroup.Text = "Group:"
+        '
+        'cboRportCategory
+        '
+        Me.cboRportCategory.FormattingEnabled = True
+        Me.cboRportCategory.Location = New System.Drawing.Point(140, 91)
+        Me.cboRportCategory.Name = "cboRportCategory"
+        Me.cboRportCategory.Size = New System.Drawing.Size(350, 21)
+        Me.cboRportCategory.TabIndex = 5
+        '
+        'lbl_ReportCategory
+        '
+        Me.lbl_ReportCategory.AutoSize = True
+        Me.lbl_ReportCategory.Location = New System.Drawing.Point(22, 94)
+        Me.lbl_ReportCategory.Name = "lbl_ReportCategory"
+        Me.lbl_ReportCategory.Size = New System.Drawing.Size(52, 13)
+        Me.lbl_ReportCategory.TabIndex = 4
+        Me.lbl_ReportCategory.Text = "Category:"
+        '
+        'txt_ReportDescription
+        '
+        Me.txt_ReportDescription.Location = New System.Drawing.Point(140, 46)
+        Me.txt_ReportDescription.Name = "txt_ReportDescription"
+        Me.txt_ReportDescription.Size = New System.Drawing.Size(350, 20)
+        Me.txt_ReportDescription.TabIndex = 3
+        '
+        'lbl_ReportDescription
+        '
+        Me.lbl_ReportDescription.AutoSize = True
+        Me.lbl_ReportDescription.Location = New System.Drawing.Point(21, 53)
+        Me.lbl_ReportDescription.Name = "lbl_ReportDescription"
+        Me.lbl_ReportDescription.Size = New System.Drawing.Size(63, 13)
+        Me.lbl_ReportDescription.TabIndex = 2
+        Me.lbl_ReportDescription.Text = "Description:"
+        '
+        'txt_ReportID
+        '
+        Me.txt_ReportID.Location = New System.Drawing.Point(140, 12)
+        Me.txt_ReportID.Name = "txt_ReportID"
+        Me.txt_ReportID.Size = New System.Drawing.Size(350, 20)
+        Me.txt_ReportID.TabIndex = 1
+        '
+        'lblReportID
+        '
+        Me.lblReportID.AutoSize = True
+        Me.lblReportID.Location = New System.Drawing.Point(22, 19)
+        Me.lblReportID.Name = "lblReportID"
+        Me.lblReportID.Size = New System.Drawing.Size(56, 13)
+        Me.lblReportID.TabIndex = 0
+        Me.lblReportID.Text = "Report ID:"
         '
         'tcReports
         '
@@ -1251,13 +1237,6 @@ Partial Class frmMain
         Me.opdImageDialog.FileName = "opdImageDialog"
         Me.opdImageDialog.Filter = "JPEG files|*.jpeg|JPG Files|*.jpg|PNG Files|*.png|GIF Files|*.gif"
         '
-        'trvwReportDefinition
-        '
-        Me.trvwReportDefinition.Location = New System.Drawing.Point(8, 40)
-        Me.trvwReportDefinition.Name = "trvwReportDefinition"
-        Me.trvwReportDefinition.Size = New System.Drawing.Size(408, 590)
-        Me.trvwReportDefinition.TabIndex = 16
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1277,13 +1256,12 @@ Partial Class frmMain
         Me.scMain.ResumeLayout(False)
         Me.tbcntrlReports.ResumeLayout(False)
         Me.tpgReports.ResumeLayout(False)
+        CType(Me.dgvParameters, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tbcReportDefinition.ResumeLayout(False)
         Me.tbpg_ReportDefinition.ResumeLayout(False)
-        Me.tbpg_ReportDefinition.PerformLayout()
         CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlReportDefinitions.ResumeLayout(False)
         Me.pnlReportDefinitions.PerformLayout()
-        CType(Me.dgvParameters, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tcReports.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.pnlRepCategories.ResumeLayout(False)
@@ -1386,8 +1364,6 @@ Partial Class frmMain
     Friend WithEvents lbl_ReportDescription As System.Windows.Forms.Label
     Friend WithEvents txt_ReportID As System.Windows.Forms.TextBox
     Friend WithEvents lblReportID As System.Windows.Forms.Label
-    Friend WithEvents cboReportDefinitions As System.Windows.Forms.ComboBox
-    Friend WithEvents lbl_AvailableReportDefinitions As System.Windows.Forms.Label
     Public WithEvents cboReportGroup As System.Windows.Forms.ComboBox
     Public WithEvents cboRportCategory As System.Windows.Forms.ComboBox
     Friend WithEvents txt_RemoteFileName As System.Windows.Forms.TextBox
