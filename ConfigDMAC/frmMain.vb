@@ -162,11 +162,243 @@ Public Class frmMain
                     Dim lobjfrmLaunch As New frmLaunch()
                     lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Job Costing for Cost Operations"
                     lobjfrmLaunch.btn_Launch.Focus()
-                    lobjfrmLaunch.ShowDialog()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+
+                    End If
+
+                Case "nOperationCodes"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Job Costing for Operation Codes"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+
+                    End If
+
+                Case "nOperationClasses"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Paper Scheduling for Operations Classes"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+
+                    End If
+
+                Case "nOptions"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Paper Scheduling for Options"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+
+                    End If
+
+                Case "nPressTrimRequirements"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Paper Scheduling for Press Trim Requirements"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+
+                    End If
+
+
+                Case "nPress"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Labor Standards for Press"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_pres", "Press", "btnPressLaunch_Click")
+                    End If
+
+                Case "nCollator"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Labor Standards for Collator"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_coll", "Collator", "btnCollatorLaunch_Click")
+                    End If
+
+                Case "nComposition"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Labor Standards for Composition"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_comp", "Composition", "btnCompositionLauncher_Click")
+                    End If
+
+
+                Case "nEncoder"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Labor Standards for Encoder"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_enco", "Encoder", "btnEncoderLauncher_Click")
+                    End If
+
+                Case "nOfflineFolderStandards"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Labor Standards for Offline Folder Standards"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_fold", "Offline Folder", "btnOfflineFolderLauncher_Click")
+                    End If
+
+                Case "NShrinkwrapStandards"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Labor Standards for Shrinkwrap Standards"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_shri", "Shrinkwrap Standards", "btnShrinkwrapLauncher_Click")
+                    End If
+
+                Case "NBinderyCosts"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Labor Standards for Bindery Costs"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_bind", "Bindery Costs", "btnBinderyCostsLauncher_Click")
+                    End If
+
+                Case "nPaperMaterial"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Material Standards for Paper Material"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_pap", "Paper Material", "btnMaterialStandardsLauncher_Click")
+                    End If
+
+                Case "nBaseandStandardsInks"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Material Standards for Base and Standards Inks"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_inks", "Base and Standard Ink", "btnBSILauncher_Click")
+                    End If
+
+
+
+                Case "nUpdateCarbonFile"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Material Standards for Update Carbon File"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_cbn", "Update Carbon File", "btnUCFLauncher_Click")
+                    End If
+
+                Case "nUpdatePackSizes"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Material Standards for Update Pack Sizes"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_pack", "Update Pack Sizes", "btnUPSLauncher_Click")
+                    End If
+
+                Case "nOverhead-Ink-Carton-Helper"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Material Standards for Overhead-Ink-Carton-Helper"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_misc", "Overhead-Ink-Carton-Helper-Exch-Rates", "btnOverheadLauncher_Click")
+                    End If
+
+
+                Case "nProductMarkupFactors"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Other Standards for Overhead-Ink-Carton-Helper"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_prod", "Product Markup Factors", "btnPMFLauncher_Click")
+                    End If
+
+                Case "nProductMarkupFactors"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Other Standards for Product Markup Factors"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_frtM", "Freight Rates (MINIMUM)", "btnFreightRates_Click")
+                    End If
+
+                Case "nFreightRates(MIN)"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Other Standards for Freight Rates (MIN)"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_frtC", "Freight Rates (CWT COST)", "btnFRC_Click")
+                    End If
+
+                Case "nFreightRates(CWTCOST)"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Other Standards for Freight Rates (CWT COST)"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+
+                    End If
+
+                Case "nUserDefinedKeywords"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Configuration for User Defined Keywords"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_kwrd", "User-defined Keywords", "btnUserDK_Click")
+                    End If
+
+
+                Case "nOddWidthCrossReference"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Configuration for Odd Width Cross Reference"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_oddw", "Odd Width Cross Reference", "btnOddWidthLauncher_Click")
+                    End If
+
+                Case "nPressandCollatorDesignation"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Configuration for Press and Collator Designation"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "est_desg", "Press and Collator Designation", "btnPressandCollatorLauncher_Click")
+                    End If
+
+
+                Case "nPaperColorCrossReference"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Configuration for Paper Color Cross Reference"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("maintain_dmac.exe", "Pap-XREF", "Paper Color Cross Reference", "btnPaperColorLauncher_Click")
+                    End If
+
+                Case "nKeypadConfiguration"
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Configuration for Keypad Configuration"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                        executeApplication("bldkp_dmac.exe", "", "Keypad Configuration", "btnKeypadLauncher_Click")
+                    End If
+
+
                     ''''End
+
             End Select
         Catch lobjException As Exception
             MessageBox.Show(lobjException.Message, "Reports", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub executeApplication(ByVal executableFileName As String, ByVal param As String, ByVal title As String, ByVal currentevent As String)
+        Try
+            Dim parameter As String = String.Empty
+            Dim executeFilePath As String = String.Empty
+            Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath) & "\" & oExcelSS.AppFolderName & "\"
+            parameter = param
+            executeFilePath = iniFilePath & executableFileName
+            If IO.File.Exists(executeFilePath) Then
+                If parameter.Trim.Length > 0 Then
+                    Process.Start(executeFilePath, parameter)
+                Else
+                    Process.Start(executeFilePath)
+                End If
+            Else
+                MsgBox("Executables missing...Contact Admin")
+            End If
+        Catch ex As Exception
+            oExcelSS.ErrorLog("frmConfigurationManager -> " & currentevent & " ==> Error##" + ex.Message.ToString())
         End Try
     End Sub
     Public Sub hideTabs()
@@ -494,7 +726,7 @@ Public Class frmMain
                     tsCancel.Enabled = False
                     pnlCompanyInfo.Enabled = False
                 Case clsConfigDmac.ActiveEnv.ReportCategories
-                    tsNew.Enabled = False
+                    tsNew.Enabled = True
                     tsEdit.Enabled = False
                     tsSave.Enabled = False
                     tsCancel.Enabled = False
@@ -1143,7 +1375,7 @@ Public Class frmMain
                         End If
                         lintindex = lintindex + 1
                     Next
-
+                    cboRepGroupCat.Enabled = False
                     pnlRepCategories.Visible = True
                     txtRepCategoryName.Clear()
                     chkRepCatIA.Checked = False
