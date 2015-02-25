@@ -132,31 +132,13 @@ Public Class frmMain
                     isLoading = True
                     Env = clsConfigDmac.ActiveEnv.ReportDefinitions
                     hideTabs()
-                    tsNew.Enabled = True
+                    tsNew.Enabled = False
                     tbcReportDefinition.Visible = True
                     tbcReportDefinition.Location = tc
                     trvwReportDefinition.Nodes.Clear()
                     LoadReports(trvwReportDefinition)
                     'oExcelSS.fillComboBox(cboReportDefinitions, "uspConfiguration_FillRepDefinitionsCbo", "ReportID", "ReportIDKey")
                     isLoading = False
-
-                Case "nReports"
-                    isLoading = True
-                    Env = clsConfigDmac.ActiveEnv.Reports
-                    hideTabs()
-                    dgvParameters.Rows.Clear()
-                    trvwReports.Nodes.Clear()
-                    LoadReports(trvwReports)
-                    tsNew.Enabled = False
-                    tbcntrlReports.Visible = True
-                    If dgvParameters.Rows.Count > 0 Then
-                        tsCancel.Enabled = True
-                        tsSave.Enabled = True
-                    Else
-                        tsCancel.Enabled = False
-                        tsSave.Enabled = False
-                    End If
-                    tsEdit.Enabled = False
 
                 Case "nCostOperations"
                     Dim lobjfrmLaunch As New frmLaunch()
@@ -359,6 +341,7 @@ Public Class frmMain
 
                 Case "nPaperColorCrossReference"
                     Dim lobjfrmLaunch As New frmLaunch()
+
                     lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Estimating Configuration for Paper Color Cross Reference"
                     lobjfrmLaunch.btn_Launch.Focus()
                     If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
@@ -409,9 +392,7 @@ Public Class frmMain
         tbcntrl_ProfileAccess.Visible = False
         tbcReportDefinition.Visible = False
         pbPreview.Visible = False
-        btnAssign.Visible = False
         pnlReportDefinitions.Visible = False
-        tbcntrlReports.Visible = False
     End Sub
     ''' <summary>
     ''' Added by Harinath for Reports
@@ -422,7 +403,7 @@ Public Class frmMain
         Try
 
             Dim lobjDataTable As DataTable = Nothing
-            lobjDataTable = oExcelSS.getDataTable("select rep.ReportIDKey,rep.GroupIDKey,rep.CategoryIDKey,rep.ReportID,rep.ReportFileName,grp.GroupName,cat.CategoryName from ReportDefs rep,ReportGroups grp,ReportCategories cat where  rep.isActive=1  and (rep.GroupIDKey=grp.GroupIDKey and rep.CategoryIDKey=cat.CategoryIDKey)", False)
+            lobjDataTable = oExcelSS.getDataTable("select rep.ReportIDKey,rep.GroupIDKey,rep.CategoryIDKey,rep.ReportID,rep.ReportFileName,grp.GroupName,cat.CategoryName from ReportDefs rep,ReportGroups grp,ReportCategories cat where   (rep.GroupIDKey=grp.GroupIDKey and rep.CategoryIDKey=cat.CategoryIDKey)", False)
             If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
                 For Each lobjRow As DataRow In lobjDataTable.Rows
                     Dim lobjParentTreeNode As TreeNode = Nothing
@@ -592,67 +573,7 @@ Public Class frmMain
 
     End Sub
 
-    ''''Commented by Harinath 25-JAN-2015
-
-    '    Private Sub cboProfiles_SelectedIndexChanged(sender As Object, e As EventArgs)
-    '        If Not cboProfiles.SelectedIndex = -1 And Not isLoading Then
-    '            pnlProfiles.Visible = True
-    '            pnlProfiles.Enabled = False
-    '            txtPrDesc.Clear()
-    '            txtPrName.Clear()
-    '            chklbPermissions.Controls.Clear()
-    '            Dim dt As New DataTable
-    '            Dim p As SqlParameter() = New SqlParameter(0) {}
-    '            p(0) = New SqlParameter("@ProfileID", cboProfiles.SelectedValue)
-    '            dt = oExcelSS.getDataTable("uspConfiguration_GetProfileInfo", True, p)
-    '            If Not dt Is Nothing Then
-    '                txtPrName.Text = dt.Rows(0)(0)
-    '                txtPrDesc.Text = dt.Rows(0)(1)
-    '                Dim group As String
-    '                group = dt.Rows(0)(5)
-    '                Dim chG As New CheckBox
-    '                chG.Text = "--" & group.ToUpper & "--"
-    '                chG.Name = group.Trim
-    '                chG.ThreeState = True
-    '                chG.CheckState = CheckState.Indeterminate
-    '                chG.TextAlign = ContentAlignment.MiddleCenter
-    '                chG.AutoSize = True
-    '                AddHandler chG.Click, AddressOf onCHClick
-    '                chklbPermissions.Controls.Add(chG)
-    '                Dim r As DataRow
-    '                For Each r In dt.Rows
-    'begin:
-    '                    If r(5).trim = group.Trim Then
-    '                        Dim ch As New CheckBox
-    '                        ch.Text = r(2)
-    '                        ch.Tag = r(3)
-    '                        ch.CheckState = IIf(r(4) = "1", CheckState.Checked, CheckState.Unchecked)
-    '                        ch.TextAlign = ContentAlignment.MiddleCenter
-    '                        ch.AutoSize = True
-    '                        chklbPermissions.Controls.Add(ch)
-    '                    Else
-    '                        group = r(5)
-    '                        Dim chL As New CheckBox
-    '                        chL.Text = "--" & group.ToUpper & "--"
-    '                        chL.Name = group.Trim
-    '                        chL.ThreeState = True
-    '                        chL.CheckState = CheckState.Indeterminate
-    '                        chL.TextAlign = ContentAlignment.MiddleCenter
-    '                        chL.AutoSize = True
-    '                        AddHandler chL.Click, AddressOf onCHClick
-    '                        chklbPermissions.Controls.Add(chL)
-    '                        GoTo begin
-    '                    End If
-    '                Next
-    '            End If
-    '            tsEdit.Enabled = True
-    '        Else
-    '            pnlProfiles.Visible = False
-    '            pnlProfiles.Enabled = False
-    '        End If
-    '    End Sub
-
-    '''' END
+    
     Private Sub tsEdit_Click(sender As Object, e As EventArgs) Handles tsEdit.Click
         Try
 
@@ -688,7 +609,7 @@ Public Class frmMain
 
                     pnlReportDefinitions.Enabled = True
                     pbPreview.Enabled = True
-                    btnAssign.Enabled = True
+
             End Select
             If niu Then
                 tsEdit.Enabled = False
@@ -740,9 +661,8 @@ Public Class frmMain
                         tsEdit.Enabled = True
                         tsSave.Enabled = False
                         tsCancel.Enabled = False
-
                         pnlReportDefinitions.Enabled = False
-                        btnAssign.Enabled = False
+
                         pbPreview.Enabled = False
 
                     Else
@@ -750,11 +670,9 @@ Public Class frmMain
                         tsEdit.Enabled = False
                         tsSave.Enabled = False
                         tsCancel.Enabled = False
-
                         pnlReportDefinitions.Visible = False
-                        btnAssign.Visible = False
-                        pbPreview.Visible = False
 
+                        pbPreview.Visible = False
                     End If
 
 
@@ -834,6 +752,7 @@ Public Class frmMain
                                 tsCancel.Enabled = False
                                 tsEdit.Enabled = False
                             Else
+                                LoadReportCategories()
                                 pnlRepCategories.Enabled = False
                                 tsEdit.Enabled = True
                                 tsSave.Enabled = False
@@ -845,8 +764,10 @@ Public Class frmMain
                 Case clsConfigDmac.ActiveEnv.ReportDefinitions
                     If ValidateReportDefinition() Then
                         If saveReportDefinition() Then
+                            trvwReportDefinition.Nodes.Clear()
+                            LoadReports(trvwReportDefinition)
                             pbPreview.Enabled = False
-                            btnAssign.Enabled = False
+
                             pnlReportDefinitions.Enabled = False
 
                             If trvwReportDefinition.SelectedNode.Level = 2 Then
@@ -855,14 +776,13 @@ Public Class frmMain
                                 tsSave.Enabled = False
                                 tsCancel.Enabled = False
                             Else
-                                trvwReportDefinition.Nodes.Clear()
-                                LoadReports(trvwReportDefinition)
+
                                 tsNew.Enabled = False
                                 tsEdit.Enabled = False
                                 tsSave.Enabled = False
                                 tsCancel.Enabled = False
                                 pbPreview.Visible = False
-                                btnAssign.Visible = False
+
                                 pnlReportDefinitions.Visible = False
                             End If
                             niu = False
@@ -870,9 +790,7 @@ Public Class frmMain
                     Else
                         niu = False
                     End If
-                Case clsConfigDmac.ActiveEnv.Reports
-                    SaveReportParameters()
-                    niu = False
+              
             End Select
             If niu Then
                 tsNew.Enabled = niu
@@ -902,7 +820,7 @@ Public Class frmMain
             bImage = ms.ToArray
         End Using
         Try
-            Dim param As SqlParameter() = New SqlParameter(10) {}
+            Dim param As SqlParameter() = New SqlParameter(9) {}
             param(0) = New SqlParameter("@GroupIDKey", cboReportGroup.SelectedValue)
             param(1) = New SqlParameter("@CategoryIDKey", cboRportCategory.SelectedValue)
             param(2) = New SqlParameter("@ReportID ", txt_ReportID.Text.Trim())
@@ -910,10 +828,9 @@ Public Class frmMain
             param(4) = New SqlParameter("@ReportFileName", txt_RemoteFileName.Text.Trim())
             param(5) = New SqlParameter("@Note", txt_Notes.Text.Trim())
             param(6) = New SqlParameter("@isActive", IIf(chkrptdefinitaionActive.Checked, 1, 0))
-            param(7) = New SqlParameter("@isDeleted", IIf(chkrptdefinitiondeleted.Checked, 1, 0))
-            param(8) = New SqlParameter("@PreviewImg", bImage)
-            param(9) = New SqlParameter("@user", mstrUserId)
-            param(10) = New SqlParameter("@ReportIDKey", IIf(action = clsConfigDmac.Actions.Edit, DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(0), 0))
+            param(7) = New SqlParameter("@PreviewImg", bImage)
+            param(8) = New SqlParameter("@user", mstrUserId)
+            param(9) = New SqlParameter("@ReportIDKey", IIf(action = clsConfigDmac.Actions.Edit, DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(0), 0))
             lobjDataTable = oExcelSS.getDataTable("uspConfiguration_IURepDefinitions", True, param)
             MsgBox("Information Inserted/Updated successfully", MsgBoxStyle.Information)
         Catch ex As Exception
@@ -965,7 +882,7 @@ Public Class frmMain
             End If
             If pbPreview.Image Is Nothing Then
                 MsgBox("upload a preview image", MsgBoxStyle.Information, "Configuration")
-                btnAssign.Focus()
+
                 Return False
             End If
 
@@ -1339,13 +1256,12 @@ Public Class frmMain
     Public Function SaveReportCategory() As Boolean
         Dim lblnUpdated As Boolean = False
         Try
-            Dim param As SqlParameter() = New SqlParameter(5) {}
+            Dim param As SqlParameter() = New SqlParameter(4) {}
             param(0) = New SqlParameter("@CategoryName", txtRepCategoryName.Text.Trim)
             param(1) = New SqlParameter("@GroupIDKey", cboRepGroupCat.SelectedValue)
             param(2) = New SqlParameter("@isActive", IIf(chkRepCatIA.Checked, 1, 0))
-            param(3) = New SqlParameter("@isDeleted", IIf(chkRepCatID.Checked, 1, 0))
-            param(4) = New SqlParameter("@user", mstrUserId)
-            param(5) = New SqlParameter("@CategoryIDKey", IIf(action = clsConfigDmac.Actions.Edit, DirectCast(trvwReportCategories.SelectedNode.Tag, System.Data.DataRow).Item(0), 0))
+            param(3) = New SqlParameter("@user", mstrUserId)
+            param(4) = New SqlParameter("@CategoryIDKey", IIf(action = clsConfigDmac.Actions.Edit, DirectCast(trvwReportCategories.SelectedNode.Tag, System.Data.DataRow).Item(0), 0))
             Dim dt As New DataTable
             dt = oExcelSS.getDataTable("uspConfiguration_IURepCategories", True, param)
             MsgBox("Information Inserted/Updated successfully", MsgBoxStyle.Information)
@@ -1369,17 +1285,17 @@ Public Class frmMain
                     pnlRepCategories.Enabled = True
                     Dim lintindex As Integer = 0
                     For Each item In cboRepGroupCat.Items
-                        If DirectCast(item, System.Data.DataRowView).Item(0) = DirectCast(trvwReportCategories.SelectedNode.Tag, System.Data.DataRow).Item(0) Then
+                        If DirectCast(item, System.Data.DataRowView).Item(0) = DirectCast(trvwReportCategories.SelectedNode.Tag, System.Data.DataRow).Item(1) Then
                             cboRepGroupCat.SelectedIndex = lintindex
                             Exit For
                         End If
                         lintindex = lintindex + 1
                     Next
-                    cboRepGroupCat.Enabled = False
+                    cboRepGroupCat.Enabled = True
                     pnlRepCategories.Visible = True
                     txtRepCategoryName.Clear()
                     chkRepCatIA.Checked = False
-                    chkRepCatID.Checked = False
+
 
                     ''''Added by Harinath Reddy
                 Case clsConfigDmac.ActiveEnv.ReportDefinitions
@@ -1387,8 +1303,8 @@ Public Class frmMain
                     pnlReportDefinitions.Visible = True
                     pbPreview.Visible = True
                     pbPreview.Enabled = True
-                    btnAssign.Visible = True
-                    btnAssign.Enabled = True
+
+
                     Dim lintindex As Integer = 0
                     txt_Notes.Clear()
                     txt_RemoteFileName.Clear()
@@ -1396,22 +1312,36 @@ Public Class frmMain
                     txt_ReportID.Clear()
                     pbPreview.Image = Nothing
                     chkrptdefinitaionActive.Checked = True
-                    For Each item In cboRportCategory.Items
-                        If DirectCast(item, System.Data.DataRowView).Item(0) = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(0) Then
-                            cboRportCategory.SelectedIndex = lintindex
-                            Exit For
-                        End If
-                        lintindex = lintindex + 1
-                    Next
-                    lintindex = 0
+
+                    Dim lstrCategory As String = ""
+                    Dim lstrGroup As String = ""
+                    If trvwReportDefinition.SelectedNode.Nodes.Count = 0 Then
+
+                        lstrCategory = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(0)
+                        lstrGroup = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(1)
+                    Else
+                        lstrCategory = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(2)
+                        lstrGroup = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(1)
+                    End If
+
                     For Each item In cboReportGroup.Items
-                        If DirectCast(item, System.Data.DataRowView).Item(0) = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(1) Then
+                        If DirectCast(item, System.Data.DataRowView).Item(0) = lstrGroup Then
                             cboReportGroup.SelectedIndex = lintindex
                             Exit For
                         End If
                         lintindex = lintindex + 1
                     Next
-                    cboRportCategory.Enabled = False
+                    oExcelSS.fillComboBox(cboRportCategory, "select CategoryIDKey , CategoryName,GroupIDKey from ReportCategories where GroupIDKey=" + lstrGroup + "and isActive=1", "CategoryName", "CategoryIDKey", False)
+                    lintindex = 0
+                    For Each item In cboRportCategory.Items
+                        If DirectCast(item, System.Data.DataRowView).Item(0) = lstrCategory Then
+                            cboRportCategory.SelectedIndex = lintindex
+                            Exit For
+                        End If
+                        lintindex = lintindex + 1
+                    Next
+                    cboRportCategory.Enabled = True
+                    cboReportGroup.Enabled = True
 
                 Case clsConfigDmac.ActiveEnv.UserInformation
                     cboUsers.SelectedIndex = -1
@@ -1602,93 +1532,9 @@ begin:
                 tsCancel.Enabled = False
         End Select
     End Sub
-   
 
-    ''''Commented By Harianth on 25-JAN-2015
-    'Private Sub cboUsers_SelectedIndexChanged(sender As Object, e As EventArgs)
-    '    If Not cboUsers.SelectedIndex = -1 And Not isLoading Then
-    '        pnlPermissions.Visible = True
-    '        pnlPermissions.Enabled = True
-    '        lbOwnedProfiles.Items.Clear()
-    '        lbAvailableProfiles.Items.Clear()
-    '        Dim dt As New DataTable
-    '        Dim dp As New DataTable
-    '        Dim p As SqlParameter() = New SqlParameter(0) {}
-    '        p(0) = New SqlParameter("@UserID", cboUsers.SelectedValue)
-    '        dt = oExcelSS.getDataTable("uspConfiguration_GetProfilesFromUser", True, p)
-    '        dp = oExcelSS.getDataTable("select * from AccessProfiles", False)
-    '        If Not dt Is Nothing Then
-    '            Dim r As DataRow
-    '            For Each r In dt.Rows
-    '                lbOwnedProfiles.Items.Add(r(1))
-    '            Next
-    '        End If
-    '        If Not dp Is Nothing Then
-    '            Dim dr As DataRow
-    '            Dim x As Integer = 0
-    '            Dim exists As Boolean = False
-    '            For Each dr In dp.Rows
-    '                exists = False
-    '                For x = 0 To dt.Rows.Count - 1
-    '                    If dr(1).trim = dt.Rows(x)(1).trim Then
-    '                        exists = True
-    '                    End If
-    '                Next
-    '                If Not exists Then
-    '                    lbAvailableProfiles.Items.Add(dr(1))
-    '                End If
-    '            Next
-    '        End If
-    '        btnAddPr.Enabled = False
-    '        btnRemovePr.Enabled = False
-    '        action = clsConfigDmac.Actions.None
-    '        tsNew.Enabled = False
-    '        tsEdit.Enabled = False
-    '    Else
-    '        pnlPermissions.Visible = False
-    '        pnlPermissions.Enabled = False
-    '    End If
-    'End Sub
-    'Private Sub lbOwnedProfiles_GotFocus(sender As Object, e As EventArgs)
-    '    If lbOwnedProfiles.Items.Count > 0 Then
-    '        lbAvailableProfiles.ClearSelected()
-    '        btnRemovePr.Enabled = True
-    '        btnAddPr.Enabled = False
-    '    Else
-    '        btnRemovePr.Enabled = False
-    '        btnAddPr.Enabled = False
-    '    End If
-    'End Sub
-    'Private Sub lbAvailableProfiles_GotFocus(sender As Object, e As EventArgs)
-    '    If lbAvailableProfiles.Items.Count > 0 Then
-    '        lbOwnedProfiles.ClearSelected()
-    '        btnAddPr.Enabled = True
-    '        btnRemovePr.Enabled = False
-    '    Else
-    '        btnRemovePr.Enabled = False
-    '        btnAddPr.Enabled = False
-    '    End If
-    'End Sub
-    'Private Sub btnAddPr_Click(sender As Object, e As EventArgs)
-    '    If lbAvailableProfiles.SelectedIndex = -1 Then
-    '        MsgBox("Must select a Profile in the box.")
-    '        Exit Sub
-    '    End If
-    '    lbOwnedProfiles.Items.Add(lbAvailableProfiles.SelectedItem)
-    '    lbAvailableProfiles.Items.Remove(lbAvailableProfiles.SelectedItem)
-    '    action = clsConfigDmac.Actions.Niu
-    'End Sub
-    'Private Sub btnRemovePr_Click(sender As Object, e As EventArgs)
-    '    If lbOwnedProfiles.SelectedIndex = -1 Then
-    '        MsgBox("Must select a Profile in the box.")
-    '        Exit Sub
-    '    End If
-    '    action = clsConfigDmac.Actions.Niu
-    '    lbAvailableProfiles.Items.Add(lbOwnedProfiles.SelectedItem)
-    '    lbOwnedProfiles.Items.Remove(lbOwnedProfiles.SelectedItem)
-    'End Sub
 
-    ''''END
+
     Private Sub tcReports_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tcReports.SelectedIndexChanged
         Select Case tcReports.SelectedIndex
             Case 0
@@ -1821,20 +1667,12 @@ begin:
     End Sub
 
 
-    Private Sub chkRepCatID_CheckedChanged(sender As Object, e As EventArgs) Handles chkRepCatID.CheckedChanged
-        If Not chkRepCatID.Checked Then
-            chkRepCatIA.Enabled = True
-        Else
-            chkRepCatIA.Enabled = False
-        End If
+    Private Sub chkRepCatID_CheckedChanged(sender As Object, e As EventArgs)
+     
     End Sub
 
     Private Sub chkRepCatIA_CheckedChanged(sender As Object, e As EventArgs)
-        If Not chkRepCatIA.Checked Then
-            chkRepCatID.Enabled = True
-        Else
-            chkRepCatID.Enabled = False
-        End If
+   
     End Sub
 
 
@@ -1861,26 +1699,22 @@ begin:
     End Sub
 
     Private Sub cboReportGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboReportGroup.SelectedIndexChanged
+        If cboReportGroup.SelectedValue IsNot Nothing AndAlso Not isLoading Then
+            oExcelSS.fillComboBox(cboRportCategory, "select CategoryIDKey , CategoryName,GroupIDKey from ReportCategories where GroupIDKey=" + cboReportGroup.SelectedValue.ToString, "CategoryName", "CategoryIDKey", False)
+            cboRportCategory.SelectedIndex = -1
+        End If
 
     End Sub
 
     Private Sub chkrptdefinitaionActive_CheckedChanged(sender As Object, e As EventArgs) Handles chkrptdefinitaionActive.CheckedChanged
-        If Not chkrptdefinitaionActive.Checked Then
-            chkrptdefinitiondeleted.Enabled = True
-        Else
-            chkrptdefinitiondeleted.Enabled = False
-        End If
+    
     End Sub
 
-    Private Sub chkrptdefinitiondeleted_CheckedChanged(sender As Object, e As EventArgs) Handles chkrptdefinitiondeleted.CheckedChanged
-        If Not chkrptdefinitiondeleted.Checked Then
-            chkrptdefinitaionActive.Enabled = True
-        Else
-            chkrptdefinitaionActive.Enabled = False
-        End If
+    Private Sub chkrptdefinitiondeleted_CheckedChanged(sender As Object, e As EventArgs)
+       
     End Sub
 
-    Private Sub btnAssign_Click(sender As Object, e As EventArgs) Handles btnAssign.Click
+    Private Sub btnAssign_Click(sender As Object, e As EventArgs)
         If opdImageDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
             If IO.File.Exists(opdImageDialog.FileName) Then
                 Dim fs As New IO.FileStream(opdImageDialog.FileName, IO.FileMode.Open, IO.FileAccess.Read)
@@ -2014,287 +1848,12 @@ begin:
         End Try
     End Sub
 
-    Private Sub trvwReports_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles trvwReports.AfterSelect
-        Try
-
-            cmbDataType.Visible = False
-            cmbOperator.Visible = False
-            If dgvParameters.Rows.Count > 0 Then
-                dgvParameters.Rows.Clear()
-            End If
-            If e.Node.Nodes.Count = 0 Then
-                GetReportParameters(e.Node.Name, DirectCast(e.Node.Tag, System.Data.DataRow)(0))
-                If dgvParameters.Rows.Count > 0 Then
-                    tsSave.Enabled = True
-                    tsCancel.Enabled = True
-                    tsNew.Enabled = False
-                End If
-            End If
-        Catch ex As Exception
-            oExcelSS.ErrorLog("frmParameters frmParameters_Load ##" + ex.Message.ToString())
-            MessageBox.Show(ex.Message, "Reports", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-    Public Function GetReportParameters(ByVal pstrReportName As String, ByVal pstrReportID As String) As DataGridView
-        Dim paramName As String = String.Empty
-        Dim paramValue As String = String.Empty
-        Dim prompt As Boolean = False
-        Dim sequence As Integer
-        mblnExisting = False
-        Dim varType As String = String.Empty
-        Dim isRequired As Boolean = False
-        Dim dbField As String = String.Empty
-        Dim doperator As String = String.Empty
-        Dim value1 As String = String.Empty
-        Dim value2 As String = String.Empty
-        Dim reportIDKey As Integer
-        Dim paramIDKey As Integer
-        Dim lobjStatus As String
-        Dim param As SqlParameter() = New SqlParameter(2) {}
-        param(0) = New SqlParameter("@strReport", pstrReportName)
-        'ExcelSSGen.ReportServer.UserName = "sa"
-        'ExcelSSGen.ReportServer.ReportServerPath = "http://haridell/ReportServer"
-        'ExcelSSGen.ReportServer.ReportPath = "Report Project1"
-        'ExcelSSGen.ReportServer.ReportServerDatabase = "ReportServer"
-        'ExcelSSGen.ReportServer.Password = ExcelSSGen.ReportServer.UserName
-        param(1) = New SqlParameter("@strReportServerDB", ExcelSSGen.ReportServer.ReportServerDatabase)
-        param(2) = New SqlParameter("@status", lobjStatus)
-        param(2).Direction = ParameterDirection.Output
-        param(2).Size = 1000
-        Dim dtParam As New DataTable("ParamTable")
-        'read and bind the report parameter from .rdl file
-        dtParam = oExcelSS.getDataTable("uspReporting_GetReportParameter", True, param)
-        If dtParam.Rows.Count > 0 Then
-            If Not String.IsNullOrEmpty(dtParam.Rows(0)(0)) Then
-                If Convert.ToString(dtParam.Rows(0)(0)) <> "Invalid Object" Then
-                    param = New SqlParameter(0) {}
-                    param(0) = New SqlParameter("@intReportIDkey", pstrReportID)
-                    Dim dt As New DataTable
-                    Dim paramcount As Int16 = 0
-                    dt = oExcelSS.getDataTable("select * from ReportParameters where ReportIDKey = " & pstrReportID, False)
-                    If dt.Rows.Count > 0 Then
-                        mblnExisting = True
-                        For r As Int16 = 0 To dt.Rows.Count - 1
-                            With dgvParameters
-                                If Not IsDBNull(dt.Rows(r)("Name").ToString) Then
-                                    paramName = dt.Rows(r)("Name").ToString
-                                End If
-                                If Not IsDBNull(dt.Rows(r)("PromptText").ToString) Then
-                                    prompt = dt.Rows(r)("PromptText").ToString
-                                End If
-                                If Not IsDBNull(dt.Rows(r)("Sequence").ToString) Then
-                                    sequence = dt.Rows(r)("Sequence").ToString
-                                End If
-                                If Not IsDBNull(dt.Rows(r)("DataType").ToString) Then
-                                    varType = dt.Rows(r)("DataType").ToString
-                                End If
-                                If Not IsDBNull(dt.Rows(r)("isRequired")) Then
-                                    isRequired = dt.Rows(r)("isRequired").ToString
-                                End If
-                                If Not IsDBNull(dt.Rows(r)("DbField").ToString) Then
-                                    dbField = dt.Rows(r)("DbField").ToString
-                                End If
-                                If Not IsDBNull(dt.Rows(r)("DefaultOperator").ToString) Then
-                                    doperator = dt.Rows(r)("DefaultOperator").ToString
-                                End If
-                                If Not IsDBNull(dt.Rows(r)("DefaultValue1").ToString) Then
-                                    value1 = dt.Rows(r)("DefaultValue1").ToString
-                                End If
-                                If Not IsDBNull(dt.Rows(r)("DefaultValue2").ToString) Then
-                                    value2 = dt.Rows(r)("DefaultValue2").ToString
-                                End If
-                                If Not IsDBNull(dt.Rows(r)("reportIDKey").ToString) Then
-                                    reportIDKey = dt.Rows(r)("reportIDKey").ToString
-                                End If
-                                If Not IsDBNull(dt.Rows(r)("ParameterIDKey").ToString) Then
-                                    paramIDKey = dt.Rows(r)("ParameterIDKey").ToString
-                                End If
-                                Dim paramReportName As String = String.Empty
-                                If dtParam.Rows.Count > 0 Then
-                                    paramReportName = Convert.ToString(dtParam(paramcount)(0))
-                                End If
-                                paramcount += 1
-                                .Rows.Add(paramReportName, prompt, sequence, varType, doperator, value1, value2, isRequired)
-                            End With
-                        Next
-                    Else
-                        Dim paramReportName As String = String.Empty
-                        If dtParam.Rows.Count > 0 Then
-                            For i As Int16 = 0 To dtParam.Rows.Count - 1
-                                paramReportName = Convert.ToString(dtParam(i)(0))
-                                With dgvParameters
-                                    .Rows.Add(paramReportName, False, sequence, varType, "", "", "", isRequired)
-                                End With
-                            Next
-                        End If
-                    End If
-                    Dim paramReportName1 As String = String.Empty
-                    If dtParam.Rows.Count > 0 Then
-                        For i As Int16 = 0 To dtParam.Rows.Count - 1
-                            Dim nf As Boolean = False
-                            paramReportName1 = Convert.ToString(dtParam(i)(0))
-                            For x As Int16 = 0 To dgvParameters.Rows.Count - 1
-                                If Not String.IsNullOrEmpty(dgvParameters.Rows(x).Cells(0).Value) Then
-                                    If dgvParameters.Rows(x).Cells(0).Value = paramReportName1 Then
-                                        nf = True
-                                    End If
-                                End If
-                            Next
-                            If Not nf Then
-                                dgvParameters.Rows.Add(paramReportName1, False, sequence, varType, "", "", "", isRequired)
-                            End If
-                        Next
-                    End If
-                Else
-                    MessageBox.Show("No default Parameters Found :", "Reports", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                End If
-            End If
-        Else
-            MessageBox.Show("No default Parameters Found :", "Reports", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
-
-        Return dgvParameters
-    End Function
-   
-
-#Region "New Code"
-    Private Sub ShowCombobox(ByVal iRowIndex As Integer, ByVal iColumnIndex As Integer)
-        Dim x As Integer = 0
-        Dim y As Integer = 0
-        Dim Width As Integer = 0
-        Dim height As Integer = 0
-        Dim rect As Rectangle
-        rect = dgvParameters.GetCellDisplayRectangle(iColumnIndex, iRowIndex, False)
-        x = rect.X + dgvParameters.Left
-        y = rect.Y + dgvParameters.Top
-        Width = rect.Width
-        height = rect.Height
-        cmbDataType.SelectedIndex = -1
-        If Not String.IsNullOrEmpty(dgvParameters.Rows(iRowIndex).Cells(iColumnIndex).Value) Then
-            cmbDataType.SelectedIndex = cmbDataType.FindString(dgvParameters.Rows(iRowIndex).Cells(iColumnIndex).Value.ToString)
-        End If
-        With cmbDataType
-            .SetBounds(x, y, Width, height)
-            .Visible = True
-            .Focus()
-        End With
-    End Sub
-    Private Sub ShowCombobox(ByVal iRowIndex As Integer, ByVal iColumnIndex As Integer, ByVal obj As ComboBox)
-
-        Dim x As Integer = 0
-        Dim y As Integer = 0
-        Dim Width As Integer = 0
-        Dim height As Integer = 0
-
-        Dim rect As Rectangle
-        rect = dgvParameters.GetCellDisplayRectangle(iColumnIndex, iRowIndex, False)
-        x = rect.X + dgvParameters.Left
-        y = rect.Y + dgvParameters.Top
-
-        Width = rect.Width
-        height = rect.Height
-        obj.SelectedIndex = -1
-        If Not String.IsNullOrEmpty(dgvParameters.Rows(iRowIndex).Cells(iColumnIndex).Value) Then
-            obj.SelectedIndex = obj.FindString(dgvParameters.Rows(iRowIndex).Cells(iColumnIndex).Value.ToString)
-        End If
-        With obj
-            .SetBounds(x, y, Width, height)
-            .Visible = True
-            .Focus()
-        End With
-    End Sub
-#End Region
-
-    Private Sub dgvParameters_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvParameters.CellClick
-        Try
-            cmbDataType.Visible = False
-            cmbOperator.Visible = False
-            If dgvParameters.Columns(e.ColumnIndex).HeaderText = "Type" Then
-                activeRow = e.RowIndex
-                With dgvParameters
-                    ShowCombobox(.CurrentRow.Index, .CurrentCell.ColumnIndex, cmbDataType)
-                    'SendKeys.Send("{F4}")
-                End With
-            ElseIf dgvParameters.Columns(e.ColumnIndex).HeaderText = "Operator" Then
-                activeRow = e.RowIndex
-                With dgvParameters
-                    ShowCombobox(.CurrentRow.Index, .CurrentCell.ColumnIndex, cmbOperator)
-                    ' SendKeys.Send("{F4}")
-                End With
-            Else
-            End If
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "Reports", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-    Private Sub cmbDataType_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbDataType.Leave
-        Try
-            With dgvParameters
-                If .Columns(.CurrentCell.ColumnIndex).HeaderText = "Type" Then
-                    .Item(.CurrentCell.ColumnIndex, activeRow).Value = Trim(cmbDataType.Text)
-                End If
-                activeRow = 0
-            End With
-            cmbDataType.SelectedIndex = -1
-            cmbOperator.SelectedIndex = -1
-        Catch ex As Exception
-            oExcelSS.ErrorLog("frmParameters cmbDataType_Leave ##" + ex.Message.ToString())
-            MessageBox.Show(ex.Message, "Reports", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-    Private Sub cmbOperator_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbOperator.Leave
-        Try
-            With dgvParameters
-                If .Columns(.CurrentCell.ColumnIndex).HeaderText = "Default Operator" Then
-                    .Item(.CurrentCell.ColumnIndex, activeRow).Value = Trim(cmbOperator.Text)
-                End If
-            End With
-            cmbDataType.SelectedIndex = -1
-            cmbOperator.SelectedIndex = -1
-        Catch ex As Exception
-            oExcelSS.ErrorLog("frmParameters cmbOperator_Leave ##" + ex.Message.ToString())
-            MessageBox.Show(ex.Message, "Reports", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-    Private Sub dgvParameters_UserDeletingRow(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles dgvParameters.UserDeletingRow
-        If MsgBox("Are you sure to Remove the parameter [" & e.Row.Cells(0).Value.ToString & "] from the list?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "Report Tool") = MsgBoxResult.No Then
-            e.Cancel = True
-        End If
-    End Sub
-    Private Sub dgvParameters_CellBeginEdit(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellCancelEventArgs) Handles dgvParameters.CellBeginEdit
-        Try
-            If e.ColumnIndex = 0 Then
-                e.Cancel = True
-            Else
-            End If
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "Reports", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-        End Try
-    End Sub
-
-    Private Sub SaveReportParameters()
-        Try
-
-            Dim bs As New BindingSource
-            bs.DataSource = dgvParameters.DataSource
-            Dim dt As New DataTable
-            dt = DirectCast(bs.DataSource, DataTable)
-            If oExcelSS.bulkSave(dgvParameters, 1, DirectCast(trvwReports.SelectedNode.Tag, System.Data.DataRow)(0).ToString, mstrUserId, mblnExisting) Then
-                MsgBox("Parameter(s) Saved successfully")
-                ''Me.Close()
-            End If
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "Report Parameters", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
 
     Private Sub LoadReportCategories()
         Try
             trvwReportCategories.Nodes.Clear()
             Dim lobjDataTable As DataTable = Nothing
-            lobjDataTable = oExcelSS.getDataTable("select rep.CategoryIDKey,rep.GroupIDKey,rep.CategoryName,grp.GroupName from ReportCategories rep,ReportGroups grp where  rep.isActive=1  and (rep.GroupIDKey=grp.GroupIDKey )", False)
+            lobjDataTable = oExcelSS.getDataTable("select rep.CategoryIDKey,rep.GroupIDKey,rep.CategoryName,grp.GroupName,rep.isActive from ReportCategories rep,ReportGroups grp where (rep.GroupIDKey=grp.GroupIDKey )", False)
             If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
                 For Each lobjRow As DataRow In lobjDataTable.Rows
                     Dim lobjParentTreeNode As TreeNode = Nothing
@@ -2318,9 +1877,9 @@ begin:
 
                     Else
                         lobjChildnode = New TreeNode()
-                            lobjChildnode.Text = lobjRow(2).ToString
-                            lobjChildnode.Name = lobjRow(2).ToString
-                            lobjChildnode.Tag = lobjRow
+                        lobjChildnode.Text = lobjRow(2).ToString
+                        lobjChildnode.Name = lobjRow(2).ToString
+                        lobjChildnode.Tag = lobjRow
                         lobjParentTreeNode.Nodes.Add(lobjChildnode)
                         trvwReportCategories.Nodes.Add(lobjParentTreeNode)
                     End If
@@ -2363,16 +1922,16 @@ begin:
                 End If
                 lintSelectedIndex = lintSelectedIndex + 1
             Next
-            chkRepCatIA.Checked = True
-            chkRepCatID.Checked = False
+            chkRepCatIA.Checked = DirectCast(e.Node.Tag, System.Data.DataRow).Item(4).ToString
+
             tsNew.Enabled = False
             tsEdit.Enabled = True
             tsCancel.Enabled = False
             tsSave.Enabled = False
         Else
             tsNew.Enabled = True
-        tsEdit.Enabled = False
-        tsCancel.Enabled = False
+            tsEdit.Enabled = False
+            tsCancel.Enabled = False
             tsSave.Enabled = False
             pnlRepCategories.Visible = False
             pnlRepCategories.Enabled = True
@@ -2386,40 +1945,57 @@ begin:
                 pnlReportDefinitions.Visible = True
                 pnlReportDefinitions.Enabled = False
                 pbPreview.Visible = True
-                btnAssign.Visible = True
+
                 txt_ReportID.Clear()
                 txt_ReportDescription.Clear()
                 pbPreview.Image = Nothing
                 txt_Notes.Clear()
                 chkrptdefinitaionActive.Checked = False
-                chkrptdefinitiondeleted.Checked = False
+
                 pbPreview.Enabled = False
-                btnAssign.Enabled = False
+
                 oExcelSS.fillComboBox(cboRportCategory, "uspConfiguration_FillRepCategoriesCbo", "categoryname", "categoryidkey")
                 oExcelSS.fillComboBox(cboReportGroup, "uspConfiguration_FillRepGroupsCbo", "GroupName", "GroupIDKey")
                 cboRportCategory.SelectedIndex = -1
                 cboReportGroup.SelectedIndex = -1
                 Dim lobjDataTable As DataTable = Nothing
+                Dim lintindex As Integer = 0
                 lobjDataTable = oExcelSS.getDataTable("select CategoryIDKey,GroupIDKey,Description,ReportFileName,Note,isActive,isDeleted,PreviewImg from ReportDefs where ReportIDKey=" & CType(e.Node.Tag, Data.DataRow).Item(0), False)
                 If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
-                    For Each item In cboRportCategory.Items
-                        If DirectCast(item, System.Data.DataRowView).Item(0) = lobjDataTable.Rows(0)(0) Then
-                            cboRportCategory.SelectedValue = lobjDataTable.Rows(0)(0)
-                            Exit For
-                        End If
-                    Next
+                    Dim lstrCategory As String = ""
+                    Dim lstrGroup As String = ""
+                    If trvwReportDefinition.SelectedNode.Nodes.Count = 0 Then
+
+                        lstrCategory = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(0)
+                        lstrGroup = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(1)
+                    Else
+                        lstrCategory = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(2)
+                        lstrGroup = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(1)
+                    End If
+
                     For Each item In cboReportGroup.Items
-                        If DirectCast(item, System.Data.DataRowView).Item(0) = lobjDataTable.Rows(0)(1) Then
-                            cboReportGroup.SelectedValue = lobjDataTable.Rows(0)(1)
+                        If DirectCast(item, System.Data.DataRowView).Item(0) = lstrGroup Then
+                            cboReportGroup.SelectedIndex = lintindex
                             Exit For
                         End If
+                        lintindex = lintindex + 1
                     Next
+                    oExcelSS.fillComboBox(cboRportCategory, "select CategoryIDKey , CategoryName,GroupIDKey from ReportCategories where GroupIDKey=" + lstrGroup + "and isActive=1", "CategoryName", "CategoryIDKey", False)
+                    lintindex = 0
+                    For Each item In cboRportCategory.Items
+                        If DirectCast(item, System.Data.DataRowView).Item(0) = lstrCategory Then
+                            cboRportCategory.SelectedIndex = lintindex
+                            Exit For
+                        End If
+                        lintindex = lintindex + 1
+                    Next
+                    cboRportCategory.Enabled = True
+                    cboReportGroup.Enabled = True
                     txt_ReportDescription.Text = lobjDataTable.Rows(0)(2)
                     txt_ReportID.Text = CType(e.Node.Tag, Data.DataRow).Item(3)
                     txt_Notes.Text = lobjDataTable.Rows(0)(4)
                     txt_RemoteFileName.Text = lobjDataTable.Rows(0)(3)
                     chkrptdefinitaionActive.Checked = lobjDataTable.Rows(0)(5)
-                    chkrptdefinitiondeleted.Checked = lobjDataTable.Rows(0)(6)
                     If Not IsDBNull(lobjDataTable.Rows(0)(7)) Then
                         Using ms As New IO.MemoryStream(CType(lobjDataTable.Rows(0)(7), Byte()))
                             Dim img As Image = Image.FromStream(ms)
@@ -2439,7 +2015,7 @@ begin:
             tsNew.Enabled = False
         ElseIf e.Node.Level = 1 Then
             pnlReportDefinitions.Visible = False
-            btnAssign.Visible = False
+
             pbPreview.Visible = False
             tsNew.Enabled = True
             tsEdit.Enabled = False
@@ -2447,7 +2023,7 @@ begin:
             tsSave.Enabled = False
         Else
             pnlReportDefinitions.Visible = False
-            btnAssign.Visible = False
+
             pbPreview.Visible = False
             tsNew.Enabled = False
             tsEdit.Enabled = False

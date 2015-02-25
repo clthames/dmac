@@ -1196,4 +1196,8 @@ Public Class Master
             oExcelSS.ErrorLog("Menu tsmPricebookQuote_Click Error## " + ex.Message.ToString())
         End Try
     End Sub
+
+    Private Sub tsActiveCompany_Click(sender As Object, e As EventArgs) Handles tsActiveCompany.Click
+
+    End Sub
 End Class

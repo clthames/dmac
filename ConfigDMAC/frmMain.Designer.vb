@@ -63,9 +63,9 @@ Partial Class frmMain
         Dim TreeNode37 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Paper Color Cross Reference")
         Dim TreeNode38 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Keypad Configuration")
         Dim TreeNode39 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Estimating Configuration", New System.Windows.Forms.TreeNode() {TreeNode34, TreeNode35, TreeNode36, TreeNode37, TreeNode38})
-        Dim TreeNode40 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Main Categories")
-        Dim TreeNode41 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Report Definitions")
-        Dim TreeNode42 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Reports")
+        Dim TreeNode40 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Categories")
+        Dim TreeNode41 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Reports")
+        Dim TreeNode42 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Reports_old")
         Dim TreeNode43 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Report Manager", New System.Windows.Forms.TreeNode() {TreeNode40, TreeNode41, TreeNode42})
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
@@ -78,30 +78,14 @@ Partial Class frmMain
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.tsExit = New System.Windows.Forms.ToolStripButton()
         Me.scMain = New System.Windows.Forms.SplitContainer()
-        Me.tbcntrlReports = New System.Windows.Forms.TabControl()
-        Me.tpgReports = New System.Windows.Forms.TabPage()
-        Me.cmbOperator = New System.Windows.Forms.ComboBox()
-        Me.cmbDataType = New System.Windows.Forms.ComboBox()
-        Me.dgvParameters = New System.Windows.Forms.DataGridView()
-        Me.colParameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colPrompt = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.colSequence = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colDataType = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colOperator = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnDefaultValue1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnDefaultValue2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colRequired = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.trvwReports = New System.Windows.Forms.TreeView()
         Me.trvOptions = New System.Windows.Forms.TreeView()
         Me.tbcReportDefinition = New System.Windows.Forms.TabControl()
         Me.tbpg_ReportDefinition = New System.Windows.Forms.TabPage()
         Me.trvwReportDefinition = New System.Windows.Forms.TreeView()
         Me.pbPreview = New System.Windows.Forms.PictureBox()
-        Me.btnAssign = New System.Windows.Forms.Button()
         Me.pnlReportDefinitions = New System.Windows.Forms.Panel()
         Me.txt_RemoteFileName = New System.Windows.Forms.TextBox()
         Me.lblRemoteFileName = New System.Windows.Forms.Label()
-        Me.chkrptdefinitiondeleted = New System.Windows.Forms.CheckBox()
         Me.txt_Notes = New System.Windows.Forms.RichTextBox()
         Me.chkrptdefinitaionActive = New System.Windows.Forms.CheckBox()
         Me.lblNotes = New System.Windows.Forms.Label()
@@ -117,7 +101,6 @@ Partial Class frmMain
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.trvwReportCategories = New System.Windows.Forms.TreeView()
         Me.pnlRepCategories = New System.Windows.Forms.Panel()
-        Me.chkRepCatID = New System.Windows.Forms.CheckBox()
         Me.chkRepCatIA = New System.Windows.Forms.CheckBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.cboRepGroupCat = New System.Windows.Forms.ComboBox()
@@ -175,9 +158,6 @@ Partial Class frmMain
         Me.scMain.Panel1.SuspendLayout()
         Me.scMain.Panel2.SuspendLayout()
         Me.scMain.SuspendLayout()
-        Me.tbcntrlReports.SuspendLayout()
-        Me.tpgReports.SuspendLayout()
-        CType(Me.dgvParameters, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tbcReportDefinition.SuspendLayout()
         Me.tbpg_ReportDefinition.SuspendLayout()
         CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -283,7 +263,6 @@ Partial Class frmMain
         '
         'scMain.Panel2
         '
-        Me.scMain.Panel2.Controls.Add(Me.tbcntrlReports)
         Me.scMain.Panel2.Controls.Add(Me.tbcReportDefinition)
         Me.scMain.Panel2.Controls.Add(Me.tcReports)
         Me.scMain.Panel2.Controls.Add(Me.tcCompany)
@@ -292,121 +271,6 @@ Partial Class frmMain
         Me.scMain.Size = New System.Drawing.Size(1182, 696)
         Me.scMain.SplitterDistance = 215
         Me.scMain.TabIndex = 1
-        '
-        'tbcntrlReports
-        '
-        Me.tbcntrlReports.Controls.Add(Me.tpgReports)
-        Me.tbcntrlReports.Location = New System.Drawing.Point(7, 0)
-        Me.tbcntrlReports.Name = "tbcntrlReports"
-        Me.tbcntrlReports.SelectedIndex = 0
-        Me.tbcntrlReports.Size = New System.Drawing.Size(948, 697)
-        Me.tbcntrlReports.TabIndex = 16
-        '
-        'tpgReports
-        '
-        Me.tpgReports.Controls.Add(Me.cmbOperator)
-        Me.tpgReports.Controls.Add(Me.cmbDataType)
-        Me.tpgReports.Controls.Add(Me.dgvParameters)
-        Me.tpgReports.Controls.Add(Me.trvwReports)
-        Me.tpgReports.Location = New System.Drawing.Point(4, 22)
-        Me.tpgReports.Name = "tpgReports"
-        Me.tpgReports.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpgReports.Size = New System.Drawing.Size(940, 671)
-        Me.tpgReports.TabIndex = 0
-        Me.tpgReports.Text = "Reports"
-        Me.tpgReports.UseVisualStyleBackColor = True
-        '
-        'cmbOperator
-        '
-        Me.cmbOperator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbOperator.FormattingEnabled = True
-        Me.cmbOperator.Items.AddRange(New Object() {"All", "=", ">", "<", ">=", "<=", "Like", "Not Like", "In", "Not In", "Between"})
-        Me.cmbOperator.Location = New System.Drawing.Point(809, 83)
-        Me.cmbOperator.Name = "cmbOperator"
-        Me.cmbOperator.Size = New System.Drawing.Size(114, 21)
-        Me.cmbOperator.TabIndex = 13
-        Me.cmbOperator.Visible = False
-        '
-        'cmbDataType
-        '
-        Me.cmbDataType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbDataType.FormattingEnabled = True
-        Me.cmbDataType.Items.AddRange(New Object() {"Text", "Date", "Boolean", "Integer", "Float"})
-        Me.cmbDataType.Location = New System.Drawing.Point(809, 56)
-        Me.cmbDataType.Name = "cmbDataType"
-        Me.cmbDataType.Size = New System.Drawing.Size(114, 21)
-        Me.cmbDataType.TabIndex = 12
-        Me.cmbDataType.Visible = False
-        '
-        'dgvParameters
-        '
-        Me.dgvParameters.AllowUserToAddRows = False
-        Me.dgvParameters.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.dgvParameters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvParameters.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colParameter, Me.colPrompt, Me.colSequence, Me.colDataType, Me.colOperator, Me.clmnDefaultValue1, Me.clmnDefaultValue2, Me.colRequired})
-        Me.dgvParameters.Location = New System.Drawing.Point(242, 8)
-        Me.dgvParameters.Name = "dgvParameters"
-        Me.dgvParameters.RowHeadersWidth = 25
-        Me.dgvParameters.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvParameters.Size = New System.Drawing.Size(695, 650)
-        Me.dgvParameters.StandardTab = True
-        Me.dgvParameters.TabIndex = 11
-        '
-        'colParameter
-        '
-        Me.colParameter.HeaderText = "Parameter"
-        Me.colParameter.Name = "colParameter"
-        Me.colParameter.ReadOnly = True
-        Me.colParameter.Width = 90
-        '
-        'colPrompt
-        '
-        Me.colPrompt.HeaderText = "Prompt"
-        Me.colPrompt.Name = "colPrompt"
-        Me.colPrompt.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.colPrompt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.colPrompt.ThreeState = True
-        Me.colPrompt.Width = 50
-        '
-        'colSequence
-        '
-        Me.colSequence.HeaderText = "Sequence"
-        Me.colSequence.Name = "colSequence"
-        Me.colSequence.Width = 65
-        '
-        'colDataType
-        '
-        Me.colDataType.HeaderText = "Type"
-        Me.colDataType.Name = "colDataType"
-        Me.colDataType.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'colOperator
-        '
-        Me.colOperator.HeaderText = "Operator"
-        Me.colOperator.Name = "colOperator"
-        '
-        'clmnDefaultValue1
-        '
-        Me.clmnDefaultValue1.HeaderText = "Default Value1"
-        Me.clmnDefaultValue1.Name = "clmnDefaultValue1"
-        '
-        'clmnDefaultValue2
-        '
-        Me.clmnDefaultValue2.HeaderText = "Default Value2"
-        Me.clmnDefaultValue2.Name = "clmnDefaultValue2"
-        '
-        'colRequired
-        '
-        Me.colRequired.HeaderText = "Required"
-        Me.colRequired.Name = "colRequired"
-        Me.colRequired.Width = 65
-        '
-        'trvwReports
-        '
-        Me.trvwReports.Location = New System.Drawing.Point(12, 9)
-        Me.trvwReports.Name = "trvwReports"
-        Me.trvwReports.Size = New System.Drawing.Size(224, 649)
-        Me.trvwReports.TabIndex = 0
         '
         'trvOptions
         '
@@ -492,11 +356,11 @@ Partial Class frmMain
         TreeNode39.Name = "Node8"
         TreeNode39.Text = "Estimating Configuration"
         TreeNode40.Name = "nReportCategories"
-        TreeNode40.Text = "Main Categories"
+        TreeNode40.Text = "Categories"
         TreeNode41.Name = "nReportDefinitions"
-        TreeNode41.Text = "Report Definitions"
+        TreeNode41.Text = "Reports"
         TreeNode42.Name = "nReports"
-        TreeNode42.Text = "Reports"
+        TreeNode42.Text = "Reports_old"
         TreeNode43.Name = "nReports"
         TreeNode43.Text = "Report Manager"
         Me.trvOptions.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode4, TreeNode8, TreeNode12, TreeNode15, TreeNode23, TreeNode29, TreeNode33, TreeNode39, TreeNode43})
@@ -506,7 +370,7 @@ Partial Class frmMain
         'tbcReportDefinition
         '
         Me.tbcReportDefinition.Controls.Add(Me.tbpg_ReportDefinition)
-        Me.tbcReportDefinition.Location = New System.Drawing.Point(8, 0)
+        Me.tbcReportDefinition.Location = New System.Drawing.Point(6, 0)
         Me.tbcReportDefinition.Name = "tbcReportDefinition"
         Me.tbcReportDefinition.SelectedIndex = 0
         Me.tbcReportDefinition.Size = New System.Drawing.Size(947, 694)
@@ -516,7 +380,6 @@ Partial Class frmMain
         '
         Me.tbpg_ReportDefinition.Controls.Add(Me.trvwReportDefinition)
         Me.tbpg_ReportDefinition.Controls.Add(Me.pbPreview)
-        Me.tbpg_ReportDefinition.Controls.Add(Me.btnAssign)
         Me.tbpg_ReportDefinition.Controls.Add(Me.pnlReportDefinitions)
         Me.tbpg_ReportDefinition.Location = New System.Drawing.Point(4, 22)
         Me.tbpg_ReportDefinition.Name = "tbpg_ReportDefinition"
@@ -539,27 +402,15 @@ Partial Class frmMain
         Me.pbPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pbPreview.Location = New System.Drawing.Point(424, 324)
         Me.pbPreview.Name = "pbPreview"
-        Me.pbPreview.Size = New System.Drawing.Size(510, 306)
+        Me.pbPreview.Size = New System.Drawing.Size(510, 334)
         Me.pbPreview.TabIndex = 15
         Me.pbPreview.TabStop = False
-        '
-        'btnAssign
-        '
-        Me.btnAssign.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAssign.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAssign.Location = New System.Drawing.Point(804, 636)
-        Me.btnAssign.Name = "btnAssign"
-        Me.btnAssign.Size = New System.Drawing.Size(130, 23)
-        Me.btnAssign.TabIndex = 14
-        Me.btnAssign.Text = "Assign Preview Image"
-        Me.btnAssign.UseVisualStyleBackColor = True
         '
         'pnlReportDefinitions
         '
         Me.pnlReportDefinitions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnlReportDefinitions.Controls.Add(Me.txt_RemoteFileName)
         Me.pnlReportDefinitions.Controls.Add(Me.lblRemoteFileName)
-        Me.pnlReportDefinitions.Controls.Add(Me.chkrptdefinitiondeleted)
         Me.pnlReportDefinitions.Controls.Add(Me.txt_Notes)
         Me.pnlReportDefinitions.Controls.Add(Me.chkrptdefinitaionActive)
         Me.pnlReportDefinitions.Controls.Add(Me.lblNotes)
@@ -592,16 +443,6 @@ Partial Class frmMain
         Me.lblRemoteFileName.Size = New System.Drawing.Size(97, 13)
         Me.lblRemoteFileName.TabIndex = 11
         Me.lblRemoteFileName.Text = "Remote File Name:"
-        '
-        'chkrptdefinitiondeleted
-        '
-        Me.chkrptdefinitiondeleted.AutoSize = True
-        Me.chkrptdefinitiondeleted.Location = New System.Drawing.Point(207, 285)
-        Me.chkrptdefinitiondeleted.Name = "chkrptdefinitiondeleted"
-        Me.chkrptdefinitiondeleted.Size = New System.Drawing.Size(74, 17)
-        Me.chkrptdefinitiondeleted.TabIndex = 10
-        Me.chkrptdefinitiondeleted.Text = "Is Deleted"
-        Me.chkrptdefinitiondeleted.UseVisualStyleBackColor = True
         '
         'txt_Notes
         '
@@ -728,7 +569,6 @@ Partial Class frmMain
         'pnlRepCategories
         '
         Me.pnlRepCategories.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnlRepCategories.Controls.Add(Me.chkRepCatID)
         Me.pnlRepCategories.Controls.Add(Me.chkRepCatIA)
         Me.pnlRepCategories.Controls.Add(Me.Label20)
         Me.pnlRepCategories.Controls.Add(Me.cboRepGroupCat)
@@ -738,16 +578,6 @@ Partial Class frmMain
         Me.pnlRepCategories.Name = "pnlRepCategories"
         Me.pnlRepCategories.Size = New System.Drawing.Size(489, 621)
         Me.pnlRepCategories.TabIndex = 2
-        '
-        'chkRepCatID
-        '
-        Me.chkRepCatID.AutoSize = True
-        Me.chkRepCatID.Location = New System.Drawing.Point(174, 87)
-        Me.chkRepCatID.Name = "chkRepCatID"
-        Me.chkRepCatID.Size = New System.Drawing.Size(74, 17)
-        Me.chkRepCatID.TabIndex = 8
-        Me.chkRepCatID.Text = "Is Deleted"
-        Me.chkRepCatID.UseVisualStyleBackColor = True
         '
         'chkRepCatIA
         '
@@ -1254,9 +1084,6 @@ Partial Class frmMain
         Me.scMain.Panel2.ResumeLayout(False)
         CType(Me.scMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.scMain.ResumeLayout(False)
-        Me.tbcntrlReports.ResumeLayout(False)
-        Me.tpgReports.ResumeLayout(False)
-        CType(Me.dgvParameters, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tbcReportDefinition.ResumeLayout(False)
         Me.tbpg_ReportDefinition.ResumeLayout(False)
         CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1345,7 +1172,6 @@ Partial Class frmMain
     Friend WithEvents ErrorProvider1 As System.Windows.Forms.ErrorProvider
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents pnlRepCategories As System.Windows.Forms.Panel
-    Friend WithEvents chkRepCatID As System.Windows.Forms.CheckBox
     Friend WithEvents chkRepCatIA As System.Windows.Forms.CheckBox
     Friend WithEvents Label20 As System.Windows.Forms.Label
     Friend WithEvents cboRepGroupCat As System.Windows.Forms.ComboBox
@@ -1354,7 +1180,6 @@ Partial Class frmMain
     Friend WithEvents tbcReportDefinition As System.Windows.Forms.TabControl
     Friend WithEvents tbpg_ReportDefinition As System.Windows.Forms.TabPage
     Friend WithEvents pnlReportDefinitions As System.Windows.Forms.Panel
-    Friend WithEvents chkrptdefinitiondeleted As System.Windows.Forms.CheckBox
     Friend WithEvents txt_Notes As System.Windows.Forms.RichTextBox
     Friend WithEvents chkrptdefinitaionActive As System.Windows.Forms.CheckBox
     Public WithEvents lblNotes As System.Windows.Forms.Label
@@ -1368,26 +1193,11 @@ Partial Class frmMain
     Public WithEvents cboRportCategory As System.Windows.Forms.ComboBox
     Friend WithEvents txt_RemoteFileName As System.Windows.Forms.TextBox
     Friend WithEvents lblRemoteFileName As System.Windows.Forms.Label
-    Friend WithEvents btnAssign As System.Windows.Forms.Button
     Friend WithEvents opdImageDialog As System.Windows.Forms.OpenFileDialog
     Friend WithEvents pbPreview As System.Windows.Forms.PictureBox
     Friend WithEvents tsSettings As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripLabel1 As System.Windows.Forms.ToolStripLabel
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents tbcntrlReports As System.Windows.Forms.TabControl
-    Friend WithEvents tpgReports As System.Windows.Forms.TabPage
-    Friend WithEvents trvwReports As System.Windows.Forms.TreeView
-    Friend WithEvents cmbOperator As System.Windows.Forms.ComboBox
-    Friend WithEvents cmbDataType As System.Windows.Forms.ComboBox
-    Friend WithEvents dgvParameters As System.Windows.Forms.DataGridView
-    Friend WithEvents colParameter As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colPrompt As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents colSequence As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colDataType As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colOperator As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents clmnDefaultValue1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents clmnDefaultValue2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colRequired As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents trvwReportCategories As System.Windows.Forms.TreeView
     Friend WithEvents trvwReportDefinition As System.Windows.Forms.TreeView
 

@@ -24,6 +24,7 @@ Partial Class frmOutlookShortcuts
     Private Sub InitializeComponent()
         Me.pnlOuter = New System.Windows.Forms.Panel()
         Me.pnlPropertyGrid = New System.Windows.Forms.Panel()
+        Me.btnReportParameters = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.radDocument = New System.Windows.Forms.RadioButton()
         Me.btnClear = New System.Windows.Forms.Button()
@@ -75,6 +76,7 @@ Partial Class frmOutlookShortcuts
         '
         'pnlPropertyGrid
         '
+        Me.pnlPropertyGrid.Controls.Add(Me.btnReportParameters)
         Me.pnlPropertyGrid.Controls.Add(Me.btnCancel)
         Me.pnlPropertyGrid.Controls.Add(Me.radDocument)
         Me.pnlPropertyGrid.Controls.Add(Me.btnClear)
@@ -98,6 +100,17 @@ Partial Class frmOutlookShortcuts
         Me.pnlPropertyGrid.Name = "pnlPropertyGrid"
         Me.pnlPropertyGrid.Size = New System.Drawing.Size(336, 382)
         Me.pnlPropertyGrid.TabIndex = 4
+        '
+        'btnReportParameters
+        '
+        Me.btnReportParameters.Enabled = False
+        Me.btnReportParameters.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnReportParameters.Location = New System.Drawing.Point(190, 186)
+        Me.btnReportParameters.Name = "btnReportParameters"
+        Me.btnReportParameters.Size = New System.Drawing.Size(30, 23)
+        Me.btnReportParameters.TabIndex = 16
+        Me.btnReportParameters.Text = "..,"
+        Me.btnReportParameters.UseVisualStyleBackColor = True
         '
         'btnCancel
         '
@@ -452,4 +465,5 @@ Partial Class frmOutlookShortcuts
     Friend WithEvents ofdcustom As System.Windows.Forms.OpenFileDialog
     Friend WithEvents radDocument As System.Windows.Forms.RadioButton
     Friend WithEvents btnCancel As System.Windows.Forms.Button
+    Friend WithEvents btnReportParameters As System.Windows.Forms.Button
 End Class

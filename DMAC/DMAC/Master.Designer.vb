@@ -25,12 +25,12 @@ Partial Class Master
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Master))
-        Dim OutlookBarButton7 As DMAC.OutlookStyleControls.OutlookBarButton = New DMAC.OutlookStyleControls.OutlookBarButton()
-        Dim OutlookBarButton8 As DMAC.OutlookStyleControls.OutlookBarButton = New DMAC.OutlookStyleControls.OutlookBarButton()
-        Dim OutlookBarButton9 As DMAC.OutlookStyleControls.OutlookBarButton = New DMAC.OutlookStyleControls.OutlookBarButton()
-        Dim OutlookBarButton10 As DMAC.OutlookStyleControls.OutlookBarButton = New DMAC.OutlookStyleControls.OutlookBarButton()
-        Dim OutlookBarButton11 As DMAC.OutlookStyleControls.OutlookBarButton = New DMAC.OutlookStyleControls.OutlookBarButton()
-        Dim OutlookBarButton12 As DMAC.OutlookStyleControls.OutlookBarButton = New DMAC.OutlookStyleControls.OutlookBarButton()
+        Dim OutlookBarButton1 As DMAC.OutlookStyleControls.OutlookBarButton = New DMAC.OutlookStyleControls.OutlookBarButton()
+        Dim OutlookBarButton2 As DMAC.OutlookStyleControls.OutlookBarButton = New DMAC.OutlookStyleControls.OutlookBarButton()
+        Dim OutlookBarButton3 As DMAC.OutlookStyleControls.OutlookBarButton = New DMAC.OutlookStyleControls.OutlookBarButton()
+        Dim OutlookBarButton4 As DMAC.OutlookStyleControls.OutlookBarButton = New DMAC.OutlookStyleControls.OutlookBarButton()
+        Dim OutlookBarButton5 As DMAC.OutlookStyleControls.OutlookBarButton = New DMAC.OutlookStyleControls.OutlookBarButton()
+        Dim OutlookBarButton6 As DMAC.OutlookStyleControls.OutlookBarButton = New DMAC.OutlookStyleControls.OutlookBarButton()
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.btnShortcuts = New System.Windows.Forms.Button()
         Me.btnCloseDb = New System.Windows.Forms.Button()
@@ -235,54 +235,54 @@ Partial Class Master
         'OutlookBar1
         '
         Me.OutlookBar1.ButtonHeight = 30
-        OutlookBarButton7.Enabled = True
-        OutlookBarButton7.Image = Nothing
-        OutlookBarButton7.LinkTo = Nothing
-        OutlookBarButton7.ShortcutFor = Nothing
-        OutlookBarButton7.ShortcutType = Nothing
-        OutlookBarButton7.Tag = Nothing
-        OutlookBarButton7.Text = "Invoices"
-        OutlookBarButton8.Enabled = True
-        OutlookBarButton8.Image = Nothing
-        OutlookBarButton8.LinkTo = Nothing
-        OutlookBarButton8.ShortcutFor = Nothing
-        OutlookBarButton8.ShortcutType = Nothing
-        OutlookBarButton8.Tag = Nothing
-        OutlookBarButton8.Text = "Customers"
-        OutlookBarButton9.Enabled = True
-        OutlookBarButton9.Image = Nothing
-        OutlookBarButton9.LinkTo = Nothing
-        OutlookBarButton9.ShortcutFor = Nothing
-        OutlookBarButton9.ShortcutType = Nothing
-        OutlookBarButton9.Tag = Nothing
-        OutlookBarButton9.Text = "Sync Quickbooks"
-        OutlookBarButton10.Enabled = True
-        OutlookBarButton10.Image = Nothing
-        OutlookBarButton10.LinkTo = Nothing
-        OutlookBarButton10.ShortcutFor = Nothing
-        OutlookBarButton10.ShortcutType = Nothing
-        OutlookBarButton10.Tag = Nothing
-        OutlookBarButton10.Text = "Job Reference"
-        OutlookBarButton11.Enabled = True
-        OutlookBarButton11.Image = Nothing
-        OutlookBarButton11.LinkTo = Nothing
-        OutlookBarButton11.ShortcutFor = Nothing
-        OutlookBarButton11.ShortcutType = Nothing
-        OutlookBarButton11.Tag = Nothing
-        OutlookBarButton11.Text = "Daily Invoice Report"
-        OutlookBarButton12.Enabled = True
-        OutlookBarButton12.Image = Nothing
-        OutlookBarButton12.LinkTo = Nothing
-        OutlookBarButton12.ShortcutFor = Nothing
-        OutlookBarButton12.ShortcutType = Nothing
-        OutlookBarButton12.Tag = Nothing
-        OutlookBarButton12.Text = "Track Shipments"
-        Me.OutlookBar1.Buttons.Add(OutlookBarButton7)
-        Me.OutlookBar1.Buttons.Add(OutlookBarButton8)
-        Me.OutlookBar1.Buttons.Add(OutlookBarButton9)
-        Me.OutlookBar1.Buttons.Add(OutlookBarButton10)
-        Me.OutlookBar1.Buttons.Add(OutlookBarButton11)
-        Me.OutlookBar1.Buttons.Add(OutlookBarButton12)
+        OutlookBarButton1.Enabled = True
+        OutlookBarButton1.Image = Nothing
+        OutlookBarButton1.LinkTo = Nothing
+        OutlookBarButton1.ShortcutFor = Nothing
+        OutlookBarButton1.ShortcutType = Nothing
+        OutlookBarButton1.Tag = Nothing
+        OutlookBarButton1.Text = "Invoices"
+        OutlookBarButton2.Enabled = True
+        OutlookBarButton2.Image = Nothing
+        OutlookBarButton2.LinkTo = Nothing
+        OutlookBarButton2.ShortcutFor = Nothing
+        OutlookBarButton2.ShortcutType = Nothing
+        OutlookBarButton2.Tag = Nothing
+        OutlookBarButton2.Text = "Customers"
+        OutlookBarButton3.Enabled = True
+        OutlookBarButton3.Image = Nothing
+        OutlookBarButton3.LinkTo = Nothing
+        OutlookBarButton3.ShortcutFor = Nothing
+        OutlookBarButton3.ShortcutType = Nothing
+        OutlookBarButton3.Tag = Nothing
+        OutlookBarButton3.Text = "Sync Quickbooks"
+        OutlookBarButton4.Enabled = True
+        OutlookBarButton4.Image = Nothing
+        OutlookBarButton4.LinkTo = Nothing
+        OutlookBarButton4.ShortcutFor = Nothing
+        OutlookBarButton4.ShortcutType = Nothing
+        OutlookBarButton4.Tag = Nothing
+        OutlookBarButton4.Text = "Job Reference"
+        OutlookBarButton5.Enabled = True
+        OutlookBarButton5.Image = Nothing
+        OutlookBarButton5.LinkTo = Nothing
+        OutlookBarButton5.ShortcutFor = Nothing
+        OutlookBarButton5.ShortcutType = Nothing
+        OutlookBarButton5.Tag = Nothing
+        OutlookBarButton5.Text = "Daily Invoice Report"
+        OutlookBarButton6.Enabled = True
+        OutlookBarButton6.Image = Nothing
+        OutlookBarButton6.LinkTo = Nothing
+        OutlookBarButton6.ShortcutFor = Nothing
+        OutlookBarButton6.ShortcutType = Nothing
+        OutlookBarButton6.Tag = Nothing
+        OutlookBarButton6.Text = "Track Shipments"
+        Me.OutlookBar1.Buttons.Add(OutlookBarButton1)
+        Me.OutlookBar1.Buttons.Add(OutlookBarButton2)
+        Me.OutlookBar1.Buttons.Add(OutlookBarButton3)
+        Me.OutlookBar1.Buttons.Add(OutlookBarButton4)
+        Me.OutlookBar1.Buttons.Add(OutlookBarButton5)
+        Me.OutlookBar1.Buttons.Add(OutlookBarButton6)
         Me.OutlookBar1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.OutlookBar1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.OutlookBar1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -294,7 +294,7 @@ Partial Class Master
         Me.OutlookBar1.GradientButtonSelectedLight = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.OutlookBar1.Location = New System.Drawing.Point(0, 226)
         Me.OutlookBar1.Name = "OutlookBar1"
-        Me.OutlookBar1.SelectedButton = OutlookBarButton7
+        Me.OutlookBar1.SelectedButton = OutlookBarButton1
         Me.OutlookBar1.Size = New System.Drawing.Size(200, 189)
         Me.OutlookBar1.TabIndex = 0
         '

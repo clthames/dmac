@@ -500,9 +500,9 @@ Public Class Main
                                 If LCase(companyid) = LCase(_report(0).ToString().Trim()) Then
                                     reportServerPath = _report(1).ToString().Trim()
                                     reportPath = _report(2).ToString().Trim()
-                                    reportDatabase = _report(3).ToString().Trim()
-                                    networkUser = _report(4).ToString().Trim()
-                                    networkPassword = _report(5).ToString().Trim()
+                                    reportDatabase = _report(5).ToString().Trim()
+                                    networkUser = _report(3).ToString().Trim()
+                                    networkPassword = _report(4).ToString().Trim()
                                     If reportServerPath.Trim <> "" AndAlso reportPath.Trim <> "" AndAlso reportDatabase.Trim <> "" AndAlso networkUser.Trim <> "" AndAlso networkPassword.Trim <> "" Then
                                         ReportServer.ReportServerPath = reportServerPath
                                         ReportServer.ReportPath = reportPath
@@ -625,14 +625,18 @@ Public Class Main
         End Try
         saveData = ans
     End Function
-    Public Sub fillComboBox(ByRef obj As Object, ByVal qry As String, ByVal displayMember As String, ByVal valueMember As String)
+    Public Sub fillComboBox(ByRef obj As Object, ByVal qry As String, ByVal displayMember As String, ByVal valueMember As String, Optional ByVal pblnIsStoredProcedure As Boolean = True)
         Dim dt As New DataTable
         Try
             Using sqlconnection As New SqlConnection(connectionString)
                 Using sqlcommand As New SqlCommand
                     sqlcommand.Connection = sqlconnection
                     sqlcommand.CommandText = qry
-                    sqlcommand.CommandType = CommandType.StoredProcedure
+                    If pblnIsStoredProcedure Then
+                        sqlcommand.CommandType = CommandType.StoredProcedure
+                    Else
+                        sqlcommand.CommandType = CommandType.Text
+                    End If
                     Dim sr As New SqlDataAdapter(sqlcommand)
                     sr.Fill(dt)
                     If dt.Rows.Count > 0 Then

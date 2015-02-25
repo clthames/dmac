@@ -105,7 +105,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>C:\Program Files %28x86%29\ExcelSS DMAC\</OutputPath>
     <DocumentationFile>DMAC.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <DebugType>full</DebugType>
@@ -125,9 +125,6 @@
   <ItemGroup>
     <Reference Include="acclExplorerBar">
       <HintPath>..\..\Components\acclExplorerBar.dll</HintPath>
-    </Reference>
-    <Reference Include="ExcelSSGen">
-      <HintPath>..\..\ExcelSSGen\ExcelSSGen\bin\Debug\ExcelSSGen.dll</HintPath>
     </Reference>
     <Reference Include="Grouper">
       <HintPath>..\..\Components\Grouper.dll</HintPath>
@@ -242,6 +239,12 @@
     <Compile Include="frmProgramList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmReportParameter.Designer.vb">
+      <DependentUpon>frmReportParameter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportParameter.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmReportView.Designer.vb">
       <DependentUpon>frmReportView.vb</DependentUpon>
     </Compile>
@@ -310,6 +313,9 @@
     <EmbeddedResource Include="frmProgramList.resx">
       <DependentUpon>frmProgramList.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReportParameter.resx">
+      <DependentUpon>frmReportParameter.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmReportView.resx">
       <DependentUpon>frmReportView.vb</DependentUpon>
     </EmbeddedResource>
@@ -377,6 +383,10 @@
     <ProjectReference Include="..\..\ConfigDMAC\ConfigDMAC.vbproj">
       <Project>{d5518224-7bdb-489b-b866-28ee15034f84}</Project>
       <Name>ConfigDMAC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ExcelSSGen\ExcelSSGen\ExcelSSGen.vbproj">
+      <Project>{99bc2844-f96e-4ac1-acac-bbd1b72eb48d}</Project>
+      <Name>ExcelSSGen</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

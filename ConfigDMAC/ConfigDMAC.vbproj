@@ -158,13 +158,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="frmSettings.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\ExcelSSGen\ExcelSSGen\ExcelSSGen.vbproj">
       <Project>{99bc2844-f96e-4ac1-acac-bbd1b72eb48d}</Project>
       <Name>ExcelSSGen</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="frmSettings.Designer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

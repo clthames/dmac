@@ -492,6 +492,7 @@ Public Class frmOutlookShortcuts
             radReport.Enabled = True
             radCustom.Enabled = True
             radDocument.Enabled = True
+            btnReportParameters.Enabled = True
             Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath)
             Dim executeFilePath As String = iniFilePath & "\" & oExcelSS.AppFolderName & "\images\dmac-icon1.ico"
             If IO.File.Exists(executeFilePath) Then
@@ -575,4 +576,11 @@ Public Class frmOutlookShortcuts
         btnClose.Enabled = True
     End Sub
 
+    Private Sub btnReportParameters_Click(sender As Object, e As EventArgs) Handles btnReportParameters.Click
+        If radReport.Checked Then
+            Dim lobjReportParameter As New frmReportParameter
+            lobjReportParameter.LoadReports(lobjReportParameter.trvwReports)
+            lobjReportParameter.ShowDialog(Me)
+        End If
+    End Sub
 End Class
