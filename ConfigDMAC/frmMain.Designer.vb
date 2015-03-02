@@ -65,8 +65,7 @@ Partial Class frmMain
         Dim TreeNode39 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Estimating Configuration", New System.Windows.Forms.TreeNode() {TreeNode34, TreeNode35, TreeNode36, TreeNode37, TreeNode38})
         Dim TreeNode40 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Categories")
         Dim TreeNode41 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Reports")
-        Dim TreeNode42 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Reports_old")
-        Dim TreeNode43 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Report Manager", New System.Windows.Forms.TreeNode() {TreeNode40, TreeNode41, TreeNode42})
+        Dim TreeNode42 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Report Manager", New System.Windows.Forms.TreeNode() {TreeNode40, TreeNode41})
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsNew = New System.Windows.Forms.ToolStripButton()
         Me.tsEdit = New System.Windows.Forms.ToolStripButton()
@@ -360,10 +359,8 @@ Partial Class frmMain
         TreeNode41.Name = "nReportDefinitions"
         TreeNode41.Text = "Reports"
         TreeNode42.Name = "nReports"
-        TreeNode42.Text = "Reports_old"
-        TreeNode43.Name = "nReports"
-        TreeNode43.Text = "Report Manager"
-        Me.trvOptions.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode4, TreeNode8, TreeNode12, TreeNode15, TreeNode23, TreeNode29, TreeNode33, TreeNode39, TreeNode43})
+        TreeNode42.Text = "Report Manager"
+        Me.trvOptions.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode4, TreeNode8, TreeNode12, TreeNode15, TreeNode23, TreeNode29, TreeNode33, TreeNode39, TreeNode42})
         Me.trvOptions.Size = New System.Drawing.Size(215, 696)
         Me.trvOptions.TabIndex = 0
         '
