@@ -1,8 +1,11 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Text.RegularExpressions
 
 Public Class frmReportParameter
     Public mblnExisting = False
     Dim activeRow As Integer
+    Public lstrParametersandValues As String = Nothing
+    Public mstrSelectedReportName As String = Nothing
     Public Function GetReportParameters(ByVal pstrReportName As String, ByVal pstrReportID As String) As DataGridView
         Dim paramName As String = String.Empty
         Dim paramValue As String = String.Empty
@@ -48,7 +51,7 @@ Public Class frmReportParameter
                                 If Not IsDBNull(dt.Rows(r)("DataType").ToString) Then
                                     varType = dt.Rows(r)("DataType").ToString
                                 End If
-                             
+
                                 If Not IsDBNull(dt.Rows(r)("DbField").ToString) Then
                                     dbField = dt.Rows(r)("DbField").ToString
                                 End If
@@ -69,7 +72,7 @@ Public Class frmReportParameter
                                     paramReportName = Convert.ToString(dtParam(paramcount)(0))
                                 End If
                                 paramcount += 1
-                                .Rows.Add(paramReportName, sequence, varType, doperator, value1)
+                                .Rows.Add(paramReportName, varType, doperator, value1)
                             End With
                         Next
                     Else
@@ -78,7 +81,7 @@ Public Class frmReportParameter
                             For i As Int16 = 0 To dtParam.Rows.Count - 1
                                 paramReportName = Convert.ToString(dtParam(i)(0))
                                 With dgvParameters
-                                    .Rows.Add(paramReportName, sequence, varType, "", "")
+                                    .Rows.Add(paramReportName, varType, "", "")
                                 End With
                             Next
                         End If
@@ -96,7 +99,7 @@ Public Class frmReportParameter
                                 End If
                             Next
                             If Not nf Then
-                                dgvParameters.Rows.Add(paramReportName1, sequence, varType, "", "")
+                                dgvParameters.Rows.Add(paramReportName1, varType, "", "")
                             End If
                         Next
                     End If
@@ -298,7 +301,7 @@ Public Class frmReportParameter
 
     Private Sub cmbDataType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDataType.SelectedIndexChanged
         Try
-            DirectCast(dgvParameters.SelectedCells.Item(0), System.Windows.Forms.DataGridViewTextBoxCell).Value = Trim(cmbDataType.Text)
+            dgvParameters.Rows(dgvParameters.SelectedCells.Item(0).RowIndex).Cells(1).Value = Trim(cmbDataType.Text)
 
             Select Case Trim(cmbDataType.Text)
                 Case "Text"
@@ -328,7 +331,12 @@ Public Class frmReportParameter
 
     Private Sub cmbOperator_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbOperator.SelectedIndexChanged
         Try
-          DirectCast(dgvParameters.SelectedCells.Item(0), System.Windows.Forms.DataGridViewTextBoxCell).Value = Trim(cmbOperator.Text)
+            dgvParameters.Rows(dgvParameters.SelectedCells.Item(0).RowIndex).Cells(2).Value = Trim(cmbOperator.Text)
+            If Trim(cmbOperator.Text).ToUpper = "BETWEEN" Then
+                dgvParameters.Rows(dgvParameters.SelectedCells.Item(0).RowIndex).Cells(4).ReadOnly = False
+            Else
+                dgvParameters.Rows(dgvParameters.SelectedCells.Item(0).RowIndex).Cells(4).ReadOnly = True
+            End If
         Catch ex As Exception
             oExcelSS.ErrorLog("frmParameters cmbOperator_Leave ##" + ex.Message.ToString())
             MessageBox.Show(ex.Message, "Reports", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -340,5 +348,105 @@ Public Class frmReportParameter
 
 
         End If
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Try
+
+            Dim lstrValue As String = Nothing
+            For Each lobjRow In dgvParameters.Rows
+                If CType(lobjRow, DataGridViewRow).Cells(1).Value.ToString = "Date" Then
+                    If CType(lobjRow, DataGridViewRow).Cells(2).Value.ToString = "Between" Then
+                        lstrValue = GettheDate(CType(lobjRow, DataGridViewRow).Cells(3).Value.ToString)
+                        lstrValue = lstrValue + "and" + GettheDate(CType(lobjRow, DataGridViewRow).Cells(3).Value.ToString)
+                    Else
+
+                        lstrValue = GettheDate(CType(lobjRow, DataGridViewRow).Cells(3).Value.ToString)
+
+                    End If
+                Else
+                    lstrValue = CType(lobjRow, DataGridViewRow).Cells(3).Value.ToString
+                End If
+                If lstrParametersandValues Is Nothing Then
+                    lstrParametersandValues = CType(lobjRow, DataGridViewRow).Cells(0).Value.ToString + CType(lobjRow, DataGridViewRow).Cells(2).Value.ToString + lstrValue
+                Else
+                    lstrParametersandValues = lstrParametersandValues + "&" + CType(lobjRow, DataGridViewRow).Cells(0).Value.ToString + CType(lobjRow, DataGridViewRow).Cells(2).Value.ToString + lstrValue
+                End If
+            Next
+            mstrSelectedReportName = trvwReports.SelectedNode.Text
+            Me.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+    Public Function GettheDate(ByVal pstrValue As String) As String
+        Try
+            Dim lobDate As System.DateTime = Nothing
+            Dim pattern As String = "(day|month|year)"
+            Dim lstrCounter As String = Nothing
+            Dim pstrComparevalue As String
+            Dim rgx As New Regex(pattern, RegexOptions.IgnoreCase)
+            Dim lobjMatch As Match = rgx.Match(pstrValue)
+            pstrComparevalue = lobjMatch.Groups(0).Value
+            If lobjMatch IsNot Nothing Then
+                pattern = "\d*"
+                rgx = New Regex(pattern, RegexOptions.IgnoreCase)
+                lobjMatch = rgx.Match(pstrValue)
+                lstrCounter = lobjMatch.Groups(0).Value
+                If pstrValue.ToUpper().EndsWith("AGO") Then
+
+                    Select Case pstrComparevalue.ToUpper
+
+                        Case "DAYS", "DAY"
+                            lobDate = DateAndTime.Now.AddDays(CType(lstrCounter, Int32))
+                        Case "MONTHS", "MONTH"
+                            lobDate = DateAndTime.Now.AddMonths(CType(lstrCounter, Int32))
+                        Case "YEARS", "YEAR"
+                            lobDate = DateAndTime.Now.AddYears(CType(lstrCounter, Int32))
+                    End Select
+
+                ElseIf pstrValue.ToUpper().EndsWith("FROMNOW") Then
+                    Select Case pstrComparevalue.ToUpper
+
+                        Case "DAYS", "DAY"
+                            lobDate = DateAndTime.Now.AddDays(-CType(lstrCounter, Int32))
+                        Case "MONTHS", "MONTH"
+                            lobDate = DateAndTime.Now.AddMonths(-CType(lstrCounter, Int32))
+                        Case "YEARS", "YEAR"
+                            lobDate = DateAndTime.Now.AddYears(-CType(lstrCounter, Int32))
+
+                    End Select
+                End If
+            End If
+            If lobDate = Nothing Then
+                Select Case pstrValue.Trim(" ").ToUpper
+                    Case "LASTWEEK"
+                        lobDate = DateAndTime.Now.AddDays(-7)
+                    Case "LASTYEAR"
+                        lobDate = DateAndTime.Now.AddYears(-1)
+                    Case "YESTERDAY"
+                        lobDate = DateAndTime.Now.AddDays(-1)
+                    Case "LASTMONTH"
+                        lobDate = DateAndTime.Now.AddMonths(-1)
+                    Case "NEXTMONTH"
+                        lobDate = DateAndTime.Now.AddMonths(1)
+                    Case "TODAY"
+                        Return (DateAndTime.Now.ToString("dd/MM/yyyy HH:mm:ss"))
+                    Case "TOMORROW"
+                        lobDate = DateAndTime.Now.AddDays(1)
+                    Case "NEXTYEAR"
+                        lobDate = DateAndTime.Now.AddYears(1)
+                End Select
+
+            End If
+            Return (lobDate.ToString("dd/MM/yyyy HH:mm:ss"))
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Report Parameters")
+        End Try
+        Return Nothing
+    End Function
+
+    Private Sub dgvParameters_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvParameters.CellContentClick
+
     End Sub
 End Class

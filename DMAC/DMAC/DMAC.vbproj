@@ -352,6 +352,9 @@
   <ItemGroup>
     <Content Include="dmac.ico" />
     <Content Include="Resources\database.png" />
+    <None Include="Resources\Shortcut.png" />
+    <None Include="Resources\Shortxut.ico" />
+    <None Include="Resources\shortuct.bmp" />
     <None Include="Resources\update.png" />
     <None Include="Resources\presents11.jpg" />
     <None Include="Resources\gradient-gray-201.jpg" />

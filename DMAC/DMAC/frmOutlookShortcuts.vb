@@ -9,6 +9,7 @@ Public Class frmOutlookShortcuts
     Dim clsoutlookcontrol As New clsOutlookControls
     Dim extension As String = String.Empty
     Dim strMood As String
+    Dim mstrReportParameters As String
 
     Public Sub New(ByVal buttonArray As ArrayList)
         InitializeComponent()
@@ -170,6 +171,7 @@ Public Class frmOutlookShortcuts
             ElseIf radDocument.Checked Then
                 shortcutType = "Document" & IIf(extension <> "", " -" & extension, "")
             End If
+            Shortcut(shortcutType, mstrReportParameters)
             lstButtons.Items.Add(New OutlookButtonList(txtShortcutname.Text, shortcutType, oExcelSS.selectedShortcutFromList, oExcelSS.selectedShortcutFromListTag, btn))
             lstButtons.SelectedIndex = lstButtons.Items.Count - 1
             PictureBox1.Image = Nothing
@@ -197,9 +199,11 @@ Public Class frmOutlookShortcuts
             btnCancel.Enabled = False
             '--------end ----by obaidul
 
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
+
     End Sub
     Private Sub refreshOutlookbar()
         Try
@@ -559,15 +563,19 @@ Public Class frmOutlookShortcuts
     End Sub
     Private Sub radProgram_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles radProgram.CheckedChanged
         PictureBox1.Image = Nothing
+        btnChooseShortcuts.Enabled = True
     End Sub
     Private Sub radReport_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles radReport.CheckedChanged
         PictureBox1.Image = Nothing
+        btnChooseShortcuts.Enabled = False
     End Sub
     Private Sub radDocument_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles radDocument.CheckedChanged
         PictureBox1.Image = Nothing
+        btnChooseShortcuts.Enabled = True
     End Sub
     Private Sub radCustom_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles radCustom.CheckedChanged
         PictureBox1.Image = Nothing
+        btnChooseShortcuts.Enabled = True
     End Sub
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         btnClear_Click(Me, e)
@@ -581,6 +589,39 @@ Public Class frmOutlookShortcuts
             Dim lobjReportParameter As New frmReportParameter
             lobjReportParameter.LoadReports(lobjReportParameter.trvwReports)
             lobjReportParameter.ShowDialog(Me)
+            mstrReportParameters = lobjReportParameter.lstrParametersandValues
+            txtLinkto.Text = lobjReportParameter.mstrSelectedReportName
+
         End If
     End Sub
+
+    Private Sub Shortcut(ByVal pstrShortCutType As String, ByVal pstrParameters As String)
+        Try
+            Dim param As SqlParameter() = New SqlParameter(6) {}
+            param(0) = New SqlParameter("@UserIDKey", oExcelSS.ActiveUserID)
+            param(0) = New SqlParameter("@UserID", oExcelSS.ActiveUserName)
+            param(1) = New SqlParameter("@ShortcutType", pstrShortCutType)
+            param(2) = New SqlParameter("@ShortcutName", txtShortcutname.Text)
+            param(3) = New SqlParameter("@ShortcutFor", oExcelSS.ActiveUserID)
+            param(4) = New SqlParameter("@Linkto", txtLinkto.Text)
+            If PictureBox1.Image Is Nothing Then
+                PictureBox1.Image = My.Resources.Shortcut
+            End If
+
+            Dim byteArray As Byte() = New Byte(-1) {}
+            Using stream As New MemoryStream()
+                PictureBox1.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Png)
+                stream.Close()
+                byteArray = stream.ToArray()
+            End Using
+            param(5) = New SqlParameter("@icon", byteArray)
+            param(6) = New SqlParameter("@Parameters", pstrParameters)
+            Dim dt As New DataTable
+            dt = oExcelSS.getDataTable("UspConfiguration_InsertShortcut", True, param)
+            MsgBox("Information Inserted/Updated successfully", MsgBoxStyle.Information)
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        End Try
+    End Sub
+
 End Class

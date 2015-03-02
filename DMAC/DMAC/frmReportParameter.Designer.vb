@@ -28,13 +28,12 @@ Partial Class frmReportParameter
         Me.cmbOperator = New System.Windows.Forms.ComboBox()
         Me.cmbDataType = New System.Windows.Forms.ComboBox()
         Me.dgvParameters = New System.Windows.Forms.DataGridView()
+        Me.trvwReports = New System.Windows.Forms.TreeView()
         Me.colParameter = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colSequence = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colDataType = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colOperator = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clmnDefaultValue1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clmValue2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.trvwReports = New System.Windows.Forms.TreeView()
         Me.tbcntrlReports.SuspendLayout()
         Me.tpgReports.SuspendLayout()
         CType(Me.dgvParameters, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,7 +100,7 @@ Partial Class frmReportParameter
         Me.dgvParameters.AllowUserToAddRows = False
         Me.dgvParameters.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.dgvParameters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvParameters.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colParameter, Me.colSequence, Me.colDataType, Me.colOperator, Me.clmnDefaultValue1, Me.clmValue2})
+        Me.dgvParameters.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colParameter, Me.colDataType, Me.colOperator, Me.clmnDefaultValue1, Me.clmValue2})
         Me.dgvParameters.Location = New System.Drawing.Point(194, 9)
         Me.dgvParameters.Name = "dgvParameters"
         Me.dgvParameters.RowHeadersWidth = 25
@@ -109,18 +108,19 @@ Partial Class frmReportParameter
         Me.dgvParameters.StandardTab = True
         Me.dgvParameters.TabIndex = 11
         '
+        'trvwReports
+        '
+        Me.trvwReports.Location = New System.Drawing.Point(12, 9)
+        Me.trvwReports.Name = "trvwReports"
+        Me.trvwReports.Size = New System.Drawing.Size(176, 236)
+        Me.trvwReports.TabIndex = 0
+        '
         'colParameter
         '
         Me.colParameter.HeaderText = "Parameter"
         Me.colParameter.Name = "colParameter"
         Me.colParameter.ReadOnly = True
         Me.colParameter.Width = 145
-        '
-        'colSequence
-        '
-        Me.colSequence.HeaderText = "Sequence"
-        Me.colSequence.Name = "colSequence"
-        Me.colSequence.Width = 65
         '
         'colDataType
         '
@@ -138,20 +138,14 @@ Partial Class frmReportParameter
         '
         Me.clmnDefaultValue1.HeaderText = "Value"
         Me.clmnDefaultValue1.Name = "clmnDefaultValue1"
-        Me.clmnDefaultValue1.Width = 175
+        Me.clmnDefaultValue1.Width = 200
         '
         'clmValue2
         '
         Me.clmValue2.HeaderText = "Value2"
         Me.clmValue2.Name = "clmValue2"
-        Me.clmValue2.Width = 125
-        '
-        'trvwReports
-        '
-        Me.trvwReports.Location = New System.Drawing.Point(12, 9)
-        Me.trvwReports.Name = "trvwReports"
-        Me.trvwReports.Size = New System.Drawing.Size(176, 236)
-        Me.trvwReports.TabIndex = 0
+        Me.clmValue2.ReadOnly = True
+        Me.clmValue2.Width = 165
         '
         'frmReportParameter
         '
@@ -179,7 +173,6 @@ Partial Class frmReportParameter
     Friend WithEvents trvwReports As System.Windows.Forms.TreeView
     Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents colParameter As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colSequence As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colDataType As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colOperator As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents clmnDefaultValue1 As System.Windows.Forms.DataGridViewTextBoxColumn
