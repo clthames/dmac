@@ -299,6 +299,7 @@ Public Class frmOutlookShortcuts
                 radDocument.Enabled = False
                 radProgram.Enabled = False
                 radReport.Enabled = False
+                btnReportParameters.Enabled = False
                 If Convert.ToString(selection.getButtonShortcut()) <> "" Then
                     selectedindex = lstButtons.SelectedIndex
                     btnNewShortcut.Enabled = False
@@ -309,19 +310,30 @@ Public Class frmOutlookShortcuts
                     txtShortcutname.Enabled = True
                     btnImages.Enabled = True
                     btnChooseShortcuts.Enabled = True
-                    txtShortcutname.Text = Convert.ToString(selection.getButtonShortcut())
-                    txtLinkto.Text = Convert.ToString(selection.getShortcutFor())
-                    oExcelSS.selectedShortcutFromList = Convert.ToString(selection.getShortcutFor())
-                    oExcelSS.selectedShortcutFromListTag = Convert.ToString(selection.getLinkTo())
-                    Dim shortcutType As String = Convert.ToString(selection.getShortcutType())
-                    If shortcutType.IndexOf("-") > 0 Then
-                        extension = Mid(shortcutType, (shortcutType.IndexOf("-") + 2))
-                        shortcutType = Mid(shortcutType, 1, shortcutType.IndexOf("-"))
-                    Else
-                        If txtLinkto.Text.Length > 0 Then
-                            extension = Mid(txtLinkto.Text, (txtLinkto.Text.IndexOf(".") + 2))
-                        End If
+                    Dim lobjDataTable As DataTable = Nothing
+                    Dim shortcutType As String
+                    lobjDataTable = oExcelSS.getDataTable("select * from Shortcuts rep where (rep.ShortcutName= '" & Convert.ToString(selection.getButtonShortcut()) & "' and rep.UserID ='" & oExcelSS.ActiveUserName + "' )", False)
+                    If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
+                        For Each lobjRow As DataRow In lobjDataTable.Rows
+                            txtLinkto.Text = lobjRow(6).ToString()
+                            shortcutType = lobjRow(3).ToString()
+                        Next
+                        txtShortcutname.Text = Convert.ToString(selection.getButtonShortcut())
+
                     End If
+                    'txtShortcutname.Text = Convert.ToString(selection.getButtonShortcut())
+                    'txtLinkto.Text = Convert.ToString(selection.getShortcutFor())
+                    'oExcelSS.selectedShortcutFromList = Convert.ToString(selection.getShortcutFor())
+                    'oExcelSS.selectedShortcutFromListTag = Convert.ToString(selection.getLinkTo())
+                    'Dim shortcutType As String = Convert.ToString(selection.getShortcutType())
+                    'If shortcutType.IndexOf("-") > 0 Then
+                    '    extension = Mid(shortcutType, (shortcutType.IndexOf("-") + 2))
+                    '    shortcutType = Mid(shortcutType, 1, shortcutType.IndexOf("-"))
+                    'Else
+                    '    If txtLinkto.Text.Length > 0 Then
+                    '        extension = Mid(txtLinkto.Text, (txtLinkto.Text.IndexOf(".") + 2))
+                    '    End If
+                    'End If
                     If shortcutType.Trim = "Program" Then
                         radProgram.Checked = True
                     ElseIf shortcutType.Trim = "Report" Then
@@ -331,8 +343,8 @@ Public Class frmOutlookShortcuts
                     ElseIf shortcutType.Trim = "Document" Then
                         radDocument.Checked = True
                     End If
-                    Dim obj As Object = selection.getButton
-                    PictureBox1.Image = obj.Image
+                    'Dim obj As Object = selection.getButton
+                    'PictureBox1.Image = obj.Image
                 Else
                     txtShortcutname.Text = String.Empty
                     txtLinkto.Text = String.Empty
@@ -586,7 +598,19 @@ Public Class frmOutlookShortcuts
 
     Private Sub btnReportParameters_Click(sender As Object, e As EventArgs) Handles btnReportParameters.Click
         If radReport.Checked Then
+            Dim lobjDataTable As DataTable = Nothing
+            Dim shortcutType As String
             Dim lobjReportParameter As New frmReportParameter
+            If Not String.IsNullOrEmpty(txtShortcutname.Text) Then
+                lobjDataTable = oExcelSS.getDataTable("select * from Shortcuts rep where (rep.ShortcutName= '" & txtShortcutname.Text & "' and rep.UserID ='" & oExcelSS.ActiveUserName + "' )", False)
+                If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
+                    For Each lobjRow As DataRow In lobjDataTable.Rows
+                        lobjReportParameter.lstrReportFileName = lobjRow(6).ToString()
+                        lobjReportParameter.lstrParametersandValues = lobjRow(8).ToString()
+                    Next
+                End If
+            End If
+
             lobjReportParameter.LoadReports(lobjReportParameter.trvwReports)
             lobjReportParameter.ShowDialog(Me)
             mstrReportParameters = lobjReportParameter.lstrParametersandValues

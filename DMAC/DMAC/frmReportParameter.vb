@@ -6,6 +6,7 @@ Public Class frmReportParameter
     Dim activeRow As Integer
     Public lstrParametersandValues As String = Nothing
     Public mstrSelectedReportName As String = Nothing
+    Public lstrReportFileName As String
     Public Function GetReportParameters(ByVal pstrReportName As String, ByVal pstrReportID As String) As DataGridView
         Dim paramName As String = String.Empty
         Dim paramValue As String = String.Empty
@@ -131,7 +132,7 @@ Public Class frmReportParameter
                         If lobjParentTreeNode.Nodes.Find(lobjRow(6).ToString(), False).Length >= 1 Then
                             lobjChildnode = lobjParentTreeNode.Nodes.Item(lobjRow(6).ToString())
                             lobjChildNode2 = New TreeNode
-                            lobjChildNode2.Text = lobjRow(3).ToString
+                            lobjChildNode2.Text = lobjRow(4).ToString
                             lobjChildNode2.Name = lobjRow(3).ToString
                             lobjChildNode2.Tag = lobjRow
                             lobjChildnode.Nodes.Add(lobjChildNode2)
@@ -141,7 +142,7 @@ Public Class frmReportParameter
                             lobjChildnode.Name = lobjRow(6).ToString
                             lobjChildnode.Tag = lobjRow
                             lobjChildNode2 = New TreeNode
-                            lobjChildNode2.Text = lobjRow(3).ToString
+                            lobjChildNode2.Text = lobjRow(4).ToString
                             lobjChildNode2.Name = lobjRow(3).ToString
                             lobjChildNode2.Tag = lobjRow
                             lobjChildnode.Nodes.Add(lobjChildNode2)
