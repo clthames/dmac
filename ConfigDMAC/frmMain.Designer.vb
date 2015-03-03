@@ -152,6 +152,7 @@ Partial Class frmMain
         Me.cboUsers = New System.Windows.Forms.ComboBox()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.opdImageDialog = New System.Windows.Forms.OpenFileDialog()
+        Me.btnAssignImage = New System.Windows.Forms.Button()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.scMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.scMain.Panel1.SuspendLayout()
@@ -375,6 +376,7 @@ Partial Class frmMain
         '
         'tbpg_ReportDefinition
         '
+        Me.tbpg_ReportDefinition.Controls.Add(Me.btnAssignImage)
         Me.tbpg_ReportDefinition.Controls.Add(Me.trvwReportDefinition)
         Me.tbpg_ReportDefinition.Controls.Add(Me.pbPreview)
         Me.tbpg_ReportDefinition.Controls.Add(Me.pnlReportDefinitions)
@@ -390,7 +392,7 @@ Partial Class frmMain
         '
         Me.trvwReportDefinition.Location = New System.Drawing.Point(8, 9)
         Me.trvwReportDefinition.Name = "trvwReportDefinition"
-        Me.trvwReportDefinition.Size = New System.Drawing.Size(408, 650)
+        Me.trvwReportDefinition.Size = New System.Drawing.Size(408, 621)
         Me.trvwReportDefinition.TabIndex = 16
         '
         'pbPreview
@@ -1064,6 +1066,16 @@ Partial Class frmMain
         Me.opdImageDialog.FileName = "opdImageDialog"
         Me.opdImageDialog.Filter = "JPEG files|*.jpeg|JPG Files|*.jpg|PNG Files|*.png|GIF Files|*.gif"
         '
+        'btnAssignImage
+        '
+        Me.btnAssignImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAssignImage.Location = New System.Drawing.Point(10, 637)
+        Me.btnAssignImage.Name = "btnAssignImage"
+        Me.btnAssignImage.Size = New System.Drawing.Size(92, 23)
+        Me.btnAssignImage.TabIndex = 17
+        Me.btnAssignImage.Text = "Assign Image"
+        Me.btnAssignImage.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1197,5 +1209,6 @@ Partial Class frmMain
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents trvwReportCategories As System.Windows.Forms.TreeView
     Friend WithEvents trvwReportDefinition As System.Windows.Forms.TreeView
+    Friend WithEvents btnAssignImage As System.Windows.Forms.Button
 
 End Class

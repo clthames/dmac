@@ -1307,7 +1307,7 @@ Public Class frmMain
                     pnlReportDefinitions.Visible = True
                     pbPreview.Visible = True
                     pbPreview.Enabled = True
-
+                    isLoading = True
 
                     Dim lintindex As Integer = 0
                     txt_Notes.Clear()
@@ -1327,7 +1327,7 @@ Public Class frmMain
                         lstrCategory = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(2)
                         lstrGroup = DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(1)
                     End If
-
+                    oExcelSS.fillComboBox(cboReportGroup, "uspConfiguration_FillRepGroupsCbo", "GroupName", "GroupIDKey")
                     For Each item In cboReportGroup.Items
                         If DirectCast(item, System.Data.DataRowView).Item(0) = lstrGroup Then
                             cboReportGroup.SelectedIndex = lintindex
@@ -1346,7 +1346,7 @@ Public Class frmMain
                     Next
                     cboRportCategory.Enabled = True
                     cboReportGroup.Enabled = True
-
+                    isLoading = False
                 Case clsConfigDmac.ActiveEnv.UserInformation
                     cboUsers.SelectedIndex = -1
                     pnlInfoUsers.Visible = True
@@ -1458,7 +1458,10 @@ begin:
         Catch lobjException As Exception
             MessageBox.Show(lobjException.Message, "Configuration Manager", MessageBoxButtons.OK, MessageBoxIcon.Error)
             oExcelSS.ErrorLog("SaveUserInformation -> " + lobjException.Message.ToString())
+        Finally
+            isLoading = False
         End Try
+
     End Sub
     Private Sub onCHClick(ByVal sender As Object, ByVal e As EventArgs)
         Dim dt As New DataTable
@@ -1704,7 +1707,7 @@ begin:
 
     Private Sub cboReportGroup_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboReportGroup.SelectedIndexChanged
         If cboReportGroup.SelectedValue IsNot Nothing AndAlso Not isLoading Then
-            oExcelSS.fillComboBox(cboRportCategory, "select CategoryIDKey , CategoryName,GroupIDKey from ReportCategories where GroupIDKey=" + cboReportGroup.SelectedValue.ToString, "CategoryName", "CategoryIDKey", False)
+            oExcelSS.fillComboBox(cboRportCategory, "select CategoryIDKey , CategoryName,GroupIDKey from ReportCategories where isActive=1 and GroupIDKey=" + cboReportGroup.SelectedValue.ToString, "CategoryName", "CategoryIDKey", False)
             cboRportCategory.SelectedIndex = -1
         End If
 
@@ -2000,7 +2003,7 @@ begin:
                     txt_Notes.Text = lobjDataTable.Rows(0)(4)
                     txt_RemoteFileName.Text = lobjDataTable.Rows(0)(3)
                     chkrptdefinitaionActive.Checked = lobjDataTable.Rows(0)(5)
-                    If (Not IsDBNull(lobjDataTable.Rows(0)(7))) And Not DirectCast(lobjDataTable.Rows(0)(7), Byte()).Length = 1 Then
+                    If (Not IsDBNull(lobjDataTable.Rows(0)(7))) AndAlso (Not DirectCast(lobjDataTable.Rows(0)(7), Byte()).Length = 1) AndAlso (Not DirectCast(lobjDataTable.Rows(0)(7), Byte())(0) = 0) Then
                         Using ms As New IO.MemoryStream(CType(lobjDataTable.Rows(0)(7), Byte()))
                             Dim img As Image = Image.FromStream(ms)
                             AutosizeImage(img, pbPreview)
@@ -2033,6 +2036,32 @@ begin:
             tsEdit.Enabled = False
             tsCancel.Enabled = False
             tsSave.Enabled = False
+        End If
+    End Sub
+
+    Private Sub btnAssignImage_Click(sender As Object, e As EventArgs) Handles btnAssignImage.Click
+        If opdImageDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+            If IO.File.Exists(opdImageDialog.FileName) Then
+                Dim fs As New IO.FileStream(opdImageDialog.FileName, IO.FileMode.Open, IO.FileAccess.Read)
+                Dim bt() As Byte = New Byte(fs.Length - 1) {}
+                fs.Read(bt, 0, bt.Length)
+                AutosizeImage(DirectCast(Image.FromStream(fs), Image), pbPreview)
+                fs.Close()
+                Dim nImage As Image = pbPreview.Image
+                If Not nImage Is Nothing Then
+                    Using ms As System.IO.MemoryStream = New System.IO.MemoryStream
+                        nImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png)
+                        Dim bImage() As Byte
+                        bImage = ms.ToArray
+                        'Dim p As System.Data.SqlClient.SqlParameter() = New System.Data.SqlClient.SqlParameter(1) {}
+                        'p(0) = New System.Data.SqlClient.SqlParameter("@ReportIDKey", trvRptViewGroup.SelectedNode.Tag)
+                        'p(1) = New System.Data.SqlClient.SqlParameter("@image", bImage)
+                        'oExcelSS.isSavedData("uspDmac_SavePreviewReportImage", , , , "strStatus", p)
+                    End Using
+                End If
+            Else
+                MsgBox("File Not Found")
+            End If
         End If
     End Sub
 End Class
