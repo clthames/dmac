@@ -472,7 +472,7 @@ Partial Class frmMain
         '
         Me.cboReportGroup.Enabled = False
         Me.cboReportGroup.FormattingEnabled = True
-        Me.cboReportGroup.Location = New System.Drawing.Point(140, 134)
+        Me.cboReportGroup.Location = New System.Drawing.Point(140, 90)
         Me.cboReportGroup.Name = "cboReportGroup"
         Me.cboReportGroup.Size = New System.Drawing.Size(350, 21)
         Me.cboReportGroup.TabIndex = 7
@@ -480,7 +480,7 @@ Partial Class frmMain
         'lblReportGroup
         '
         Me.lblReportGroup.AutoSize = True
-        Me.lblReportGroup.Location = New System.Drawing.Point(27, 143)
+        Me.lblReportGroup.Location = New System.Drawing.Point(27, 95)
         Me.lblReportGroup.Name = "lblReportGroup"
         Me.lblReportGroup.Size = New System.Drawing.Size(39, 13)
         Me.lblReportGroup.TabIndex = 6
@@ -489,7 +489,7 @@ Partial Class frmMain
         'cboRportCategory
         '
         Me.cboRportCategory.FormattingEnabled = True
-        Me.cboRportCategory.Location = New System.Drawing.Point(140, 91)
+        Me.cboRportCategory.Location = New System.Drawing.Point(140, 136)
         Me.cboRportCategory.Name = "cboRportCategory"
         Me.cboRportCategory.Size = New System.Drawing.Size(350, 21)
         Me.cboRportCategory.TabIndex = 5
@@ -497,7 +497,7 @@ Partial Class frmMain
         'lbl_ReportCategory
         '
         Me.lbl_ReportCategory.AutoSize = True
-        Me.lbl_ReportCategory.Location = New System.Drawing.Point(22, 94)
+        Me.lbl_ReportCategory.Location = New System.Drawing.Point(22, 139)
         Me.lbl_ReportCategory.Name = "lbl_ReportCategory"
         Me.lbl_ReportCategory.Size = New System.Drawing.Size(52, 13)
         Me.lbl_ReportCategory.TabIndex = 4

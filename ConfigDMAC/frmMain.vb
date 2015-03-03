@@ -814,11 +814,15 @@ Public Class frmMain
         Dim nImage As Image = pbPreview.Image
 
         Dim bImage() As Byte
-        Using ms As System.IO.MemoryStream = New System.IO.MemoryStream
-            nImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png)
+        If nImage IsNot Nothing Then
+            Using ms As System.IO.MemoryStream = New System.IO.MemoryStream
+                nImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png)
 
-            bImage = ms.ToArray
-        End Using
+                bImage = ms.ToArray
+            End Using
+        Else
+            bImage = New Byte() {0}
+        End If
         Try
             Dim param As SqlParameter() = New SqlParameter(9) {}
             param(0) = New SqlParameter("@GroupIDKey", cboReportGroup.SelectedValue)
@@ -880,11 +884,11 @@ Public Class frmMain
                 cboRportCategory.Focus()
                 Return False
             End If
-            If pbPreview.Image Is Nothing Then
-                MsgBox("upload a preview image", MsgBoxStyle.Information, "Configuration")
+            'If pbPreview.Image Is Nothing Then
+            '    MsgBox("upload a preview image", MsgBoxStyle.Information, "Configuration")
 
-                Return False
-            End If
+            '    Return False
+            'End If
 
 
         Catch lobjException As Exception
@@ -1996,7 +2000,7 @@ begin:
                     txt_Notes.Text = lobjDataTable.Rows(0)(4)
                     txt_RemoteFileName.Text = lobjDataTable.Rows(0)(3)
                     chkrptdefinitaionActive.Checked = lobjDataTable.Rows(0)(5)
-                    If Not IsDBNull(lobjDataTable.Rows(0)(7)) Then
+                    If (Not IsDBNull(lobjDataTable.Rows(0)(7))) And Not DirectCast(lobjDataTable.Rows(0)(7), Byte()).Length = 1 Then
                         Using ms As New IO.MemoryStream(CType(lobjDataTable.Rows(0)(7), Byte()))
                             Dim img As Image = Image.FromStream(ms)
                             AutosizeImage(img, pbPreview)
