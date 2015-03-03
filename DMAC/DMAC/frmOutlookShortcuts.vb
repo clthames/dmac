@@ -597,13 +597,16 @@ Public Class frmOutlookShortcuts
 
     Private Sub Shortcut(ByVal pstrShortCutType As String, ByVal pstrParameters As String)
         Try
-            Dim param As SqlParameter() = New SqlParameter(6) {}
-            param(0) = New SqlParameter("@UserIDKey", oExcelSS.ActiveUserID)
-            param(0) = New SqlParameter("@UserID", oExcelSS.ActiveUserName)
-            param(1) = New SqlParameter("@ShortcutType", pstrShortCutType)
-            param(2) = New SqlParameter("@ShortcutName", txtShortcutname.Text)
-            param(3) = New SqlParameter("@ShortcutFor", oExcelSS.ActiveUserID)
-            param(4) = New SqlParameter("@Linkto", txtLinkto.Text)
+            Dim param As SqlParameter() = New SqlParameter(7) {}
+            Dim lobjDataTable As DataTable = Nothing
+            Dim lintindex As Integer = 0
+            lobjDataTable = oExcelSS.getDataTable("select ID from Access where UserID = '" & oExcelSS.ActiveUserID & "' and UserName='" & oExcelSS.ActiveUserName & "'", False)
+            param(0) = New SqlParameter("@UserIDKey", lobjDataTable.Rows(0).Item(0))
+            param(1) = New SqlParameter("@UserID", oExcelSS.ActiveUserName)
+            param(2) = New SqlParameter("@ShortcutType", pstrShortCutType)
+            param(3) = New SqlParameter("@ShortcutName", txtShortcutname.Text)
+            param(4) = New SqlParameter("@ShortcutFor", oExcelSS.ActiveUserID)
+            param(5) = New SqlParameter("@Linkto", txtLinkto.Text)
             If PictureBox1.Image Is Nothing Then
                 PictureBox1.Image = My.Resources.Shortcut
             End If
@@ -614,8 +617,12 @@ Public Class frmOutlookShortcuts
                 stream.Close()
                 byteArray = stream.ToArray()
             End Using
-            param(5) = New SqlParameter("@icon", byteArray)
-            param(6) = New SqlParameter("@Parameters", pstrParameters)
+            param(6) = New SqlParameter("@icon", byteArray)
+            If pstrParameters Is Nothing Then
+                pstrParameters = String.Empty
+            End If
+
+            param(7) = New SqlParameter("@Parameters", pstrParameters)
             Dim dt As New DataTable
             dt = oExcelSS.getDataTable("UspConfiguration_InsertShortcut", True, param)
             MsgBox("Information Inserted/Updated successfully", MsgBoxStyle.Information)
