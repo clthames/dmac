@@ -609,7 +609,7 @@ Public Class frmMain
 
                     pnlReportDefinitions.Enabled = True
                     pbPreview.Enabled = True
-
+                    btnAssignImage.Visible = True
             End Select
             If niu Then
                 tsEdit.Enabled = False
@@ -782,7 +782,7 @@ Public Class frmMain
                                 tsSave.Enabled = False
                                 tsCancel.Enabled = False
                                 pbPreview.Visible = False
-
+                                btnAssignImage.Visible = False
                                 pnlReportDefinitions.Visible = False
                             End If
                             niu = False
@@ -1315,6 +1315,7 @@ Public Class frmMain
                     txt_ReportDescription.Clear()
                     txt_ReportID.Clear()
                     pbPreview.Image = Nothing
+                    btnAssignImage.Visible = True
                     chkrptdefinitaionActive.Checked = True
 
                     Dim lstrCategory As String = ""
@@ -1952,7 +1953,7 @@ begin:
                 pnlReportDefinitions.Visible = True
                 pnlReportDefinitions.Enabled = False
                 pbPreview.Visible = True
-
+                btnAssignImage.Visible = False
                 txt_ReportID.Clear()
                 txt_ReportDescription.Clear()
                 pbPreview.Image = Nothing
