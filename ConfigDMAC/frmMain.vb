@@ -770,7 +770,7 @@ Public Class frmMain
 
                             pnlReportDefinitions.Enabled = False
 
-                            If trvwReportDefinition.SelectedNode.Level = 2 Then
+                            If trvwReportDefinition.SelectedNode IsNot Nothing AndAlso trvwReportDefinition.SelectedNode.Level = 2 Then
                                 tsNew.Enabled = False
                                 tsEdit.Enabled = True
                                 tsSave.Enabled = False
