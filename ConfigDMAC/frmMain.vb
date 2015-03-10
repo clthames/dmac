@@ -142,11 +142,12 @@ Public Class frmMain
 
                 Case "nCostOperations"
                     Dim lobjfrmLaunch As New frmLaunch()
-                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Job Costing for Cost Operations"
-                    lobjfrmLaunch.btn_Launch.Focus()
-                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                    Label9.Text = "Click on the 'Launch' button below to maintain Job Costing for Cost Operations"
+                    'lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Job Costing for Cost Operations"
+                    'lobjfrmLaunch.btn_Launch.Focus()
+                    'If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
 
-                    End If
+                    'End If
 
                 Case "nOperationCodes"
                     Dim lobjfrmLaunch As New frmLaunch()
@@ -393,6 +394,7 @@ Public Class frmMain
         tbcReportDefinition.Visible = False
         pbPreview.Visible = False
         pnlReportDefinitions.Visible = False
+
     End Sub
     ''' <summary>
     ''' Added by Harinath for Reports

@@ -80,6 +80,7 @@ Partial Class frmMain
         Me.trvOptions = New System.Windows.Forms.TreeView()
         Me.tbcReportDefinition = New System.Windows.Forms.TabControl()
         Me.tbpg_ReportDefinition = New System.Windows.Forms.TabPage()
+        Me.btnAssignImage = New System.Windows.Forms.Button()
         Me.trvwReportDefinition = New System.Windows.Forms.TreeView()
         Me.pbPreview = New System.Windows.Forms.PictureBox()
         Me.pnlReportDefinitions = New System.Windows.Forms.Panel()
@@ -152,7 +153,6 @@ Partial Class frmMain
         Me.cboUsers = New System.Windows.Forms.ComboBox()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.opdImageDialog = New System.Windows.Forms.OpenFileDialog()
-        Me.btnAssignImage = New System.Windows.Forms.Button()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.scMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.scMain.Panel1.SuspendLayout()
@@ -387,6 +387,16 @@ Partial Class frmMain
         Me.tbpg_ReportDefinition.TabIndex = 0
         Me.tbpg_ReportDefinition.Text = "Report Definition"
         Me.tbpg_ReportDefinition.UseVisualStyleBackColor = True
+        '
+        'btnAssignImage
+        '
+        Me.btnAssignImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAssignImage.Location = New System.Drawing.Point(10, 637)
+        Me.btnAssignImage.Name = "btnAssignImage"
+        Me.btnAssignImage.Size = New System.Drawing.Size(92, 23)
+        Me.btnAssignImage.TabIndex = 17
+        Me.btnAssignImage.Text = "Assign Image"
+        Me.btnAssignImage.UseVisualStyleBackColor = True
         '
         'trvwReportDefinition
         '
@@ -1065,16 +1075,6 @@ Partial Class frmMain
         '
         Me.opdImageDialog.FileName = "opdImageDialog"
         Me.opdImageDialog.Filter = "JPEG files|*.jpeg|JPG Files|*.jpg|PNG Files|*.png|GIF Files|*.gif"
-        '
-        'btnAssignImage
-        '
-        Me.btnAssignImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAssignImage.Location = New System.Drawing.Point(10, 637)
-        Me.btnAssignImage.Name = "btnAssignImage"
-        Me.btnAssignImage.Size = New System.Drawing.Size(92, 23)
-        Me.btnAssignImage.TabIndex = 17
-        Me.btnAssignImage.Text = "Assign Image"
-        Me.btnAssignImage.UseVisualStyleBackColor = True
         '
         'frmMain
         '
