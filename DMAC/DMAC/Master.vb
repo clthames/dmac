@@ -363,14 +363,19 @@ Public Class Master
                         AcclExplorerBar1.Bars.Add(repBar)
                     End If
                     repBarItem.Control = gdg
-                    repBar.Items.Add(repBarItem)
+                    Try
+                        repBar.Items.Add(repBarItem)
+                    Catch ex As Exception
+                        oExcelSS.ErrorLog("Master_Activated Error##" + ex.Message.ToString())
+                    End Try
+
                 End If
             End With
         Next
         btnCloseDb.Visible = True
     End Sub
     Public Sub btnSU_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        RunReportLauncher("", "ScheduledUsage")
+        RunReportLauncher("", "ScheduledUsage", "")
     End Sub
     Private Sub OutlookBar1_Click(ByVal sender As System.Object, ByVal e As DMAC.OutlookStyleControls.OutlookBar.ButtonClickEventArgs) Handles OutlookBar1.Click
         Try
@@ -391,7 +396,7 @@ Public Class Master
                     MsgBox("[ " & e.SelectedButton.Text & " ] Goes Here ...")
                 End If
             ElseIf selectedButton.ShortcutType = "Report" Then
-                isValidShortcut = RunReportLauncher("DMAC-ShortCut ", selectedButton.ShortcutFor) 'Launch Report Viewer - 14sep13
+                isValidShortcut = RunReportLauncher("DMAC-ShortCut ", selectedButton.ShortcutFor, "") 'Launch Report Viewer - 14sep13
             ElseIf selectedButton.ShortcutType = "Custom" Then
                 Dim paramsql As SqlClient.SqlParameter() = New SqlClient.SqlParameter(1) {}
                 paramsql(0) = New SqlClient.SqlParameter("@intUserID", oExcelSS.userid)
@@ -422,7 +427,7 @@ Public Class Master
         End Try
     End Sub
     'John 14sep13
-    Public Function RunReportLauncher(ByVal currentItem As String, ByVal ReportName As String) As Boolean
+    Public Function RunReportLauncher(ByVal currentItem As String, ByVal ReportName As String, ByVal PrinterName As String) As Boolean
         Dim success As Boolean = False
         Try
             Dim executableFileName As String = String.Empty
@@ -434,7 +439,9 @@ Public Class Master
                 ' open when the child form is open -------- if external program is opep, it must be closed
                 closeOpenForms()
                 success = True
-                Process.Start(executeFilePath, ReportName)
+                Dim lobjStartInfo As New ProcessStartInfo(executeFilePath)
+                lobjStartInfo.Arguments = ReportName & " " & PrinterName
+                Process.Start(lobjStartInfo)
             Else
                 MsgBox("Report Utility not installed yet." & executeFilePath)
             End If

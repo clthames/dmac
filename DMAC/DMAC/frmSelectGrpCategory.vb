@@ -35,7 +35,7 @@
             oExcelSS.selectedShortcutFromList = Me.trvRptViewGroup.SelectedNode.Text.Trim
             oExcelSS.selectedShortcutFromListTag = Me.trvRptViewGroup.SelectedNode.Tag
         Else
-            Master.RunReportLauncher("DMAC-Report", Me.trvRptViewGroup.SelectedNode.Text.Trim)
+            Master.RunReportLauncher("DMAC-Report", Me.trvRptViewGroup.SelectedNode.Text.Trim, Me.trvRptViewGroup.SelectedNode.Name.Trim)
         End If
         Me.Close()
     End Sub

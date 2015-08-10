@@ -35,6 +35,6 @@
     End Sub
 
     Private Sub lnklblScheduled_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnklblScheduled.LinkClicked
-        Master.RunReportLauncher("DMAC-Report", "ScheduledUsage")
+        Master.RunReportLauncher("DMAC-Report", "ScheduledUsage", "")
     End Sub
 End Class

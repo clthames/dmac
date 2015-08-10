@@ -25,12 +25,13 @@ Public Class clsConfig
     Public txtReportLine As String = ""
     Public arrCompany() As String
     Public arrReport() As String
-
+    Dim varPrinterName As String
 
 
 #End Region
 
 #Region "Properties"
+
 
     'All Properties works for selected company
 
@@ -193,6 +194,17 @@ Public Class clsConfig
             Return varReportName
         End Get
     End Property
+    ''' <summary>
+    ''' Gets the Printername Name to print as indicated in command line.
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public ReadOnly Property PrinterName As String
+        Get
+            Return varPrinterName
+        End Get
+    End Property
 
 #End Region
 
@@ -216,6 +228,9 @@ Public Class clsConfig
             varrNetworkUser = arrReport(3).Trim
             varrNetworkPass = arrReport(4).Trim
             varReportName = claPrin.Item(0)
+            If claPrin.Count > 1 Then
+                varPrinterName = claPrin.Item(1)
+            End If
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -223,7 +238,7 @@ Public Class clsConfig
     End Sub
     Public Sub CheckForParameters(claPrin As System.Collections.ObjectModel.ReadOnlyCollection(Of String), ByRef rv As ReportViewer)
         Try
-            If claPrin.Count > 1 Then
+            If claPrin.Count > 2 Then
                 Dim parString As String = ""
                 Dim arrParam() As String
                 For x As Integer = 1 To claPrin.Count - 1
@@ -281,5 +296,7 @@ Public Class clsConfig
     End Sub
 
 #End Region
+
+
 
 End Class

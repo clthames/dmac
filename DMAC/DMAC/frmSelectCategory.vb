@@ -22,7 +22,7 @@
     End Sub
     Private Sub btnSelect_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSelect.Click
         Dim szCategory As String = trvRptViewCategory.SelectedNode.Text
-        Master.RunReportLauncher("DMAC-Menu", szCategory)
+        Master.RunReportLauncher("DMAC-Menu", szCategory, "")
         Me.Close()
     End Sub
 End Class

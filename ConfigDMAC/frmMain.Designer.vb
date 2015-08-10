@@ -153,6 +153,8 @@ Partial Class frmMain
         Me.cboUsers = New System.Windows.Forms.ComboBox()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.opdImageDialog = New System.Windows.Forms.OpenFileDialog()
+        Me.txt_Printer = New System.Windows.Forms.TextBox()
+        Me.lblPrinter = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.scMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.scMain.Panel1.SuspendLayout()
@@ -409,15 +411,17 @@ Partial Class frmMain
         '
         Me.pbPreview.BackColor = System.Drawing.Color.White
         Me.pbPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pbPreview.Location = New System.Drawing.Point(424, 324)
+        Me.pbPreview.Location = New System.Drawing.Point(424, 359)
         Me.pbPreview.Name = "pbPreview"
-        Me.pbPreview.Size = New System.Drawing.Size(510, 334)
+        Me.pbPreview.Size = New System.Drawing.Size(510, 299)
         Me.pbPreview.TabIndex = 15
         Me.pbPreview.TabStop = False
         '
         'pnlReportDefinitions
         '
         Me.pnlReportDefinitions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlReportDefinitions.Controls.Add(Me.txt_Printer)
+        Me.pnlReportDefinitions.Controls.Add(Me.lblPrinter)
         Me.pnlReportDefinitions.Controls.Add(Me.txt_RemoteFileName)
         Me.pnlReportDefinitions.Controls.Add(Me.lblRemoteFileName)
         Me.pnlReportDefinitions.Controls.Add(Me.txt_Notes)
@@ -433,13 +437,13 @@ Partial Class frmMain
         Me.pnlReportDefinitions.Controls.Add(Me.lblReportID)
         Me.pnlReportDefinitions.Location = New System.Drawing.Point(424, 9)
         Me.pnlReportDefinitions.Name = "pnlReportDefinitions"
-        Me.pnlReportDefinitions.Size = New System.Drawing.Size(510, 306)
+        Me.pnlReportDefinitions.Size = New System.Drawing.Size(510, 346)
         Me.pnlReportDefinitions.TabIndex = 2
         Me.pnlReportDefinitions.Visible = False
         '
         'txt_RemoteFileName
         '
-        Me.txt_RemoteFileName.Location = New System.Drawing.Point(140, 181)
+        Me.txt_RemoteFileName.Location = New System.Drawing.Point(140, 182)
         Me.txt_RemoteFileName.Name = "txt_RemoteFileName"
         Me.txt_RemoteFileName.Size = New System.Drawing.Size(350, 20)
         Me.txt_RemoteFileName.TabIndex = 12
@@ -447,7 +451,7 @@ Partial Class frmMain
         'lblRemoteFileName
         '
         Me.lblRemoteFileName.AutoSize = True
-        Me.lblRemoteFileName.Location = New System.Drawing.Point(25, 184)
+        Me.lblRemoteFileName.Location = New System.Drawing.Point(19, 185)
         Me.lblRemoteFileName.Name = "lblRemoteFileName"
         Me.lblRemoteFileName.Size = New System.Drawing.Size(97, 13)
         Me.lblRemoteFileName.TabIndex = 11
@@ -455,7 +459,7 @@ Partial Class frmMain
         '
         'txt_Notes
         '
-        Me.txt_Notes.Location = New System.Drawing.Point(140, 223)
+        Me.txt_Notes.Location = New System.Drawing.Point(140, 264)
         Me.txt_Notes.Name = "txt_Notes"
         Me.txt_Notes.Size = New System.Drawing.Size(350, 52)
         Me.txt_Notes.TabIndex = 9
@@ -464,7 +468,7 @@ Partial Class frmMain
         'chkrptdefinitaionActive
         '
         Me.chkrptdefinitaionActive.AutoSize = True
-        Me.chkrptdefinitaionActive.Location = New System.Drawing.Point(139, 285)
+        Me.chkrptdefinitaionActive.Location = New System.Drawing.Point(139, 326)
         Me.chkrptdefinitaionActive.Name = "chkrptdefinitaionActive"
         Me.chkrptdefinitaionActive.Size = New System.Drawing.Size(67, 17)
         Me.chkrptdefinitaionActive.TabIndex = 9
@@ -474,7 +478,7 @@ Partial Class frmMain
         'lblNotes
         '
         Me.lblNotes.AutoSize = True
-        Me.lblNotes.Location = New System.Drawing.Point(25, 237)
+        Me.lblNotes.Location = New System.Drawing.Point(19, 281)
         Me.lblNotes.Name = "lblNotes"
         Me.lblNotes.Size = New System.Drawing.Size(33, 13)
         Me.lblNotes.TabIndex = 8
@@ -492,7 +496,7 @@ Partial Class frmMain
         'lblReportGroup
         '
         Me.lblReportGroup.AutoSize = True
-        Me.lblReportGroup.Location = New System.Drawing.Point(27, 95)
+        Me.lblReportGroup.Location = New System.Drawing.Point(19, 96)
         Me.lblReportGroup.Name = "lblReportGroup"
         Me.lblReportGroup.Size = New System.Drawing.Size(39, 13)
         Me.lblReportGroup.TabIndex = 6
@@ -509,7 +513,7 @@ Partial Class frmMain
         'lbl_ReportCategory
         '
         Me.lbl_ReportCategory.AutoSize = True
-        Me.lbl_ReportCategory.Location = New System.Drawing.Point(22, 139)
+        Me.lbl_ReportCategory.Location = New System.Drawing.Point(19, 139)
         Me.lbl_ReportCategory.Name = "lbl_ReportCategory"
         Me.lbl_ReportCategory.Size = New System.Drawing.Size(52, 13)
         Me.lbl_ReportCategory.TabIndex = 4
@@ -525,7 +529,7 @@ Partial Class frmMain
         'lbl_ReportDescription
         '
         Me.lbl_ReportDescription.AutoSize = True
-        Me.lbl_ReportDescription.Location = New System.Drawing.Point(21, 53)
+        Me.lbl_ReportDescription.Location = New System.Drawing.Point(19, 54)
         Me.lbl_ReportDescription.Name = "lbl_ReportDescription"
         Me.lbl_ReportDescription.Size = New System.Drawing.Size(63, 13)
         Me.lbl_ReportDescription.TabIndex = 2
@@ -541,7 +545,7 @@ Partial Class frmMain
         'lblReportID
         '
         Me.lblReportID.AutoSize = True
-        Me.lblReportID.Location = New System.Drawing.Point(22, 19)
+        Me.lblReportID.Location = New System.Drawing.Point(19, 16)
         Me.lblReportID.Name = "lblReportID"
         Me.lblReportID.Size = New System.Drawing.Size(56, 13)
         Me.lblReportID.TabIndex = 0
@@ -1076,6 +1080,22 @@ Partial Class frmMain
         Me.opdImageDialog.FileName = "opdImageDialog"
         Me.opdImageDialog.Filter = "JPEG files|*.jpeg|JPG Files|*.jpg|PNG Files|*.png|GIF Files|*.gif"
         '
+        'txt_Printer
+        '
+        Me.txt_Printer.Location = New System.Drawing.Point(140, 228)
+        Me.txt_Printer.Name = "txt_Printer"
+        Me.txt_Printer.Size = New System.Drawing.Size(350, 20)
+        Me.txt_Printer.TabIndex = 14
+        '
+        'lblPrinter
+        '
+        Me.lblPrinter.AutoSize = True
+        Me.lblPrinter.Location = New System.Drawing.Point(19, 228)
+        Me.lblPrinter.Name = "lblPrinter"
+        Me.lblPrinter.Size = New System.Drawing.Size(40, 13)
+        Me.lblPrinter.TabIndex = 13
+        Me.lblPrinter.Text = "Printer:"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1210,5 +1230,7 @@ Partial Class frmMain
     Friend WithEvents trvwReportCategories As System.Windows.Forms.TreeView
     Friend WithEvents trvwReportDefinition As System.Windows.Forms.TreeView
     Friend WithEvents btnAssignImage As System.Windows.Forms.Button
+    Friend WithEvents txt_Printer As System.Windows.Forms.TextBox
+    Friend WithEvents lblPrinter As System.Windows.Forms.Label
 
 End Class

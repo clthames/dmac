@@ -142,7 +142,7 @@ Public Class frmMain
 
                 Case "nCostOperations"
                     Dim lobjfrmLaunch As New frmLaunch()
-                    Label9.Text = "Click on the 'Launch' button below to maintain Job Costing for Cost Operations"
+                    ' Label9.Text = "Click on the 'Launch' button below to maintain Job Costing for Cost Operations"
                     'lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Job Costing for Cost Operations"
                     'lobjfrmLaunch.btn_Launch.Focus()
                     'If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
@@ -836,7 +836,8 @@ Public Class frmMain
             param(6) = New SqlParameter("@isActive", IIf(chkrptdefinitaionActive.Checked, 1, 0))
             param(7) = New SqlParameter("@PreviewImg", bImage)
             param(8) = New SqlParameter("@user", mstrUserId)
-            param(9) = New SqlParameter("@ReportIDKey", IIf(action = clsConfigDmac.Actions.Edit, DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(0), 0))
+            param(9) = New SqlParameter("@ReportIDKey", txt_Printer.Text.Trim())
+            param(10) = New SqlParameter("@PrinterName", IIf(action = clsConfigDmac.Actions.Edit, DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(0), 0))
             lobjDataTable = oExcelSS.getDataTable("uspConfiguration_IURepDefinitions", True, param)
             MsgBox("Information Inserted/Updated successfully", MsgBoxStyle.Information)
         Catch ex As Exception
@@ -1970,7 +1971,7 @@ begin:
                 cboReportGroup.SelectedIndex = -1
                 Dim lobjDataTable As DataTable = Nothing
                 Dim lintindex As Integer = 0
-                lobjDataTable = oExcelSS.getDataTable("select CategoryIDKey,GroupIDKey,Description,ReportFileName,Note,isActive,isDeleted,PreviewImg from ReportDefs where ReportIDKey=" & CType(e.Node.Tag, Data.DataRow).Item(0), False)
+                lobjDataTable = oExcelSS.getDataTable("select CategoryIDKey,GroupIDKey,Description,ReportFileName,Note,isActive,isDeleted,PreviewImg,PrinterName from ReportDefs where ReportIDKey=" & CType(e.Node.Tag, Data.DataRow).Item(0), False)
                 If lobjDataTable IsNot Nothing AndAlso lobjDataTable.Rows.Count > 0 Then
                     Dim lstrCategory As String = ""
                     Dim lstrGroup As String = ""
@@ -2005,6 +2006,11 @@ begin:
                     txt_ReportID.Text = CType(e.Node.Tag, Data.DataRow).Item(3)
                     txt_Notes.Text = lobjDataTable.Rows(0)(4)
                     txt_RemoteFileName.Text = lobjDataTable.Rows(0)(3)
+                    If (Not IsDBNull(lobjDataTable.Rows(0)(8))) Then
+                        txt_Printer.Text = lobjDataTable.Rows(0)(8)
+                    Else
+                        txt_Printer.Text = ""
+                    End If
                     chkrptdefinitaionActive.Checked = lobjDataTable.Rows(0)(5)
                     If (Not IsDBNull(lobjDataTable.Rows(0)(7))) AndAlso (Not DirectCast(lobjDataTable.Rows(0)(7), Byte()).Length = 1) AndAlso (Not DirectCast(lobjDataTable.Rows(0)(7), Byte())(0) = 0) Then
                         Using ms As New IO.MemoryStream(CType(lobjDataTable.Rows(0)(7), Byte()))

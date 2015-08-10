@@ -395,10 +395,14 @@ Public Class Main
                                     Dim Node2 As New TreeNode
                                     Node2.Tag = row3(0)
                                     Node2.Text = row3(1)
+                                    If Not System.DBNull.Value.Equals(row3(3)) Then
+                                        Node2.Name = row3(3)
+                                    End If
                                     If row3(2).ToString.Trim.Length = 0 Then
                                         Node2.ToolTipText = "No description available."
                                     Else
                                         Node2.ToolTipText = row3(2)
+
                                     End If
                                     Node1.Nodes.Add(Node2)
                                 Next
@@ -460,6 +464,7 @@ Public Class Main
                 End If
             End If
         Catch ex As Exception
+            ErrorLog("btnLogin_Click Error## " + ex.Message.ToString())
             Return False
         End Try
         Return True

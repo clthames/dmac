@@ -22,18 +22,16 @@ Partial Class frmPrincipal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.rvPrin = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.rvPrin = New dmacReports.ReportViewerExtended()
         Me.SuspendLayout()
         '
         'rvPrin
         '
-        Me.rvPrin.AutoSize = True
         Me.rvPrin.Dock = System.Windows.Forms.DockStyle.Fill
         Me.rvPrin.Location = New System.Drawing.Point(0, 0)
         Me.rvPrin.Name = "rvPrin"
         Me.rvPrin.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Remote
-        Me.rvPrin.ServerReport.ReportServerUrl = New System.Uri("", System.UriKind.Relative)
-        Me.rvPrin.ShowCredentialPrompts = False
+        Me.rvPrin.ShowPrintButton = False
         Me.rvPrin.Size = New System.Drawing.Size(966, 665)
         Me.rvPrin.TabIndex = 0
         '
@@ -48,9 +46,7 @@ Partial Class frmPrincipal
         Me.Text = "DMAC Report Viewer"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents rvPrin As Microsoft.Reporting.WinForms.ReportViewer
 
 End Class
