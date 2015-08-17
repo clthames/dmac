@@ -84,6 +84,8 @@ Partial Class frmMain
         Me.trvwReportDefinition = New System.Windows.Forms.TreeView()
         Me.pbPreview = New System.Windows.Forms.PictureBox()
         Me.pnlReportDefinitions = New System.Windows.Forms.Panel()
+        Me.txt_Printer = New System.Windows.Forms.TextBox()
+        Me.lblPrinter = New System.Windows.Forms.Label()
         Me.txt_RemoteFileName = New System.Windows.Forms.TextBox()
         Me.lblRemoteFileName = New System.Windows.Forms.Label()
         Me.txt_Notes = New System.Windows.Forms.RichTextBox()
@@ -153,8 +155,6 @@ Partial Class frmMain
         Me.cboUsers = New System.Windows.Forms.ComboBox()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.opdImageDialog = New System.Windows.Forms.OpenFileDialog()
-        Me.txt_Printer = New System.Windows.Forms.TextBox()
-        Me.lblPrinter = New System.Windows.Forms.Label()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.scMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.scMain.Panel1.SuspendLayout()
@@ -411,9 +411,9 @@ Partial Class frmMain
         '
         Me.pbPreview.BackColor = System.Drawing.Color.White
         Me.pbPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pbPreview.Location = New System.Drawing.Point(424, 359)
+        Me.pbPreview.Location = New System.Drawing.Point(424, 375)
         Me.pbPreview.Name = "pbPreview"
-        Me.pbPreview.Size = New System.Drawing.Size(510, 299)
+        Me.pbPreview.Size = New System.Drawing.Size(510, 283)
         Me.pbPreview.TabIndex = 15
         Me.pbPreview.TabStop = False
         '
@@ -437,9 +437,25 @@ Partial Class frmMain
         Me.pnlReportDefinitions.Controls.Add(Me.lblReportID)
         Me.pnlReportDefinitions.Location = New System.Drawing.Point(424, 9)
         Me.pnlReportDefinitions.Name = "pnlReportDefinitions"
-        Me.pnlReportDefinitions.Size = New System.Drawing.Size(510, 346)
+        Me.pnlReportDefinitions.Size = New System.Drawing.Size(510, 360)
         Me.pnlReportDefinitions.TabIndex = 2
         Me.pnlReportDefinitions.Visible = False
+        '
+        'txt_Printer
+        '
+        Me.txt_Printer.Location = New System.Drawing.Point(140, 228)
+        Me.txt_Printer.Name = "txt_Printer"
+        Me.txt_Printer.Size = New System.Drawing.Size(350, 20)
+        Me.txt_Printer.TabIndex = 14
+        '
+        'lblPrinter
+        '
+        Me.lblPrinter.AutoSize = True
+        Me.lblPrinter.Location = New System.Drawing.Point(19, 228)
+        Me.lblPrinter.Name = "lblPrinter"
+        Me.lblPrinter.Size = New System.Drawing.Size(40, 13)
+        Me.lblPrinter.TabIndex = 13
+        Me.lblPrinter.Text = "Printer:"
         '
         'txt_RemoteFileName
         '
@@ -461,14 +477,14 @@ Partial Class frmMain
         '
         Me.txt_Notes.Location = New System.Drawing.Point(140, 264)
         Me.txt_Notes.Name = "txt_Notes"
-        Me.txt_Notes.Size = New System.Drawing.Size(350, 52)
+        Me.txt_Notes.Size = New System.Drawing.Size(350, 68)
         Me.txt_Notes.TabIndex = 9
         Me.txt_Notes.Text = ""
         '
         'chkrptdefinitaionActive
         '
         Me.chkrptdefinitaionActive.AutoSize = True
-        Me.chkrptdefinitaionActive.Location = New System.Drawing.Point(139, 326)
+        Me.chkrptdefinitaionActive.Location = New System.Drawing.Point(139, 338)
         Me.chkrptdefinitaionActive.Name = "chkrptdefinitaionActive"
         Me.chkrptdefinitaionActive.Size = New System.Drawing.Size(67, 17)
         Me.chkrptdefinitaionActive.TabIndex = 9
@@ -1079,22 +1095,6 @@ Partial Class frmMain
         '
         Me.opdImageDialog.FileName = "opdImageDialog"
         Me.opdImageDialog.Filter = "JPEG files|*.jpeg|JPG Files|*.jpg|PNG Files|*.png|GIF Files|*.gif"
-        '
-        'txt_Printer
-        '
-        Me.txt_Printer.Location = New System.Drawing.Point(140, 228)
-        Me.txt_Printer.Name = "txt_Printer"
-        Me.txt_Printer.Size = New System.Drawing.Size(350, 20)
-        Me.txt_Printer.TabIndex = 14
-        '
-        'lblPrinter
-        '
-        Me.lblPrinter.AutoSize = True
-        Me.lblPrinter.Location = New System.Drawing.Point(19, 228)
-        Me.lblPrinter.Name = "lblPrinter"
-        Me.lblPrinter.Size = New System.Drawing.Size(40, 13)
-        Me.lblPrinter.TabIndex = 13
-        Me.lblPrinter.Text = "Printer:"
         '
         'frmMain
         '

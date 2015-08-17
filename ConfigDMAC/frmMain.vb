@@ -826,7 +826,7 @@ Public Class frmMain
             bImage = New Byte() {0}
         End If
         Try
-            Dim param As SqlParameter() = New SqlParameter(9) {}
+            Dim param As SqlParameter() = New SqlParameter(10) {}
             param(0) = New SqlParameter("@GroupIDKey", cboReportGroup.SelectedValue)
             param(1) = New SqlParameter("@CategoryIDKey", cboRportCategory.SelectedValue)
             param(2) = New SqlParameter("@ReportID ", txt_ReportID.Text.Trim())
@@ -836,8 +836,13 @@ Public Class frmMain
             param(6) = New SqlParameter("@isActive", IIf(chkrptdefinitaionActive.Checked, 1, 0))
             param(7) = New SqlParameter("@PreviewImg", bImage)
             param(8) = New SqlParameter("@user", mstrUserId)
-            param(9) = New SqlParameter("@ReportIDKey", txt_Printer.Text.Trim())
-            param(10) = New SqlParameter("@PrinterName", IIf(action = clsConfigDmac.Actions.Edit, DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(0), 0))
+            param(9) = New SqlParameter("@ReportIDKey", IIf(action = clsConfigDmac.Actions.Edit, DirectCast(trvwReportDefinition.SelectedNode.Tag, System.Data.DataRow).Item(0), 0))
+            If Not String.IsNullOrEmpty(txt_Printer.Text) Then
+                param(10) = New SqlParameter("@PrinterName", txt_Printer.Text.Trim)
+            Else
+                param(10) = New SqlParameter("@PrinterName", "")
+            End If
+
             lobjDataTable = oExcelSS.getDataTable("uspConfiguration_IURepDefinitions", True, param)
             MsgBox("Information Inserted/Updated successfully", MsgBoxStyle.Information)
         Catch ex As Exception

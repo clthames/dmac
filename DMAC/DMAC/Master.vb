@@ -440,7 +440,7 @@ Public Class Master
                 closeOpenForms()
                 success = True
                 Dim lobjStartInfo As New ProcessStartInfo(executeFilePath)
-                lobjStartInfo.Arguments = ReportName & " " & PrinterName
+                lobjStartInfo.Arguments = ReportName & " " & """" & PrinterName & """"
                 Process.Start(lobjStartInfo)
             Else
                 MsgBox("Report Utility not installed yet." & executeFilePath)

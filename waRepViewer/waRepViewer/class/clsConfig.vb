@@ -230,6 +230,7 @@ Public Class clsConfig
             varReportName = claPrin.Item(0)
             If claPrin.Count > 1 Then
                 varPrinterName = claPrin.Item(1)
+
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
