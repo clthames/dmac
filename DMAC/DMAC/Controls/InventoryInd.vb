@@ -12,7 +12,7 @@
     Public Sub GetInventoryIndInfo()
         'Dim imgFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath & "\" & oExcelSS.AppFolderName)
         'chg102015ly change all paths to only use AppFolderName
-        Dim imgFilePath As String = & "\" & oExcelSS.AppFolderName
+        Dim imgFilePath As String = "\" & oExcelSS.AppFolderName
         Dim dt As New DataTable
         dt = oExcelSS.getDataTable("uspGadget_GetInventoryIndicator", True)
         SetUpdateLabel()
