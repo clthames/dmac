@@ -12,7 +12,9 @@ Module Main
         LoadSettings()
         Dim msg As String = oExcelSS.AppInit()
         If msg = "" Then
-            Dim Path As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath & "\" & oExcelSS.AppFolderName) & "\"
+            'Dim Path As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath & "\" & oExcelSS.AppFolderName) & "\"
+            'chg102015ly change all path statements to use only AppFolderName
+            Dim Path As String = "\" & oExcelSS.AppFolderName & "\"
             loadCompany(Path & oExcelSS.IniAppFile)
             getLogoAndUrl(oExcelSS.logoURL)
             Application.EnableVisualStyles()

@@ -369,7 +369,9 @@ Public Class frmMain
         Try
             Dim parameter As String = String.Empty
             Dim executeFilePath As String = String.Empty
-            Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath) & "\" & oExcelSS.AppFolderName & "\"
+            'Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath) & "\" & oExcelSS.AppFolderName & "\"
+            'chg102015ly change all path statements to use only AppFolderName
+            Dim iniFilePath As String = "\" & oExcelSS.AppFolderName & "\"
             parameter = param
             executeFilePath = iniFilePath & executableFileName
             If IO.File.Exists(executeFilePath) Then

@@ -9,11 +9,10 @@ Imports System.IO
 Public Class Main
 
 #Region "Declarations"
-
-    Public x86PFilePath As String = Application.StartupPath
-    Public PFilePath As String = IIf(File.Exists("C:\Program Files\ExcelSS DMAC\dmac.ini"), "C:\Program Files", "C:\Program Files (x86)")
-    'Public PFilePath As String = IIf(File.Exists("C:\Archivos de Programa\ExcelSS DMAC\dmac.ini"), "C:\Archivos de Programa", "C:\Archivos de Programa (x86)")
-    Public xArchitecture As Boolean = IIf(InStr(LCase(Application.StartupPath), "bin") > 0, False, True)
+    'chg102015ly don't get these path variables . . we will only use AppFolderName which is declared as Dmac inn app config
+    'Public x86PFilePath As String = Application.StartupPath
+    'Public PFilePath As String = IIf(File.Exists("C:\Program Files\ExcelSS DMAC\dmac.ini"), "C:\Program Files", "C:\Program Files (x86)")
+    'Public xArchitecture As Boolean = IIf(InStr(LCase(Application.StartupPath), "bin") > 0, False, True)
     Public Shared connectionString As String
     Public companyarray As New ArrayList
     Public menuArray As New ArrayList
@@ -474,7 +473,9 @@ Public Class Main
         Try
             Dim port As String = String.Empty
             Dim TextLine As String
-            Dim Path As String = IIf(xArchitecture, x86PFilePath, PFilePath & "\" & AppFolderName) & "\"
+            'Dim Path As String = IIf(xArchitecture, x86PFilePath, PFilePath & "\" & AppFolderName) & "\"
+            'chg102015ly change all path statements to use only AppFolderName
+            Dim Path As String = "\" & AppFolderName & "\"
             If Directory.Exists(Path) Then
                 Dim objReader As New System.IO.StreamReader(Path & IniAppFile)
                 Dim companyid As String = GetSetting(AppName:="DMAC", Section:="Session", Key:="CompanyID")
@@ -1120,7 +1121,9 @@ Public Class Main
         'Dim isConnected As Boolean = False
         Dim msg As String = ""
         Try
-            Dim Path As String = IIf(xArchitecture, x86PFilePath, PFilePath & "\" & AppFolderName) & "\"
+            'Dim Path As String = IIf(xArchitecture, x86PFilePath, PFilePath & "\" & AppFolderName) & "\"
+            'chg102015ly change all path statements to use only AppFolderName
+            Dim Path As String = "\" & AppFolderName & "\"
             Dim directoryPath As String, filePath As String
             directoryPath = Dir(Path)
             filePath = Dir(Path & IniAppFile)

@@ -262,7 +262,9 @@ Public Class clsConfig
     End Sub
     Public Sub ExtractLinesfromINI()
         Try
-            Dim pathF As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath & "\" & oExcelSS.AppFolderName) & "\" & oExcelSS.IniAppFile
+            'Dim pathF As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath & "\" & oExcelSS.AppFolderName) & "\" & oExcelSS.IniAppFile
+            'chg102015ly change all path statements to use only AppFolderName
+            Dim pathF As String = "\" & oExcelSS.AppFolderName & "\" & oExcelSS.IniAppFile
             If File.Exists(pathF) Then
                 srIni = New StreamReader(pathF)
                 While Not srIni.EndOfStream

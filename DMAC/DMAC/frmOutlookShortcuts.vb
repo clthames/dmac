@@ -376,7 +376,9 @@ Public Class frmOutlookShortcuts
     End Sub
     Private Sub btnChooseShortcuts_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnChooseShortcuts.Click
         Try
-            Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath)
+            'Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath)
+            'chg102015ly change all path statements to use only AppFolderName (setting to blank here because AppFolderName is added below
+            Dim iniFilePath As String = ""
             If radProgram.Checked Then
                 oExcelSS.shortcutFor = "Program"
             ElseIf radReport.Checked Then
@@ -509,8 +511,10 @@ Public Class frmOutlookShortcuts
             radCustom.Enabled = True
             radDocument.Enabled = True
             btnReportParameters.Enabled = True
-            Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath)
-            Dim executeFilePath As String = iniFilePath & "\" & oExcelSS.AppFolderName & "\images\dmac-icon1.ico"
+            'Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath)
+            'Dim executeFilePath As String = iniFilePath & "\" & oExcelSS.AppFolderName & "\images\dmac-icon1.ico"
+            'chg102015ly change all path statements to just use AppFolderName
+            Dim executeFilePath As String = "\" & oExcelSS.AppFolderName & "\images\dmac-icon1.ico"
             If IO.File.Exists(executeFilePath) Then
                 Using ms As MemoryStream = New MemoryStream
                     Dim fs As New IO.FileStream(executeFilePath, IO.FileMode.Open, IO.FileAccess.Read)
