@@ -9,10 +9,13 @@ Imports System.IO
 Public Class Main
 
 #Region "Declarations"
-    'chg102015ly don't get these path variables . . we will only use AppFolderName which is declared as Dmac inn app config
+    'chg102015ly don't get these path variables . . we will only use appath
     'Public x86PFilePath As String = Application.StartupPath
     'Public PFilePath As String = IIf(File.Exists("C:\Program Files\ExcelSS DMAC\dmac.ini"), "C:\Program Files", "C:\Program Files (x86)")
     'Public xArchitecture As Boolean = IIf(InStr(LCase(Application.StartupPath), "bin") > 0, False, True)
+    'dmacbuild - folder where build is located.  If this is startupPath we know this is run in environment so set path to \Dmac (all developers should make a path to \Dmac to run
+    Public DevPath As String = IIf(GetSetting(AppName:="DMAC", Section:="Session", Key:="DeveloperPath") <> "", GetSetting(AppName:="DMAC", Section:="Session", Key:="DeveloperPath"), "\Dmac")
+    Public AppPath As String = IIf(InStr(LCase(Application.StartupPath), "dmacbuild") > 0, DevPath, Application.StartupPath)
     Public Shared connectionString As String
     Public companyarray As New ArrayList
     Public menuArray As New ArrayList
@@ -475,7 +478,7 @@ Public Class Main
             Dim TextLine As String
             'Dim Path As String = IIf(xArchitecture, x86PFilePath, PFilePath & "\" & AppFolderName) & "\"
             'chg102015ly change all path statements to use only AppFolderName
-            Dim Path As String = "\" & AppFolderName & "\"
+            Dim Path As String = AppPath & "\"
             If Directory.Exists(Path) Then
                 Dim objReader As New System.IO.StreamReader(Path & IniAppFile)
                 Dim companyid As String = GetSetting(AppName:="DMAC", Section:="Session", Key:="CompanyID")
@@ -1123,7 +1126,7 @@ Public Class Main
         Try
             'Dim Path As String = IIf(xArchitecture, x86PFilePath, PFilePath & "\" & AppFolderName) & "\"
             'chg102015ly change all path statements to use only AppFolderName
-            Dim Path As String = "\" & AppFolderName & "\"
+            Dim Path As String = AppPath & "\"
             Dim directoryPath As String, filePath As String
             directoryPath = Dir(Path)
             filePath = Dir(Path & IniAppFile)

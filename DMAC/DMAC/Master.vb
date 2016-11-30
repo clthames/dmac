@@ -162,6 +162,8 @@ Public Class Master
                     menuArray.Add(New MenuList(Convert.ToString(row("MenuName")), Convert.ToString(row("ModuleID")), Convert.ToString(row("RunProgram"))))
                     'Toolstrip Buttons always Enabled
                     tsScreenshot.Enabled = True
+                    Dim testing As String
+                    testing = Convert.ToString(row("RunProgram"))
                     ToolStripButton1.Enabled = True
                     tsActiveCompany.Enabled = True
                     tsLogintime.Enabled = True
@@ -434,7 +436,7 @@ Public Class Master
             Dim executeFilePath As String = String.Empty
             'Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath & "\" & oExcelSS.AppFolderName) & "\"
             'chg102015ly change all path statements to use only AppFolderName
-            Dim iniFilePath As String = "\" & oExcelSS.AppFolderName & "\"
+            Dim iniFilePath As String = oExcelSS.AppPath & "\"
             executeFilePath = iniFilePath & oExcelSS.ReportToolName
             If IO.File.Exists(executeFilePath) Then
                 ' open when the child form is open -------- if external program is opep, it must be closed
@@ -460,13 +462,13 @@ Public Class Master
             Dim executeFilePath As String = String.Empty
             If shortcutType = "Program" Then
                 'Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath)
-                'chg102015ly change all path statements to use only AppFolderName (in this case appfoldername is added below so I just set this to blank)
-                Dim iniFilePath As String = ""
+                'chg102015ly change all path statements to use only AppFolderName 
+                Dim iniFilePath As String = oExcelSS.AppPath
                 executableFileName = currentItem.Split(" ")(0) & IIf(currentItem.Split(" ")(0).EndsWith(".exe"), "", ".exe")
                 If currentItem.Split(" ").Length > 1 Then
                     parameter = currentItem.ToString().Split(" ")(1)
                 End If
-                executeFilePath = iniFilePath & "\" & oExcelSS.AppFolderName & "\" & executableFileName
+                executeFilePath = oExcelSS.AppPath & "\" & executableFileName
             Else
                 executeFilePath = currentItem
             End If
@@ -575,14 +577,14 @@ Public Class Master
                     Dim param As String = String.Empty
                     'Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath & "\" & oExcelSS.AppFolderName) & "\"
                     'chg102015ly change all path statements to use only AppFolderName
-                    Dim iniFilePath As String = "\" & oExcelSS.AppFolderName & "\"
+                    Dim iniFilePath As String = oExcelSS.AppPath & "\"
                     Dim executableFileName As String = obj.getMenuRunProgram().ToString().Split(" ")(0) '& ".exe"
                     If obj.getMenuRunProgram().ToString().Split(" ").Length > 1 Then
                         parameter = obj.getMenuRunProgram().ToString().Split(" ")(1)
                     End If
                     Dim executeFilePath As String = ""
                     If executableFileName = "reports.exe" Then
-                        executeFilePath = iniFilePath & "\" & oExcelSS.AppFolderName & "\" & oExcelSS.ReportToolName
+                        executeFilePath = iniFilePath & oExcelSS.ReportToolName
                         szReportName = currentMenuItem.Text.Replace(" ", "_")
                         param = "DMAC-Menu " & parameter & " " & szReportName
                         parameter = param
@@ -707,7 +709,7 @@ Public Class Master
             Dim executeFilePath As String = String.Empty
             'Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath & "\" & oExcelSS.AppFolderName) & "\"
             'chg102015ly change all path statements to use only AppFolderName
-            Dim iniFilePath As String = "\" & oExcelSS.AppFolderName & "\"
+            Dim iniFilePath As String = oExcelSS.AppPath & "\"
             executeFilePath = iniFilePath & shellName
             If IO.File.Exists(executeFilePath) Then
                 closeOpenForms()

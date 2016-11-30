@@ -378,7 +378,7 @@ Public Class frmOutlookShortcuts
         Try
             'Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath)
             'chg102015ly change all path statements to use only AppFolderName (setting to blank here because AppFolderName is added below
-            Dim iniFilePath As String = ""
+            Dim iniFilePath As String = oExcelSS.AppPath
             If radProgram.Checked Then
                 oExcelSS.shortcutFor = "Program"
             ElseIf radReport.Checked Then
@@ -419,7 +419,7 @@ Public Class frmOutlookShortcuts
                             If PictureBox1.Image Is Nothing Then
                                 Select Case extension.Trim.ToLower
                                     Case "docx", "doc"
-                                        Dim docimage As String = iniFilePath & "\" & oExcelSS.AppFolderName & "\images\word16.ico"
+                                        Dim docimage As String = oExcelSS.AppPath & "\images\word16.ico"
                                         If isImageExist(docimage) Then
                                             Dim fs As New IO.FileStream(docimage, IO.FileMode.Open, IO.FileAccess.Read)
                                             Dim bt() As Byte = New Byte(fs.Length - 1) {}
@@ -428,7 +428,7 @@ Public Class frmOutlookShortcuts
                                             fs.Close()
                                         End If
                                     Case "xls", "xlsx"
-                                        Dim xlsimage As String = iniFilePath & "\" & oExcelSS.AppFolderName & "\images\excel16.ico"
+                                        Dim xlsimage As String = oExcelSS.AppPath & "\images\excel16.ico"
                                         If isImageExist(xlsimage) Then
                                             Dim fs As New IO.FileStream(xlsimage, IO.FileMode.Open, IO.FileAccess.Read)
                                             Dim bt() As Byte = New Byte(fs.Length - 1) {}
@@ -437,7 +437,7 @@ Public Class frmOutlookShortcuts
                                             fs.Close()
                                         End If
                                     Case "pdf"
-                                        Dim pdfimage As String = iniFilePath & "\" & oExcelSS.AppFolderName & "\images\pdf16.ico"
+                                        Dim pdfimage As String = oExcelSS.AppPath & "\images\pdf16.ico"
                                         If isImageExist(pdfimage) Then
                                             Dim fs As New IO.FileStream(pdfimage, IO.FileMode.Open, IO.FileAccess.Read)
                                             Dim bt() As Byte = New Byte(fs.Length - 1) {}
@@ -512,9 +512,9 @@ Public Class frmOutlookShortcuts
             radDocument.Enabled = True
             btnReportParameters.Enabled = True
             'Dim iniFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath)
-            'Dim executeFilePath As String = iniFilePath & "\" & oExcelSS.AppFolderName & "\images\dmac-icon1.ico"
+            'Dim executeFilePath As String = iniFilePath & "\" & oExcelSS. & "\images\dmac-icon1.ico"
             'chg102015ly change all path statements to just use AppFolderName
-            Dim executeFilePath As String = "\" & oExcelSS.AppFolderName & "\images\dmac-icon1.ico"
+            Dim executeFilePath As String = oExcelSS.AppPath & "\images\dmac-icon1.ico"
             If IO.File.Exists(executeFilePath) Then
                 Using ms As MemoryStream = New MemoryStream
                     Dim fs As New IO.FileStream(executeFilePath, IO.FileMode.Open, IO.FileAccess.Read)

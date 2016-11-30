@@ -79,8 +79,13 @@ Public Class frmPrincipal
             ' PageSettings.PrinterSettings is changed.  This assumes there
             ' is a default printer.
             mobjPagesetings = New PageSettings()
-            mobjPagesetings.PaperSize = reportPageSettings.PaperSize
+            'mobjPagesetings.PaperSize = reportPageSettings.PaperSize
+            mobjPagesetings.PaperSize = New PaperSize("Letter", 1400, 850)
             mobjPagesetings.Margins = reportPageSettings.Margins
+            'mobjPagesetings.Margins.Left = 0
+            'mobjPagesetings.Margins.Right = 0
+            mobjPagesetings.Landscape = True
+
             Dim deviceInfo As String = CreateEMFDeviceInfo()
 
             ' Generating Image renderer pages one at a time can be expensive.  In order
@@ -124,6 +129,8 @@ Public Class frmPrincipal
     Private Sub PrintPage(ByVal sender As Object, ByVal ev As PrintPageEventArgs)
         Try
             Dim pageImage As New Metafile(mobjStreams(mintcurrentPageIndex))
+
+            ' MsgBox("Width = " & ev.PageBounds.Width.ToString() & ", Height = " & ev.PageBounds.Height.ToString())
 
             ' Adjust rectangular area with printer margins.
             Dim adjustedRect As New Rectangle(ev.PageBounds.Left - CInt(ev.PageSettings.HardMarginX), _
@@ -181,6 +188,58 @@ Public Class frmPrincipal
         Catch lobjException As Exception
             MessageBox.Show(lobjException.Message)
         End Try
+    End Sub
+
+    Public Sub PrintDocument()
+
+        Try
+            If mobjStreams Is Nothing OrElse mobjStreams.Count = 0 Then
+                Throw New Exception("Error: no stream to print.")
+            End If
+
+            Dim printDoc As New PrintDocument()
+            If Not String.IsNullOrEmpty(oConfig.PrinterName) Then
+
+                Dim lobjquery As System.Management.ObjectQuery = New System.Management.ObjectQuery("SELECT * from Win32_Printer where name like '%" & oConfig.PrinterName & "'")
+                Dim lobjSearcher As ManagementObjectSearcher = New ManagementObjectSearcher(lobjquery)
+                Dim lobjCollection As ManagementObjectCollection = lobjSearcher.Get()
+                oExcelSS.ErrorLog("Count: " & lobjCollection.Count)
+                For Each lobjprinter As ManagementObject In lobjCollection
+                    printDoc.PrinterSettings.PrinterName = lobjprinter.GetPropertyValue("Name")
+                    oExcelSS.ErrorLog("Printer Name:" & lobjprinter.GetPropertyValue("Name"))
+                Next
+                oExcelSS.ErrorLog("Printer Name:" & oConfig.PrinterName)
+            End If
+
+            Dim lobjPrintPermission As PrintingPermission = New PrintingPermission(System.Security.Permissions.PermissionState.Unrestricted)
+            lobjPrintPermission.Level = PrintingPermissionLevel.AllPrinting
+            printDoc.DefaultPageSettings.Landscape = mblnLandscape
+            printDoc.DefaultPageSettings.PaperSize = New PaperSize("Letter", 850, 1400)
+            mintcurrentPageIndex = 0
+            AddHandler printDoc.PrintPage, AddressOf PrintPage
+
+            'Dim dlgPrintPreview As New PrintPreviewDialog
+            'dlgPrintPreview.Document = printDoc
+            'dlgPrintPreview.ClientSize = New System.Drawing.Size(900, 800)
+            'dlgPrintPreview.Location = New System.Drawing.Point(50, 50)
+            'dlgPrintPreview.Name = "RptPrintPreviewDialog"
+            'dlgPrintPreview.MinimumSize = New System.Drawing.Size(375, 250)
+            'dlgPrintPreview.UseAntiAlias = True
+
+            'dlgPrintPreview.ShowDialog()
+
+            Dim dlgPrint As New PrintDialog
+            dlgPrint.Document = printDoc
+            
+            If dlgPrint.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                printDoc.Print()
+            End If
+
+
+        Catch lobjException As Exception
+            MessageBox.Show(lobjException.Message)
+        End Try
+
     End Sub
 
 End Class

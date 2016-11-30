@@ -7,7 +7,7 @@
         Dim dtPT As New DataTable
         'Dim imgFilePath As String = IIf(oExcelSS.xArchitecture, oExcelSS.x86PFilePath, oExcelSS.PFilePath & "\" & oExcelSS.AppFolderName)
         'chg102015ly change all path statements to use only AppFolderName
-        Dim imgFilePath As String = "\" & oExcelSS.AppFolderName
+        Dim imgFilePath As String = oExcelSS.AppPath
         dtPT = oExcelSS.getDataTable("uspReports_ProductionTrends", True)
         SetUpdateLabel()
         dgvProdTrends.Rows.Clear()

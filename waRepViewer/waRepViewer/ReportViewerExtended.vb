@@ -63,7 +63,8 @@ Public Class ReportViewerExtended
     Private Sub Printclicked(sender As Object, e As EventArgs)
         Try
             DirectCast(DirectCast(sender, System.Windows.Forms.ToolStripButton).GetCurrentParent.Parent.FindForm(), dmacReports.frmPrincipal).RenderAllServerReportPages(DirectCast(DirectCast(sender, System.Windows.Forms.ToolStripButton).GetCurrentParent.Parent.FindForm(), dmacReports.frmPrincipal).rvPrin.ServerReport)
-            DirectCast(DirectCast(sender, System.Windows.Forms.ToolStripButton).GetCurrentParent.Parent.FindForm(), dmacReports.frmPrincipal).Print()
+            'DirectCast(DirectCast(sender, System.Windows.Forms.ToolStripButton).GetCurrentParent.Parent.FindForm(), dmacReports.frmPrincipal).Print()
+            DirectCast(DirectCast(sender, System.Windows.Forms.ToolStripButton).GetCurrentParent.Parent.FindForm(), dmacReports.frmPrincipal).PrintDocument()
         Catch lobjException As Exception
             MessageBox.Show(lobjException.Message)
         End Try

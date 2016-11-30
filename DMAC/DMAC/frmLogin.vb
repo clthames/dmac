@@ -58,7 +58,7 @@ Public Class frmLogin
                             MsgBox("This User is already logged in", MsgBoxStyle.Critical, My.Resources.applicationTitle)
                     End Select
                 Else
-                    MsgBox("Missing excelss configuration file.  Please contact Excel Software Services for assistance", vbCritical, My.Resources.applicationTitle)
+                    MsgBox("Unable to log into Database.  Please contact Excel Software Services for assistance", vbCritical, My.Resources.applicationTitle)
                 End If
             End If
 
