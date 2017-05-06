@@ -56,8 +56,8 @@ Public Class ReportViewerExtended
     End Sub
 
     Private Sub EmailClicked(sender As Object, e As EventArgs)
-
-       
+        Dim frmEmail As New frmEmailOptions(Me)
+        frmEmail.ShowDialog()
     End Sub
 
     Private Sub Printclicked(sender As Object, e As EventArgs)
@@ -79,5 +79,32 @@ Public Class ReportViewerExtended
 
     End Sub
 
+    ''' <summary>
+    ''' Exports Report into PDF format and returns generated PDF filename as output
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function ExportReport() As String
+        Dim v_mimetype As String = ""
+        Dim v_encoding As String = ""
+        Dim v_filename_extension As String = ""
+        Dim v_streamids() As String
+        Dim o_warnings() As Microsoft.Reporting.WinForms.Warning
+        Dim fileName As String = Path.Combine(Path.GetTempPath() & ServerReport.ReportPath.Replace("/", "\") & Today.Year.ToString & Today.Month.ToString & Today.Day.ToString() &
+                                              DateTime.Now.Hour.ToString() & DateTime.Now.Minute.ToString() & DateTime.Now.Day.ToString() & ".PDF")
+        fileName = fileName.Replace("\\", "\")
+        Dim directoryName As String = Path.GetDirectoryName(fileName)
+
+        If Not Directory.Exists(directoryName) Then
+            Directory.CreateDirectory(directoryName)
+        End If
+
+        Dim content() As Byte = Me.ServerReport.Render("PDF", Nothing, v_mimetype, v_encoding, v_filename_extension, v_streamids, o_warnings)
+        Using fs As New IO.FileStream(fileName, IO.FileMode.Create)
+            fs.Write(content, 0, content.Length)
+        End Using
+
+        Return fileName
+    End Function
 
 End Class

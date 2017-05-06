@@ -582,6 +582,43 @@ Public Class Main
         Finally
         End Try
     End Sub
+
+    Public Function ExecuteProc(ByVal sql As String,
+                             Optional ByVal parameters_values As SqlParameter() = Nothing,
+                             Optional ByVal outputParam As String = Nothing) As Boolean
+        Dim ret As Integer = 0
+        'Dim transaction As SqlTransaction = Nothing
+        Dim strOut As String = String.Empty
+        Try
+            Using sqlconnection As New SqlConnection(connectionString)
+                If sqlconnection.State = ConnectionState.Closed Then
+                    sqlconnection.Open()
+                End If
+                Using sqlcommand As New SqlCommand
+                    sqlcommand.Connection = sqlconnection
+                    'transaction = sqlcommand.Connection.BeginTransaction
+
+                    'sqlcommand.Transaction = transaction
+                    sqlcommand.CommandText = sql
+                    sqlcommand.CommandType = CommandType.StoredProcedure
+                    If Not parameters_values Is Nothing Then
+                        For Each param As SqlParameter In parameters_values
+                            sqlcommand.Parameters.Add(param)
+                        Next
+                    End If
+                    If Not outputParam Is Nothing Then
+                        sqlcommand.Parameters.Add(outputParam, SqlDbType.VarChar, 1000).Direction = ParameterDirection.Output
+                    End If
+                    ret = sqlcommand.ExecuteNonQuery
+
+                End Using
+            End Using
+        Catch ex As Exception
+            ErrorLog("Data Layer ExecuteProc() ##" + ex.Message.ToString())
+        End Try
+        Return ret > 0
+    End Function
+
     Public Function saveData(ByVal sql As String,
                              Optional ByVal parameters_values As SqlParameter() = Nothing,
                              Optional ByVal outputParam As String = Nothing,
