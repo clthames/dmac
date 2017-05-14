@@ -78,6 +78,14 @@ Partial Class frmMain
         Me.tsExit = New System.Windows.Forms.ToolStripButton()
         Me.scMain = New System.Windows.Forms.SplitContainer()
         Me.trvOptions = New System.Windows.Forms.TreeView()
+        Me.UsrSalesCode1 = New ConfigDMAC.usrSalesCode()
+        Me.tbcntrl_ProfileAccess = New System.Windows.Forms.TabControl()
+        Me.tbpg_Roles = New System.Windows.Forms.TabPage()
+        Me.tcCompany = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.pnlCompanyInfo = New System.Windows.Forms.Panel()
+        Me.tcReports = New System.Windows.Forms.TabControl()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.tbcReportDefinition = New System.Windows.Forms.TabControl()
         Me.tbpg_ReportDefinition = New System.Windows.Forms.TabPage()
         Me.btnAssignImage = New System.Windows.Forms.Button()
@@ -99,8 +107,6 @@ Partial Class frmMain
         Me.lbl_ReportDescription = New System.Windows.Forms.Label()
         Me.txt_ReportID = New System.Windows.Forms.TextBox()
         Me.lblReportID = New System.Windows.Forms.Label()
-        Me.tcReports = New System.Windows.Forms.TabControl()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.trvwReportCategories = New System.Windows.Forms.TreeView()
         Me.pnlRepCategories = New System.Windows.Forms.Panel()
         Me.chkRepCatIA = New System.Windows.Forms.CheckBox()
@@ -108,9 +114,6 @@ Partial Class frmMain
         Me.cboRepGroupCat = New System.Windows.Forms.ComboBox()
         Me.txtRepCategoryName = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
-        Me.tcCompany = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.pnlCompanyInfo = New System.Windows.Forms.Panel()
         Me.txtCoFax = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.txtCoWebS = New System.Windows.Forms.TextBox()
@@ -121,8 +124,6 @@ Partial Class frmMain
         Me.Label12 = New System.Windows.Forms.Label()
         Me.txtCoName = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.tbcntrl_ProfileAccess = New System.Windows.Forms.TabControl()
-        Me.tbpg_Roles = New System.Windows.Forms.TabPage()
         Me.pnlProfiles = New System.Windows.Forms.Panel()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.chklbPermissions = New System.Windows.Forms.FlowLayoutPanel()
@@ -160,18 +161,18 @@ Partial Class frmMain
         Me.scMain.Panel1.SuspendLayout()
         Me.scMain.Panel2.SuspendLayout()
         Me.scMain.SuspendLayout()
+        Me.tbcntrl_ProfileAccess.SuspendLayout()
+        Me.tbpg_Roles.SuspendLayout()
+        Me.tcCompany.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        Me.pnlCompanyInfo.SuspendLayout()
+        Me.tcReports.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
         Me.tbcReportDefinition.SuspendLayout()
         Me.tbpg_ReportDefinition.SuspendLayout()
         CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlReportDefinitions.SuspendLayout()
-        Me.tcReports.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
         Me.pnlRepCategories.SuspendLayout()
-        Me.tcCompany.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
-        Me.pnlCompanyInfo.SuspendLayout()
-        Me.tbcntrl_ProfileAccess.SuspendLayout()
-        Me.tbpg_Roles.SuspendLayout()
         Me.pnlProfiles.SuspendLayout()
         Me.tcProfiles.SuspendLayout()
         Me.Information.SuspendLayout()
@@ -265,9 +266,7 @@ Partial Class frmMain
         '
         'scMain.Panel2
         '
-        Me.scMain.Panel2.Controls.Add(Me.tbcReportDefinition)
-        Me.scMain.Panel2.Controls.Add(Me.tcReports)
-        Me.scMain.Panel2.Controls.Add(Me.tcCompany)
+        Me.scMain.Panel2.Controls.Add(Me.UsrSalesCode1)
         Me.scMain.Panel2.Controls.Add(Me.tbcntrl_ProfileAccess)
         Me.scMain.Panel2.Controls.Add(Me.tcProfiles)
         Me.scMain.Size = New System.Drawing.Size(1182, 696)
@@ -289,7 +288,7 @@ Partial Class frmMain
         TreeNode4.Text = "Access"
         TreeNode5.Name = "Node19"
         TreeNode5.Text = "Options"
-        TreeNode6.Name = "Node20"
+        TreeNode6.Name = "nSalesCodes"
         TreeNode6.Text = "Sales Codes"
         TreeNode7.Name = "nOptions"
         TreeNode7.Text = "Invoice Options"
@@ -367,10 +366,105 @@ Partial Class frmMain
         Me.trvOptions.Size = New System.Drawing.Size(215, 696)
         Me.trvOptions.TabIndex = 0
         '
+        'UsrSalesCode1
+        '
+        Me.UsrSalesCode1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.UsrSalesCode1.Location = New System.Drawing.Point(0, 0)
+        Me.UsrSalesCode1.Name = "UsrSalesCode1"
+        Me.UsrSalesCode1.Size = New System.Drawing.Size(963, 696)
+        Me.UsrSalesCode1.TabIndex = 4
+        '
+        'tbcntrl_ProfileAccess
+        '
+        Me.tbcntrl_ProfileAccess.Controls.Add(Me.tbpg_Roles)
+        Me.tbcntrl_ProfileAccess.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tbcntrl_ProfileAccess.Location = New System.Drawing.Point(0, 0)
+        Me.tbcntrl_ProfileAccess.Name = "tbcntrl_ProfileAccess"
+        Me.tbcntrl_ProfileAccess.SelectedIndex = 0
+        Me.tbcntrl_ProfileAccess.Size = New System.Drawing.Size(963, 696)
+        Me.tbcntrl_ProfileAccess.TabIndex = 3
+        '
+        'tbpg_Roles
+        '
+        Me.tbpg_Roles.Controls.Add(Me.tcCompany)
+        Me.tbpg_Roles.Controls.Add(Me.pnlProfiles)
+        Me.tbpg_Roles.Controls.Add(Me.cboProfiles)
+        Me.tbpg_Roles.Controls.Add(Me.Label6)
+        Me.tbpg_Roles.Location = New System.Drawing.Point(4, 22)
+        Me.tbpg_Roles.Name = "tbpg_Roles"
+        Me.tbpg_Roles.Padding = New System.Windows.Forms.Padding(3)
+        Me.tbpg_Roles.Size = New System.Drawing.Size(955, 670)
+        Me.tbpg_Roles.TabIndex = 0
+        Me.tbpg_Roles.Text = "Roles"
+        Me.tbpg_Roles.UseVisualStyleBackColor = True
+        '
+        'tcCompany
+        '
+        Me.tcCompany.Controls.Add(Me.TabPage1)
+        Me.tcCompany.Location = New System.Drawing.Point(14, 25)
+        Me.tcCompany.Name = "tcCompany"
+        Me.tcCompany.SelectedIndex = 0
+        Me.tcCompany.Size = New System.Drawing.Size(951, 688)
+        Me.tcCompany.TabIndex = 2
+        Me.tcCompany.Visible = False
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.pnlCompanyInfo)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(943, 662)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Information"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'pnlCompanyInfo
+        '
+        Me.pnlCompanyInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlCompanyInfo.Controls.Add(Me.tcReports)
+        Me.pnlCompanyInfo.Controls.Add(Me.txtCoFax)
+        Me.pnlCompanyInfo.Controls.Add(Me.Label17)
+        Me.pnlCompanyInfo.Controls.Add(Me.txtCoWebS)
+        Me.pnlCompanyInfo.Controls.Add(Me.Label16)
+        Me.pnlCompanyInfo.Controls.Add(Me.txtCoPhone)
+        Me.pnlCompanyInfo.Controls.Add(Me.Label15)
+        Me.pnlCompanyInfo.Controls.Add(Me.txtCoAddress)
+        Me.pnlCompanyInfo.Controls.Add(Me.Label12)
+        Me.pnlCompanyInfo.Controls.Add(Me.txtCoName)
+        Me.pnlCompanyInfo.Controls.Add(Me.Label10)
+        Me.pnlCompanyInfo.Enabled = False
+        Me.pnlCompanyInfo.Location = New System.Drawing.Point(9, 9)
+        Me.pnlCompanyInfo.Name = "pnlCompanyInfo"
+        Me.pnlCompanyInfo.Size = New System.Drawing.Size(379, 265)
+        Me.pnlCompanyInfo.TabIndex = 0
+        '
+        'tcReports
+        '
+        Me.tcReports.Controls.Add(Me.TabPage2)
+        Me.tcReports.Location = New System.Drawing.Point(3, 16)
+        Me.tcReports.Name = "tcReports"
+        Me.tcReports.SelectedIndex = 0
+        Me.tcReports.Size = New System.Drawing.Size(948, 691)
+        Me.tcReports.TabIndex = 2
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.tbcReportDefinition)
+        Me.TabPage2.Controls.Add(Me.trvwReportCategories)
+        Me.TabPage2.Controls.Add(Me.pnlRepCategories)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(940, 665)
+        Me.TabPage2.TabIndex = 0
+        Me.TabPage2.Text = "Report Categories"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
         'tbcReportDefinition
         '
         Me.tbcReportDefinition.Controls.Add(Me.tbpg_ReportDefinition)
-        Me.tbcReportDefinition.Location = New System.Drawing.Point(6, 0)
+        Me.tbcReportDefinition.Location = New System.Drawing.Point(50, 50)
         Me.tbcReportDefinition.Name = "tbcReportDefinition"
         Me.tbcReportDefinition.SelectedIndex = 0
         Me.tbcReportDefinition.Size = New System.Drawing.Size(947, 694)
@@ -567,27 +661,6 @@ Partial Class frmMain
         Me.lblReportID.TabIndex = 0
         Me.lblReportID.Text = "Report ID:"
         '
-        'tcReports
-        '
-        Me.tcReports.Controls.Add(Me.TabPage2)
-        Me.tcReports.Location = New System.Drawing.Point(11, 2)
-        Me.tcReports.Name = "tcReports"
-        Me.tcReports.SelectedIndex = 0
-        Me.tcReports.Size = New System.Drawing.Size(948, 691)
-        Me.tcReports.TabIndex = 2
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Controls.Add(Me.trvwReportCategories)
-        Me.TabPage2.Controls.Add(Me.pnlRepCategories)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(940, 665)
-        Me.TabPage2.TabIndex = 0
-        Me.TabPage2.Text = "Report Categories"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
         'trvwReportCategories
         '
         Me.trvwReportCategories.Location = New System.Drawing.Point(9, 7)
@@ -650,46 +723,6 @@ Partial Class frmMain
         Me.Label19.Size = New System.Drawing.Size(83, 13)
         Me.Label19.TabIndex = 3
         Me.Label19.Text = "Category Name:"
-        '
-        'tcCompany
-        '
-        Me.tcCompany.Controls.Add(Me.TabPage1)
-        Me.tcCompany.Location = New System.Drawing.Point(11, 6)
-        Me.tcCompany.Name = "tcCompany"
-        Me.tcCompany.SelectedIndex = 0
-        Me.tcCompany.Size = New System.Drawing.Size(951, 688)
-        Me.tcCompany.TabIndex = 2
-        Me.tcCompany.Visible = False
-        '
-        'TabPage1
-        '
-        Me.TabPage1.Controls.Add(Me.pnlCompanyInfo)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(943, 662)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Information"
-        Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'pnlCompanyInfo
-        '
-        Me.pnlCompanyInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnlCompanyInfo.Controls.Add(Me.txtCoFax)
-        Me.pnlCompanyInfo.Controls.Add(Me.Label17)
-        Me.pnlCompanyInfo.Controls.Add(Me.txtCoWebS)
-        Me.pnlCompanyInfo.Controls.Add(Me.Label16)
-        Me.pnlCompanyInfo.Controls.Add(Me.txtCoPhone)
-        Me.pnlCompanyInfo.Controls.Add(Me.Label15)
-        Me.pnlCompanyInfo.Controls.Add(Me.txtCoAddress)
-        Me.pnlCompanyInfo.Controls.Add(Me.Label12)
-        Me.pnlCompanyInfo.Controls.Add(Me.txtCoName)
-        Me.pnlCompanyInfo.Controls.Add(Me.Label10)
-        Me.pnlCompanyInfo.Enabled = False
-        Me.pnlCompanyInfo.Location = New System.Drawing.Point(9, 9)
-        Me.pnlCompanyInfo.Name = "pnlCompanyInfo"
-        Me.pnlCompanyInfo.Size = New System.Drawing.Size(379, 265)
-        Me.pnlCompanyInfo.TabIndex = 0
         '
         'txtCoFax
         '
@@ -771,28 +804,6 @@ Partial Class frmMain
         Me.Label10.Size = New System.Drawing.Size(38, 13)
         Me.Label10.TabIndex = 0
         Me.Label10.Text = "Name:"
-        '
-        'tbcntrl_ProfileAccess
-        '
-        Me.tbcntrl_ProfileAccess.Controls.Add(Me.tbpg_Roles)
-        Me.tbcntrl_ProfileAccess.Location = New System.Drawing.Point(13, 6)
-        Me.tbcntrl_ProfileAccess.Name = "tbcntrl_ProfileAccess"
-        Me.tbcntrl_ProfileAccess.SelectedIndex = 0
-        Me.tbcntrl_ProfileAccess.Size = New System.Drawing.Size(947, 691)
-        Me.tbcntrl_ProfileAccess.TabIndex = 3
-        '
-        'tbpg_Roles
-        '
-        Me.tbpg_Roles.Controls.Add(Me.pnlProfiles)
-        Me.tbpg_Roles.Controls.Add(Me.cboProfiles)
-        Me.tbpg_Roles.Controls.Add(Me.Label6)
-        Me.tbpg_Roles.Location = New System.Drawing.Point(4, 22)
-        Me.tbpg_Roles.Name = "tbpg_Roles"
-        Me.tbpg_Roles.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbpg_Roles.Size = New System.Drawing.Size(939, 665)
-        Me.tbpg_Roles.TabIndex = 0
-        Me.tbpg_Roles.Text = "Roles"
-        Me.tbpg_Roles.UseVisualStyleBackColor = True
         '
         'pnlProfiles
         '
@@ -882,10 +893,11 @@ Partial Class frmMain
         'tcProfiles
         '
         Me.tcProfiles.Controls.Add(Me.Information)
-        Me.tcProfiles.Location = New System.Drawing.Point(16, 6)
+        Me.tcProfiles.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tcProfiles.Location = New System.Drawing.Point(0, 0)
         Me.tcProfiles.Name = "tcProfiles"
         Me.tcProfiles.SelectedIndex = 0
-        Me.tcProfiles.Size = New System.Drawing.Size(944, 688)
+        Me.tcProfiles.Size = New System.Drawing.Size(963, 696)
         Me.tcProfiles.TabIndex = 1
         Me.tcProfiles.Visible = False
         '
@@ -898,7 +910,7 @@ Partial Class frmMain
         Me.Information.Location = New System.Drawing.Point(4, 22)
         Me.Information.Name = "Information"
         Me.Information.Padding = New System.Windows.Forms.Padding(3)
-        Me.Information.Size = New System.Drawing.Size(936, 662)
+        Me.Information.Size = New System.Drawing.Size(955, 670)
         Me.Information.TabIndex = 0
         Me.Information.Text = "Information"
         Me.Information.UseVisualStyleBackColor = True
@@ -1113,22 +1125,22 @@ Partial Class frmMain
         Me.scMain.Panel2.ResumeLayout(False)
         CType(Me.scMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.scMain.ResumeLayout(False)
+        Me.tbcntrl_ProfileAccess.ResumeLayout(False)
+        Me.tbpg_Roles.ResumeLayout(False)
+        Me.tbpg_Roles.PerformLayout()
+        Me.tcCompany.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        Me.pnlCompanyInfo.ResumeLayout(False)
+        Me.pnlCompanyInfo.PerformLayout()
+        Me.tcReports.ResumeLayout(False)
+        Me.TabPage2.ResumeLayout(False)
         Me.tbcReportDefinition.ResumeLayout(False)
         Me.tbpg_ReportDefinition.ResumeLayout(False)
         CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlReportDefinitions.ResumeLayout(False)
         Me.pnlReportDefinitions.PerformLayout()
-        Me.tcReports.ResumeLayout(False)
-        Me.TabPage2.ResumeLayout(False)
         Me.pnlRepCategories.ResumeLayout(False)
         Me.pnlRepCategories.PerformLayout()
-        Me.tcCompany.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
-        Me.pnlCompanyInfo.ResumeLayout(False)
-        Me.pnlCompanyInfo.PerformLayout()
-        Me.tbcntrl_ProfileAccess.ResumeLayout(False)
-        Me.tbpg_Roles.ResumeLayout(False)
-        Me.tbpg_Roles.PerformLayout()
         Me.pnlProfiles.ResumeLayout(False)
         Me.pnlProfiles.PerformLayout()
         Me.tcProfiles.ResumeLayout(False)
@@ -1232,5 +1244,6 @@ Partial Class frmMain
     Friend WithEvents btnAssignImage As System.Windows.Forms.Button
     Friend WithEvents txt_Printer As System.Windows.Forms.TextBox
     Friend WithEvents lblPrinter As System.Windows.Forms.Label
+    Friend WithEvents UsrSalesCode1 As ConfigDMAC.usrSalesCode
 
 End Class

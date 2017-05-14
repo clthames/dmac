@@ -86,6 +86,18 @@ Public Class frmMain
                     txtCoWebS.Clear()
                     GetCompanyInfo()
 
+                Case "nSalesCodes"
+                    Env = clsConfigDmac.ActiveEnv.SalesCodes
+                    isLoading = True
+                    hideTabs()
+                    tsNew.Enabled = True
+                    tsEdit.Enabled = False
+                    tsCancel.Enabled = False
+                    tsSave.Enabled = False
+                    UsrSalesCode1.Visible = True
+                    UsrSalesCode1.Location = tc
+                    isLoading = False
+
                     ''''Added by Harinath Reddy
                     ''''Report Categories
                 Case "nReportCategories"
@@ -396,6 +408,7 @@ Public Class frmMain
         tbcReportDefinition.Visible = False
         pbPreview.Visible = False
         pnlReportDefinitions.Visible = False
+        UsrSalesCode1.Visible = False
 
     End Sub
     ''' <summary>
@@ -2080,4 +2093,5 @@ begin:
             End If
         End If
     End Sub
+
 End Class

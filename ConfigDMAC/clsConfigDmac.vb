@@ -12,6 +12,7 @@
         ReportDefinitions = 9
         OptionsManager = 10
         Reports = 11
+        SalesCodes = 12
     End Enum
 
     Public Enum Actions As Integer
