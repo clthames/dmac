@@ -63,7 +63,7 @@ Public Class usrSalesCode
                     If Result = DialogResult.OK Then
                         Dim param As SqlParameter() = New SqlParameter(0) {}
                         param(0) = New SqlParameter("@ID", ID)
-                        oExcelSS.getDataTable("uspConfiguration_DeleteSalesCode", True, param)
+                        oExcelSS.ExecuteProc("uspConfiguration_DeleteSalesCode", param)
                         BindSalesCodeData(0)
                         MessageBox.Show("Sales Code deleted successfully.", "Sales Codes", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
@@ -74,14 +74,14 @@ Public Class usrSalesCode
                     If Not dt Is Nothing And dt.Rows.Count > 0 Then
 
                         lblID.Text = Convert.ToString(dt.Rows(0)("ID"))
-                        txtTaxCode.Text = Convert.ToString(dt.Rows(0)("TaxCode"))
+                        txtSalesCode.Text = Convert.ToString(dt.Rows(0)("SCODE"))
                         txtDesc.Text = Convert.ToString(dt.Rows(0)("Description"))
-                        txtQB.Text = Convert.ToString(dt.Rows(0)("QBReference"))
+                        txtQB.Text = Convert.ToString(dt.Rows(0)("QBitem"))
 
-                        If Convert.ToString(dt.Rows(0)("Active")).ToLowerInvariant() = "yes" Then
-                            chkActive.Checked = True
+                        If Convert.ToString(dt.Rows(0)("Discount")).ToLowerInvariant() = "yes" Then
+                            chkDiscount.Checked = True
                         Else
-                            chkActive.Checked = False
+                            chkDiscount.Checked = False
                         End If
 
                         If Convert.ToString(dt.Rows(0)("Taxable")).ToLowerInvariant() = "yes" Then
@@ -97,7 +97,7 @@ Public Class usrSalesCode
                 End If
             End If
         Catch ex As Exception
-            oExcelSS.ErrorLog("dgvSalesCodes_CellContentClick Error#" & ex.Message.ToString())
+            oExcelSS.ErrorLog("dgvSalesCodes_CellContentClick Error#" & ex.ToString())
             MessageBox.Show("Failed to perform the operation", "Sales Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
@@ -118,7 +118,12 @@ Public Class usrSalesCode
     End Sub
 
     Private Sub dgvSalesCodes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvSalesCodes.CellDoubleClick
-        dgvSalesCodes_CellContentClick(sender, e)
+        Try
+            dgvSalesCodes_CellContentClick(sender, e)
+        Catch ex As Exception
+            oExcelSS.ErrorLog("dgvSalesCodes_CellDoubleClick Error#" & ex.ToString())
+            MessageBox.Show("Failed to show Add Sales Code screen.", "Sales Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 #End Region
 
@@ -151,10 +156,10 @@ Public Class usrSalesCode
     '''</summary>
     Private Sub ClearControls()
         lblID.Text = String.Empty
-        txtTaxCode.Text = String.Empty
+        txtSalesCode.Text = String.Empty
         txtDesc.Text = String.Empty
         txtQB.Text = String.Empty
-        chkActive.Checked = False
+        chkDiscount.Checked = False
         chkTaxable.Checked = False
     End Sub
 
@@ -167,13 +172,13 @@ Public Class usrSalesCode
             Dim param As SqlParameter() = New SqlParameter(5) {}
 
             param(0) = New SqlParameter("@ID", Id)
-            param(1) = New SqlParameter("@TaxCode", txtTaxCode.Text)
+            param(1) = New SqlParameter("@SCode", txtSalesCode.Text)
             param(2) = New SqlParameter("@Description", txtDesc.Text)
-            param(3) = New SqlParameter("@QBRef", txtQB.Text)
-            param(4) = New SqlParameter("@Active", IIf(chkActive.Checked, 1, 0))
-            param(5) = New SqlParameter("@Taxable", IIf(chkTaxable.Checked, 1, 0))
+            param(3) = New SqlParameter("@QBItem", txtQB.Text)
+            param(4) = New SqlParameter("@Discount", IIf(chkDiscount.Checked, "Y", "N"))
+            param(5) = New SqlParameter("@Taxable", IIf(chkTaxable.Checked, "Y", "N"))
 
-            oExcelSS.getDataTable("uspConfiguration_SalesCodeInsertUpdate", True, param)
+            oExcelSS.ExecuteProc("uspConfiguration_SalesCodeInsertUpdate", param)
 
             pnlAddEditSalesCode.Visible = False
             pnlViewSalesCode.Visible = True
@@ -186,8 +191,8 @@ Public Class usrSalesCode
     '''ValidateInputs validates required fields for Sales Code
     '''</summary>
     Private Function ValidateInputs() As Boolean
-        If String.IsNullOrEmpty(txtTaxCode.Text) Then
-            MessageBox.Show("Please enter Tax Code.", "Sales Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        If String.IsNullOrEmpty(txtSalesCode.Text) Then
+            MessageBox.Show("Please enter Sales Code.", "Sales Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         ElseIf String.IsNullOrEmpty(txtDesc.Text) Then
             MessageBox.Show("Please enter Description.", "Sales Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
