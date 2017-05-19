@@ -196,10 +196,7 @@ Public Class usrSalesCode
             Return False
         ElseIf String.IsNullOrEmpty(txtDesc.Text) Then
             MessageBox.Show("Please enter Description.", "Sales Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return False
-        ElseIf String.IsNullOrEmpty(txtQB.Text) Then
-            MessageBox.Show("Please enter Quick Book Reference.", "Sales Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return False
+            Return False        
         End If
         Return True
     End Function
