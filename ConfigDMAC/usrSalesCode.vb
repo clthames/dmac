@@ -68,7 +68,7 @@ Public Class usrSalesCode
                         MessageBox.Show("Sales Code deleted successfully.", "Sales Codes", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
                     ' 6 is for edit button column or any other column then show edit screen
-                Else
+                ElseIf sender Is Nothing OrElse e.ColumnIndex = 6 Then
 
                     Dim dt As DataTable = GetSalesCodeInfo(ID)
                     If Not dt Is Nothing And dt.Rows.Count > 0 Then
@@ -119,7 +119,7 @@ Public Class usrSalesCode
 
     Private Sub dgvSalesCodes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvSalesCodes.CellDoubleClick
         Try
-            dgvSalesCodes_CellContentClick(sender, e)
+            dgvSalesCodes_CellContentClick(Nothing, e)
         Catch ex As Exception
             oExcelSS.ErrorLog("dgvSalesCodes_CellDoubleClick Error#" & ex.ToString())
             MessageBox.Show("Failed to show Add Sales Code screen.", "Sales Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
