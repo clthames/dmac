@@ -22,7 +22,7 @@ Partial Class usrJobCostingCenters
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.tcCosting = New System.Windows.Forms.TabControl()
         Me.tbpgCosting = New System.Windows.Forms.TabPage()
         Me.pnlViewCosting = New System.Windows.Forms.Panel()
@@ -94,11 +94,11 @@ Partial Class usrJobCostingCenters
         '
         Me.pnlViewCosting.Controls.Add(Me.dgvCosting)
         Me.pnlViewCosting.Controls.Add(Me.pnlTopCostingList)
-        Me.pnlViewCosting.Location = New System.Drawing.Point(3, 6)
-        Me.pnlViewCosting.Name = "pnlViewCosting"
-        Me.pnlViewCosting.Size = New System.Drawing.Size(912, 337)
-        Me.pnlViewCosting.TabIndex = 2
         Me.pnlViewCosting.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlViewCosting.Location = New System.Drawing.Point(3, 3)
+        Me.pnlViewCosting.Name = "pnlViewCosting"
+        Me.pnlViewCosting.Size = New System.Drawing.Size(912, 340)
+        Me.pnlViewCosting.TabIndex = 2
         '
         'dgvCosting
         '
@@ -111,7 +111,7 @@ Partial Class usrJobCostingCenters
         Me.dgvCosting.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvCosting.Location = New System.Drawing.Point(0, 39)
         Me.dgvCosting.Name = "dgvCosting"
-        Me.dgvCosting.Size = New System.Drawing.Size(912, 298)
+        Me.dgvCosting.Size = New System.Drawing.Size(912, 301)
         Me.dgvCosting.TabIndex = 1
         '
         'clmnCtrNo
@@ -143,9 +143,9 @@ Partial Class usrJobCostingCenters
         'clmnRate
         '
         Me.clmnRate.DataPropertyName = "Rate"
-        DataGridViewCellStyle4.Format = "N2"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.clmnRate.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Format = "N2"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.clmnRate.DefaultCellStyle = DataGridViewCellStyle1
         Me.clmnRate.FillWeight = 99.49238!
         Me.clmnRate.HeaderText = "Rate"
         Me.clmnRate.Name = "clmnRate"
@@ -278,6 +278,7 @@ Partial Class usrJobCostingCenters
         '
         'ddlDepartment
         '
+        Me.ddlDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ddlDepartment.Location = New System.Drawing.Point(584, 61)
         Me.ddlDepartment.Name = "ddlDepartment"
         Me.ddlDepartment.Size = New System.Drawing.Size(217, 21)

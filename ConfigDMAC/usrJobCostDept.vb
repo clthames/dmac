@@ -68,14 +68,14 @@ Public Class usrJobCostDept
                         MessageBox.Show("Department deleted successfully.", "Department", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
                     ' 6 is for edit button column or any other column then show edit screen
-                Else
+                ElseIf sender Is Nothing OrElse e.ColumnIndex = 0 Then
 
                     Dim dt As DataTable = GetDeptInfo(ID)
                     If Not dt Is Nothing And dt.Rows.Count > 0 Then
 
                         lblID.Text = Convert.ToString(dt.Rows(0)("Num"))
-                        txtDeptNo.Text = Convert.ToString(dt.Rows(0)("Num"))
-                        txtDeptDesc.Text = Convert.ToString(dt.Rows(0)("Description"))
+                        txtDeptNo.Text = Convert.ToString(dt.Rows(0)("Num")).Trim
+                        txtDeptDesc.Text = Convert.ToString(dt.Rows(0)("Description")).Trim
 
                         btnSave.Text = "Update"
                     End If
@@ -106,7 +106,7 @@ Public Class usrJobCostDept
 
     Private Sub dgvDept_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvDept.CellDoubleClick
         Try
-            dgvDept_CellContentClick(sender, e)
+            dgvDept_CellContentClick(Nothing, e)
         Catch ex As Exception
             oExcelSS.ErrorLog("dgvDept_CellDoubleClick Error#" & ex.ToString())
             MessageBox.Show("Failed to show Add Department screen.", "Department", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -204,9 +204,6 @@ Public Class usrJobCostDept
             Return False
         ElseIf Convert.ToInt32(txtDeptNo.Text) = 0 Then
             MessageBox.Show("Department No. cannot be 0", "Department", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return False
-        ElseIf String.IsNullOrEmpty(txtDeptDesc.Text) Then
-            MessageBox.Show("Please enter Department Description.", "Department", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
         Return True

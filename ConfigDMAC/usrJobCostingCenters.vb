@@ -69,25 +69,25 @@ Public Class usrJobCostingCenters
                         MessageBox.Show("Jobcost Center deleted successfully.", "Jobcost Center", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
                     ' 6 is for edit button column or any other column then show edit screen
-                Else
+                ElseIf sender Is Nothing OrElse e.ColumnIndex = 0 Then
 
                     Dim dt As DataTable = GetJobcostCenterInfo(ID)
                     If Not dt Is Nothing And dt.Rows.Count > 0 Then
 
                         lblID.Text = Convert.ToString(dt.Rows(0)("Num"))
-                        txtCenterNo.Text = Convert.ToString(dt.Rows(0)("Num"))
-                        ddlDepartment.SelectedValue = Convert.ToString(dt.Rows(0)("Dept"))
-                        txtDescription.Text = Convert.ToString(dt.Rows(0)("Desc"))
-                        txtRate.Text = Convert.ToString(Math.Round(Convert.ToDecimal(dt.Rows(0)("Rate")), 2))
-                        txtBurden.Text = Convert.ToString(dt.Rows(0)("Burden"))
+                        txtCenterNo.Text = Convert.ToString(dt.Rows(0)("Num")).Trim
+                        ddlDepartment.SelectedValue = Convert.ToString(dt.Rows(0)("Dept")).Trim
+                        txtDescription.Text = Convert.ToString(dt.Rows(0)("Desc")).Trim
+                        txtRate.Text = Convert.ToString(Math.Round(Convert.ToDecimal(dt.Rows(0)("Rate")), 2)).Trim
+                        txtBurden.Text = Convert.ToString(dt.Rows(0)("Burden")).Trim
 
                         If Convert.ToString(dt.Rows(0)("Counter")) = "True" Then
                             chkCounter.Checked = True
                         Else
                             chkCounter.Checked = False
                         End If
-                        txtCycleSize.Text = Convert.ToString(dt.Rows(0)("Cyl_Size"))
-                        txtRatio.Text = Convert.ToString(dt.Rows(0)("Ratio"))
+                        txtCycleSize.Text = Convert.ToString(dt.Rows(0)("Cyl_Size")).Trim
+                        txtRatio.Text = Convert.ToString(dt.Rows(0)("Ratio")).Trim
 
                         btnSave.Text = "Update"
                     End If
@@ -118,7 +118,7 @@ Public Class usrJobCostingCenters
 
     Private Sub dgvCosting_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCosting.CellDoubleClick
         Try
-            dgvCosting_CellContentClick(sender, e)
+            dgvCosting_CellContentClick(Nothing, e)
         Catch ex As Exception
             oExcelSS.ErrorLog("dgvCosting_CellDoubleClick Error#" & ex.ToString())
             MessageBox.Show("Failed to show Add Jobcost Center screen.", "Jobcost Center", MessageBoxButtons.OK, MessageBoxIcon.Error)
