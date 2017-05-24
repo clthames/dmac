@@ -119,6 +119,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="usrJobCostDept.Designer.vb">
+      <DependentUpon>usrJobCostDept.vb</DependentUpon>
+    </Compile>
+    <Compile Include="usrJobCostDept.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="usrJobCostingCenters.Designer.vb">
+      <DependentUpon>usrJobCostingCenters.vb</DependentUpon>
+    </Compile>
+    <Compile Include="usrJobCostingCenters.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="usrSalesCode.Designer.vb">
       <DependentUpon>usrSalesCode.vb</DependentUpon>
     </Compile>
@@ -147,6 +159,12 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="usrJobCostDept.resx">
+      <DependentUpon>usrJobCostDept.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="usrJobCostingCenters.resx">
+      <DependentUpon>usrJobCostingCenters.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="usrSalesCode.resx">
       <DependentUpon>usrSalesCode.vb</DependentUpon>

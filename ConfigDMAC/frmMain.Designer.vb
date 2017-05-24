@@ -32,10 +32,12 @@ Partial Class frmMain
         Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Sales Codes")
         Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Invoice Options")
         Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Customers", New System.Windows.Forms.TreeNode() {TreeNode5, TreeNode6, TreeNode7})
+        Dim TreeNode43 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Cost Department")
+        Dim TreeNode44 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Cost Center")
         Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Cost Operations")
         Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Operation Codes")
         Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Operation Classes")
-        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Job Costing", New System.Windows.Forms.TreeNode() {TreeNode9, TreeNode10, TreeNode11})
+        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Job Costing", New System.Windows.Forms.TreeNode() {TreeNode43, TreeNode44, TreeNode9, TreeNode10, TreeNode11})
         Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Options")
         Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Press Trim Requirements")
         Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Paper Scheduling", New System.Windows.Forms.TreeNode() {TreeNode13, TreeNode14})
@@ -79,6 +81,8 @@ Partial Class frmMain
         Me.scMain = New System.Windows.Forms.SplitContainer()
         Me.trvOptions = New System.Windows.Forms.TreeView()
         Me.UsrSalesCode1 = New ConfigDMAC.usrSalesCode()
+        Me.usrJobCostDept1 = New ConfigDMAC.usrJobCostDept()
+        Me.usrJobCostingCenters1 = New ConfigDMAC.usrJobCostingCenters()
         Me.tbcntrl_ProfileAccess = New System.Windows.Forms.TabControl()
         Me.tbpg_Roles = New System.Windows.Forms.TabPage()
         Me.tcCompany = New System.Windows.Forms.TabControl()
@@ -267,6 +271,8 @@ Partial Class frmMain
         'scMain.Panel2
         '
         Me.scMain.Panel2.Controls.Add(Me.UsrSalesCode1)
+        Me.scMain.Panel2.Controls.Add(Me.usrJobCostDept1)
+        Me.scMain.Panel2.Controls.Add(Me.usrJobCostingCenters1)
         Me.scMain.Panel2.Controls.Add(Me.tbcntrl_ProfileAccess)
         Me.scMain.Panel2.Controls.Add(Me.tcProfiles)
         Me.scMain.Size = New System.Drawing.Size(1182, 696)
@@ -294,6 +300,10 @@ Partial Class frmMain
         TreeNode7.Text = "Invoice Options"
         TreeNode8.Name = "Node2"
         TreeNode8.Text = "Customers"
+        TreeNode43.Name = "nCostDepartment"
+        TreeNode43.Text = "Cost Department"
+        TreeNode44.Name = "nCostCenter"
+        TreeNode44.Text = "Cost Center"
         TreeNode9.Name = "nCostOperations"
         TreeNode9.Text = "Cost Operations"
         TreeNode10.Name = "nOperationCodes"
@@ -373,6 +383,22 @@ Partial Class frmMain
         Me.UsrSalesCode1.Name = "UsrSalesCode1"
         Me.UsrSalesCode1.Size = New System.Drawing.Size(963, 696)
         Me.UsrSalesCode1.TabIndex = 4
+
+        'usrJobCostDept1
+        '
+        Me.usrJobCostDept1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.usrJobCostDept1.Location = New System.Drawing.Point(0, 0)
+        Me.usrJobCostDept1.Name = "usrJobCostDept1"
+        Me.usrJobCostDept1.Size = New System.Drawing.Size(963, 696)
+        Me.usrJobCostDept1.TabIndex = 5
+
+        'usrJobCostingCenters1
+        '
+        Me.usrJobCostingCenters1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.usrJobCostingCenters1.Location = New System.Drawing.Point(0, 0)
+        Me.usrJobCostingCenters1.Name = "usrJobCostingCenters1"
+        Me.usrJobCostingCenters1.Size = New System.Drawing.Size(963, 696)
+        Me.usrJobCostingCenters1.TabIndex = 5
         '
         'tbcntrl_ProfileAccess
         '
@@ -1245,5 +1271,7 @@ Partial Class frmMain
     Friend WithEvents txt_Printer As System.Windows.Forms.TextBox
     Friend WithEvents lblPrinter As System.Windows.Forms.Label
     Friend WithEvents UsrSalesCode1 As ConfigDMAC.usrSalesCode
+    Friend WithEvents usrJobCostDept1 As ConfigDMAC.usrJobCostDept
+    Friend WithEvents usrJobCostingCenters1 As ConfigDMAC.usrJobCostingCenters
 
 End Class

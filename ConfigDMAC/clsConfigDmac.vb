@@ -13,6 +13,8 @@
         OptionsManager = 10
         Reports = 11
         SalesCodes = 12
+        Department = 13
+        Jobcosting = 14
     End Enum
 
     Public Enum Actions As Integer

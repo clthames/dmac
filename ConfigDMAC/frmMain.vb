@@ -152,8 +152,35 @@ Public Class frmMain
                     'oExcelSS.fillComboBox(cboReportDefinitions, "uspConfiguration_FillRepDefinitionsCbo", "ReportID", "ReportIDKey")
                     isLoading = False
 
+                Case "nCostDepartment"
+
+                    Env = clsConfigDmac.ActiveEnv.Department
+                    isLoading = True
+                    hideTabs()
+                    tsNew.Enabled = True
+                    tsEdit.Enabled = False
+                    tsCancel.Enabled = False
+                    tsSave.Enabled = False
+                    usrJobCostDept1.Visible = True
+                    usrJobCostDept1.Location = tc
+                    isLoading = False
+
+                Case "nCostCenter"
+
+                    Env = clsConfigDmac.ActiveEnv.Jobcosting
+                    isLoading = True
+                    hideTabs()
+                    tsNew.Enabled = True
+                    tsEdit.Enabled = False
+                    tsCancel.Enabled = False
+                    tsSave.Enabled = False
+                    usrJobCostingCenters1.Visible = True
+                    usrJobCostingCenters1.Location = tc
+                    isLoading = False
+
                 Case "nCostOperations"
-                    Dim lobjfrmLaunch As New frmLaunch()
+
+                    'Dim lobjfrmLaunch As New frmLaunch()
                     ' Label9.Text = "Click on the 'Launch' button below to maintain Job Costing for Cost Operations"
                     'lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Job Costing for Cost Operations"
                     'lobjfrmLaunch.btn_Launch.Focus()
@@ -162,12 +189,14 @@ Public Class frmMain
                     'End If
 
                 Case "nOperationCodes"
-                    Dim lobjfrmLaunch As New frmLaunch()
-                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Job Costing for Operation Codes"
-                    lobjfrmLaunch.btn_Launch.Focus()
-                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
 
-                    End If
+                   
+                    ''Dim lobjfrmLaunch As New frmLaunch()
+                    ''lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Job Costing for Operation Codes"
+                    ''lobjfrmLaunch.btn_Launch.Focus()
+                    ''If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+
+                    '' End If
 
                 Case "nOperationClasses"
                     Dim lobjfrmLaunch As New frmLaunch()
@@ -409,6 +438,8 @@ Public Class frmMain
         pbPreview.Visible = False
         pnlReportDefinitions.Visible = False
         UsrSalesCode1.Visible = False
+        usrJobCostDept1.Visible = False
+        usrJobCostingCenters1.Visible = False
 
     End Sub
     ''' <summary>
