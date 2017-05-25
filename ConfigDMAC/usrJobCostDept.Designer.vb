@@ -91,6 +91,7 @@ Partial Class usrJobCostDept
         Me.dgvDept.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvDept.Location = New System.Drawing.Point(0, 40)
         Me.dgvDept.Name = "dgvDept"
+        Me.dgvDept.ReadOnly = True
         Me.dgvDept.Size = New System.Drawing.Size(771, 271)
         Me.dgvDept.TabIndex = 1
         '
@@ -210,7 +211,7 @@ Partial Class usrJobCostDept
         Me.clmnDeptNo.Name = "clmnDeptNo"
         Me.clmnDeptNo.ReadOnly = True
         Me.clmnDeptNo.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.clmnDeptNo.Width = 181
+        Me.clmnDeptNo.Width = 80
         '
         'clmnDescription
         '
@@ -219,13 +220,14 @@ Partial Class usrJobCostDept
         Me.clmnDescription.HeaderText = "Description"
         Me.clmnDescription.Name = "clmnDescription"
         Me.clmnDescription.ReadOnly = True
-        Me.clmnDescription.Width = 181
+        Me.clmnDescription.Width = 400
         '
         'clmnEdit
         '
         Me.clmnEdit.FillWeight = 101.5228!
         Me.clmnEdit.HeaderText = ""
         Me.clmnEdit.Name = "clmnEdit"
+        Me.clmnEdit.ReadOnly = True
         Me.clmnEdit.Text = "Edit"
         Me.clmnEdit.ToolTipText = "Edit Department"
         Me.clmnEdit.UseColumnTextForButtonValue = True
@@ -237,6 +239,7 @@ Partial Class usrJobCostDept
         Me.clmnDelete.FillWeight = 99.49238!
         Me.clmnDelete.HeaderText = ""
         Me.clmnDelete.Name = "clmnDelete"
+        Me.clmnDelete.ReadOnly = True
         Me.clmnDelete.Text = "Delete"
         Me.clmnDelete.ToolTipText = "Delete Department"
         Me.clmnDelete.UseColumnTextForButtonValue = True

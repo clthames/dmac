@@ -147,6 +147,11 @@ Public Class usrJobCostDept
     '''</summary>
     Private Sub BindDepartmentData(Id As Integer)
         Dim dtDept As DataTable = GetDeptInfo(Id)
+
+        If dtDept.Columns.Contains("NumDesc") Then
+            dtDept.Columns.Remove("NumDesc")
+        End If
+
         dgvDept.DataSource = dtDept
     End Sub
 
@@ -202,11 +207,14 @@ Public Class usrJobCostDept
         If String.IsNullOrEmpty(txtDeptNo.Text) Then
             MessageBox.Show("Please enter Department No.", "Department", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
-        ElseIf Convert.ToInt32(txtDeptNo.Text) = 0 Then
-            MessageBox.Show("Department No. cannot be 0", "Department", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return False
+        Else
+            Dim deptNo As Integer = Convert.ToInt32(txtDeptNo.Text)
+            If deptNo <= 0 OrElse deptNo > 99 Then
+                MessageBox.Show("Department No. should be between 1 and 99.", "Department", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            End If
+            Return True
         End If
-        Return True
     End Function
 
 #End Region

@@ -22,21 +22,11 @@ Partial Class usrJobCostingCenters
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.tcCosting = New System.Windows.Forms.TabControl()
         Me.tbpgCosting = New System.Windows.Forms.TabPage()
         Me.pnlViewCosting = New System.Windows.Forms.Panel()
         Me.dgvCosting = New System.Windows.Forms.DataGridView()
-        Me.clmnCtrNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnDepartment = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnBurden = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnCounter = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.clmnCylSize = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnRatio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.clmnDelete = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.pnlTopCostingList = New System.Windows.Forms.Panel()
         Me.btnAddCostingCenter = New System.Windows.Forms.Button()
         Me.pnlAddEditCosting = New System.Windows.Forms.Panel()
@@ -60,6 +50,16 @@ Partial Class usrJobCostingCenters
         Me.btnSave = New System.Windows.Forms.Button()
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.lblID = New System.Windows.Forms.Label()
+        Me.clmnCtrNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnDepartment = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnBurden = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnCounter = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.clmnCylSize = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnRatio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.clmnDelete = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.tcCosting.SuspendLayout()
         Me.tbpgCosting.SuspendLayout()
         Me.pnlViewCosting.SuspendLayout()
@@ -111,96 +111,9 @@ Partial Class usrJobCostingCenters
         Me.dgvCosting.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvCosting.Location = New System.Drawing.Point(0, 39)
         Me.dgvCosting.Name = "dgvCosting"
+        Me.dgvCosting.ReadOnly = True
         Me.dgvCosting.Size = New System.Drawing.Size(912, 301)
         Me.dgvCosting.TabIndex = 1
-        '
-        'clmnCtrNo
-        '
-        Me.clmnCtrNo.DataPropertyName = "Num"
-        Me.clmnCtrNo.FillWeight = 99.49238!
-        Me.clmnCtrNo.HeaderText = "Center Number"
-        Me.clmnCtrNo.Name = "clmnCtrNo"
-        Me.clmnCtrNo.ReadOnly = True
-        Me.clmnCtrNo.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        '
-        'clmnDepartment
-        '
-        Me.clmnDepartment.DataPropertyName = "Dept"
-        Me.clmnDepartment.FillWeight = 99.49238!
-        Me.clmnDepartment.HeaderText = "Department"
-        Me.clmnDepartment.Name = "clmnDepartment"
-        Me.clmnDepartment.ReadOnly = True
-        Me.clmnDepartment.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        '
-        'clmnDescription
-        '
-        Me.clmnDescription.DataPropertyName = "Desc"
-        Me.clmnDescription.FillWeight = 99.49238!
-        Me.clmnDescription.HeaderText = "Description"
-        Me.clmnDescription.Name = "clmnDescription"
-        Me.clmnDescription.ReadOnly = True
-        '
-        'clmnRate
-        '
-        Me.clmnRate.DataPropertyName = "Rate"
-        DataGridViewCellStyle1.Format = "N2"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.clmnRate.DefaultCellStyle = DataGridViewCellStyle1
-        Me.clmnRate.FillWeight = 99.49238!
-        Me.clmnRate.HeaderText = "Rate"
-        Me.clmnRate.Name = "clmnRate"
-        Me.clmnRate.ReadOnly = True
-        '
-        'clmnBurden
-        '
-        Me.clmnBurden.DataPropertyName = "Burden"
-        Me.clmnBurden.FillWeight = 99.49238!
-        Me.clmnBurden.HeaderText = "Burden"
-        Me.clmnBurden.Name = "clmnBurden"
-        Me.clmnBurden.ReadOnly = True
-        '
-        'clmnCounter
-        '
-        Me.clmnCounter.DataPropertyName = "Counter"
-        Me.clmnCounter.FillWeight = 99.49238!
-        Me.clmnCounter.HeaderText = "Counter"
-        Me.clmnCounter.Name = "clmnCounter"
-        Me.clmnCounter.ReadOnly = True
-        '
-        'clmnCylSize
-        '
-        Me.clmnCylSize.DataPropertyName = "Cyl_Size"
-        Me.clmnCylSize.FillWeight = 99.49238!
-        Me.clmnCylSize.HeaderText = "Cycle Size"
-        Me.clmnCylSize.Name = "clmnCylSize"
-        Me.clmnCylSize.ReadOnly = True
-        '
-        'clmnRatio
-        '
-        Me.clmnRatio.DataPropertyName = "Ratio"
-        Me.clmnRatio.FillWeight = 99.49238!
-        Me.clmnRatio.HeaderText = "Ratio"
-        Me.clmnRatio.Name = "clmnRatio"
-        Me.clmnRatio.ReadOnly = True
-        '
-        'clmnEdit
-        '
-        Me.clmnEdit.FillWeight = 101.5228!
-        Me.clmnEdit.HeaderText = ""
-        Me.clmnEdit.Name = "clmnEdit"
-        Me.clmnEdit.Text = "Edit"
-        Me.clmnEdit.ToolTipText = "Edit Jobcost Center"
-        Me.clmnEdit.UseColumnTextForButtonValue = True
-        '
-        'clmnDelete
-        '
-        Me.clmnDelete.DataPropertyName = "ID"
-        Me.clmnDelete.FillWeight = 99.49238!
-        Me.clmnDelete.HeaderText = ""
-        Me.clmnDelete.Name = "clmnDelete"
-        Me.clmnDelete.Text = "Delete"
-        Me.clmnDelete.ToolTipText = "Delete Jobcost Center"
-        Me.clmnDelete.UseColumnTextForButtonValue = True
         '
         'pnlTopCostingList
         '
@@ -357,9 +270,9 @@ Partial Class usrJobCostingCenters
         Me.lblCycleSize.AutoSize = True
         Me.lblCycleSize.Location = New System.Drawing.Point(501, 206)
         Me.lblCycleSize.Name = "lblCycleSize"
-        Me.lblCycleSize.Size = New System.Drawing.Size(59, 13)
+        Me.lblCycleSize.Size = New System.Drawing.Size(70, 13)
         Me.lblCycleSize.TabIndex = 7
-        Me.lblCycleSize.Text = "Cycle Size:"
+        Me.lblCycleSize.Text = "Cylinder Size:"
         '
         'txtCycleSize
         '
@@ -423,6 +336,94 @@ Partial Class usrJobCostingCenters
         Me.lblID.TabIndex = 1
         Me.lblID.Visible = False
         '
+        'clmnCtrNo
+        '
+        Me.clmnCtrNo.DataPropertyName = "Num"
+        Me.clmnCtrNo.FillWeight = 99.49238!
+        Me.clmnCtrNo.HeaderText = "Center Number"
+        Me.clmnCtrNo.Name = "clmnCtrNo"
+        Me.clmnCtrNo.ReadOnly = True
+        Me.clmnCtrNo.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        '
+        'clmnDepartment
+        '
+        Me.clmnDepartment.DataPropertyName = "Dept"
+        Me.clmnDepartment.FillWeight = 99.49238!
+        Me.clmnDepartment.HeaderText = "Department"
+        Me.clmnDepartment.Name = "clmnDepartment"
+        Me.clmnDepartment.ReadOnly = True
+        Me.clmnDepartment.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        '
+        'clmnDescription
+        '
+        Me.clmnDescription.DataPropertyName = "Desc"
+        Me.clmnDescription.FillWeight = 99.49238!
+        Me.clmnDescription.HeaderText = "Description"
+        Me.clmnDescription.Name = "clmnDescription"
+        Me.clmnDescription.ReadOnly = True
+        '
+        'clmnRate
+        '
+        Me.clmnRate.DataPropertyName = "Rate"
+        DataGridViewCellStyle3.Format = "N2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.clmnRate.DefaultCellStyle = DataGridViewCellStyle3
+        Me.clmnRate.FillWeight = 99.49238!
+        Me.clmnRate.HeaderText = "Rate"
+        Me.clmnRate.Name = "clmnRate"
+        Me.clmnRate.ReadOnly = True
+        '
+        'clmnBurden
+        '
+        Me.clmnBurden.DataPropertyName = "Burden"
+        Me.clmnBurden.FillWeight = 99.49238!
+        Me.clmnBurden.HeaderText = "Burden"
+        Me.clmnBurden.Name = "clmnBurden"
+        Me.clmnBurden.ReadOnly = True
+        '
+        'clmnCounter
+        '
+        Me.clmnCounter.DataPropertyName = "Counter"
+        Me.clmnCounter.FillWeight = 99.49238!
+        Me.clmnCounter.HeaderText = "Counter"
+        Me.clmnCounter.Name = "clmnCounter"
+        Me.clmnCounter.ReadOnly = True
+        '
+        'clmnCylSize
+        '
+        Me.clmnCylSize.DataPropertyName = "Cyl_Size"
+        Me.clmnCylSize.FillWeight = 99.49238!
+        Me.clmnCylSize.HeaderText = "Cylinder Size"
+        Me.clmnCylSize.Name = "clmnCylSize"
+        Me.clmnCylSize.ReadOnly = True
+        '
+        'clmnRatio
+        '
+        Me.clmnRatio.DataPropertyName = "Ratio"
+        Me.clmnRatio.FillWeight = 99.49238!
+        Me.clmnRatio.HeaderText = "Ratio"
+        Me.clmnRatio.Name = "clmnRatio"
+        Me.clmnRatio.ReadOnly = True
+        '
+        'clmnEdit
+        '
+        Me.clmnEdit.FillWeight = 101.5228!
+        Me.clmnEdit.HeaderText = ""
+        Me.clmnEdit.Name = "clmnEdit"
+        Me.clmnEdit.Text = "Edit"
+        Me.clmnEdit.ToolTipText = "Edit Jobcost Center"
+        Me.clmnEdit.UseColumnTextForButtonValue = True
+        '
+        'clmnDelete
+        '
+        Me.clmnDelete.DataPropertyName = "ID"
+        Me.clmnDelete.FillWeight = 99.49238!
+        Me.clmnDelete.HeaderText = ""
+        Me.clmnDelete.Name = "clmnDelete"
+        Me.clmnDelete.Text = "Delete"
+        Me.clmnDelete.ToolTipText = "Delete Jobcost Center"
+        Me.clmnDelete.UseColumnTextForButtonValue = True
+        '
         'usrJobCostingCenters
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -444,16 +445,6 @@ Partial Class usrJobCostingCenters
     Friend WithEvents tbpgCosting As System.Windows.Forms.TabPage
     Friend WithEvents pnlViewCosting As System.Windows.Forms.Panel
     Friend WithEvents dgvCosting As System.Windows.Forms.DataGridView
-    Friend WithEvents clmnCtrNo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents clmnDepartment As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents clmnDescription As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents clmnRate As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents clmnBurden As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents clmnCounter As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents clmnCylSize As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents clmnRatio As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents clmnEdit As System.Windows.Forms.DataGridViewButtonColumn
-    Friend WithEvents clmnDelete As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents pnlTopCostingList As System.Windows.Forms.Panel
     Friend WithEvents btnAddCostingCenter As System.Windows.Forms.Button
     Friend WithEvents pnlAddEditCosting As System.Windows.Forms.Panel
@@ -477,5 +468,15 @@ Partial Class usrJobCostingCenters
     Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents lblHeader As System.Windows.Forms.Label
     Friend WithEvents lblID As System.Windows.Forms.Label
+    Friend WithEvents clmnCtrNo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents clmnDepartment As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents clmnDescription As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents clmnRate As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents clmnBurden As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents clmnCounter As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents clmnCylSize As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents clmnRatio As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents clmnEdit As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents clmnDelete As System.Windows.Forms.DataGridViewButtonColumn
 
 End Class

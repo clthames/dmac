@@ -237,7 +237,7 @@ Public Class usrJobCostingCenters
         Dim dtDept As DataTable = GetDepartmnetInfo(Id)
         ddlDepartment.DataSource = dtDept
         ddlDepartment.ValueMember = "Num"
-        ddlDepartment.DisplayMember = "Description"
+        ddlDepartment.DisplayMember = "NumDesc"
         ddlDepartment.SelectedIndex = -1
 
     End Sub
@@ -305,11 +305,11 @@ Public Class usrJobCostingCenters
         If String.IsNullOrEmpty(txtCenterNo.Text) Then
             MessageBox.Show("Please enter Center No.", "Jobcost Center", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
-        ElseIf Convert.ToInt32(txtCenterNo.Text) = 0 Then
-            MessageBox.Show("Jobcost Center No. cannot be 0", "Jobcost Center", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        ElseIf Convert.ToInt32(txtCenterNo.Text) <= 0 OrElse Convert.ToInt32(txtCenterNo.Text) >= 255 Then
+            MessageBox.Show("Jobcost Center No. should be between 1 and 255.", "Jobcost Center", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         ElseIf ddlDepartment.SelectedIndex = -1 Then
-            MessageBox.Show("Please select Department", "Jobcost Center", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Please select Department.", "Jobcost Center", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         ElseIf String.IsNullOrEmpty(txtDescription.Text) Then
             MessageBox.Show("Please enter Description.", "Jobcost Center", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -321,7 +321,7 @@ Public Class usrJobCostingCenters
             MessageBox.Show("Please enter Burden.", "Jobcost Center", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         ElseIf String.IsNullOrEmpty(txtCycleSize.Text) Then
-            MessageBox.Show("Please enter Cycle Size.", "Jobcost Center", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Please enter Cylinder Size.", "Jobcost Center", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         ElseIf String.IsNullOrEmpty(txtRatio.Text) Then
             MessageBox.Show("Please enter Ratio.", "Jobcost Center", MessageBoxButtons.OK, MessageBoxIcon.Error)
