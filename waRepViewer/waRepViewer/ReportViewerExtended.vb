@@ -56,8 +56,14 @@ Public Class ReportViewerExtended
     End Sub
 
     Private Sub EmailClicked(sender As Object, e As EventArgs)
-        Dim frmEmail As New frmEmailOptions(Me)
-        frmEmail.ShowDialog()
+        ''Dim frmEmail As New frmEmailOptions(Me)
+        '' frmEmail.ShowDialog()
+        Dim iniFilePath As String = oExcelSS.AppPath & "\"
+        Dim executableFileName As String = "SendEmails.exe"
+        Dim executeFilePath As String = iniFilePath & executableFileName
+        Dim args() As String = {Me.ExportReport(), "Report", "0", "0"}
+        Process.Start(executeFilePath, String.Join(" ", args))
+
     End Sub
 
     Private Sub Printclicked(sender As Object, e As EventArgs)

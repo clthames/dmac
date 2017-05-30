@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ExcelSSGen", "ExcelSSGen\ExcelSSGen\ExcelSSGen.vbproj", "{99BC2844-F96E-4AC1-ACAC-BBD1B72EB48D}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DMAC", "DMAC\DMAC\DMAC.vbproj", "{6CE2E588-3D91-4A80-8914-B17F872209C8}"
@@ -21,6 +19,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "waRepViewer", "waRepViewer\
 	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ConfigDMAC", "ConfigDMAC\ConfigDMAC.vbproj", "{D5518224-7BDB-489B-B866-28EE15034F84}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SendEmails", "SendEmails\SendEmails.vbproj", "{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -234,6 +234,36 @@ Global
 		{D5518224-7BDB-489B-B866-28EE15034F84}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
 		{D5518224-7BDB-489B-B866-28EE15034F84}.SingleImage|x64.ActiveCfg = Debug|Any CPU
 		{D5518224-7BDB-489B-B866-28EE15034F84}.SingleImage|x86.ActiveCfg = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.CD_ROM|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.CD_ROM|Mixed Platforms.Build.0 = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.CD_ROM|x64.ActiveCfg = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.CD_ROM|x86.ActiveCfg = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.DVD-5|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.DVD-5|Mixed Platforms.Build.0 = Debug|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.DVD-5|x64.ActiveCfg = Debug|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.DVD-5|x86.ActiveCfg = Debug|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.Release|x64.ActiveCfg = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.Release|x86.ActiveCfg = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.SingleImage|x64.ActiveCfg = Release|Any CPU
+		{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}.SingleImage|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
