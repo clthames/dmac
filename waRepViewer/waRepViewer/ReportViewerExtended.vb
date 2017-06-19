@@ -61,7 +61,7 @@ Public Class ReportViewerExtended
         Dim iniFilePath As String = oExcelSS.AppPath & "\"
         Dim executableFileName As String = "SendEmails.exe"
         Dim executeFilePath As String = iniFilePath & executableFileName
-        Dim args() As String = {Me.ExportReport(), "Report", "0", "0"}
+        Dim args() As String = {Me.ExportReport(), "Report"}
         Process.Start(executeFilePath, String.Join(" ", args))
 
     End Sub

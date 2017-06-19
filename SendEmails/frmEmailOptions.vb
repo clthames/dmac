@@ -5,14 +5,16 @@ Imports System.Drawing.Printing
 Imports System.Drawing.Imaging
 Imports System.Globalization
 Imports System.Text.RegularExpressions
+Imports System.Configuration
 
 Public Class frmEmailOptions
-    Public oExcelSS As New ExcelSSGen.Main
+
 #Region "Private Members"
-    Dim strFileName As String = ""
-    Dim strDocType As String = ""
-    Dim strDocId As String = ""
-    Dim strAutoRecNo As String = ""
+    Private oExcelSS As New ExcelSSGen.Main
+    Private strFileName As String = ""
+    Private strDocType As String = ""
+    Private strDocId As String = ""
+    Private strAutoRecNo As String = ""
 #End Region
 
 #Region "Constructor"
@@ -34,23 +36,38 @@ Public Class frmEmailOptions
     ''' <remarks></remarks>
     Private Sub frmEmailOptions_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
+            oExcelSS.logoURL = ConfigurationSettings.AppSettings("logoURL")
+            oExcelSS.AppFolderName = ConfigurationSettings.AppSettings("AppFolderName")
+            oExcelSS.IniAppFile = ConfigurationSettings.AppSettings("IniAppFile")
+            oExcelSS.ReportToolName = ConfigurationSettings.AppSettings("ReportToolName")
+
+            oExcelSS.AppInit()
+
             Dim strArg() As String = Environment.GetCommandLineArgs()
-            If strArg.Count > 0 And strArg.Count = 3 Then
+            If Not strArg Is Nothing AndAlso strArg.Length > 2 Then
 
-                strFileName = strArg(0)
-                strDocType = strArg(1)
-                strDocId = strArg(2)
-                strAutoRecNo = strArg(3)
+                strFileName = strArg(1)
+                strDocType = strArg(2)
 
+                If strArg.Length > 3 Then
+                    strDocId = strArg(3)
+                End If
 
+                If strArg.Length > 4 Then
+                    strAutoRecNo = strArg(4)
+                End If
+
+                If Not System.IO.File.Exists(strFileName) Then
+                    Throw New Exception("File " & strFileName & " does not exist. Unable to send email.")
+                End If
             Else
-                Throw New Exception("Invalid Argument Parameters Passed")
-
+                Throw New Exception("Invalid Arguments passed. Command Usage - SendEmails.exe FileName DocType [DocID] [AutoRecNo]")
             End If
+
             txtEmailAddress.Focus()
         Catch ex As Exception
-            MsgBox(ex.Message)
             oExcelSS.ErrorLog("frmLogin_Load Error## " + ex.Message.ToString())
+            MessageBox.Show(ex.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -102,7 +119,6 @@ Public Class frmEmailOptions
                             fromEmailAddress = dtSMTPInfo.DefaultView(0)("Value").ToString
                         End If
 
-
                         dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_CcEmailAddress'"
 
                         If (dtSMTPInfo.DefaultView.Count > 0) Then
@@ -128,7 +144,7 @@ Public Class frmEmailOptions
                             emailMsg.Bcc.Add(BccMailAddress)
                         End If
 
-                        emailMsg.Subject = "Your " & strDocType & " number " & strDocId
+                        emailMsg.Subject = "Your " & strDocType & " " & strAutoRecNo & " " & strDocId
 
                         dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'ReportEmailContent'"
 
@@ -215,6 +231,7 @@ Public Class frmEmailOptions
 
                         'Delete the attached file once email sent successfully
                         DeleteFile(strFileName)
+
                         'Close the Window
                         Me.Close()
 
@@ -241,12 +258,28 @@ Public Class frmEmailOptions
 
             lblResult.ForeColor = Color.Red
             lblResult.Text = "Sending Email Failed..."
-            oExcelSS.ErrorLog("btnSend_Click Error#" & ex.Message.ToString())
+            oExcelSS.ErrorLog("btnSend_Click Error#" & ex.ToString())
             'Show MsgBox of Failure
             MessageBox.Show("Sending Email Failed.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             btnSend.Enabled = True
             btnCancel.Enabled = True
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Cancel Click Event
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Try
+            Me.Close()
+        Catch ex As Exception
+            oExcelSS.ErrorLog("btnCancel_Click Error#" & ex.ToString())
+            'Show MsgBox of Failure
+            MessageBox.Show("Failed to close email screen.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -275,4 +308,5 @@ Public Class frmEmailOptions
 
 #End Region
 
+    
 End Class
