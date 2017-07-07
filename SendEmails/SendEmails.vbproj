@@ -71,6 +71,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmEmailContacts.designer.vb">
+      <DependentUpon>frmEmailContacts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEmailContacts.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmEmailOptions.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmEmailContacts.resx">
+      <DependentUpon>frmEmailContacts.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEmailOptions.resx">
       <DependentUpon>frmEmailOptions.vb</DependentUpon>
     </EmbeddedResource>
