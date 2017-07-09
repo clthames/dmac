@@ -145,7 +145,6 @@ Partial Class frmEmailOptions
         '
         'frmEmailOptions
         '
-        Me.AcceptButton = Me.btnSend
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnCancel

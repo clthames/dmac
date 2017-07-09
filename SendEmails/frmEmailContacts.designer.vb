@@ -22,8 +22,20 @@ Partial Class frmEmailContacts
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.pnlSearchResult = New System.Windows.Forms.Panel()
         Me.dgvSearchResult = New System.Windows.Forms.DataGridView()
+        Me.clmnCustNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnCustName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnContactId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnTitle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnAdd1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnAdd2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnAdd3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnZip = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlSearch = New System.Windows.Forms.Panel()
         Me.chkQuickSearch = New System.Windows.Forms.CheckBox()
         Me.lblInclude = New System.Windows.Forms.Label()
@@ -53,17 +65,7 @@ Partial Class frmEmailContacts
         Me.btnNew = New System.Windows.Forms.Button()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.btnOk = New System.Windows.Forms.Button()
-        Me.clmnCustNumber = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnCustName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnContactId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnTitle = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnPhone = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnEmail = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnAdd1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnAdd2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnAdd3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnZip = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tlAddButton = New System.Windows.Forms.ToolTip(Me.components)
         Me.pnlSearchResult.SuspendLayout()
         CType(Me.dgvSearchResult, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlSearch.SuspendLayout()
@@ -85,13 +87,93 @@ Partial Class frmEmailContacts
         '
         Me.dgvSearchResult.AllowUserToAddRows = False
         Me.dgvSearchResult.AllowUserToDeleteRows = False
+        Me.dgvSearchResult.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvSearchResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSearchResult.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clmnCustNumber, Me.clmnCustName, Me.clmnContactId, Me.clmnName, Me.clmnTitle, Me.clmnPhone, Me.clmnEmail, Me.clmnAdd1, Me.clmnAdd2, Me.clmnAdd3, Me.clmnZip})
-        Me.dgvSearchResult.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvSearchResult.Location = New System.Drawing.Point(0, 0)
+        Me.dgvSearchResult.MultiSelect = False
         Me.dgvSearchResult.Name = "dgvSearchResult"
         Me.dgvSearchResult.Size = New System.Drawing.Size(1109, 411)
         Me.dgvSearchResult.TabIndex = 0
+        '
+        'clmnCustNumber
+        '
+        Me.clmnCustNumber.DataPropertyName = "CustomerNumber"
+        Me.clmnCustNumber.HeaderText = "Customer Number"
+        Me.clmnCustNumber.Name = "clmnCustNumber"
+        Me.clmnCustNumber.ReadOnly = True
+        '
+        'clmnCustName
+        '
+        Me.clmnCustName.DataPropertyName = "CustomerName"
+        Me.clmnCustName.HeaderText = "Customer Name"
+        Me.clmnCustName.Name = "clmnCustName"
+        Me.clmnCustName.ReadOnly = True
+        '
+        'clmnContactId
+        '
+        Me.clmnContactId.DataPropertyName = "ContactId"
+        Me.clmnContactId.HeaderText = "Contact ID"
+        Me.clmnContactId.Name = "clmnContactId"
+        Me.clmnContactId.ReadOnly = True
+        '
+        'clmnName
+        '
+        Me.clmnName.DataPropertyName = "Name"
+        Me.clmnName.HeaderText = "Name"
+        Me.clmnName.Name = "clmnName"
+        Me.clmnName.ReadOnly = True
+        '
+        'clmnTitle
+        '
+        Me.clmnTitle.DataPropertyName = "Title"
+        Me.clmnTitle.HeaderText = "Title"
+        Me.clmnTitle.Name = "clmnTitle"
+        Me.clmnTitle.ReadOnly = True
+        Me.clmnTitle.Width = 80
+        '
+        'clmnPhone
+        '
+        Me.clmnPhone.DataPropertyName = "ContactPhone"
+        Me.clmnPhone.HeaderText = "Contact Phone"
+        Me.clmnPhone.Name = "clmnPhone"
+        Me.clmnPhone.ReadOnly = True
+        '
+        'clmnEmail
+        '
+        Me.clmnEmail.DataPropertyName = "ContactEmail"
+        Me.clmnEmail.HeaderText = "Contact Email"
+        Me.clmnEmail.Name = "clmnEmail"
+        Me.clmnEmail.ReadOnly = True
+        '
+        'clmnAdd1
+        '
+        Me.clmnAdd1.DataPropertyName = "LocationAddress1"
+        Me.clmnAdd1.HeaderText = "Address 1"
+        Me.clmnAdd1.Name = "clmnAdd1"
+        Me.clmnAdd1.ReadOnly = True
+        '
+        'clmnAdd2
+        '
+        Me.clmnAdd2.DataPropertyName = "LocationAddress2"
+        Me.clmnAdd2.HeaderText = "Address 2"
+        Me.clmnAdd2.Name = "clmnAdd2"
+        Me.clmnAdd2.ReadOnly = True
+        '
+        'clmnAdd3
+        '
+        Me.clmnAdd3.DataPropertyName = "LocationAddress3"
+        Me.clmnAdd3.HeaderText = "Address 3"
+        Me.clmnAdd3.Name = "clmnAdd3"
+        Me.clmnAdd3.ReadOnly = True
+        '
+        'clmnZip
+        '
+        Me.clmnZip.DataPropertyName = "ZIP"
+        Me.clmnZip.HeaderText = "Zip"
+        Me.clmnZip.Name = "clmnZip"
+        Me.clmnZip.Width = 70
         '
         'pnlSearch
         '
@@ -336,15 +418,17 @@ Partial Class frmEmailContacts
         '
         'btnCancel
         '
+        Me.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.btnCancel.Location = New System.Drawing.Point(343, 17)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(80, 23)
         Me.btnCancel.TabIndex = 3
-        Me.btnCancel.Text = "Cancel"
+        Me.btnCancel.Text = "Close"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
         'btnNew
         '
+        Me.btnNew.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.btnNew.Location = New System.Drawing.Point(130, 17)
         Me.btnNew.Name = "btnNew"
         Me.btnNew.Size = New System.Drawing.Size(80, 23)
@@ -354,15 +438,18 @@ Partial Class frmEmailContacts
         '
         'btnAdd
         '
+        Me.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.btnAdd.Location = New System.Drawing.Point(26, 17)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(80, 23)
         Me.btnAdd.TabIndex = 1
         Me.btnAdd.Text = "Add"
+        Me.tlAddButton.SetToolTip(Me.btnAdd, "Add to Recipient List")
         Me.btnAdd.UseVisualStyleBackColor = True
         '
         'btnOk
         '
+        Me.btnOk.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.btnOk.Location = New System.Drawing.Point(236, 17)
         Me.btnOk.Name = "btnOk"
         Me.btnOk.Size = New System.Drawing.Size(80, 23)
@@ -370,90 +457,11 @@ Partial Class frmEmailContacts
         Me.btnOk.Text = "OK"
         Me.btnOk.UseVisualStyleBackColor = True
         '
-        'clmnCustNumber
-        '
-        Me.clmnCustNumber.DataPropertyName = "CustomerNumber"
-        Me.clmnCustNumber.HeaderText = "Customer Number"
-        Me.clmnCustNumber.Name = "clmnCustNumber"
-        Me.clmnCustNumber.ReadOnly = True
-        '
-        'clmnCustName
-        '
-        Me.clmnCustName.DataPropertyName = "CustomerName"
-        Me.clmnCustName.HeaderText = "Customer Name"
-        Me.clmnCustName.Name = "clmnCustName"
-        Me.clmnCustName.ReadOnly = True
-        '
-        'clmnContactId
-        '
-        Me.clmnContactId.DataPropertyName = "ContactId"
-        Me.clmnContactId.HeaderText = "Contact ID"
-        Me.clmnContactId.Name = "clmnContactId"
-        Me.clmnContactId.ReadOnly = True
-        '
-        'clmnName
-        '
-        Me.clmnName.DataPropertyName = "Name"
-        Me.clmnName.HeaderText = "Name"
-        Me.clmnName.Name = "clmnName"
-        Me.clmnName.ReadOnly = True
-        '
-        'clmnTitle
-        '
-        Me.clmnTitle.DataPropertyName = "Title"
-        Me.clmnTitle.HeaderText = "Title"
-        Me.clmnTitle.Name = "clmnTitle"
-        Me.clmnTitle.ReadOnly = True
-        Me.clmnTitle.Width = 80
-        '
-        'clmnPhone
-        '
-        Me.clmnPhone.DataPropertyName = "ContactPhone"
-        Me.clmnPhone.HeaderText = "Contact Phone"
-        Me.clmnPhone.Name = "clmnPhone"
-        Me.clmnPhone.ReadOnly = True
-        '
-        'clmnEmail
-        '
-        Me.clmnEmail.DataPropertyName = "ContactEmail"
-        Me.clmnEmail.HeaderText = "Contact Email"
-        Me.clmnEmail.Name = "clmnEmail"
-        Me.clmnEmail.ReadOnly = True
-        '
-        'clmnAdd1
-        '
-        Me.clmnAdd1.DataPropertyName = "LocationAddress1"
-        Me.clmnAdd1.HeaderText = "Address 1"
-        Me.clmnAdd1.Name = "clmnAdd1"
-        Me.clmnAdd1.ReadOnly = True
-        '
-        'clmnAdd2
-        '
-        Me.clmnAdd2.DataPropertyName = "LocationAddress2"
-        Me.clmnAdd2.HeaderText = "Address 2"
-        Me.clmnAdd2.Name = "clmnAdd2"
-        Me.clmnAdd2.ReadOnly = True
-        '
-        'clmnAdd3
-        '
-        Me.clmnAdd3.DataPropertyName = "LocationAddress3"
-        Me.clmnAdd3.HeaderText = "Address 3"
-        Me.clmnAdd3.Name = "clmnAdd3"
-        Me.clmnAdd3.ReadOnly = True
-        '
-        'clmnZip
-        '
-        Me.clmnZip.DataPropertyName = "ZIP"
-        Me.clmnZip.HeaderText = "Zip"
-        Me.clmnZip.Name = "clmnZip"
-        Me.clmnZip.Width = 70
-        '
         'frmEmailContacts
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1133, 537)
-        Me.ControlBox = False
         Me.Controls.Add(Me.pnlAction)
         Me.Controls.Add(Me.pnlAddContact)
         Me.Controls.Add(Me.pnlSearch)
@@ -516,4 +524,5 @@ Partial Class frmEmailContacts
     Friend WithEvents clmnAdd2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents clmnAdd3 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents clmnZip As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents tlAddButton As System.Windows.Forms.ToolTip
 End Class

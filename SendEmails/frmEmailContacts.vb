@@ -38,6 +38,7 @@ Public Class frmEmailContacts
     ''' 
     Private Sub frmCustomerContacts_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
+            Me.WindowState = FormWindowState.Maximized
             pnlSearch.Visible = True
             pnlAddContact.Visible = False
             pnlAction.Visible = True
@@ -89,7 +90,7 @@ Public Class frmEmailContacts
     Private Function GetSearchContactData() As DataTable
         Dim dtCustContacts As New DataTable("CustContact")
         Dim status As String = String.Empty
-        If cmbStatus Is Nothing Then
+        If Not cmbStatus Is Nothing Then
             status = DirectCast(cmbStatus.SelectedItem, KeyValuePair(Of String, String)).Key
         End If
 
@@ -151,7 +152,7 @@ Public Class frmEmailContacts
         cmbPattern.SelectedIndex = 0
 
         Dim comboStatus As New Dictionary(Of String, String)()
-        comboStatus.Add("1", "Active")
+        comboStatus.Add("1", "Active Customer")
         comboStatus.Add("0", "All")
         cmbStatus.DataSource = New BindingSource(comboStatus, Nothing)
         cmbStatus.DisplayMember = "Value"
