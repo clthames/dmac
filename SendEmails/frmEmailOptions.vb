@@ -93,192 +93,195 @@ Public Class frmEmailOptions
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub btnSend_Click(sender As Object, e As EventArgs) Handles btnSend.Click
+        If ValidateInputs() Then
 
-        Dim smtpUserName As String = ""
-        Dim smtpPassword As String = ""
-        Dim smtpServer As String = ""
-        Dim smtpPort As String = ""
-        Dim fromEmailAddress As String = ""
-        Dim CcEmail As String = ""
-        Dim BccEmail As String = ""
-        Dim isEnableSSL As Boolean = False
-        Dim isBodyHtmlText As Boolean = False
-        Dim attachmentName As String = ""
-        lblResult.Text = ""
+            Dim smtpUserName As String = ""
+            Dim smtpPassword As String = ""
+            Dim smtpServer As String = ""
+            Dim smtpPort As String = ""
+            Dim fromEmailAddress As String = ""
+            Dim CcEmail As String = ""
+            Dim BccEmail As String = ""
+            Dim isEnableSSL As Boolean = False
+            Dim isBodyHtmlText As Boolean = False
+            Dim attachmentName As String = ""
+            lblResult.Text = ""
 
-        Try
-            'Validate Email Address. If invalid, then show message and skip sending email.
+            Try
+                'Validate Email Address. If invalid, then show message and skip sending email.
 
-            'Connect to the Database (internally uses .INI files to read connection string for CompnayDB and connects to DB)
-            ''If oExcelSS.ConnectDataBaseAsperRegistry() Then
-            btnSend.Enabled = False
-            btnCancel.Enabled = False
+                'Connect to the Database (internally uses .INI files to read connection string for CompnayDB and connects to DB)
+                ''If oExcelSS.ConnectDataBaseAsperRegistry() Then
+                btnSend.Enabled = False
+                btnCancel.Enabled = False
 
-            ''Get the default attributes of email.
-            Dim dtSMTPInfo As DataTable = GetDefaultEmailAttributes()
+                ''Get the default attributes of email.
+                Dim dtSMTPInfo As DataTable = GetDefaultEmailAttributes()
 
-            If Not dtSMTPInfo Is Nothing Then
+                If Not dtSMTPInfo Is Nothing Then
 
-                'read all SMTP/Report Emailing Settings into local variables
-                dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_FromEmailAddress'"
+                    'read all SMTP/Report Emailing Settings into local variables
+                    dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_FromEmailAddress'"
 
-                If (dtSMTPInfo.DefaultView.Count > 0) Then
-                    fromEmailAddress = dtSMTPInfo.DefaultView(0)("Value").ToString
-                End If
+                    If (dtSMTPInfo.DefaultView.Count > 0) Then
+                        fromEmailAddress = dtSMTPInfo.DefaultView(0)("Value").ToString
+                    End If
 
-                dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_CcEmailAddress'"
+                    dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_CcEmailAddress'"
 
-                If (dtSMTPInfo.DefaultView.Count > 0) Then
-                    CcEmail = dtSMTPInfo.DefaultView(0)("Value").ToString
-                End If
+                    If (dtSMTPInfo.DefaultView.Count > 0) Then
+                        CcEmail = dtSMTPInfo.DefaultView(0)("Value").ToString
+                    End If
 
-                dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_BccEmailAddress'"
+                    dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_BccEmailAddress'"
 
-                If (dtSMTPInfo.DefaultView.Count > 0) Then
-                    BccEmail = dtSMTPInfo.DefaultView(0)("Value").ToString
-                End If
+                    If (dtSMTPInfo.DefaultView.Count > 0) Then
+                        BccEmail = dtSMTPInfo.DefaultView(0)("Value").ToString
+                    End If
 
-                'Prepare Email Message Object. All properties of Email Message object will be fetched from DB
-                Dim emailMsg As MailMessage = New MailMessage()
-                emailMsg.From = New MailAddress(fromEmailAddress)
+                    'Prepare Email Message Object. All properties of Email Message object will be fetched from DB
+                    Dim emailMsg As MailMessage = New MailMessage()
+                    emailMsg.From = New MailAddress(fromEmailAddress)
 
-                Dim arrEmailAdd() As String = txtEmailAddress.Text.Trim.Split(";")
+                    Dim arrEmailAdd() As String = txtEmailAddress.Text.Trim.Split(";")
 
-                If arrEmailAdd.Length > 0 Then
-                    For Each recipient In arrEmailAdd
-                        If Not String.IsNullOrEmpty(recipient) Then
-                            If IsValidEmailAddress(recipient.Trim) Then
-                                emailMsg.To.Add(recipient)
-                            Else
-                                MessageBox.Show("One or more Email Address invalid, Please enter valid Email Addresses.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                Exit Sub
+                    If arrEmailAdd.Length > 0 Then
+                        For Each recipient In arrEmailAdd
+                            If Not String.IsNullOrEmpty(recipient) Then
+                                If IsValidEmailAddress(recipient.Trim) Then
+                                    emailMsg.To.Add(recipient)
+                                Else
+                                    MessageBox.Show("One or more Email Address invalid, Please enter valid Email Addresses.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    Exit Sub
+                                End If
                             End If
-                        End If
-                    Next
+                        Next
+                    End If
+
+                    If Not String.IsNullOrEmpty(CcEmail) Then
+                        Dim ccMailAddress As New MailAddress(CcEmail)
+                        emailMsg.CC.Add(ccMailAddress)
+                    End If
+
+                    If Not String.IsNullOrEmpty(BccEmail) Then
+                        Dim BccMailAddress As New MailAddress(BccEmail)
+                        emailMsg.Bcc.Add(BccMailAddress)
+                    End If
+
+                    emailMsg.Subject = txtSubject.Text
+                    emailMsg.Body = txtBody.Text
+
+                    dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_ServerName'"
+
+                    If (dtSMTPInfo.DefaultView.Count > 0) Then
+                        smtpServer = dtSMTPInfo.DefaultView(0)("Value").ToString
+                    End If
+
+                    dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_Port'"
+
+                    If (dtSMTPInfo.DefaultView.Count > 0) Then
+                        smtpPort = dtSMTPInfo.DefaultView(0)("Value").ToString
+                    End If
+
+                    dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_UserName'"
+
+                    If (dtSMTPInfo.DefaultView.Count > 0) Then
+                        smtpUserName = dtSMTPInfo.DefaultView(0)("Value").ToString
+                    End If
+
+                    dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_Password'"
+
+                    If (dtSMTPInfo.DefaultView.Count > 0) Then
+                        smtpPassword = dtSMTPInfo.DefaultView(0)("Value").ToString
+                        smtpPassword = ExcelSSGen.Main.Decrypt(smtpPassword, "dmac", True)
+                    End If
+
+                    dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_EnableSSL'"
+
+                    If (dtSMTPInfo.DefaultView.Count > 0) Then
+                        isEnableSSL = Convert.ToBoolean(dtSMTPInfo.DefaultView(0)("Value"))
+                    End If
+
+                    dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_IsHTMLBodyText'"
+
+                    If (dtSMTPInfo.DefaultView.Count > 0) Then
+                        isBodyHtmlText = Convert.ToBoolean(dtSMTPInfo.DefaultView(0)("Value"))
+                    End If
+
+                    emailMsg.IsBodyHtml = isBodyHtmlText
+
+                    'Connect to SMTP server
+                    Dim client As SmtpClient = New SmtpClient(smtpServer, CInt(smtpPort))
+
+                    If Not String.IsNullOrEmpty(smtpUserName) AndAlso Not String.IsNullOrEmpty(smtpPassword) Then
+                        client.Credentials = New System.Net.NetworkCredential(smtpUserName, smtpPassword)
+                    End If
+
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network
+                    client.EnableSsl = isEnableSSL
+
+                    'Export report associated with Viewer into PDF file and attach it to Email
+                    Using attachment As New System.Net.Mail.Attachment(strFileName)
+                        attachmentName = attachment.Name
+                        emailMsg.Attachments.Add(attachment)
+
+                        'Send Email with PDF attachment
+                        client.Send(emailMsg)
+                    End Using
+
+                    lblResult.ForeColor = Color.Green
+                    lblResult.Text = "Report sent as an Email Attachment..."
+
+                    'Begin Email Logger
+                    Dim params As SqlParameter() = New SqlParameter(4) {}
+                    params(0) = New SqlParameter("@RecipientEmailAddress", txtEmailAddress.Text)
+                    params(1) = New SqlParameter("@Status", "SENT SUCCESSFULLY")
+                    params(2) = New SqlParameter("@Description", attachmentName)
+                    params(3) = New SqlParameter("@SenderEmailAddress", fromEmailAddress)
+                    params(4) = New SqlParameter("@RecipientName", String.Empty)
+
+                    oExcelSS.ExecuteProc("[uspEmailLogger]", params)
+                    ' end email logger
+
+                    'Show MsgBox of Success
+                    MessageBox.Show("Report sent as an Email Attachment.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    'Delete the attached file once email sent successfully
+                    DeleteFile(strFileName)
+
+                    'Close the Window
+                    Me.Close()
+
                 End If
+                '' Else
+                '' MessageBox.Show("Please configure SMTP Server Settings to send report as an email attachment.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                '' End If
 
-                If Not String.IsNullOrEmpty(CcEmail) Then
-                    Dim ccMailAddress As New MailAddress(CcEmail)
-                    emailMsg.CC.Add(ccMailAddress)
-                End If
 
-                If Not String.IsNullOrEmpty(BccEmail) Then
-                    Dim BccMailAddress As New MailAddress(BccEmail)
-                    emailMsg.Bcc.Add(BccMailAddress)
-                End If
-
-                emailMsg.Subject = txtSubject.Text
-                emailMsg.Body = txtBody.Text
-
-                dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_ServerName'"
-
-                If (dtSMTPInfo.DefaultView.Count > 0) Then
-                    smtpServer = dtSMTPInfo.DefaultView(0)("Value").ToString
-                End If
-
-                dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_Port'"
-
-                If (dtSMTPInfo.DefaultView.Count > 0) Then
-                    smtpPort = dtSMTPInfo.DefaultView(0)("Value").ToString
-                End If
-
-                dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_UserName'"
-
-                If (dtSMTPInfo.DefaultView.Count > 0) Then
-                    smtpUserName = dtSMTPInfo.DefaultView(0)("Value").ToString
-                End If
-
-                dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_Password'"
-
-                If (dtSMTPInfo.DefaultView.Count > 0) Then
-                    smtpPassword = dtSMTPInfo.DefaultView(0)("Value").ToString
-                    smtpPassword = ExcelSSGen.Main.Decrypt(smtpPassword, "dmac", True)
-                End If
-
-                dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_EnableSSL'"
-
-                If (dtSMTPInfo.DefaultView.Count > 0) Then
-                    isEnableSSL = Convert.ToBoolean(dtSMTPInfo.DefaultView(0)("Value"))
-                End If
-
-                dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'SMTP_IsHTMLBodyText'"
-
-                If (dtSMTPInfo.DefaultView.Count > 0) Then
-                    isBodyHtmlText = Convert.ToBoolean(dtSMTPInfo.DefaultView(0)("Value"))
-                End If
-
-                emailMsg.IsBodyHtml = isBodyHtmlText
-
-                'Connect to SMTP server
-                Dim client As SmtpClient = New SmtpClient(smtpServer, CInt(smtpPort))
-
-                If Not String.IsNullOrEmpty(smtpUserName) AndAlso Not String.IsNullOrEmpty(smtpPassword) Then
-                    client.Credentials = New System.Net.NetworkCredential(smtpUserName, smtpPassword)
-                End If
-
-                client.DeliveryMethod = SmtpDeliveryMethod.Network
-                client.EnableSsl = isEnableSSL
-
-                'Export report associated with Viewer into PDF file and attach it to Email
-                Using attachment As New System.Net.Mail.Attachment(strFileName)
-                    attachmentName = attachment.Name
-                    emailMsg.Attachments.Add(attachment)
-
-                    'Send Email with PDF attachment
-                    client.Send(emailMsg)
-                End Using
-
-                lblResult.ForeColor = Color.Green
-                lblResult.Text = "Report sent as an Email Attachment..."
-
+            Catch ex As Exception
                 'Begin Email Logger
                 Dim params As SqlParameter() = New SqlParameter(4) {}
                 params(0) = New SqlParameter("@RecipientEmailAddress", txtEmailAddress.Text)
-                params(1) = New SqlParameter("@Status", "SENT SUCCESSFULLY")
+                params(1) = New SqlParameter("@Status", "FAILED: " & ex.Message)
                 params(2) = New SqlParameter("@Description", attachmentName)
                 params(3) = New SqlParameter("@SenderEmailAddress", fromEmailAddress)
                 params(4) = New SqlParameter("@RecipientName", String.Empty)
 
                 oExcelSS.ExecuteProc("[uspEmailLogger]", params)
+
                 ' end email logger
 
-                'Show MsgBox of Success
-                MessageBox.Show("Report sent as an Email Attachment.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                lblResult.ForeColor = Color.Red
+                lblResult.Text = "Sending Email Failed..."
+                oExcelSS.ErrorLog("btnSend_Click Error#" & ex.ToString())
+                'Show MsgBox of Failure
+                MessageBox.Show("Sending Email Failed.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                btnSend.Enabled = True
+                btnCancel.Enabled = True
+            End Try
 
-                'Delete the attached file once email sent successfully
-                DeleteFile(strFileName)
-
-                'Close the Window
-                Me.Close()
-
-            End If
-            '' Else
-            '' MessageBox.Show("Please configure SMTP Server Settings to send report as an email attachment.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            '' End If
-
-
-        Catch ex As Exception
-            'Begin Email Logger
-            Dim params As SqlParameter() = New SqlParameter(4) {}
-            params(0) = New SqlParameter("@RecipientEmailAddress", txtEmailAddress.Text)
-            params(1) = New SqlParameter("@Status", "FAILED: " & ex.Message)
-            params(2) = New SqlParameter("@Description", attachmentName)
-            params(3) = New SqlParameter("@SenderEmailAddress", fromEmailAddress)
-            params(4) = New SqlParameter("@RecipientName", String.Empty)
-
-            oExcelSS.ExecuteProc("[uspEmailLogger]", params)
-
-            ' end email logger
-
-            lblResult.ForeColor = Color.Red
-            lblResult.Text = "Sending Email Failed..."
-            oExcelSS.ErrorLog("btnSend_Click Error#" & ex.ToString())
-            'Show MsgBox of Failure
-            MessageBox.Show("Sending Email Failed.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Finally
-            btnSend.Enabled = True
-            btnCancel.Enabled = True
-        End Try
+        End If
     End Sub
 
     ''' <summary>
@@ -336,6 +339,23 @@ Public Class frmEmailOptions
         Return dtSMTPInfo
 
     End Function
+    '''<summary>
+    '''ValidateInputs validates required fields for Email
+    '''</summary>
+    Private Function ValidateInputs() As Boolean
+        If String.IsNullOrEmpty(txtEmailAddress.Text) Then
+            MessageBox.Show("Please select Email Address.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        ElseIf String.IsNullOrEmpty(txtSubject.Text) Then
+            MessageBox.Show("Please enter Email Subject.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        ElseIf String.IsNullOrEmpty(txtBody.Text) Then
+            MessageBox.Show("Please enter Email Body text.", "Send Email", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End If
+        Return True
+    End Function
+
 
     ''' <summary>
     ''' Validates email address format

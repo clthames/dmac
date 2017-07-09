@@ -38,13 +38,13 @@ Public Class frmEmailContacts
     ''' 
     Private Sub frmCustomerContacts_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
-            Me.WindowState = FormWindowState.Maximized
             pnlSearch.Visible = True
             pnlAddContact.Visible = False
             pnlAction.Visible = True
             FillComboBoxes()
             BindCustomerContact()
             filterField = DirectCast(cmbCustProp.SelectedItem, KeyValuePair(Of String, String)).Key
+            Me.WindowState = FormWindowState.Maximized
         Catch ex As Exception
             oExcelSS.ErrorLog("frmCustomerContacts_Load Error#" & ex.ToString())
             MessageBox.Show("Failed to retrieve Email Contacts.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -90,7 +90,7 @@ Public Class frmEmailContacts
     Private Function GetSearchContactData() As DataTable
         Dim dtCustContacts As New DataTable("CustContact")
         Dim status As String = String.Empty
-        If Not cmbStatus Is Nothing Then
+        If cmbStatus.Items.Count > 0 Then
             status = DirectCast(cmbStatus.SelectedItem, KeyValuePair(Of String, String)).Key
         End If
 
