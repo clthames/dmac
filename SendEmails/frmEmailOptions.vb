@@ -372,6 +372,4 @@ Public Class frmEmailOptions
 
 #End Region
 
-    
-   
 End Class

@@ -197,6 +197,7 @@ Public Class frmEmailContacts
     '''</summary>
     Private Sub btnContactCancel_Click(sender As Object, e As EventArgs) Handles btnContactCancel.Click
         pnlSearch.Visible = True
+        pnlSearchResult.Visible = True
         pnlAction.Visible = True
         pnlAddContact.Visible = False
     End Sub
@@ -214,6 +215,7 @@ Public Class frmEmailContacts
     '''</summary>
     Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
         pnlSearch.Visible = False
+        pnlSearchResult.Visible = False
         pnlAction.Visible = False
         pnlAddContact.Visible = True
     End Sub
@@ -246,6 +248,7 @@ Public Class frmEmailContacts
                 MessageBox.Show("Contact saved successfully.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 pnlSearch.Visible = True
                 pnlAction.Visible = True
+                pnlSearchResult.Visible = True
                 pnlAddContact.Visible = False
             End If
 
