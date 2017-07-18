@@ -77,7 +77,7 @@ Partial Class frmEmailOptions
         Me.txtEmailAddress.Location = New System.Drawing.Point(94, 40)
         Me.txtEmailAddress.Multiline = True
         Me.txtEmailAddress.Name = "txtEmailAddress"
-        Me.txtEmailAddress.Size = New System.Drawing.Size(256, 278)
+        Me.txtEmailAddress.Size = New System.Drawing.Size(256, 233)
         Me.txtEmailAddress.TabIndex = 2
         '
         'txtBody

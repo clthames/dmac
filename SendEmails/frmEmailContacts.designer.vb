@@ -62,9 +62,9 @@ Partial Class frmEmailContacts
         Me.txtContactId = New System.Windows.Forms.TextBox()
         Me.pnlAction = New System.Windows.Forms.Panel()
         Me.btnCancel = New System.Windows.Forms.Button()
-        Me.btnNew = New System.Windows.Forms.Button()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.btnOk = New System.Windows.Forms.Button()
+        Me.btnNew = New System.Windows.Forms.Button()
         Me.tlAddButton = New System.Windows.Forms.ToolTip(Me.components)
         Me.pnlSearchResult.SuspendLayout()
         CType(Me.dgvSearchResult, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,7 +81,7 @@ Partial Class frmEmailContacts
         Me.pnlSearchResult.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSearchResult.Location = New System.Drawing.Point(0, 37)
         Me.pnlSearchResult.Name = "pnlSearchResult"
-        Me.pnlSearchResult.Size = New System.Drawing.Size(1133, 454)
+        Me.pnlSearchResult.Size = New System.Drawing.Size(1129, 450)
         Me.pnlSearchResult.TabIndex = 1
         '
         'dgvSearchResult
@@ -96,7 +96,7 @@ Partial Class frmEmailContacts
         Me.dgvSearchResult.Location = New System.Drawing.Point(0, 0)
         Me.dgvSearchResult.MultiSelect = False
         Me.dgvSearchResult.Name = "dgvSearchResult"
-        Me.dgvSearchResult.Size = New System.Drawing.Size(1133, 454)
+        Me.dgvSearchResult.Size = New System.Drawing.Size(1129, 450)
         Me.dgvSearchResult.TabIndex = 0
         '
         'clmnCustNumber
@@ -187,7 +187,7 @@ Partial Class frmEmailContacts
         Me.pnlSearch.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlSearch.Location = New System.Drawing.Point(0, 0)
         Me.pnlSearch.Name = "pnlSearch"
-        Me.pnlSearch.Size = New System.Drawing.Size(1133, 37)
+        Me.pnlSearch.Size = New System.Drawing.Size(1129, 37)
         Me.pnlSearch.TabIndex = 1
         '
         'chkQuickSearch
@@ -198,6 +198,7 @@ Partial Class frmEmailContacts
         Me.chkQuickSearch.Size = New System.Drawing.Size(91, 17)
         Me.chkQuickSearch.TabIndex = 6
         Me.chkQuickSearch.Text = "Quick Search"
+        Me.tlAddButton.SetToolTip(Me.chkQuickSearch, "Top 2500 records")
         Me.chkQuickSearch.UseVisualStyleBackColor = True
         '
         'lblInclude
@@ -259,7 +260,7 @@ Partial Class frmEmailContacts
         Me.pnlAddContact.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlAddContact.Location = New System.Drawing.Point(0, 37)
         Me.pnlAddContact.Name = "pnlAddContact"
-        Me.pnlAddContact.Size = New System.Drawing.Size(1133, 454)
+        Me.pnlAddContact.Size = New System.Drawing.Size(1129, 450)
         Me.pnlAddContact.TabIndex = 4
         '
         'pnlAddContactTitle
@@ -269,7 +270,7 @@ Partial Class frmEmailContacts
         Me.pnlAddContactTitle.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlAddContactTitle.Location = New System.Drawing.Point(0, 0)
         Me.pnlAddContactTitle.Name = "pnlAddContactTitle"
-        Me.pnlAddContactTitle.Size = New System.Drawing.Size(1133, 37)
+        Me.pnlAddContactTitle.Size = New System.Drawing.Size(1129, 37)
         Me.pnlAddContactTitle.TabIndex = 14
         '
         'lblTitle
@@ -300,7 +301,7 @@ Partial Class frmEmailContacts
         Me.pnlAddContactFields.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlAddContactFields.Location = New System.Drawing.Point(0, 0)
         Me.pnlAddContactFields.Name = "pnlAddContactFields"
-        Me.pnlAddContactFields.Size = New System.Drawing.Size(1133, 454)
+        Me.pnlAddContactFields.Size = New System.Drawing.Size(1129, 450)
         Me.pnlAddContactFields.TabIndex = 13
         '
         'cmbAccount
@@ -415,15 +416,15 @@ Partial Class frmEmailContacts
         Me.pnlAction.Controls.Add(Me.btnOk)
         Me.pnlAction.Controls.Add(Me.btnNew)
         Me.pnlAction.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.pnlAction.Location = New System.Drawing.Point(0, 491)
+        Me.pnlAction.Location = New System.Drawing.Point(0, 487)
         Me.pnlAction.Name = "pnlAction"
-        Me.pnlAction.Size = New System.Drawing.Size(1133, 46)
+        Me.pnlAction.Size = New System.Drawing.Size(1129, 46)
         Me.pnlAction.TabIndex = 6
         '
         'btnCancel
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnCancel.Location = New System.Drawing.Point(266, 11)
+        Me.btnCancel.Location = New System.Drawing.Point(390, 11)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(80, 23)
         Me.btnCancel.TabIndex = 3
@@ -431,44 +432,43 @@ Partial Class frmEmailContacts
         Me.btnCancel.UseVisualStyleBackColor = True
         Me.btnCancel.Visible = False
         '
-        'btnNew
-        '
-        Me.btnNew.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnNew.Location = New System.Drawing.Point(94, 11)
-        Me.btnNew.Name = "btnNew"
-        Me.btnNew.Size = New System.Drawing.Size(80, 23)
-        Me.btnNew.TabIndex = 2
-        Me.btnNew.Text = "New"
-        Me.tlAddButton.SetToolTip(Me.btnNew, "Create New Contact")
-        Me.btnNew.UseVisualStyleBackColor = True
-        '
         'btnAdd
         '
         Me.btnAdd.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnAdd.Location = New System.Drawing.Point(8, 11)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(80, 23)
+        Me.btnAdd.Size = New System.Drawing.Size(150, 23)
         Me.btnAdd.TabIndex = 1
-        Me.btnAdd.Text = "Add"
-        Me.tlAddButton.SetToolTip(Me.btnAdd, "Add to Recipient List")
+        Me.btnAdd.Text = "Add Recipient to Email"
+        Me.tlAddButton.SetToolTip(Me.btnAdd, "Add Recipient to Email")
         Me.btnAdd.UseVisualStyleBackColor = True
         '
         'btnOk
         '
         Me.btnOk.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnOk.Location = New System.Drawing.Point(180, 11)
+        Me.btnOk.Location = New System.Drawing.Point(304, 11)
         Me.btnOk.Name = "btnOk"
         Me.btnOk.Size = New System.Drawing.Size(80, 23)
         Me.btnOk.TabIndex = 0
         Me.btnOk.Text = "Close"
         Me.btnOk.UseVisualStyleBackColor = True
         '
+        'btnNew
+        '
+        Me.btnNew.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnNew.Location = New System.Drawing.Point(164, 11)
+        Me.btnNew.Name = "btnNew"
+        Me.btnNew.Size = New System.Drawing.Size(134, 23)
+        Me.btnNew.TabIndex = 2
+        Me.btnNew.Text = "Create New Contact"
+        Me.tlAddButton.SetToolTip(Me.btnNew, "Create New Contact")
+        Me.btnNew.UseVisualStyleBackColor = True
+        '
         'frmEmailContacts
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1133, 537)
-        Me.ControlBox = False
+        Me.ClientSize = New System.Drawing.Size(1129, 533)
         Me.Controls.Add(Me.pnlAddContact)
         Me.Controls.Add(Me.pnlSearchResult)
         Me.Controls.Add(Me.pnlSearch)
