@@ -1,6 +1,8 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Text.RegularExpressions
+
 Public Class frmEmailContacts
+
 #Region "Public Members"
     Public oExcelSS As New ExcelSSGen.Main
     Dim dtCustContacts As DataTable = New DataTable()
@@ -16,6 +18,7 @@ Public Class frmEmailContacts
         End Set
     End Property
 #End Region
+
 #Region "Public Methods"
     Public Sub New(ByVal Account As String)
         InitializeComponent()
@@ -30,7 +33,46 @@ Public Class frmEmailContacts
                    RegexOptions.IgnoreCase)
     End Function
 #End Region
-#Region "Private Methods"
+
+#Region "Form and Control Events"
+
+    '''<summary>
+    '''Refresh the data when contact property changed
+    '''</summary>
+    Private Sub cmbCustProp_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCustProp.SelectedIndexChanged
+        filterField = DirectCast(cmbCustProp.SelectedItem, KeyValuePair(Of String, String)).Key
+    End Sub
+
+    '''<summary>
+    '''Refresh the data when search pattern changed
+    '''</summary>
+    Private Sub cmbPattern_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbPattern.SelectedIndexChanged
+        txtCustValue.Text = String.Empty
+        BindCustomerContact()
+    End Sub
+
+    ''' <summary>
+    ''' Set all email address selected in private collection
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub frmEmailContacts_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        Try
+            If Not String.IsNullOrEmpty(_emailAdd) Then
+                If Not _emailAdd.Contains(GetSelectedRowEmail()) Then
+                    _emailAdd = _emailAdd & GetSelectedRowEmail()
+                End If
+            Else
+                _emailAdd = GetSelectedRowEmail()
+            End If
+
+            DialogResult = Windows.Forms.DialogResult.OK
+        Catch ex As Exception
+            oExcelSS.ErrorLog("frmEmailContacts_FormClosing Error#" & ex.ToString())
+            MessageBox.Show("Failed to close Email Contacts.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
     ''' <summary>
     ''' 
     ''' BindSearchData(0) shows all data
@@ -44,7 +86,6 @@ Public Class frmEmailContacts
             FillComboBoxes()
             BindCustomerContact()
             filterField = DirectCast(cmbCustProp.SelectedItem, KeyValuePair(Of String, String)).Key
-            Me.WindowState = FormWindowState.Maximized
         Catch ex As Exception
             oExcelSS.ErrorLog("frmCustomerContacts_Load Error#" & ex.ToString())
             MessageBox.Show("Failed to retrieve Email Contacts.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -76,6 +117,102 @@ Public Class frmEmailContacts
             dtCustContacts.DefaultView.RowFilter = String.Format("[{0}] LIKE '%{1}%'", filterField, txtCustValue.Text)
         End If
     End Sub
+
+    '''<summary>
+    '''If gets the active and all contact records based on checkbox value
+    '''</summary>
+    Private Sub cmbStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbStatus.SelectedIndexChanged
+        txtCustValue.Text = String.Empty
+        BindCustomerContact()
+    End Sub
+
+    '''<summary>
+    '''If checked TOP 2500 records displayed else all records displayed
+    '''</summary>
+    Private Sub chkQuickSearch_CheckedChanged(sender As Object, e As EventArgs) Handles chkQuickSearch.CheckedChanged
+        txtCustValue.Text = String.Empty
+        BindCustomerContact()
+    End Sub
+
+    '''<summary>
+    '''Closes the fill contact details form
+    '''</summary>
+    Private Sub btnContactCancel_Click(sender As Object, e As EventArgs) Handles btnContactCancel.Click
+        pnlSearch.Visible = True
+        pnlSearchResult.Visible = True
+        pnlAction.Visible = True
+        pnlAddContact.Visible = False
+    End Sub
+
+    '''<summary>
+    '''Saves contact details
+    '''</summary>
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        InsertContact()
+
+    End Sub
+
+    '''<summary>
+    '''Opens the form to fill the contact details
+    '''</summary>
+    Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
+        pnlSearch.Visible = False
+        pnlSearchResult.Visible = False
+        pnlAction.Visible = False
+        pnlAddContact.Visible = True
+    End Sub
+
+    '''<summary>
+    '''Adds the selected contacts email to send list but does not closes the form
+    '''</summary>
+    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+        If dgvSearchResult.SelectedRows.Count <> 0 Then
+            If Not String.IsNullOrEmpty(_emailAdd) Then
+                If Not _emailAdd.Contains(GetSelectedRowEmail()) Then
+                    _emailAdd = _emailAdd & GetSelectedRowEmail()
+                Else
+                    MessageBox.Show(GetSelectedRowEmail() & " already added.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Return
+                End If
+
+            Else
+                _emailAdd = GetSelectedRowEmail()
+            End If
+            MessageBox.Show(GetSelectedRowEmail() & " added.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            MessageBox.Show("Please select entire row to add Email contact.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
+
+    End Sub
+
+    '''<summary>
+    '''Adds the selected contact email to send list and closes the form
+    '''</summary>
+    Private Sub btnOk_Click(sender As Object, e As EventArgs) Handles btnOk.Click
+        If Not String.IsNullOrEmpty(_emailAdd) Then
+            If Not _emailAdd.Contains(GetSelectedRowEmail()) Then
+                _emailAdd = _emailAdd & GetSelectedRowEmail()
+            End If
+        Else
+            _emailAdd = GetSelectedRowEmail()
+        End If
+        Me.DialogResult = DialogResult.OK
+    End Sub
+
+#End Region
+
+#Region "Private Methods"
+
+    Private Function IsValidEmailAddress() As Boolean
+        ' Return true if strIn is in valid e-mail format.
+        Return Regex.IsMatch(txtEmail.Text,
+                   "^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                   "(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
+                   RegexOptions.IgnoreCase)
+    End Function
+
+
     '''<summary>
     '''Binds the data to datagridview based on filter criteria
     '''</summary>
@@ -113,20 +250,7 @@ Public Class frmEmailContacts
         Return dtCustContacts
 
     End Function
-    '''<summary>
-    '''Refresh the data when contact property changed
-    '''</summary>
-    Private Sub cmbCustProp_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCustProp.SelectedIndexChanged
-        filterField = DirectCast(cmbCustProp.SelectedItem, KeyValuePair(Of String, String)).Key
-    End Sub
 
-    '''<summary>
-    '''Refresh the data when search pattern changed
-    '''</summary>
-    Private Sub cmbPattern_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbPattern.SelectedIndexChanged
-        txtCustValue.Text = String.Empty
-        BindCustomerContact()
-    End Sub
     '''<summary>
     '''Fills the combo boxes for filter of contacts
     '''</summary>
@@ -175,50 +299,6 @@ Public Class frmEmailContacts
         dtAccount = oExcelSS.getDataTable("uspContact_GetAccounts", True)
         Return dtAccount
     End Function
-
-    '''<summary>
-    '''If gets the active and all contact records based on checkbox value
-    '''</summary>
-    Private Sub cmbStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbStatus.SelectedIndexChanged
-        txtCustValue.Text = String.Empty
-        BindCustomerContact()
-    End Sub
-
-    '''<summary>
-    '''If checked TOP 2500 records displayed else all records displayed
-    '''</summary>
-    Private Sub chkQuickSearch_CheckedChanged(sender As Object, e As EventArgs) Handles chkQuickSearch.CheckedChanged
-        txtCustValue.Text = String.Empty
-        BindCustomerContact()
-    End Sub
-
-    '''<summary>
-    '''Closes the fill contact details form
-    '''</summary>
-    Private Sub btnContactCancel_Click(sender As Object, e As EventArgs) Handles btnContactCancel.Click
-        pnlSearch.Visible = True
-        pnlSearchResult.Visible = True
-        pnlAction.Visible = True
-        pnlAddContact.Visible = False
-    End Sub
-
-    '''<summary>
-    '''Saves contact details
-    '''</summary>
-    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        InsertContact()
-
-    End Sub
-
-    '''<summary>
-    '''Opens the form to fill the contact details
-    '''</summary>
-    Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
-        pnlSearch.Visible = False
-        pnlSearchResult.Visible = False
-        pnlAction.Visible = False
-        pnlAddContact.Visible = True
-    End Sub
 
     '''<summary>
     '''The InsertContact inserts the Contact 
@@ -279,43 +359,6 @@ Public Class frmEmailContacts
     End Function
 
     '''<summary>
-    '''Adds the selected contacts email to send list but does not closes the form
-    '''</summary>
-    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
-        If dgvSearchResult.SelectedRows.Count <> 0 Then
-            If Not String.IsNullOrEmpty(_emailAdd) Then
-                If Not _emailAdd.Contains(GetSelectedRowEmail()) Then
-                    _emailAdd = _emailAdd & GetSelectedRowEmail()
-                Else
-                    MessageBox.Show(GetSelectedRowEmail() & " already added.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Return
-                End If
-
-            Else
-                _emailAdd = GetSelectedRowEmail()
-            End If
-            MessageBox.Show(GetSelectedRowEmail() & " added.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Else
-            MessageBox.Show("Please select entire row to add Email contact.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
-
-
-    End Sub
-
-    '''<summary>
-    '''Adds the selected contact email to send list and closes the form
-    '''</summary>
-    Private Sub btnOk_Click(sender As Object, e As EventArgs) Handles btnOk.Click
-        If Not String.IsNullOrEmpty(_emailAdd) Then
-            If Not _emailAdd.Contains(GetSelectedRowEmail()) Then
-                _emailAdd = _emailAdd & GetSelectedRowEmail()
-            End If
-        Else
-            _emailAdd = GetSelectedRowEmail()
-        End If
-        Me.DialogResult = DialogResult.OK
-    End Sub
-    '''<summary>
     '''Gets the selected email from contact list displayed
     '''</summary>
     Function GetSelectedRowEmail() As String
@@ -329,4 +372,5 @@ Public Class frmEmailContacts
         Return EmailAddress
     End Function
 #End Region
+
 End Class

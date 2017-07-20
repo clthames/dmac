@@ -81,7 +81,7 @@ Partial Class frmEmailContacts
         Me.pnlSearchResult.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlSearchResult.Location = New System.Drawing.Point(0, 37)
         Me.pnlSearchResult.Name = "pnlSearchResult"
-        Me.pnlSearchResult.Size = New System.Drawing.Size(1129, 450)
+        Me.pnlSearchResult.Size = New System.Drawing.Size(1129, 580)
         Me.pnlSearchResult.TabIndex = 1
         '
         'dgvSearchResult
@@ -96,7 +96,7 @@ Partial Class frmEmailContacts
         Me.dgvSearchResult.Location = New System.Drawing.Point(0, 0)
         Me.dgvSearchResult.MultiSelect = False
         Me.dgvSearchResult.Name = "dgvSearchResult"
-        Me.dgvSearchResult.Size = New System.Drawing.Size(1129, 450)
+        Me.dgvSearchResult.Size = New System.Drawing.Size(1129, 580)
         Me.dgvSearchResult.TabIndex = 0
         '
         'clmnCustNumber
@@ -260,7 +260,7 @@ Partial Class frmEmailContacts
         Me.pnlAddContact.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlAddContact.Location = New System.Drawing.Point(0, 37)
         Me.pnlAddContact.Name = "pnlAddContact"
-        Me.pnlAddContact.Size = New System.Drawing.Size(1129, 450)
+        Me.pnlAddContact.Size = New System.Drawing.Size(1129, 580)
         Me.pnlAddContact.TabIndex = 4
         '
         'pnlAddContactTitle
@@ -301,7 +301,7 @@ Partial Class frmEmailContacts
         Me.pnlAddContactFields.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlAddContactFields.Location = New System.Drawing.Point(0, 0)
         Me.pnlAddContactFields.Name = "pnlAddContactFields"
-        Me.pnlAddContactFields.Size = New System.Drawing.Size(1129, 450)
+        Me.pnlAddContactFields.Size = New System.Drawing.Size(1129, 580)
         Me.pnlAddContactFields.TabIndex = 13
         '
         'cmbAccount
@@ -416,7 +416,7 @@ Partial Class frmEmailContacts
         Me.pnlAction.Controls.Add(Me.btnOk)
         Me.pnlAction.Controls.Add(Me.btnNew)
         Me.pnlAction.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.pnlAction.Location = New System.Drawing.Point(0, 487)
+        Me.pnlAction.Location = New System.Drawing.Point(0, 617)
         Me.pnlAction.Name = "pnlAction"
         Me.pnlAction.Size = New System.Drawing.Size(1129, 46)
         Me.pnlAction.TabIndex = 6
@@ -468,7 +468,7 @@ Partial Class frmEmailContacts
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1129, 533)
+        Me.ClientSize = New System.Drawing.Size(1129, 663)
         Me.Controls.Add(Me.pnlAddContact)
         Me.Controls.Add(Me.pnlSearchResult)
         Me.Controls.Add(Me.pnlSearch)
