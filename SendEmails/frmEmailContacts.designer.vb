@@ -94,10 +94,16 @@ Partial Class frmEmailContacts
         Me.dgvSearchResult.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clmnCustNumber, Me.clmnCustName, Me.clmnContactId, Me.clmnName, Me.clmnTitle, Me.clmnPhone, Me.clmnEmail, Me.clmnAdd1, Me.clmnAdd2, Me.clmnAdd3, Me.clmnZip})
         Me.dgvSearchResult.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvSearchResult.Location = New System.Drawing.Point(0, 0)
-        Me.dgvSearchResult.MultiSelect = False
+        Me.dgvSearchResult.MultiSelect = True
         Me.dgvSearchResult.Name = "dgvSearchResult"
         Me.dgvSearchResult.Size = New System.Drawing.Size(1129, 580)
         Me.dgvSearchResult.TabIndex = 0
+        Me.dgvSearchResult.ScrollBars = ScrollBars.Both
+        Me.dgvSearchResult.AllowUserToResizeColumns = True
+        Me.dgvSearchResult.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        Me.dgvSearchResult.BringToFront()
+
+
         '
         'clmnCustNumber
         '
@@ -105,6 +111,7 @@ Partial Class frmEmailContacts
         Me.clmnCustNumber.HeaderText = "Customer Number"
         Me.clmnCustNumber.Name = "clmnCustNumber"
         Me.clmnCustNumber.ReadOnly = True
+        Me.clmnCustNumber.Frozen = False
         '
         'clmnCustName
         '
@@ -112,6 +119,7 @@ Partial Class frmEmailContacts
         Me.clmnCustName.HeaderText = "Customer Name"
         Me.clmnCustName.Name = "clmnCustName"
         Me.clmnCustName.ReadOnly = True
+        Me.clmnCustName.Frozen = False
         '
         'clmnContactId
         '
@@ -119,6 +127,7 @@ Partial Class frmEmailContacts
         Me.clmnContactId.HeaderText = "Contact ID"
         Me.clmnContactId.Name = "clmnContactId"
         Me.clmnContactId.ReadOnly = True
+        Me.clmnContactId.Frozen = False
         '
         'clmnName
         '
@@ -126,6 +135,7 @@ Partial Class frmEmailContacts
         Me.clmnName.HeaderText = "Name"
         Me.clmnName.Name = "clmnName"
         Me.clmnName.ReadOnly = True
+        Me.clmnName.Frozen = False
         '
         'clmnTitle
         '
@@ -133,6 +143,7 @@ Partial Class frmEmailContacts
         Me.clmnTitle.HeaderText = "Title"
         Me.clmnTitle.Name = "clmnTitle"
         Me.clmnTitle.ReadOnly = True
+        Me.clmnTitle.Frozen = False
         '
         'clmnPhone
         '
@@ -140,6 +151,7 @@ Partial Class frmEmailContacts
         Me.clmnPhone.HeaderText = "Contact Phone"
         Me.clmnPhone.Name = "clmnPhone"
         Me.clmnPhone.ReadOnly = True
+        Me.clmnPhone.Frozen = False
         '
         'clmnEmail
         '
@@ -147,6 +159,7 @@ Partial Class frmEmailContacts
         Me.clmnEmail.HeaderText = "Contact Email"
         Me.clmnEmail.Name = "clmnEmail"
         Me.clmnEmail.ReadOnly = True
+        Me.clmnEmail.Frozen = False
         '
         'clmnAdd1
         '
@@ -154,6 +167,7 @@ Partial Class frmEmailContacts
         Me.clmnAdd1.HeaderText = "Address 1"
         Me.clmnAdd1.Name = "clmnAdd1"
         Me.clmnAdd1.ReadOnly = True
+        Me.clmnAdd1.Frozen = False
         '
         'clmnAdd2
         '
@@ -161,6 +175,7 @@ Partial Class frmEmailContacts
         Me.clmnAdd2.HeaderText = "Address 2"
         Me.clmnAdd2.Name = "clmnAdd2"
         Me.clmnAdd2.ReadOnly = True
+        Me.clmnAdd2.Frozen = False
         '
         'clmnAdd3
         '
@@ -168,12 +183,14 @@ Partial Class frmEmailContacts
         Me.clmnAdd3.HeaderText = "Address 3"
         Me.clmnAdd3.Name = "clmnAdd3"
         Me.clmnAdd3.ReadOnly = True
+        Me.clmnAdd3.Frozen = False
         '
         'clmnZip
         '
         Me.clmnZip.DataPropertyName = "ZIP"
         Me.clmnZip.HeaderText = "Zip"
         Me.clmnZip.Name = "clmnZip"
+        Me.clmnZip.Frozen = False
         '
         'pnlSearch
         '

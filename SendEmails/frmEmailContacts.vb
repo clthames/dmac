@@ -52,11 +52,11 @@ Public Class frmEmailContacts
     Private Sub frmEmailContacts_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         Try
             If Not String.IsNullOrEmpty(_emailAdd) Then
-                If Not _emailAdd.Contains(GetSelectedRowEmail()) Then
-                    _emailAdd = _emailAdd & GetSelectedRowEmail()
+                If Not _emailAdd.Contains(GetSelectedRowsEmail()) Then
+                    _emailAdd = _emailAdd & GetSelectedRowsEmail()
                 End If
             Else
-                _emailAdd = GetSelectedRowEmail()
+                _emailAdd = GetSelectedRowsEmail()
             End If
 
             DialogResult = Windows.Forms.DialogResult.OK
@@ -160,17 +160,13 @@ Public Class frmEmailContacts
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         If dgvSearchResult.SelectedRows.Count <> 0 Then
             If Not String.IsNullOrEmpty(_emailAdd) Then
-                If Not _emailAdd.Contains(GetSelectedRowEmail()) Then
-                    _emailAdd = _emailAdd & GetSelectedRowEmail()
-                Else
-                    MessageBox.Show(GetSelectedRowEmail() & " already added.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Return
+                If Not _emailAdd.Contains(GetSelectedRowsEmail()) Then
+                    _emailAdd = _emailAdd & GetSelectedRowsEmail()
                 End If
-
             Else
-                _emailAdd = GetSelectedRowEmail()
+                _emailAdd = GetSelectedRowsEmail()
             End If
-            MessageBox.Show(GetSelectedRowEmail() & " added.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show(GetSelectedRowsEmail() & " added.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             MessageBox.Show("Please select entire row to add Email contact.", "Email Contact", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
@@ -183,11 +179,11 @@ Public Class frmEmailContacts
     '''</summary>
     Private Sub btnOk_Click(sender As Object, e As EventArgs) Handles btnOk.Click
         If Not String.IsNullOrEmpty(_emailAdd) Then
-            If Not _emailAdd.Contains(GetSelectedRowEmail()) Then
-                _emailAdd = _emailAdd & GetSelectedRowEmail()
+            If Not _emailAdd.Contains(GetSelectedRowsEmail()) Then
+                _emailAdd = _emailAdd & GetSelectedRowsEmail()
             End If
         Else
-            _emailAdd = GetSelectedRowEmail()
+            _emailAdd = GetSelectedRowsEmail()
         End If
         Me.DialogResult = DialogResult.OK
     End Sub
@@ -349,20 +345,20 @@ Public Class frmEmailContacts
         End If
         Return True
     End Function
-
     '''<summary>
     '''Gets the selected email from contact list displayed
     '''</summary>
-    Function GetSelectedRowEmail() As String
+    Function GetSelectedRowsEmail() As String
         Dim EmailAddress As String = String.Empty
         If dgvSearchResult.SelectedRows.Count <> 0 Then
-            Dim RowIndex = dgvSearchResult.CurrentRow.Index
-            Dim row As DataGridViewRow = dgvSearchResult.Rows(RowIndex)
-            EmailAddress = row.Cells("clmnEmail").Value
-            EmailAddress = EmailAddress & ";" & Environment.NewLine
+            For Each RW As DataGridViewRow In Me.dgvSearchResult.SelectedRows
+                EmailAddress = EmailAddress & RW.Cells("clmnEmail").Value
+                EmailAddress = EmailAddress & ";" & Environment.NewLine
+            Next
         End If
         Return EmailAddress
     End Function
+
 #End Region
 
 End Class
