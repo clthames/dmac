@@ -51,15 +51,15 @@ Public Class frmEmailOptions
                 strDocType = strArg(2)
                
                 If strArg.Length > 3 Then
-                    strAccountNo = strArg(3)
+                    strDocId = strArg(3)
                 End If
 
                 If strArg.Length > 4 Then
-                    strDocId = strArg(4)
+                    strAutoRecNo = strArg(4)
                 End If
 
                 If strArg.Length > 5 Then
-                    strAutoRecNo = strArg(5)
+                    strAccountNo = strArg(5)
                 End If
 
                 If Not System.IO.File.Exists(strFileName) Then
@@ -69,7 +69,7 @@ Public Class frmEmailOptions
                 Throw New Exception("Invalid Arguments passed. Command Usage - SendEmails.exe FileName DocType [AccountNo] [DocID] [AutoRecNo]")
             End If
             ''Get default email sub and body 
-            txtSubject.Text = "Your " & strDocType & " " & strAutoRecNo & " " & strDocId
+            txtSubject.Text = "Your " & strDocType & " " & strDocId
             Dim dtSMTPInfo As DataTable = GetDefaultEmailAttributes()
             dtSMTPInfo.DefaultView.RowFilter = "KeyWord = 'ReportEmailContent'"
             If (dtSMTPInfo.DefaultView.Count > 0) Then
