@@ -71,6 +71,7 @@ Module EmailModule
         Dim fromDisplayName As String = ""
         Dim emailCfgFileName As String = ""
         attachmentName = ""
+        TransactionLog("SendEmail - filename = " & emlFilePath)
         Try
             If File.Exists(emlFilePath) Then
                 Dim arrContent As String() = File.ReadAllLines(emlFilePath)
@@ -105,8 +106,10 @@ Module EmailModule
 
             Dim emailCfgFullPath As String = ""
             If File.Exists(Path.Combine(emailCfgDirectoryPath, emailCfgFileName & ".cfg")) Then
+                TransactionLog("getting settings from " & emailCfgDirectoryPath & emailCfgFileName & ".cfg")
                 emailCfgFullPath = Path.Combine(emailCfgDirectoryPath, emailCfgFileName & ".cfg")
             ElseIf File.Exists(Path.Combine(emailCfgDirectoryPath, "email", emailCfgFileName & ".cfg")) Then
+                TransactionLog("getting settings from " & emailCfgDirectoryPath & emailCfgFileName & ".cfg")
                 emailCfgFullPath = Path.Combine(emailCfgDirectoryPath, "email", emailCfgFileName & ".cfg")
             End If
 
@@ -146,6 +149,15 @@ Module EmailModule
                     End If
                 Next
             End If
+            TransactionLog("SendEmail - FromUname = " & emailCfgFileName)
+            TransactionLog("SendEmail - From = " & fromEmailAddress)
+            TransactionLog("SendEmail - Recipient = " & recipient)
+            TransactionLog("SendEmail - Description = " & emailSubject)
+            TransactionLog("SendEmail - From Display Name" & fromDisplayName)
+            TransactionLog("SendEmail - Attachment = " & attachmentName)
+            TransactionLog("SendEmail - SMTPhost = " & smtpServer)
+            TransactionLog("SendEmail - SMTPort = " & smtpPort)
+            TransactionLog("SendEmail - UserName = " & smtpUserName)
 
             Dim emailMsg As MailMessage = New MailMessage()
 
@@ -178,17 +190,36 @@ Module EmailModule
                     emailMsg.Attachments.Add(attachment)
                     client.Send(emailMsg)
                     result = True
+                    TransactionLog("Email sent sucessfully.")
                 End Using
             Else
                 result = False
-                Console.WriteLine("Attachment is not present: " & attachmentName)
+                TransactionLog("Failed to send email. Attachment is not present: " & attachmentName)
             End If
         Catch ex As Exception
-            Console.WriteLine(ex.ToString())
-            Console.WriteLine("Error has occurred. Please hit 'Enter' to continue.")
-            Console.ReadLine()
+            TransactionLog("Failed to send email.")
+            TransactionLog(ex.ToString())
+            'Console.ReadLine()
         End Try
         Return result
     End Function
 
+    Public Sub TransactionLog(ByVal strLogMessage As String)
+        Dim strFilepath As String
+        strFilepath = Environment.CurrentDirectory & "\Log\"
+        If Not System.IO.Directory.Exists(strFilepath) Then
+            System.IO.Directory.CreateDirectory(strFilepath)
+        End If
+        strFilepath = strFilepath & "log.txt"
+        Dim SWObj As StreamWriter
+        strLogMessage = String.Format("{0}:{1}", DateTime.Now, strLogMessage)
+        If Not File.Exists(strFilepath) Then
+            SWObj = New StreamWriter(strFilepath)
+        Else
+            SWObj = File.AppendText(strFilepath)
+        End If
+        SWObj.WriteLine(strLogMessage)
+        SWObj.WriteLine()
+        SWObj.Close()
+    End Sub
 End Module

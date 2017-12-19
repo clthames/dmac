@@ -22,6 +22,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ConfigDMAC", "ConfigDMAC\Co
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SendEmails", "SendEmails\SendEmails.vbproj", "{59C8C96B-4EC1-486B-A6B8-163FD547EBEC}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ConEmailApp", "ConEmailApp\ConEmailApp.vbproj", "{63DA35AE-0A40-47E3-9FA0-4AF1398E5ACD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
