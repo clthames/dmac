@@ -69,13 +69,26 @@ Module EmailModule
         Dim emailSubject As String = ""
         Dim result As Boolean = False
         Dim fromDisplayName As String = ""
+        Dim emailCustName As String = ""
+        Dim recipientDisplayName As String = ""
         Dim emailCfgFileName As String = ""
+        Dim statusLogFileName As String
+        Dim temp1 As String = "001"
         attachmentName = ""
         TransactionLog("SendEmail - filename = " & emlFilePath)
+
+        Do
+            statusLogFileName = Format(Now, "MMddhhmm") & "." & temp1
+            If Dir(emlFilePath & statusLogFileName) = "" Then Exit Do
+            If Val(temp1) < 999 Then
+                temp1 = Right("000" & Trim(Str(Val(temp1) + 1)), 3)
+            Else
+                temp1 = "001"
+            End If
+        Loop
         Try
             If File.Exists(emlFilePath) Then
                 Dim arrContent As String() = File.ReadAllLines(emlFilePath)
-
                 For Each content As String In arrContent
                     If Not String.IsNullOrEmpty(content) Then
                         Dim key_values As String() = content.Split("=")
@@ -96,6 +109,10 @@ Module EmailModule
                                     emailSubject = value
                                 Case "fromdisplayname"
                                     fromDisplayName = value
+                                Case "custname"
+                                    emailCustName = value
+                                Case "recipientdisplayname"
+                                    recipientDisplayName = value
                             End Select
                         End If
                     End If
@@ -191,26 +208,28 @@ Module EmailModule
                     client.Send(emailMsg)
                     result = True
                     TransactionLog("Email sent sucessfully.")
+                    CreateStatusLog(statusLogFileName, "Sent successfully", recipient, recipientDisplayName, emailCustName, fromEmailAddress, emailSubject, fromDisplayName)
                 End Using
             Else
                 result = False
                 TransactionLog("Failed to send email. Attachment is not present: " & attachmentName)
+                CreateStatusLog(statusLogFileName, "Failure", recipient, recipientDisplayName, emailCustName, fromEmailAddress, emailSubject, fromDisplayName)
             End If
         Catch ex As Exception
             TransactionLog("Failed to send email.")
             TransactionLog(ex.ToString())
-            'Console.ReadLine()
+            CreateStatusLog(statusLogFileName, "Failure", recipient, recipientDisplayName, emailCustName, fromEmailAddress, emailSubject, fromDisplayName)
         End Try
         Return result
     End Function
 
     Public Sub TransactionLog(ByVal strLogMessage As String)
         Dim strFilepath As String
-        strFilepath = Environment.CurrentDirectory & "\Log\"
+        strFilepath = emailCfgDirectoryPath & "\" '& "\Log\"
         If Not System.IO.Directory.Exists(strFilepath) Then
             System.IO.Directory.CreateDirectory(strFilepath)
         End If
-        strFilepath = strFilepath & "log.txt"
+        strFilepath = strFilepath & "emaillog.txt"
         Dim SWObj As StreamWriter
         strLogMessage = String.Format("{0}:{1}", DateTime.Now, strLogMessage)
         If Not File.Exists(strFilepath) Then
@@ -221,5 +240,49 @@ Module EmailModule
         SWObj.WriteLine(strLogMessage)
         SWObj.WriteLine()
         SWObj.Close()
+    End Sub
+
+    Public Sub StatusLog(ByVal logFile As String, ByVal strLogMessage As String)
+        Dim strFilepath As String
+        strFilepath = emailCfgDirectoryPath & "\Log\"
+        If Not System.IO.Directory.Exists(strFilepath) Then
+            System.IO.Directory.CreateDirectory(strFilepath)
+        End If
+        strFilepath = strFilepath & logFile
+        Dim SWObj As StreamWriter
+        SWObj = New StreamWriter(strFilepath)
+        SWObj.WriteLine(strLogMessage)
+        SWObj.WriteLine()
+        SWObj.Close()
+    End Sub
+
+    Public Sub CreateStatusLog(ByVal logFileName As String, ByVal status As String, ByVal recipient As String, ByVal emailRecipientDisplayName As String,
+                               ByVal emailCustomerName As String, ByVal fromEmailAddress As String, ByVal emailSubject As String, ByVal fromDisplayName As String)
+
+        Dim LogTrans As String, temp As String
+        LogTrans = "*" & logFileName & "* (Filename is saved in SenderDepartment)" & vbCrLf
+        LogTrans = LogTrans & "SenderDepartment = " & logFileName & vbCrLf
+        temp = emailCustomerName
+        If Trim(emailRecipientDisplayName) <> "" Then
+            temp = Trim(emailRecipientDisplayName) & " @ " & Trim(emailCustomerName)
+        End If
+        LogTrans = LogTrans & "Recipient.Name = " & temp & vbCrLf
+        LogTrans = LogTrans & "Recipient.FaxNumber = " & recipient & vbCrLf
+        LogTrans = LogTrans & "DocumentName = " & emailSubject & vbCrLf
+        LogTrans = LogTrans & "Status = " & status & vbCrLf
+        LogTrans = LogTrans & "Id = " & "email" & vbCrLf
+        LogTrans = LogTrans & "OriginalScheduledTime = " & "Now" & vbCrLf
+        LogTrans = LogTrans & "Pages = " & "0" & vbCrLf
+        LogTrans = LogTrans & "Retries = " & "0" & vbCrLf
+        LogTrans = LogTrans & "Sender.Company = " & "email" & vbCrLf
+        temp = fromEmailAddress
+        If Trim(fromDisplayName) <> "" Then
+            temp = Trim(fromDisplayName) & " (" & Trim(fromEmailAddress) & ")"
+        End If
+        LogTrans = LogTrans & "Sender.Name = " & temp & vbCrLf
+        LogTrans = LogTrans & "Subject = " & emailSubject & vbCrLf
+        LogTrans = LogTrans & "SubmissionTime = " & Now & vbCrLf
+
+        StatusLog(logFileName, LogTrans)
     End Sub
 End Module
