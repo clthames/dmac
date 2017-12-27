@@ -79,7 +79,7 @@ Module EmailModule
 
         Do
             statusLogFileName = Format(Now, "MMddhhmm") & "." & temp1
-            If Dir(emlFilePath & statusLogFileName) = "" Then Exit Do
+            If Dir(emailCfgDirectoryPath & "\Log\" & statusLogFileName) = "" Then Exit Do
             If Val(temp1) < 999 Then
                 temp1 = Right("000" & Trim(Str(Val(temp1) + 1)), 3)
             Else
