@@ -15,6 +15,7 @@
         SalesCodes = 12
         Department = 13
         Jobcosting = 14
+        JobClass = 15
     End Enum
 
     Public Enum Actions As Integer

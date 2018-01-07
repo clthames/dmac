@@ -82,6 +82,7 @@ Partial Class frmMain
         Me.trvOptions = New System.Windows.Forms.TreeView()
         Me.UsrSalesCode1 = New ConfigDMAC.usrSalesCode()
         Me.usrJobCostDept1 = New ConfigDMAC.usrJobCostDept()
+        Me.usrJobCostClass1 = New ConfigDMAC.usrJobCostClass()
         Me.usrJobCostingCenters1 = New ConfigDMAC.usrJobCostingCenters()
         Me.tbcntrl_ProfileAccess = New System.Windows.Forms.TabControl()
         Me.tbpg_Roles = New System.Windows.Forms.TabPage()
@@ -272,6 +273,7 @@ Partial Class frmMain
         '
         Me.scMain.Panel2.Controls.Add(Me.UsrSalesCode1)
         Me.scMain.Panel2.Controls.Add(Me.usrJobCostDept1)
+        Me.scMain.Panel2.Controls.Add(Me.usrJobCostClass1)
         Me.scMain.Panel2.Controls.Add(Me.usrJobCostingCenters1)
         Me.scMain.Panel2.Controls.Add(Me.tbcntrl_ProfileAccess)
         Me.scMain.Panel2.Controls.Add(Me.tcProfiles)
@@ -391,6 +393,15 @@ Partial Class frmMain
         Me.usrJobCostDept1.Name = "usrJobCostDept1"
         Me.usrJobCostDept1.Size = New System.Drawing.Size(963, 696)
         Me.usrJobCostDept1.TabIndex = 5
+
+
+        'usrJobCostClass1
+        '
+        Me.usrJobCostClass1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.usrJobCostClass1.Location = New System.Drawing.Point(0, 0)
+        Me.usrJobCostClass1.Name = "usrJobCostClass1"
+        Me.usrJobCostClass1.Size = New System.Drawing.Size(963, 696)
+        Me.usrJobCostClass1.TabIndex = 6
 
         'usrJobCostingCenters1
         '
@@ -1273,5 +1284,6 @@ Partial Class frmMain
     Friend WithEvents UsrSalesCode1 As ConfigDMAC.usrSalesCode
     Friend WithEvents usrJobCostDept1 As ConfigDMAC.usrJobCostDept
     Friend WithEvents usrJobCostingCenters1 As ConfigDMAC.usrJobCostingCenters
+    Friend WithEvents usrJobCostClass1 As ConfigDMAC.usrJobCostClass
 
 End Class

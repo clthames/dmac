@@ -199,12 +199,16 @@ Public Class frmMain
                     '' End If
 
                 Case "nOperationClasses"
-                    Dim lobjfrmLaunch As New frmLaunch()
-                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Paper Scheduling for Operations Classes"
-                    lobjfrmLaunch.btn_Launch.Focus()
-                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
-
-                    End If
+                    Env = clsConfigDmac.ActiveEnv.JobClass
+                    isLoading = True
+                    hideTabs()
+                    tsNew.Enabled = True
+                    tsEdit.Enabled = False
+                    tsCancel.Enabled = False
+                    tsSave.Enabled = False
+                    usrJobCostClass1.Visible = True
+                    usrJobCostClass1.Location = tc
+                    isLoading = False
 
                 Case "nOptions"
                     Dim lobjfrmLaunch As New frmLaunch()
@@ -440,6 +444,7 @@ Public Class frmMain
         UsrSalesCode1.Visible = False
         usrJobCostDept1.Visible = False
         usrJobCostingCenters1.Visible = False
+        usrJobCostClass1.Visible = False
 
     End Sub
     ''' <summary>
