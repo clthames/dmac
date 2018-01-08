@@ -36,14 +36,18 @@ Public Class usrJobCostClass
     ''' </summary>
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
-            If String.IsNullOrEmpty(lblID.Text) Then
-                InsertUpdateClass("0")
+            If String.IsNullOrEmpty(txtClassNo.Text) Then
+                MessageBox.Show("Please enter class.", "Operation Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Else
-                InsertUpdateClass(lblID.Text)
+                If String.IsNullOrEmpty(lblID.Text) Then
+                    InsertUpdateClass("0")
+                Else
+                    InsertUpdateClass(lblID.Text)
+                End If
             End If
         Catch ex As Exception
             oExcelSS.ErrorLog("btnSave_Click Error#" & ex.ToString())
-            MessageBox.Show("Failed to save Operation Class.", "Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Failed to save Operation Class.", "Operation Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub

@@ -61,8 +61,8 @@ Partial Class usrJobCostClass
         '
         'tbpgClass
         '
-        Me.tbpgClass.Controls.Add(Me.pnlViewClass)
         Me.tbpgClass.Controls.Add(Me.pnlAddEditClass)
+        Me.tbpgClass.Controls.Add(Me.pnlViewClass)
         Me.tbpgClass.Location = New System.Drawing.Point(4, 22)
         Me.tbpgClass.Name = "tbpgClass"
         Me.tbpgClass.Padding = New System.Windows.Forms.Padding(3)
@@ -177,7 +177,7 @@ Partial Class usrJobCostClass
         Me.lblClassNo.AutoSize = True
         Me.lblClassNo.Location = New System.Drawing.Point(110, 62)
         Me.lblClassNo.Name = "lblClassNo"
-        Me.lblClassNo.Size = New System.Drawing.Size(49, 13)
+        Me.lblClassNo.Size = New System.Drawing.Size(35, 13)
         Me.lblClassNo.TabIndex = 1
         Me.lblClassNo.Text = "Class:"
         '
@@ -209,7 +209,7 @@ Partial Class usrJobCostClass
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(374, 272)
+        Me.btnCancel.Location = New System.Drawing.Point(376, 166)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 10
@@ -218,7 +218,7 @@ Partial Class usrJobCostClass
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(293, 272)
+        Me.btnSave.Location = New System.Drawing.Point(295, 166)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
         Me.btnSave.TabIndex = 9
