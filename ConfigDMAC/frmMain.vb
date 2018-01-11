@@ -191,12 +191,16 @@ Public Class frmMain
                 Case "nOperationCodes"
 
                    
-                    ''Dim lobjfrmLaunch As New frmLaunch()
-                    ''lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Job Costing for Operation Codes"
-                    ''lobjfrmLaunch.btn_Launch.Focus()
-                    ''If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
-
-                    '' End If
+                    Env = clsConfigDmac.ActiveEnv.JobcostingCodes
+                    isLoading = True
+                    hideTabs()
+                    tsNew.Enabled = True
+                    tsEdit.Enabled = False
+                    tsCancel.Enabled = False
+                    tsSave.Enabled = False
+                    usrJobCostingCodes1.Visible = True
+                    usrJobCostingCodes1.Location = tc
+                    isLoading = False
 
                 Case "nOperationClasses"
                     Env = clsConfigDmac.ActiveEnv.JobClass
@@ -445,6 +449,7 @@ Public Class frmMain
         usrJobCostDept1.Visible = False
         usrJobCostingCenters1.Visible = False
         usrJobCostClass1.Visible = False
+        usrJobCostingCodes1.Visible = False
 
     End Sub
     ''' <summary>
