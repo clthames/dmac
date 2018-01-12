@@ -73,10 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsConfigDmac.vb" />
-    <Compile Include="usrJobCostingCodes.Designer.vb">
-      <DependentUpon>usrJobCostingCodes.vb</DependentUpon>
+    <Compile Include="usrJobCostingOperations.Designer.vb">
+      <DependentUpon>usrJobCostingOperations.vb</DependentUpon>
     </Compile>
-    <Compile Include="usrJobCostingCodes.vb">
+    <Compile Include="usrJobCostingOperations.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="usrJobCostClass.Designer.vb">
@@ -151,8 +151,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="usrJobCostingCodes.resx">
-      <DependentUpon>usrJobCostingCodes.vb</DependentUpon>
+    <EmbeddedResource Include="usrJobCostingOperations.resx">
+      <DependentUpon>usrJobCostingOperations.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="usrJobCostClass.resx">
       <DependentUpon>usrJobCostClass.vb</DependentUpon>

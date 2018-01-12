@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class usrJobCostingCodes
+Partial Class usrJobCostingOperations
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
@@ -24,11 +24,11 @@ Partial Class usrJobCostingCodes
     Private Sub InitializeComponent()
         Me.tcCostingCodes = New System.Windows.Forms.TabControl()
         Me.tbpgCostingCodes = New System.Windows.Forms.TabPage()
-        Me.pnlViewCostingCodes = New System.Windows.Forms.Panel()
-        Me.dgvCostingCodes = New System.Windows.Forms.DataGridView()
+        Me.pnlViewCostingOperations = New System.Windows.Forms.Panel()
+        Me.dgvCostingOperations = New System.Windows.Forms.DataGridView()
         Me.pnlTopCostingCodesList = New System.Windows.Forms.Panel()
-        Me.btnAddCostingCodes = New System.Windows.Forms.Button()
-        Me.pnlAddEditCostingCodes = New System.Windows.Forms.Panel()
+        Me.btnAddCostingOperations = New System.Windows.Forms.Button()
+        Me.pnlAddEditCostingOperations = New System.Windows.Forms.Panel()
         Me.lblCodeNo = New System.Windows.Forms.Label()
         Me.txtCodeNo = New System.Windows.Forms.TextBox()
         Me.lblDept = New System.Windows.Forms.Label()
@@ -46,16 +46,17 @@ Partial Class usrJobCostingCodes
         Me.clmnCodeNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clmnDepartment = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clmnClass = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ClassDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clmnDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clmnKey = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clmnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.clmnDelete = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.tcCostingCodes.SuspendLayout()
         Me.tbpgCostingCodes.SuspendLayout()
-        Me.pnlViewCostingCodes.SuspendLayout()
-        CType(Me.dgvCostingCodes, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.pnlViewCostingOperations.SuspendLayout()
+        CType(Me.dgvCostingOperations, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTopCostingCodesList.SuspendLayout()
-        Me.pnlAddEditCostingCodes.SuspendLayout()
+        Me.pnlAddEditCostingOperations.SuspendLayout()
         Me.SuspendLayout()
         '
         'tcCostingCodes
@@ -70,82 +71,82 @@ Partial Class usrJobCostingCodes
         '
         'tbpgCostingCodes
         '
-        Me.tbpgCostingCodes.Controls.Add(Me.pnlViewCostingCodes)
-        Me.tbpgCostingCodes.Controls.Add(Me.pnlAddEditCostingCodes)
+        Me.tbpgCostingCodes.Controls.Add(Me.pnlViewCostingOperations)
+        Me.tbpgCostingCodes.Controls.Add(Me.pnlAddEditCostingOperations)
         Me.tbpgCostingCodes.Location = New System.Drawing.Point(4, 22)
         Me.tbpgCostingCodes.Name = "tbpgCostingCodes"
         Me.tbpgCostingCodes.Padding = New System.Windows.Forms.Padding(3)
         Me.tbpgCostingCodes.Size = New System.Drawing.Size(918, 346)
         Me.tbpgCostingCodes.TabIndex = 0
-        Me.tbpgCostingCodes.Text = "Jobcost Code Maintenance"
+        Me.tbpgCostingCodes.Text = "Jobcost Operation Maintenance"
         Me.tbpgCostingCodes.UseVisualStyleBackColor = True
         '
-        'pnlViewCostingCodes
+        'pnlViewCostingOperations
         '
-        Me.pnlViewCostingCodes.Controls.Add(Me.dgvCostingCodes)
-        Me.pnlViewCostingCodes.Controls.Add(Me.pnlTopCostingCodesList)
-        Me.pnlViewCostingCodes.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlViewCostingCodes.Location = New System.Drawing.Point(3, 3)
-        Me.pnlViewCostingCodes.Name = "pnlViewCostingCodes"
-        Me.pnlViewCostingCodes.Size = New System.Drawing.Size(912, 340)
-        Me.pnlViewCostingCodes.TabIndex = 2
+        Me.pnlViewCostingOperations.Controls.Add(Me.dgvCostingOperations)
+        Me.pnlViewCostingOperations.Controls.Add(Me.pnlTopCostingCodesList)
+        Me.pnlViewCostingOperations.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlViewCostingOperations.Location = New System.Drawing.Point(3, 3)
+        Me.pnlViewCostingOperations.Name = "pnlViewCostingOperations"
+        Me.pnlViewCostingOperations.Size = New System.Drawing.Size(912, 340)
+        Me.pnlViewCostingOperations.TabIndex = 2
         '
-        'dgvCostingCodes
+        'dgvCostingOperations
         '
-        Me.dgvCostingCodes.AllowUserToAddRows = False
-        Me.dgvCostingCodes.AllowUserToDeleteRows = False
-        Me.dgvCostingCodes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgvCostingCodes.BackgroundColor = System.Drawing.Color.White
-        Me.dgvCostingCodes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvCostingCodes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clmnCodeNo, Me.clmnDepartment, Me.clmnClass, Me.clmnDescription, Me.clmnKey, Me.clmnEdit, Me.clmnDelete})
-        Me.dgvCostingCodes.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvCostingCodes.Location = New System.Drawing.Point(0, 34)
-        Me.dgvCostingCodes.Name = "dgvCostingCodes"
-        Me.dgvCostingCodes.ReadOnly = True
-        Me.dgvCostingCodes.Size = New System.Drawing.Size(912, 306)
-        Me.dgvCostingCodes.TabIndex = 1
+        Me.dgvCostingOperations.AllowUserToAddRows = False
+        Me.dgvCostingOperations.AllowUserToDeleteRows = False
+        Me.dgvCostingOperations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgvCostingOperations.BackgroundColor = System.Drawing.Color.White
+        Me.dgvCostingOperations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvCostingOperations.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clmnCodeNo, Me.clmnDepartment, Me.clmnClass, Me.ClassDescription, Me.clmnDescription, Me.clmnKey, Me.clmnEdit, Me.clmnDelete})
+        Me.dgvCostingOperations.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvCostingOperations.Location = New System.Drawing.Point(0, 34)
+        Me.dgvCostingOperations.Name = "dgvCostingOperations"
+        Me.dgvCostingOperations.ReadOnly = True
+        Me.dgvCostingOperations.Size = New System.Drawing.Size(912, 306)
+        Me.dgvCostingOperations.TabIndex = 1
         '
         'pnlTopCostingCodesList
         '
-        Me.pnlTopCostingCodesList.Controls.Add(Me.btnAddCostingCodes)
+        Me.pnlTopCostingCodesList.Controls.Add(Me.btnAddCostingOperations)
         Me.pnlTopCostingCodesList.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlTopCostingCodesList.Location = New System.Drawing.Point(0, 0)
         Me.pnlTopCostingCodesList.Name = "pnlTopCostingCodesList"
         Me.pnlTopCostingCodesList.Size = New System.Drawing.Size(912, 34)
         Me.pnlTopCostingCodesList.TabIndex = 0
         '
-        'btnAddCostingCodes
+        'btnAddCostingOperations
         '
-        Me.btnAddCostingCodes.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnAddCostingCodes.Location = New System.Drawing.Point(757, 6)
-        Me.btnAddCostingCodes.Name = "btnAddCostingCodes"
-        Me.btnAddCostingCodes.Size = New System.Drawing.Size(146, 23)
-        Me.btnAddCostingCodes.TabIndex = 0
-        Me.btnAddCostingCodes.Text = "Add Jobcost Code"
-        Me.btnAddCostingCodes.UseVisualStyleBackColor = True
+        Me.btnAddCostingOperations.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnAddCostingOperations.Location = New System.Drawing.Point(757, 6)
+        Me.btnAddCostingOperations.Name = "btnAddCostingOperations"
+        Me.btnAddCostingOperations.Size = New System.Drawing.Size(146, 23)
+        Me.btnAddCostingOperations.TabIndex = 0
+        Me.btnAddCostingOperations.Text = "Add Jobcost Operation"
+        Me.btnAddCostingOperations.UseVisualStyleBackColor = True
         '
-        'pnlAddEditCostingCodes
+        'pnlAddEditCostingOperations
         '
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.lblCodeNo)
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.txtCodeNo)
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.lblDept)
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.ddlDepartment)
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.lblDescription)
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.txtDescription)
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.lblClass)
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.lblKey)
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.txtKey)
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.btnCancel)
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.btnSave)
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.lblHeader)
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.lblID)
-        Me.pnlAddEditCostingCodes.Controls.Add(Me.ddlCls)
-        Me.pnlAddEditCostingCodes.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlAddEditCostingCodes.Location = New System.Drawing.Point(3, 3)
-        Me.pnlAddEditCostingCodes.Name = "pnlAddEditCostingCodes"
-        Me.pnlAddEditCostingCodes.Size = New System.Drawing.Size(912, 340)
-        Me.pnlAddEditCostingCodes.TabIndex = 0
-        Me.pnlAddEditCostingCodes.Visible = False
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.lblCodeNo)
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.txtCodeNo)
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.lblDept)
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.ddlDepartment)
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.lblDescription)
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.txtDescription)
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.lblClass)
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.lblKey)
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.txtKey)
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.btnCancel)
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.btnSave)
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.lblHeader)
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.lblID)
+        Me.pnlAddEditCostingOperations.Controls.Add(Me.ddlCls)
+        Me.pnlAddEditCostingOperations.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlAddEditCostingOperations.Location = New System.Drawing.Point(3, 3)
+        Me.pnlAddEditCostingOperations.Name = "pnlAddEditCostingOperations"
+        Me.pnlAddEditCostingOperations.Size = New System.Drawing.Size(912, 340)
+        Me.pnlAddEditCostingOperations.TabIndex = 0
+        Me.pnlAddEditCostingOperations.Visible = False
         '
         'lblCodeNo
         '
@@ -251,7 +252,7 @@ Partial Class usrJobCostingCodes
         Me.lblHeader.Name = "lblHeader"
         Me.lblHeader.Size = New System.Drawing.Size(167, 15)
         Me.lblHeader.TabIndex = 0
-        Me.lblHeader.Text = "Jobcost Operation Codes"
+        Me.lblHeader.Text = "Jobcost Operation"
         '
         'lblID
         '
@@ -292,10 +293,19 @@ Partial Class usrJobCostingCodes
         '
         Me.clmnClass.DataPropertyName = "Class"
         Me.clmnClass.FillWeight = 99.49238!
-        Me.clmnClass.HeaderText = "Class"
+        Me.clmnClass.HeaderText = "Class Number"
         Me.clmnClass.Name = "clmnClass"
         Me.clmnClass.ReadOnly = True
         Me.clmnClass.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.clmnClass.Visible = False
+        '
+        'ClassDescription
+        '
+        Me.ClassDescription.DataPropertyName = "ClassDescription"
+        Me.ClassDescription.HeaderText = "Class"
+        Me.ClassDescription.Name = "ClassDescription"
+        Me.ClassDescription.ReadOnly = True
+        Me.ClassDescription.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         '
         'clmnDescription
         '
@@ -321,7 +331,7 @@ Partial Class usrJobCostingCodes
         Me.clmnEdit.Name = "clmnEdit"
         Me.clmnEdit.ReadOnly = True
         Me.clmnEdit.Text = "Edit"
-        Me.clmnEdit.ToolTipText = "Edit Jobcost Code"
+        Me.clmnEdit.ToolTipText = "Edit Jobcost Operation"
         Me.clmnEdit.UseColumnTextForButtonValue = True
         '
         'clmnDelete
@@ -332,32 +342,32 @@ Partial Class usrJobCostingCodes
         Me.clmnDelete.Name = "clmnDelete"
         Me.clmnDelete.ReadOnly = True
         Me.clmnDelete.Text = "Delete"
-        Me.clmnDelete.ToolTipText = "Delete Jobcost Codes"
+        Me.clmnDelete.ToolTipText = "Delete Jobcost Operation"
         Me.clmnDelete.UseColumnTextForButtonValue = True
         '
-        'usrJobCostingCodes
+        'usrJobCostingOperations
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.tcCostingCodes)
-        Me.Name = "usrJobCostingCodes"
+        Me.Name = "usrJobCostingOperations"
         Me.Size = New System.Drawing.Size(926, 372)
         Me.tcCostingCodes.ResumeLayout(False)
         Me.tbpgCostingCodes.ResumeLayout(False)
-        Me.pnlViewCostingCodes.ResumeLayout(False)
-        CType(Me.dgvCostingCodes, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlViewCostingOperations.ResumeLayout(False)
+        CType(Me.dgvCostingOperations, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlTopCostingCodesList.ResumeLayout(False)
-        Me.pnlAddEditCostingCodes.ResumeLayout(False)
-        Me.pnlAddEditCostingCodes.PerformLayout()
+        Me.pnlAddEditCostingOperations.ResumeLayout(False)
+        Me.pnlAddEditCostingOperations.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents tcCostingCodes As System.Windows.Forms.TabControl
     Friend WithEvents tbpgCostingCodes As System.Windows.Forms.TabPage
-    Friend WithEvents pnlViewCostingCodes As System.Windows.Forms.Panel
+    Friend WithEvents pnlViewCostingOperations As System.Windows.Forms.Panel
     Friend WithEvents pnlTopCostingCodesList As System.Windows.Forms.Panel
-    Friend WithEvents btnAddCostingCodes As System.Windows.Forms.Button
-    Friend WithEvents pnlAddEditCostingCodes As System.Windows.Forms.Panel
+    Friend WithEvents btnAddCostingOperations As System.Windows.Forms.Button
+    Friend WithEvents pnlAddEditCostingOperations As System.Windows.Forms.Panel
     Friend WithEvents lblCodeNo As System.Windows.Forms.Label
     Friend WithEvents txtCodeNo As System.Windows.Forms.TextBox
     Friend WithEvents lblDept As System.Windows.Forms.Label
@@ -372,10 +382,11 @@ Partial Class usrJobCostingCodes
     Friend WithEvents lblHeader As System.Windows.Forms.Label
     Friend WithEvents lblID As System.Windows.Forms.Label
     Friend WithEvents ddlCls As System.Windows.Forms.ComboBox
-    Friend WithEvents dgvCostingCodes As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvCostingOperations As System.Windows.Forms.DataGridView
     Friend WithEvents clmnCodeNo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents clmnDepartment As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents clmnClass As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents ClassDescription As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents clmnDescription As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents clmnKey As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents clmnEdit As System.Windows.Forms.DataGridViewButtonColumn

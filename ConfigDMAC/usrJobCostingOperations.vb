@@ -1,22 +1,22 @@
 ﻿Imports System.Data.SqlClient
 
-Public Class usrJobCostingCodes
+Public Class usrJobCostingOperations
     Public oExcelSS As New ExcelSSGen.Main
 
 #Region "Form Events"
 
     ''' <summary>
-    ''' Event Load form and retrive JobCostingCodes Data
-    ''' here 0 in BindJobCostingCodesData(0) shows all data
+    ''' Event Load form and retrive JobCostingOperations Data
+    ''' here 0 in BindJobCostingOperationsData(0) shows all data
     ''' </summary>
-    Private Sub usrJobCostingCodes_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub usrJobCostingOperations_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
-            BindJobCostCodesData(0)
+            BindJobCostOperationsData(0)
             BindDepartmentData(0)
             BindClassData("0")
         Catch ex As Exception
-            oExcelSS.ErrorLog("usrJobCostCodes_Load Error#" & ex.ToString())
-            MessageBox.Show("Failed to retrieve Department Data or Class Data.", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            oExcelSS.ErrorLog("usrJobCostOperations_Load Error#" & ex.ToString())
+            MessageBox.Show("Failed to retrieve Department Data or Class Data.", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -25,11 +25,11 @@ Public Class usrJobCostingCodes
     ''' </summary>
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Try
-            pnlAddEditCostingCodes.Visible = False
-            pnlViewCostingCodes.Visible = True
+            pnlAddEditCostingOperations.Visible = False
+            pnlViewCostingOperations.Visible = True
         Catch ex As Exception
             oExcelSS.ErrorLog("btnCancel_Click Error#" & ex.ToString())
-            MessageBox.Show("Failed to cancel the operation.", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Failed to cancel the operation.", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -39,13 +39,13 @@ Public Class usrJobCostingCodes
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
             If String.IsNullOrEmpty(lblID.Text) Then
-                InsertUpdateJobcostCodes(0)
+                InsertUpdateJobcostOperations(0)
             Else
-                InsertUpdateJobcostCodes(Convert.ToInt32(lblID.Text))
+                InsertUpdateJobcostOperations(Convert.ToInt32(lblID.Text))
             End If
         Catch ex As Exception
             oExcelSS.ErrorLog("btnSave_Click Error#" & ex.ToString())
-            MessageBox.Show("Failed to save Jobcost Codes.", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Failed to save Jobcost Operations.", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -53,10 +53,10 @@ Public Class usrJobCostingCodes
     '''<summary>
     '''Event captures the delete and edit button when clicked
     '''</summary>
-    Private Sub dgvCostingCodes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCostingCodes.CellContentClick
+    Private Sub dgvCostingOperations_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCostingOperations.CellContentClick
         Try
             If e.RowIndex >= 0 Then
-                Dim ID As Integer = dgvCostingCodes.Rows(e.RowIndex).Cells(2).Value.ToString()
+                Dim ID As Integer = dgvCostingOperations.Rows(e.RowIndex).Cells(2).Value.ToString()
 
                 '7 is  form delete button column
                 If e.ColumnIndex = 1 Then
@@ -65,14 +65,14 @@ Public Class usrJobCostingCodes
                     If Result = DialogResult.OK Then
                         Dim param As SqlParameter() = New SqlParameter(0) {}
                         param(0) = New SqlParameter("@CodeNo", ID)
-                        oExcelSS.ExecuteProc("uspConfiguration_DeleteJobcostCodes", param)
-                        BindJobCostCodesData(0)
-                        MessageBox.Show("Jobcost Code deleted successfully.", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        oExcelSS.ExecuteProc("uspConfiguration_DeleteJobcostOperations", param)
+                        BindJobCostOperationsData(0)
+                        MessageBox.Show("Jobcost Operation deleted successfully.", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
                     ' 6 is for edit button column or any other column then show edit screen
                 ElseIf sender Is Nothing OrElse e.ColumnIndex = 0 Then
 
-                    Dim dt As DataTable = GetJobcostCodesInfo(ID)
+                    Dim dt As DataTable = GetJobcostOperationsInfo(ID)
                     If Not dt Is Nothing And dt.Rows.Count > 0 Then
 
                         lblID.Text = Convert.ToString(dt.Rows(0)("CodeNo"))
@@ -83,37 +83,37 @@ Public Class usrJobCostingCodes
                         txtKey.Text = Convert.ToString(dt.Rows(0)("Key")).Trim
                         btnSave.Text = "Update"
                     End If
-                    pnlAddEditCostingCodes.Visible = True
-                    pnlViewCostingCodes.Visible = False
+                    pnlAddEditCostingOperations.Visible = True
+                    pnlViewCostingOperations.Visible = False
                 End If
             End If
         Catch ex As Exception
-            oExcelSS.ErrorLog("ddgvCostingCodes_CellContentClick Error#" & ex.ToString())
-            MessageBox.Show("Failed to perform the operation", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            oExcelSS.ErrorLog("ddgvCostingOperations_CellContentClick Error#" & ex.ToString())
+            MessageBox.Show("Failed to perform the operation", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
     ''' <summary>
     ''' Event shows the screen to add record
     ''' </summary>
-    Private Sub btnAddCostingCodes_Click(sender As Object, e As EventArgs) Handles btnAddCostingCodes.Click
+    Private Sub btnAddCostingOperations_Click(sender As Object, e As EventArgs) Handles btnAddCostingOperations.Click
         Try
             ClearControls()
-            pnlAddEditCostingCodes.Visible = True
+            pnlAddEditCostingOperations.Visible = True
             btnSave.Text = "Save"
-            pnlViewCostingCodes.Visible = False
+            pnlViewCostingOperations.Visible = False
         Catch ex As Exception
-            oExcelSS.ErrorLog("btnAddCostingCodes_Click Error#" & ex.Message.ToString())
-            MessageBox.Show("Failed to show Add Jobcost Codes screen.", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            oExcelSS.ErrorLog("btnAddCostingOperations_Click Error#" & ex.Message.ToString())
+            MessageBox.Show("Failed to show Add Jobcost Operations screen.", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
-    Private Sub dgvCostingCodes_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCostingCodes.CellDoubleClick
+    Private Sub dgvCostingOperations_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvCostingOperations.CellDoubleClick
         Try
-            dgvCostingCodes_CellContentClick(Nothing, e)
+            dgvCostingOperations_CellContentClick(Nothing, e)
         Catch ex As Exception
-            oExcelSS.ErrorLog("dgvCostingCodes_CellDoubleClick Error#" & ex.ToString())
-            MessageBox.Show("Failed to show Add Jobcost Codes screen.", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            oExcelSS.ErrorLog("dgvCostingOperations_CellDoubleClick Error#" & ex.ToString())
+            MessageBox.Show("Failed to show Add Jobcost Operations screen.", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     '''<summary>
@@ -128,23 +128,23 @@ Public Class usrJobCostingCodes
         End If
 
     End Sub
-   
+
 
 #End Region
 
 #Region "Private Methods"
 
     '''<summary>
-    '''The GetJobcostCodesInfo method returns all the Codes data
+    '''The GetJobcostOperationsInfo method returns all the Operations data
     '''</summary>
-    Private Function GetJobcostCodesInfo(ID As Integer) As DataTable
-        Dim dtJobcostCodes As New DataTable("JobcostCodesTable")
+    Private Function GetJobcostOperationsInfo(ID As Integer) As DataTable
+        Dim dtJobcostOperations As New DataTable("JobcostOperationsTable")
 
         Dim param As SqlParameter() = New SqlParameter(0) {}
         param(0) = New SqlParameter("@CodeNo", ID)
-        dtJobcostCodes = oExcelSS.getDataTable("uspConfiguration_GetJobcostCodes", True, param)
+        dtJobcostOperations = oExcelSS.getDataTable("uspConfiguration_GetJobcostOperations", True, param)
 
-        Return dtJobcostCodes
+        Return dtJobcostOperations
 
     End Function
 
@@ -179,9 +179,9 @@ Public Class usrJobCostingCodes
     '''<summary>
     '''The BindDepartmentData Sub binds data to datagridview 
     '''</summary>
-    Private Sub BindJobCostCodesData(Id As Integer)
-        Dim dtJobcostCodes As DataTable = GetJobcostCodesInfo(Id)
-        dgvCostingCodes.DataSource = dtJobcostCodes
+    Private Sub BindJobCostOperationsData(Id As Integer)
+        Dim dtJobcostOperations As DataTable = GetJobcostOperationsInfo(Id)
+        dgvCostingOperations.DataSource = dtJobcostOperations
     End Sub
 
     '''<summary>
@@ -191,7 +191,7 @@ Public Class usrJobCostingCodes
         Dim dtDept As DataTable = GetDepartmentInfo(Id)
         ddlDepartment.DataSource = dtDept
         ddlDepartment.ValueMember = "Num"
-        ddlDepartment.DisplayMember = "Description"
+        ddlDepartment.DisplayMember = "Num"
         ddlDepartment.SelectedIndex = -1
 
     End Sub
@@ -221,10 +221,10 @@ Public Class usrJobCostingCodes
     End Sub
 
     '''<summary>
-    '''The InsertUpdateJobcostCodes inserts or updates the Jobcost codes 
-    ''' IF Id is 0 it inserts else it updates the Jobcost codes record based on Id value
+    '''The InsertUpdateJobcostOperations inserts or updates the Jobcost Operations 
+    ''' IF Id is 0 it inserts else it updates the Jobcost Operations record based on Id value
     '''</summary>
-    Private Sub InsertUpdateJobcostCodes(Id As Integer)
+    Private Sub InsertUpdateJobcostOperations(Id As Integer)
         If (ValidateInputs()) Then
             Dim param As SqlParameter() = New SqlParameter(6) {}
             Dim OutStatus As String = String.Empty
@@ -239,45 +239,40 @@ Public Class usrJobCostingCodes
             param(6).Direction = ParameterDirection.Output
             param(6).Size = 1000
 
-
-
-
-            Dim success As Integer = oExcelSS.ExecuteProc("uspConfiguration_JobcostCodesInsertUpdate", param)
+            Dim success As Integer = oExcelSS.ExecuteProc("uspConfiguration_JobcostOperationsInsertUpdate", param)
             OutStatus = param(6).Value
             If (OutStatus = "45000") Then
-                MessageBox.Show("Jobcost Code Number already exist", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("Jobcost Code Number already exist", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
-                pnlAddEditCostingCodes.Visible = False
-                pnlViewCostingCodes.Visible = True
-                BindJobCostCodesData(0)
-                MessageBox.Show("Jobcost Code saved successfully.", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                pnlAddEditCostingOperations.Visible = False
+                pnlViewCostingOperations.Visible = True
+                BindJobCostOperationsData(0)
+                MessageBox.Show("Jobcost Operation saved successfully.", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
-
-
         End If
     End Sub
 
     '''<summary>
-    '''ValidateInputs validates required fields for Jobcost Codes
+    '''ValidateInputs validates required fields for Jobcost Operations
     '''</summary>
     Private Function ValidateInputs() As Boolean
         If String.IsNullOrEmpty(txtCodeNo.Text) Then
-            MessageBox.Show("Please enter Code No.", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Please enter Code No.", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         ElseIf Convert.ToInt32(txtCodeNo.Text) <= 0 OrElse Convert.ToInt32(txtCodeNo.Text) >= 1000 Then
-            MessageBox.Show("Jobcost Code No. should be between 1 and 1000.", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Jobcost Code No. should be between 1 and 1000.", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         ElseIf ddlDepartment.SelectedIndex = -1 Then
-            MessageBox.Show("Please select Department.", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Please select Department.", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         ElseIf String.IsNullOrEmpty(txtDescription.Text) Then
-            MessageBox.Show("Please enter Description.", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Please enter Description.", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         ElseIf ddlCls.SelectedIndex = -1 Then
-            MessageBox.Show("Please select Class.", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Please select Class.", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         ElseIf String.IsNullOrEmpty(txtKey.Text) Then
-            MessageBox.Show("Please enter Key.", "Jobcost Codes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Please enter Key.", "Jobcost Operations", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
         Return True

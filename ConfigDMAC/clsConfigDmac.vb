@@ -16,7 +16,7 @@
         Department = 13
         Jobcosting = 14
         JobClass = 15
-        JobcostingCodes = 16
+        JobCostingOperations = 16
     End Enum
 
     Public Enum Actions As Integer

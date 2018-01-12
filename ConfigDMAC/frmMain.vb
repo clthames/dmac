@@ -180,27 +180,25 @@ Public Class frmMain
 
                 Case "nCostOperations"
 
-                    'Dim lobjfrmLaunch As New frmLaunch()
-                    ' Label9.Text = "Click on the 'Launch' button below to maintain Job Costing for Cost Operations"
-                    'lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Job Costing for Cost Operations"
-                    'lobjfrmLaunch.btn_Launch.Focus()
-                    'If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
-
-                    'End If
-
-                Case "nOperationCodes"
-
-                   
-                    Env = clsConfigDmac.ActiveEnv.JobcostingCodes
+                    Env = clsConfigDmac.ActiveEnv.JobCostingOperations
                     isLoading = True
                     hideTabs()
                     tsNew.Enabled = True
                     tsEdit.Enabled = False
                     tsCancel.Enabled = False
                     tsSave.Enabled = False
-                    usrJobCostingCodes1.Visible = True
-                    usrJobCostingCodes1.Location = tc
+                    usrJobCostingOperations1.Visible = True
+                    usrJobCostingOperations1.Location = tc
                     isLoading = False
+
+                Case "nOperationCodes"
+
+                    Dim lobjfrmLaunch As New frmLaunch()
+                    lobjfrmLaunch.txtlaunchtext.Text = "Click on the 'Launch' button below to maintain Operations Codes"
+                    lobjfrmLaunch.btn_Launch.Focus()
+                    If lobjfrmLaunch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+
+                    End If
 
                 Case "nOperationClasses"
                     Env = clsConfigDmac.ActiveEnv.JobClass
@@ -449,7 +447,7 @@ Public Class frmMain
         usrJobCostDept1.Visible = False
         usrJobCostingCenters1.Visible = False
         usrJobCostClass1.Visible = False
-        usrJobCostingCodes1.Visible = False
+        usrJobCostingOperations1.Visible = False
 
     End Sub
     ''' <summary>
