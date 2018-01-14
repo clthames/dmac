@@ -191,6 +191,19 @@ Public Class frmMain
                     usrJobCostingOperations1.Location = tc
                     isLoading = False
 
+                Case "nCostEmployees"
+
+                    Env = clsConfigDmac.ActiveEnv.JobCostingEmployees
+                    isLoading = True
+                    hideTabs()
+                    tsNew.Enabled = True
+                    tsEdit.Enabled = False
+                    tsCancel.Enabled = False
+                    tsSave.Enabled = False
+                    usrJobCostingEmployees1.Visible = True
+                    usrJobCostingEmployees1.Location = tc
+                    isLoading = False
+
                 Case "nOperationCodes"
 
                     Dim lobjfrmLaunch As New frmLaunch()
@@ -446,6 +459,7 @@ Public Class frmMain
         UsrSalesCode1.Visible = False
         usrJobCostDept1.Visible = False
         usrJobCostingCenters1.Visible = False
+        usrJobCostingEmployees1.Visible = False
         usrJobCostClass1.Visible = False
         usrJobCostingOperations1.Visible = False
 

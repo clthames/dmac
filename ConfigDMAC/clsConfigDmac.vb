@@ -17,6 +17,7 @@
         Jobcosting = 14
         JobClass = 15
         JobCostingOperations = 16
+        JobCostingEmployees = 17
     End Enum
 
     Public Enum Actions As Integer
