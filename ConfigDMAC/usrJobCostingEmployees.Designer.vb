@@ -67,8 +67,8 @@ Partial Class usrJobCostingEmployees
         '
         'tbpgCostingEmployees
         '
-        Me.tbpgCostingEmployees.Controls.Add(Me.pnlViewCostingEmployees)
         Me.tbpgCostingEmployees.Controls.Add(Me.pnlAddEditCostingEmployees)
+        Me.tbpgCostingEmployees.Controls.Add(Me.pnlViewCostingEmployees)
         Me.tbpgCostingEmployees.Location = New System.Drawing.Point(4, 22)
         Me.tbpgCostingEmployees.Name = "tbpgCostingEmployees"
         Me.tbpgCostingEmployees.Padding = New System.Windows.Forms.Padding(3)
@@ -202,7 +202,7 @@ Partial Class usrJobCostingEmployees
         Me.txtLastName.MaxLength = 50
         Me.txtLastName.Name = "txtLastName"
         Me.txtLastName.Size = New System.Drawing.Size(217, 20)
-        Me.txtLastName.TabIndex = 11
+        Me.txtLastName.TabIndex = 6
         '
         'lblEmpNo
         '
@@ -253,7 +253,7 @@ Partial Class usrJobCostingEmployees
         Me.lblLastName.Location = New System.Drawing.Point(501, 110)
         Me.lblLastName.Name = "lblLastName"
         Me.lblLastName.Size = New System.Drawing.Size(61, 13)
-        Me.lblLastName.TabIndex = 4
+        Me.lblLastName.TabIndex = 5
         Me.lblLastName.Text = "Last Name:"
         '
         'txtFirstName
@@ -262,14 +262,14 @@ Partial Class usrJobCostingEmployees
         Me.txtFirstName.MaxLength = 50
         Me.txtFirstName.Name = "txtFirstName"
         Me.txtFirstName.Size = New System.Drawing.Size(217, 20)
-        Me.txtFirstName.TabIndex = 5
+        Me.txtFirstName.TabIndex = 4
         '
         'btnCancel
         '
         Me.btnCancel.Location = New System.Drawing.Point(414, 201)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
-        Me.btnCancel.TabIndex = 9
+        Me.btnCancel.TabIndex = 8
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
@@ -278,7 +278,7 @@ Partial Class usrJobCostingEmployees
         Me.btnSave.Location = New System.Drawing.Point(322, 201)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(75, 23)
-        Me.btnSave.TabIndex = 10
+        Me.btnSave.TabIndex = 7
         Me.btnSave.Text = "Save"
         Me.btnSave.UseVisualStyleBackColor = True
         '
