@@ -203,7 +203,7 @@ Public Class usrJobCostingOperations
         Dim dtClass As DataTable = GetClassInfo(Id)
         ddlCls.DataSource = dtClass
         ddlCls.ValueMember = "ID"
-        ddlCls.DisplayMember = "IDDesc"
+        ddlCls.DisplayMember = "Description"
         ddlCls.SelectedIndex = -1
 
     End Sub
