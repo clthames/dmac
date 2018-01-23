@@ -191,7 +191,7 @@ Public Class usrJobCostingOperations
         Dim dtDept As DataTable = GetDepartmentInfo(Id)
         ddlDepartment.DataSource = dtDept
         ddlDepartment.ValueMember = "Num"
-        ddlDepartment.DisplayMember = "Num"
+        ddlDepartment.DisplayMember = "NumDesc"
         ddlDepartment.SelectedIndex = -1
 
     End Sub
@@ -203,7 +203,7 @@ Public Class usrJobCostingOperations
         Dim dtClass As DataTable = GetClassInfo(Id)
         ddlCls.DataSource = dtClass
         ddlCls.ValueMember = "ID"
-        ddlCls.DisplayMember = "Description"
+        ddlCls.DisplayMember = "IDDesc"
         ddlCls.SelectedIndex = -1
 
     End Sub

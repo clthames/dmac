@@ -268,7 +268,7 @@ Partial Class usrJobCostingOperations
         Me.ddlCls.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ddlCls.Location = New System.Drawing.Point(584, 110)
         Me.ddlCls.Name = "ddlCls"
-        Me.ddlCls.Size = New System.Drawing.Size(88, 21)
+        Me.ddlCls.Size = New System.Drawing.Size(110, 21)
         Me.ddlCls.TabIndex = 11
         '
         'clmnCodeNo

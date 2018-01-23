@@ -174,7 +174,7 @@ Public Class usrJobCostingEmployees
         Dim dtDept As DataTable = GetDepartmentInfo(Id)
         ddlDepartment.DataSource = dtDept
         ddlDepartment.ValueMember = "Num"
-        ddlDepartment.DisplayMember = "Num"
+        ddlDepartment.DisplayMember = "NumDesc"
         ddlDepartment.SelectedIndex = -1
 
     End Sub
