@@ -152,6 +152,19 @@ Public Class frmMain
                     'oExcelSS.fillComboBox(cboReportDefinitions, "uspConfiguration_FillRepDefinitionsCbo", "ReportID", "ReportIDKey")
                     isLoading = False
 
+                Case "nUserOptions"
+
+                    Env = clsConfigDmac.ActiveEnv.UserOptions
+                    isLoading = True
+                    hideTabs()
+                    tsNew.Enabled = True
+                    tsEdit.Enabled = False
+                    tsCancel.Enabled = False
+                    tsSave.Enabled = False
+                    usrUserOptions1.Visible = True
+                    usrUserOptions1.Location = tc
+                    isLoading = False
+
                 Case "nCostDepartment"
 
                     Env = clsConfigDmac.ActiveEnv.Department
@@ -462,6 +475,7 @@ Public Class frmMain
         usrJobCostingEmployees1.Visible = False
         usrJobCostClass1.Visible = False
         usrJobCostingOperations1.Visible = False
+        usrUserOptions1.Visible = False
 
     End Sub
     ''' <summary>

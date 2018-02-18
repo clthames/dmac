@@ -73,6 +73,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsConfigDmac.vb" />
+    <Compile Include="usrUserOptions.Designer.vb">
+      <DependentUpon>usrUserOptions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="usrUserOptions.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="usrJobCostingEmployees.Designer.vb">
       <DependentUpon>usrJobCostingEmployees.vb</DependentUpon>
     </Compile>
@@ -155,8 +161,17 @@
     <Compile Include="usrSalesCode.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="frmUserOptions_Popup.Designer.vb">
+      <DependentUpon>frmUserOptions_Popup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserOptions_Popup.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="usrUserOptions.resx">
+      <DependentUpon>usrUserOptions.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="usrJobCostingEmployees.resx">
       <DependentUpon>usrJobCostingEmployees.vb</DependentUpon>
     </EmbeddedResource>
@@ -195,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="usrSalesCode.resx">
       <DependentUpon>usrSalesCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUserOptions_Popup.resx">
+      <DependentUpon>frmUserOptions_Popup.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

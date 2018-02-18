@@ -27,7 +27,8 @@ Partial Class frmMain
         Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Company")
         Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Roles")
         Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Users")
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Access", New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode3})
+        Dim TreeNode46 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("User Options")
+        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Access", New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode3, TreeNode46})
         Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Options")
         Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Sales Codes")
         Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Invoice Options")
@@ -87,6 +88,7 @@ Partial Class frmMain
         Me.usrJobCostingCenters1 = New ConfigDMAC.usrJobCostingCenters()
         Me.usrJobCostingEmployees1 = New ConfigDMAC.usrJobCostingEmployees()
         Me.usrJobCostingOperations1 = New ConfigDMAC.usrJobCostingOperations()
+        Me.usrUserOptions1 = New ConfigDMAC.usrUserOptions()
         Me.tbcntrl_ProfileAccess = New System.Windows.Forms.TabControl()
         Me.tbpg_Roles = New System.Windows.Forms.TabPage()
         Me.tcCompany = New System.Windows.Forms.TabControl()
@@ -280,6 +282,7 @@ Partial Class frmMain
         Me.scMain.Panel2.Controls.Add(Me.usrJobCostingCenters1)
         Me.scMain.Panel2.Controls.Add(Me.usrJobCostingEmployees1)
         Me.scMain.Panel2.Controls.Add(Me.usrJobCostingOperations1)
+        Me.scMain.Panel2.Controls.Add(Me.usrUserOptions1)
         Me.scMain.Panel2.Controls.Add(Me.tbcntrl_ProfileAccess)
         Me.scMain.Panel2.Controls.Add(Me.tcProfiles)
         Me.scMain.Size = New System.Drawing.Size(1182, 696)
@@ -315,6 +318,8 @@ Partial Class frmMain
         TreeNode9.Text = "Cost Operations"
         TreeNode45.Name = "nCostEmployees"
         TreeNode45.Text = "Cost Employees"
+        TreeNode46.Name = "nUserOptions"
+        TreeNode46.Text = "User Options"
         TreeNode10.Name = "nOperationCodes"
         TreeNode10.Text = "Operation Codes"
         TreeNode11.Name = "nOperationClasses"
@@ -426,6 +431,15 @@ Partial Class frmMain
         Me.usrJobCostingEmployees1.Name = "usrJobCostingEmployees1"
         Me.usrJobCostingEmployees1.Size = New System.Drawing.Size(963, 696)
         Me.usrJobCostingEmployees1.TabIndex = 8
+
+
+        'usrUserOptions1
+        '
+        Me.usrUserOptions1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.usrUserOptions1.Location = New System.Drawing.Point(0, 0)
+        Me.usrUserOptions1.Name = "usrUserOptions1"
+        Me.usrUserOptions1.Size = New System.Drawing.Size(963, 696)
+        Me.usrUserOptions1.TabIndex = 9
 
 
         'usrJobCostingCodes1
@@ -1312,5 +1326,6 @@ Partial Class frmMain
     Friend WithEvents usrJobCostingOperations1 As ConfigDMAC.usrJobCostingOperations
     Friend WithEvents usrJobCostClass1 As ConfigDMAC.usrJobCostClass
     Friend WithEvents usrJobCostingEmployees1 As ConfigDMAC.usrJobCostingEmployees
+    Friend WithEvents usrUserOptions1 As ConfigDMAC.usrUserOptions
 
 End Class
