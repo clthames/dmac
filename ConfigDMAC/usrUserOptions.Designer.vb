@@ -25,6 +25,12 @@ Partial Class usrUserOptions
         Me.tcUserOptions = New System.Windows.Forms.TabControl()
         Me.tbpgUserOptions = New System.Windows.Forms.TabPage()
         Me.pnlViewUserOptions = New System.Windows.Forms.Panel()
+        Me.dgvUserOptions = New System.Windows.Forms.DataGridView()
+        Me.clmnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnKey = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clmnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.clmnDelete = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.pnlTopDeptList = New System.Windows.Forms.Panel()
         Me.btnAddOption = New System.Windows.Forms.Button()
         Me.lblUser = New System.Windows.Forms.Label()
@@ -38,18 +44,12 @@ Partial Class usrUserOptions
         Me.btnSave = New System.Windows.Forms.Button()
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.lblID = New System.Windows.Forms.Label()
-        Me.dgvUserOptions = New System.Windows.Forms.DataGridView()
-        Me.clmnID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnKey = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clmnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.clmnDelete = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.tcUserOptions.SuspendLayout()
         Me.tbpgUserOptions.SuspendLayout()
         Me.pnlViewUserOptions.SuspendLayout()
+        CType(Me.dgvUserOptions, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTopDeptList.SuspendLayout()
         Me.pnlAddEditDept.SuspendLayout()
-        CType(Me.dgvUserOptions, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tcUserOptions
@@ -84,6 +84,70 @@ Partial Class usrUserOptions
         Me.pnlViewUserOptions.Size = New System.Drawing.Size(771, 311)
         Me.pnlViewUserOptions.TabIndex = 2
         '
+        'dgvUserOptions
+        '
+        Me.dgvUserOptions.AllowUserToAddRows = False
+        Me.dgvUserOptions.AllowUserToDeleteRows = False
+        Me.dgvUserOptions.BackgroundColor = System.Drawing.Color.White
+        Me.dgvUserOptions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvUserOptions.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clmnID, Me.clmnKey, Me.clmnValue, Me.clmnEdit, Me.clmnDelete})
+        Me.dgvUserOptions.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgvUserOptions.Location = New System.Drawing.Point(0, 40)
+        Me.dgvUserOptions.Name = "dgvUserOptions"
+        Me.dgvUserOptions.ReadOnly = True
+        Me.dgvUserOptions.Size = New System.Drawing.Size(771, 271)
+        Me.dgvUserOptions.TabIndex = 2
+        '
+        'clmnID
+        '
+        Me.clmnID.DataPropertyName = "ID"
+        Me.clmnID.HeaderText = "ID"
+        Me.clmnID.Name = "clmnID"
+        Me.clmnID.ReadOnly = True
+        Me.clmnID.Visible = False
+        Me.clmnID.Width = 5
+        '
+        'clmnKey
+        '
+        Me.clmnKey.DataPropertyName = "Keyword"
+        Me.clmnKey.FillWeight = 99.49238!
+        Me.clmnKey.HeaderText = "Keyword"
+        Me.clmnKey.Name = "clmnKey"
+        Me.clmnKey.ReadOnly = True
+        Me.clmnKey.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.clmnKey.Width = 150
+        '
+        'clmnValue
+        '
+        Me.clmnValue.DataPropertyName = "Value"
+        Me.clmnValue.FillWeight = 99.49238!
+        Me.clmnValue.HeaderText = "Value"
+        Me.clmnValue.Name = "clmnValue"
+        Me.clmnValue.ReadOnly = True
+        Me.clmnValue.Width = 400
+        '
+        'clmnEdit
+        '
+        Me.clmnEdit.FillWeight = 101.5228!
+        Me.clmnEdit.HeaderText = ""
+        Me.clmnEdit.Name = "clmnEdit"
+        Me.clmnEdit.ReadOnly = True
+        Me.clmnEdit.Text = "Edit"
+        Me.clmnEdit.ToolTipText = "Edit User Option"
+        Me.clmnEdit.UseColumnTextForButtonValue = True
+        Me.clmnEdit.Width = 80
+        '
+        'clmnDelete
+        '
+        Me.clmnDelete.DataPropertyName = "ID"
+        Me.clmnDelete.FillWeight = 99.49238!
+        Me.clmnDelete.HeaderText = ""
+        Me.clmnDelete.Name = "clmnDelete"
+        Me.clmnDelete.ReadOnly = True
+        Me.clmnDelete.Text = "Delete"
+        Me.clmnDelete.ToolTipText = "Delete User Option"
+        Me.clmnDelete.UseColumnTextForButtonValue = True
+        '
         'pnlTopDeptList
         '
         Me.pnlTopDeptList.Controls.Add(Me.btnAddOption)
@@ -102,7 +166,7 @@ Partial Class usrUserOptions
         Me.btnAddOption.Name = "btnAddOption"
         Me.btnAddOption.Size = New System.Drawing.Size(117, 23)
         Me.btnAddOption.TabIndex = 2
-        Me.btnAddOption.Text = "Add User Option"
+        Me.btnAddOption.Text = "Add New Keyword"
         Me.btnAddOption.UseVisualStyleBackColor = True
         '
         'lblUser
@@ -214,70 +278,6 @@ Partial Class usrUserOptions
         Me.lblID.TabIndex = 1
         Me.lblID.Visible = False
         '
-        'dgvUserOptions
-        '
-        Me.dgvUserOptions.AllowUserToAddRows = False
-        Me.dgvUserOptions.AllowUserToDeleteRows = False
-        Me.dgvUserOptions.BackgroundColor = System.Drawing.Color.White
-        Me.dgvUserOptions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvUserOptions.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clmnID, Me.clmnKey, Me.clmnValue, Me.clmnEdit, Me.clmnDelete})
-        Me.dgvUserOptions.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvUserOptions.Location = New System.Drawing.Point(0, 40)
-        Me.dgvUserOptions.Name = "dgvUserOptions"
-        Me.dgvUserOptions.ReadOnly = True
-        Me.dgvUserOptions.Size = New System.Drawing.Size(771, 271)
-        Me.dgvUserOptions.TabIndex = 2
-        '
-        'clmnID
-        '
-        Me.clmnID.DataPropertyName = "ID"
-        Me.clmnID.HeaderText = "ID"
-        Me.clmnID.Name = "clmnID"
-        Me.clmnID.ReadOnly = True
-        Me.clmnID.Visible = False
-        Me.clmnID.Width = 5
-        '
-        'clmnKey
-        '
-        Me.clmnKey.DataPropertyName = "Keyword"
-        Me.clmnKey.FillWeight = 99.49238!
-        Me.clmnKey.HeaderText = "Keyword"
-        Me.clmnKey.Name = "clmnKey"
-        Me.clmnKey.ReadOnly = True
-        Me.clmnKey.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.clmnKey.Width = 150
-        '
-        'clmnValue
-        '
-        Me.clmnValue.DataPropertyName = "Value"
-        Me.clmnValue.FillWeight = 99.49238!
-        Me.clmnValue.HeaderText = "Value"
-        Me.clmnValue.Name = "clmnValue"
-        Me.clmnValue.ReadOnly = True
-        Me.clmnValue.Width = 400
-        '
-        'clmnEdit
-        '
-        Me.clmnEdit.FillWeight = 101.5228!
-        Me.clmnEdit.HeaderText = ""
-        Me.clmnEdit.Name = "clmnEdit"
-        Me.clmnEdit.ReadOnly = True
-        Me.clmnEdit.Text = "Edit"
-        Me.clmnEdit.ToolTipText = "Edit User Option"
-        Me.clmnEdit.UseColumnTextForButtonValue = True
-        Me.clmnEdit.Width = 80
-        '
-        'clmnDelete
-        '
-        Me.clmnDelete.DataPropertyName = "ID"
-        Me.clmnDelete.FillWeight = 99.49238!
-        Me.clmnDelete.HeaderText = ""
-        Me.clmnDelete.Name = "clmnDelete"
-        Me.clmnDelete.ReadOnly = True
-        Me.clmnDelete.Text = "Delete"
-        Me.clmnDelete.ToolTipText = "Delete User Option"
-        Me.clmnDelete.UseColumnTextForButtonValue = True
-        '
         'usrUserOptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -288,11 +288,11 @@ Partial Class usrUserOptions
         Me.tcUserOptions.ResumeLayout(False)
         Me.tbpgUserOptions.ResumeLayout(False)
         Me.pnlViewUserOptions.ResumeLayout(False)
+        CType(Me.dgvUserOptions, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlTopDeptList.ResumeLayout(False)
         Me.pnlTopDeptList.PerformLayout()
         Me.pnlAddEditDept.ResumeLayout(False)
         Me.pnlAddEditDept.PerformLayout()
-        CType(Me.dgvUserOptions, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

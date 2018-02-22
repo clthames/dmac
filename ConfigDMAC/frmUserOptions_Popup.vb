@@ -19,8 +19,9 @@
             val = value
         End Set
     End Property
+
     Private ispassword As Boolean
-    Public Property IsPass() As Boolean
+    Public Property IsPasswordField() As Boolean
         Get
             Return ispassword
         End Get
@@ -29,14 +30,23 @@
         End Set
     End Property
 
+    Private _isEditMode As Boolean
+    Public Property IsEditMode() As Boolean
+        Get
+            Return _isEditMode
+        End Get
+        Set(ByVal value As Boolean)
+            _isEditMode = value
+        End Set
+    End Property
 
     Private Sub usrUserOptions_Popup_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If IsPass Then
+        txtValue.Text = Value
+        If IsPasswordField Then
             txtValue.PasswordChar = "*"
         End If
         txtKey.Text = Keyword
-        txtValue.Text = Value
-
+        txtKey.Enabled = Not IsEditMode
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click

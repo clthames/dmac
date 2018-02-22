@@ -67,20 +67,34 @@ Public Class usrUserOptions
 
                         lblID.Text = Convert.ToString(dt.Rows(0)("ID"))
                         Dim frm As New frmUserOptions_Popup()
-                        'frm.Parent = Me
                         frm.Keyword = Convert.ToString(dt.Rows(0)("Keyword")).Trim
-                        If frm.Keyword.ToLower().Contains("password") And Not String.IsNullOrEmpty(Convert.ToString(dt.Rows(0)("Value"))) Then
-                            frm.Value = ExcelSSGen.Main.Decrypt(Convert.ToString(dt.Rows(0)("Value")).Trim, "dmac", True)
-                            frm.IsPass = True
-                        Else
-                            frm.Value = Convert.ToString(dt.Rows(0)("Value")).Trim
-                            frm.IsPass = False
+
+                        Dim value As String = Convert.ToString(dt.Rows(0)("Value")).Trim
+
+                        If frm.Keyword.ToLower().Contains("password") Then
+                            frm.IsPasswordField = True
                         End If
+
+                        If frm.IsPasswordField AndAlso Not String.IsNullOrEmpty(value) Then
+                            frm.Value = ExcelSSGen.Main.Decrypt(value, "dmac", True)
+                        Else
+                            frm.Value = value
+                            frm.IsPasswordField = False
+                        End If
+
+                        Dim userId As Integer = Convert.ToInt32(lblID.Text)
+
+                        If (userId = 0) Then
+                            frm.IsEditMode = False
+                        Else
+                            frm.IsEditMode = True
+                        End If
+
                         Dim dialogresult As DialogResult
                         dialogresult = frm.ShowDialog()
 
                         If dialogresult = Windows.Forms.DialogResult.OK Then
-                            InsertUpdateUserOption(Convert.ToInt32(lblID.Text), frm.Keyword, frm.Value)
+                            InsertUpdateUserOption(userId, frm.Keyword, frm.Value)
                         End If
                     End If
                 End If
@@ -96,11 +110,11 @@ Public Class usrUserOptions
             dgvUserOptions_CellContentClick(Nothing, e)
         Catch ex As Exception
             oExcelSS.ErrorLog("dgvUserOptions_CellDoubleClick Error#" & ex.ToString())
-            MessageBox.Show("Failed to show Add User Option screen.", "UserOptions", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Failed to show Add Keyword screen.", "UserOptions", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 #End Region
-   
+
 #Region "Private Methods"
 
 
